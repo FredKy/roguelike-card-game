@@ -10,7 +10,7 @@ onready var card_img = str("res://assets/cards/", card_info[0], "/", card_name, 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(card_img)
-	$Border.scale *= rect_size/$Border.texture.get_size()
+	#$Border.scale *= rect_size/$Border.texture.get_size()
 #	$Card.texture = load(card_img)
 #	$Card.scale *= rect_size/$Card.texture.get_size()
 
