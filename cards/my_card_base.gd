@@ -13,7 +13,3 @@ func _ready():
 	#$Border.scale *= rect_size/$Border.texture.get_size()
 #	$Card.texture = load(card_img)
 #	$Card.scale *= rect_size/$Card.texture.get_size()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
