@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/images/aeromancer_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://cards/my_card_base.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.227451, 0.227451, 0.227451, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.388235, 0.388235, 0.388235, 1 )
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
+[node name="MyCardBase" type="MarginContainer"]
+margin_right = 288.0
+margin_bottom = 398.0
+script = ExtResource( 2 )
+
+[node name="Border" type="Panel" parent="."]
+margin_right = 288.0
+margin_bottom = 398.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Inner" type="Panel" parent="Border"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 280.0
+margin_bottom = 390.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+
+[node name="Image" type="Sprite" parent="."]
+position = Vector2( 16, 48 )
+texture = ExtResource( 1 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 4864, 0, 256, 192 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+margin_right = 288.0
+margin_bottom = 398.0
+color = Color( 0.560784, 0.560784, 0.560784, 1 )
