@@ -1,6 +1,9 @@
+VBoxContainer
+Control
+Container
+Panel
 MarginContainer
 HBoxContainer
-VBoxContainer
 Label
 CenterContainer
 NinePatchRect
