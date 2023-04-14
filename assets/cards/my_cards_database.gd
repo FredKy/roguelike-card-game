@@ -1,4 +1,3 @@
-
 # Unitinfo = [Type, Attack, Retaliation, Health, Cost, Name, Melee or Ranged, Special Text]
 # Eventinfo = [Type, Cost, Effect]
 # Spellinfo = [Type, Cost, Name, Effect]
@@ -8,7 +7,7 @@ SPEARMAN, MENTOR, TREBUCHET, ICE_CANNON}
 
 const DATA = {
 	ICE_CANNON :
-		["spell", 2, "ice_cannon", "Deal 7 damage\nto a unit"],
+		["spell", 2, "ice_cannon", "Deal 7 damage\nto a unit", Rect2(4864,0,256,192)],
 	FOOTMAN : 
 		["units", 1, 1, 2, 1, "footman", "Melee"],
 	ARCHER :

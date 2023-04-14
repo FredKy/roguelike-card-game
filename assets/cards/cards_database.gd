@@ -1,4 +1,3 @@
-
 # Unitinfo = [Type, Attack, Retaliation, Health, Cost, Name, Melee or Ranged, Special Text]
 # Eventinfo = [Type, Cost, Effect]
 enum {FOOTMAN, ARCHER, SQUAD_LEADER,

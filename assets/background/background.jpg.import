@@ -1,35 +1,34 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/background.jpg-5674aa39c5114d5df1c8582693cd1bef.stex"
+type="CompressedTexture2D"
+uid="uid://dom5pju0ou2q2"
+path="res://.godot/imported/background.jpg-8c9c7827b513450f2e298043cc90d094.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/background/background.jpg"
-dest_files=[ "res://.import/background.jpg-5674aa39c5114d5df1c8582693cd1bef.stex" ]
+source_file="res://assets/Background/background.jpg"
+dest_files=["res://.godot/imported/background.jpg-8c9c7827b513450f2e298043cc90d094.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=true
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

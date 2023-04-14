@@ -17,7 +17,7 @@ func _ready():
 
 func _input(event):
 	if Input.is_action_just_released("leftclick"):
-		var new_card = CARD_BASE.instance()
+		var new_card = CARD_BASE.instantiate()
 		new_card.Cardname = 'Footman'
-		new_card.rect_position = get_global_mouse_position()
+		new_card.position = get_global_mouse_position()
 		$Cards.add_child(new_card)

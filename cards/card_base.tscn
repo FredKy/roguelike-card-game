@@ -1,17 +1,28 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://b43f8m5eeofwo"]
 
-[ext_resource path="res://cards/card_base.gd" type="Script" id=1]
-[ext_resource path="res://assets/cards/card_borders_etc/card_border.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://cards/card_base.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://clhd55wkk8rip" path="res://assets/cards/card_borders_etc/card_border.png" id="2"]
 
 [node name="CardBase" type="MarginContainer"]
-margin_right = 250.0
-margin_bottom = 350.0
-rect_pivot_offset = Vector2( 125, 175 )
-script = ExtResource( 1 )
+offset_right = 250.0
+offset_bottom = 350.0
+pivot_offset = Vector2(125, 175)
+script = ExtResource("1")
 
-[node name="Card" type="Sprite" parent="."]
+[node name="Card" type="Sprite2D" parent="."]
 centered = false
 
-[node name="Border" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 centered = false
+
+[node name="Bars" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopGap" type="MarginContainer" parent="Bars"]
+layout_mode = 2
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 25
+
+[node name="TopBar" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
