@@ -1,6 +1,6 @@
 MarginContainer
+HBoxContainer
+VBoxContainer
 Label
 CenterContainer
 NinePatchRect
-HBoxContainer
-VBoxContainer

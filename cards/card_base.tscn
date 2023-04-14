@@ -126,7 +126,7 @@ texture = ExtResource("3_yeg6u")
 [node name="CenterContainer" type="CenterContainer" parent="Bars/BottomBar/Attack"]
 layout_mode = 2
 
-[node name="A&R" type="Label" parent="Bars/BottomBar/Attack/CenterContainer"]
+[node name="AR" type="Label" parent="Bars/BottomBar/Attack/CenterContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_7uoph")
 theme_override_font_sizes/font_size = 15

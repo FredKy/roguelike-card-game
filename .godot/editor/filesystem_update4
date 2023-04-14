@@ -1,3 +1,4 @@
 res://default_env.tres
 res://cards/card_base.tscn
 res://cards/my_card_base.tscn
+res://cards/card_base.gd
