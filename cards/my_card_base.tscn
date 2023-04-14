@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=11 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
@@ -17,6 +17,16 @@ corner_radius_top_left = 11
 corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pw0ky"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbiw7"]
+bg_color = Color(0.211765, 0.211765, 0.211765, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0drq"]
 bg_color = Color(0.443137, 0.254902, 0, 1)
@@ -868,7 +878,19 @@ visible = false
 layout_mode = 2
 color = Color(0.560784, 0.560784, 0.560784, 1)
 
-[node name="Image" type="Sprite2D" parent="."]
+[node name="HiddenPanel" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_pw0ky")
+
+[node name="ImageShadow" type="Panel" parent="HiddenPanel"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 50.0
+offset_right = 275.0
+offset_bottom = 246.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kbiw7")
+
+[node name="Image" type="Sprite2D" parent="HiddenPanel"]
 position = Vector2(17, 52)
 texture = ExtResource("1")
 centered = false
