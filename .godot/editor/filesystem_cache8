@@ -1,11 +1,11 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1681489397
-default_env.tres::Environment::37057992798485328::1681488819::0::1::::<><>::
+::res://::1681628314
+default_env.tres::Environment::37057992798485328::1681628301::0::1::::<><>::
 export_presets.cfg::TextFile::-1::1681474250::0::1::::<><>::
 icon.png::CompressedTexture2D::3475557974187739395::1588836726::1681460804::1::::<><>::
 player_hand.gd::GDScript::-1::1681460788::0::1::::<>RefCounted<>::
-playspace.gd::GDScript::-1::1681460788::0::1::::<>Node2D<>::
-playspace.tscn::PackedScene::-1::1681460788::0::1::::<><>::res://assets/Background/Background.jpg<>res://assets/cards/Card Borders etc/Back_Texture.png<>res://assets/cards/Card Borders etc/Gold_Border.png<>res://Playspace.gd
+playspace.gd::GDScript::-1::1681628269::0::1::::<>Node2D<>::
+playspace.tscn::PackedScene::4580219534443628110::1681628301::0::1::::<><>::uid://dom5pju0ou2q2<>res://playspace.gd
 ::res://addons/::1681480490
 ::res://addons/godot-git-plugin/::1681480198
 git_plugin.gdextension::GDExtension::-1::1677688130::0::1::::<><>::
@@ -15,11 +15,11 @@ THIRDPARTY.md::TextFile::-1::1677688130::0::1::::<><>::
 ::res://addons/godot-git-plugin/macos/::1681480198
 ::res://addons/godot-git-plugin/win64/::1681480198
 ::res://assets/::1681460686
-::res://assets/background/::1681480551
-background.jpg::CompressedTexture2D::8168527196513692999::1588754142::1681480551::1::::<><>::
-::res://assets/cards/::1681470769
+::res://assets/background/::1681625259
+background.jpg::CompressedTexture2D::8168527196513692999::1588754142::1681625259::1::::<><>::
+::res://assets/cards/::1681498456
 cards_database.gd::GDScript::-1::1681470764::0::1::::<>RefCounted<>::
-my_cards_database.gd::GDScript::-1::1681470769::0::1::::<>RefCounted<>::
+my_cards_database.gd::GDScript::-1::1681498456::0::1::::<>RefCounted<>::
 ::res://assets/cards/card_borders_etc/::1681460805
 background_image.png::CompressedTexture2D::1245841902766905001::1588841908::1681460805::1::::<><>::
 background_shade.png::CompressedTexture2D::6116519728039784099::1554355280::1681460805::1::::<><>::
@@ -104,8 +104,9 @@ aeromancer_spritesheet.png::CompressedTexture2D::2076065153394760506::1678564538
 aeromancer_spritesheet_pixelated.png::CompressedTexture2D::1046631722453812525::1679164328::1681460805::1::::<><>::
 player_idle.png::CompressedTexture2D::4516887912430352152::1678820108::1681460804::1::::<><>::
 skeleton_warrior_idle.png::CompressedTexture2D::8016461915396700452::1679268868::1681460804::1::::<><>::
-::res://cards/::1681489302
+::res://cards/::1681628235
 card_base.gd::GDScript::-1::1681485961::0::1::::<>MarginContainer<>::
-card_base.tscn::PackedScene::4480062919284385854::1681485961::0::1::::<><>::res://cards/card_base.gd<>uid://clhd55wkk8rip<>uid://cte5gll125t28<>uid://ywn222v2r8pg
-my_card_base.gd::GDScript::-1::1681470787::0::1::::<>MarginContainer<>::
-my_card_base.tscn::PackedScene::7467315725858145438::1681489302::0::1::::<><>::uid://4twqwfrinn3g<>res://cards/my_card_base.gd<>uid://c1pbb2crnyoby
+card_base.tscn::PackedScene::4480062919284385854::1681628112::0::1::::<><>::res://cards/card_base.gd<>uid://clhd55wkk8rip<>uid://cte5gll125t28<>uid://ywn222v2r8pg
+my_card_base.gd::GDScript::-1::1681498362::0::1::::<>MarginContainer<>::
+my_card_base.tscn::PackedScene::7467315725858145438::1681628112::0::1::::<><>::uid://4twqwfrinn3g<>res://cards/my_card_base.gd<>uid://c1pbb2crnyoby
+player_hand.gd::GDScript::-1::1681628235::0::1::::<>RefCounted<>::

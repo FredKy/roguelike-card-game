@@ -1,5 +1,5 @@
 res://default_env.tres
-res://cards/my_card_base.tscn
-res://assets/cards/my_cards_database.gd
-res://cards/my_card_base.gd
+res://playspace.tscn
+res://playspace.gd
 res://cards/card_base.tscn
+res://cards/my_card_base.tscn

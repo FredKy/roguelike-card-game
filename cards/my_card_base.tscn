@@ -851,8 +851,8 @@ cache/0/45/0/kerning_overrides/35/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/45/0 = Vector2(0, 0)
 
 [node name="MyCardBase" type="MarginContainer"]
-offset_right = 288.0
-offset_bottom = 398.0
+offset_right = 290.0
+offset_bottom = 400.0
 script = ExtResource("2")
 
 [node name="Border" type="Panel" parent="."]
