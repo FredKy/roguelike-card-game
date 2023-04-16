@@ -1,7 +1,7 @@
 extends Node2D
 
-const CARD_BASE := preload("res://cards/my_card_base.tscn")
-var player_hand := preload("res://cards/player_hand.gd").new()
+const CARD_BASE := preload("res://cards/card_base.tscn")
+var player_hand := preload("res://cards/tut_player_hand.gd").new()
 var card_selected = []
 
 @onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.25)

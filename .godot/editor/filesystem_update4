@@ -3,3 +3,8 @@ res://playspace.tscn
 res://playspace.gd
 res://cards/card_base.tscn
 res://cards/my_card_base.tscn
+res://deck_draw.gd
+res://tut_playspace.tscn
+res://cards/tut_playspace.gd
+res://tut_playscene.tscn
+res://cards/player_hand.gd

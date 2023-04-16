@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://y4uvpxjkjpyb"]
+
+[ext_resource type="Texture2D" uid="uid://dom5pju0ou2q2" path="res://assets/background/background.jpg" id="1_6addw"]
+[ext_resource type="Script" path="res://cards/tut_playspace.gd" id="1_en761"]
+[ext_resource type="Script" path="res://deck_draw.gd" id="3_663mg"]
+[ext_resource type="Texture2D" uid="uid://dgkg0aufrlj1n" path="res://assets/cards/card_borders_etc/back_texture.png" id="3_surax"]
+[ext_resource type="Texture2D" uid="uid://o8pmfr3d2chn" path="res://assets/cards/card_borders_etc/gold_border.png" id="4_tou5i"]
+
+[node name="TutPlayspace" type="Node2D"]
+script = ExtResource("1_en761")
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="BG" type="Sprite2D" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(463, 324)
+texture = ExtResource("1_6addw")
+
+[node name="Deck" type="Node2D" parent="."]
+
+[node name="Draw" type="TextureButton" parent="Deck"]
+offset_left = 967.0
+offset_top = 119.0
+offset_right = 1024.0
+offset_bottom = 189.0
+texture_normal = ExtResource("3_surax")
+texture_pressed = ExtResource("3_surax")
+texture_hover = ExtResource("3_surax")
+texture_disabled = ExtResource("4_tou5i")
+script = ExtResource("3_663mg")

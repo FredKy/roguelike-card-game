@@ -1,1 +1,1 @@
-var card_list = ["footman", "footman", "archer", "squad_leader", "spearman"]
+var card_list = ["ice_cannon", "ice_cannon", "warp_time", "cold_touch", "cold_touch"]
