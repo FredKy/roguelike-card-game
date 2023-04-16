@@ -9,8 +9,15 @@ var card_selected = []
 @onready var ver_rad = get_viewport().size.y*0.4
 var angle = deg_to_rad(90)-0.5
 var oval_angle_vector = Vector2()
-#x = hor_rad * cos angle
-#y = ver_rad * sin angle
+
+enum {
+	IN_HAND,
+	IN_PLAY,
+	IN_MOUSE,
+	FOCUS_IN_HAND,
+	DRAWN_TO_HAND,
+	REORGANIZE_HAND,
+}
 
 func draw_card():
 	var new_card = CARD_BASE.instantiate()
@@ -22,10 +29,20 @@ func draw_card():
 	new_card.scale *= 0.6
 	
 	oval_angle_vector = Vector2(-hor_rad*cos(angle), -ver_rad*sin(angle))
-	new_card.position = centre_card_oval + oval_angle_vector - new_card.size/2
-	print(new_card.position)
+	new_card.startpos = $Deck.position -new_card.size/2
+	
+	print($Deck.position)
+	print(new_card.size)
+	print(new_card.size/2)
+	print($Deck/Draw.size)
+	#new_card.position = centre_card_oval + oval_angle_vector - new_card.size/2
+	new_card.targetpos = centre_card_oval + oval_angle_vector - new_card.size/2
+	#new_card.targetpos = new_card.startpos #tmp
+	print(new_card.targetpos)
 	
 	new_card.rotation = (angle-deg_to_rad(90))/4
+	
+	new_card.state = DRAWN_TO_HAND
 	
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])

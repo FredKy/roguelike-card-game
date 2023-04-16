@@ -8,6 +8,21 @@ extends MarginContainer
 var card_name = 'cold_touch'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
 
+var startpos = 0
+var targetpos = 0
+var t = 0
+const DRAWTIME = 1
+
+enum {
+	IN_HAND,
+	IN_PLAY,
+	IN_MOUSE,
+	FOCUS_IN_HAND,
+	DRAWN_TO_HAND,
+	REORGANIZE_HAND,
+}
+var state = IN_HAND
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(card_info)
@@ -17,3 +32,23 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	
+func _physics_process(delta):
+	match state:
+		IN_HAND:
+			pass
+		IN_PLAY:
+			pass
+		IN_MOUSE:
+			pass
+		FOCUS_IN_HAND:
+			pass
+		DRAWN_TO_HAND: #animate card from deck to player hand.
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				t += delta/float(DRAWTIME)
+			else:
+				position = targetpos
+				t = 0
+				state = IN_HAND
+		REORGANIZE_HAND:
+			pass

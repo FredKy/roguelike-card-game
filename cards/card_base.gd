@@ -6,6 +6,20 @@ var card_name = 'mentor'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
 @onready var card_img = str("res://assets/cards/", card_info[0], "/", card_name, ".png")
 
+var startpos = 0
+var targetpos = 0
+var t = 0
+const DRAWTIME = 1
+
+enum {
+	IN_HAND,
+	IN_PLAY,
+	IN_MOUSE,
+	FOCUS_IN_HAND,
+	DRAWN_TO_HAND,
+	REORGANIZE_HAND,
+}
+var state = IN_HAND
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(card_img)
@@ -24,5 +38,23 @@ func _ready():
 	$Bars/BottomBar/Attack/CenterContainer/AR.text = str(attack,'/',retalition)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	match state:
+		IN_HAND:
+			pass
+		IN_PLAY:
+			pass
+		IN_MOUSE:
+			pass
+		FOCUS_IN_HAND:
+			pass
+		DRAWN_TO_HAND: #animate card from deck to player hand.
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				t += delta/float(DRAWTIME)
+			else:
+				position = targetpos
+				t = 0
+				state = IN_HAND
+		REORGANIZE_HAND:
+			pass
