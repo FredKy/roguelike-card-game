@@ -12,8 +12,9 @@ var startrot = 0
 var targetrot = 0
 var t = 0
 @onready var orig_scale = scale.x
-const DRAWTIME = 1
-const ORGANIZETIME = 0.5
+const DRAWTIME = 0.5
+const ORGANIZETIME = 0.25
+var tween
 
 enum {
 	IN_HAND,
@@ -41,6 +42,7 @@ func _ready():
 	$Bars/SpecialText/Name/CenterContainer/Type.text = special_text
 	$Bars/BottomBar/Health/CenterContainer/Health.text = health
 	$Bars/BottomBar/Attack/CenterContainer/AR.text = str(attack,'/',retalition)
+	position = startpos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -54,9 +56,21 @@ func _physics_process(delta):
 		FOCUS_IN_HAND:
 			pass
 		DRAWN_TO_HAND: #animate card from deck to player hand.
+			
 			if t <= 1:
-				position = startpos.lerp(targetpos, t)
-				rotation = startrot*(1-t) + targetrot*t
+				#position = startpos.lerp(targetpos, t)
+				if !tween:
+					tween = create_tween()
+					tween.set_ease(Tween.EASE_IN_OUT)
+					tween.set_trans(Tween.TRANS_CUBIC)
+					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+					tween.tween_property(self, "position", targetpos, DRAWTIME)
+					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+					
+					
+				#rotation = startrot*(1-t) + targetrot*t
+				
+				
 				
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
@@ -75,6 +89,11 @@ func _physics_process(delta):
 		REORGANIZE_HAND:
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
+#				if !tween:
+#					tween = create_tween()
+#					tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+#					tween.tween_property(self, "position", targetpos, ORGANIZETIME)
+				
 				rotation = startrot*(1-t) + targetrot*t
 				t += delta/float(ORGANIZETIME)
 			else:
