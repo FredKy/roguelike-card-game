@@ -6,7 +6,6 @@
 [ext_resource type="FontFile" uid="uid://ywn222v2r8pg" path="res://assets/font/Comfortaa-Bold.ttf" id="4_7uoph"]
 
 [node name="CardBase" type="MarginContainer"]
-anchors_preset = -1
 offset_left = -125.0
 offset_top = -175.0
 offset_right = 125.0

@@ -851,7 +851,6 @@ cache/0/45/0/kerning_overrides/35/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/45/0 = Vector2(0, 0)
 
 [node name="MyCardBase" type="MarginContainer"]
-anchors_preset = -1
 offset_left = -145.0
 offset_top = -200.0
 offset_right = 145.0

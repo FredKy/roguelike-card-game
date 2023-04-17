@@ -8,6 +8,8 @@ var card_name = 'mentor'
 
 var startpos = 0
 var targetpos = 0
+var startrot = 0
+var targetrot = 0
 var t = 0
 const DRAWTIME = 1
 
@@ -51,9 +53,11 @@ func _physics_process(delta):
 		DRAWN_TO_HAND: #animate card from deck to player hand.
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + targetrot*t
 				t += delta/float(DRAWTIME)
 			else:
 				position = targetpos
+				rotation = targetrot
 				t = 0
 				state = IN_HAND
 		REORGANIZE_HAND:

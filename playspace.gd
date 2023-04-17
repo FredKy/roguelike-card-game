@@ -40,7 +40,8 @@ func draw_card():
 	#new_card.targetpos = new_card.startpos #tmp
 	print(new_card.targetpos)
 	
-	new_card.rotation = (angle-deg_to_rad(90))/4
+	new_card.startrot = 0
+	new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
 	
 	new_card.state = DRAWN_TO_HAND
 	
