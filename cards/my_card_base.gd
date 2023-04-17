@@ -52,7 +52,14 @@ func _physics_process(delta):
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
 				rotation = startrot*(1-t) + targetrot*t
-				scale.x = orig_scale*abs(2*t-1)
+				#scale.x = orig_scale*abs(2*t-1)
+				if t < 0.5:
+					scale.x = orig_scale*abs(2*(2*t)-1)
+				else:
+					scale.x = orig_scale
+				if $CardBack.visible:
+					if t >= 0.25:
+						$CardBack.visible = false
 				t += delta/float(DRAWTIME)
 			else:
 				position = targetpos
