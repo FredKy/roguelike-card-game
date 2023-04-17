@@ -6,13 +6,14 @@ var card_name = 'mentor'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
 @onready var card_img = str("res://assets/cards/", card_info[0], "/", card_name, ".png")
 
-var startpos = 0
-var targetpos = 0
+var startpos = Vector2()
+var targetpos = Vector2()
 var startrot = 0
 var targetrot = 0
 var t = 0
-var orig_scale = 0
+@onready var orig_scale = scale.x
 const DRAWTIME = 1
+const ORGANIZETIME = 0.5
 
 enum {
 	IN_HAND,
@@ -30,7 +31,6 @@ func _ready():
 	$Card.texture = load(card_img)
 	$Card.scale *= size/$Card.texture.get_size()
 	$CardBack.scale *= size/$CardBack.texture.get_size()
-	orig_scale = scale.x
 	var attack = str(card_info[1])
 	var retalition = str(card_info[2])
 	var health = str(card_info[3])
@@ -70,7 +70,15 @@ func _physics_process(delta):
 			else:
 				position = targetpos
 				rotation = targetrot
-				t = 0
 				state = IN_HAND
+				t = 0
 		REORGANIZE_HAND:
-			pass
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + targetrot*t
+				t += delta/float(ORGANIZETIME)
+			else:
+				position = targetpos
+				rotation = targetrot
+				state = IN_HAND
+				t = 0

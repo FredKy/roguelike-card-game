@@ -7,7 +7,10 @@ var card_selected = []
 @onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.25)
 @onready var hor_rad = get_viewport().size.x*0.45
 @onready var ver_rad = get_viewport().size.y*0.4
-var angle = deg_to_rad(90)-0.5
+var angle = 0
+var card_spread = 0.25
+var number_cards_hand = 0
+var card_numb = 0
 var oval_angle_vector = Vector2()
 
 enum {
@@ -20,6 +23,7 @@ enum {
 }
 
 func draw_card():
+	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()
 	var deck_size = player_hand.card_list.size()
 	if (deck_size < 1):
@@ -28,29 +32,39 @@ func draw_card():
 	new_card.card_name = player_hand.card_list[card_selected]
 	new_card.scale *= 0.6
 	
-	oval_angle_vector = Vector2(-hor_rad*cos(angle), -ver_rad*sin(angle))
+	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 	new_card.startpos = $Deck.position -new_card.size/2
-	
-	print($Deck.position)
-	print(new_card.size)
-	print(new_card.size/2)
-	print($Deck/DeckDraw.size)
-	#new_card.position = centre_card_oval + oval_angle_vector - new_card.size/2
 	new_card.targetpos = centre_card_oval + oval_angle_vector - new_card.size/2
-	#new_card.targetpos = new_card.startpos #tmp
-	print(new_card.targetpos)
-	
 	new_card.startrot = 0
-	new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
+	#new_card.targetrot = 2*PI + -(angle-deg_to_rad(90))/4
+	new_card.targetrot = -(angle-deg_to_rad(90))/4
 	
 	new_card.state = DRAWN_TO_HAND
 	
+	card_numb = 0
+	for card in $Cards.get_children(): # reorganize hand
+		angle = PI/2 + card_spread*(float(number_cards_hand)/2-card_numb)
+		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
+		
+		card.targetpos = centre_card_oval + oval_angle_vector - card.size/2
+		card.startrot = card.rotation
+		#new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
+		card.targetrot = -(angle-deg_to_rad(90))/4
+		card_numb += 1
+		if card.state == IN_HAND:
+			card.state = REORGANIZE_HAND
+			card.startpos = card.position
+		elif card.state == DRAWN_TO_HAND:
+			card.startpos = card.targetpos - ((card.targetpos - card.position)/(1-card.t))
+		
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])
+	deck_size -= 1
 	angle += 0.25
+	number_cards_hand += 1
+	#card_numb += 1
 	
-	
-	return deck_size -1
+	return deck_size
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
