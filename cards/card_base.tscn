@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b43f8m5eeofwo"]
+[gd_scene load_steps=6 format=3 uid="uid://b43f8m5eeofwo"]
 
 [ext_resource type="Script" path="res://cards/card_base.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://clhd55wkk8rip" path="res://assets/cards/card_borders_etc/card_border.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://cte5gll125t28" path="res://assets/cards/card_borders_etc/background_shade.png" id="3_yeg6u"]
 [ext_resource type="FontFile" uid="uid://ywn222v2r8pg" path="res://assets/font/Comfortaa-Bold.ttf" id="4_7uoph"]
+[ext_resource type="Texture2D" uid="uid://dgkg0aufrlj1n" path="res://assets/cards/card_borders_etc/back_texture.png" id="5_xccpt"]
 
 [node name="CardBase" type="MarginContainer"]
 offset_left = -125.0
@@ -163,3 +164,7 @@ layout_mode = 2
 [node name="BottomGap" type="MarginContainer" parent="Bars"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+
+[node name="CardBack" type="Sprite2D" parent="."]
+texture = ExtResource("5_xccpt")
+centered = false

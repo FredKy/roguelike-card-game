@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=14 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
@@ -850,6 +850,24 @@ cache/0/45/0/kerning_overrides/25/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/35/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/45/0 = Vector2(0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l8gm"]
+bg_color = Color(0.513726, 0.372549, 0.203922, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oimp7"]
+bg_color = Color(0.513726, 0.372549, 0.203922, 1)
+corner_radius_top_left = 11
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhrx8"]
+bg_color = Color(0.705882, 0.572549, 0.431373, 1)
+corner_radius_top_left = 11
+corner_radius_top_right = 11
+corner_radius_bottom_right = 11
+corner_radius_bottom_left = 11
+
 [node name="MyCardBase" type="MarginContainer"]
 offset_left = -145.0
 offset_top = -200.0
@@ -971,3 +989,28 @@ theme_override_font_sizes/font_size = 19
 text = "Information"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CardBack" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
+
+[node name="CostRectBack" type="Panel" parent="CardBack"]
+custom_minimum_size = Vector2(54, 54)
+layout_mode = 2
+offset_right = 54.0
+offset_bottom = 54.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_oimp7")
+
+[node name="Inner" type="Panel" parent="CardBack"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -191.0
+offset_right = 136.0
+offset_bottom = 191.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")

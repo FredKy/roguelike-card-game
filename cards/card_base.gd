@@ -11,6 +11,7 @@ var targetpos = 0
 var startrot = 0
 var targetrot = 0
 var t = 0
+var orig_scale = 0
 const DRAWTIME = 1
 
 enum {
@@ -28,6 +29,8 @@ func _ready():
 	$Border.scale *= size/$Border.texture.get_size()
 	$Card.texture = load(card_img)
 	$Card.scale *= size/$Card.texture.get_size()
+	$CardBack.scale *= size/$CardBack.texture.get_size()
+	orig_scale = scale.x
 	var attack = str(card_info[1])
 	var retalition = str(card_info[2])
 	var health = str(card_info[3])
@@ -54,6 +57,7 @@ func _physics_process(delta):
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
 				rotation = startrot*(1-t) + targetrot*t
+				scale.x = orig_scale*abs(2*t-1)
 				t += delta/float(DRAWTIME)
 			else:
 				position = targetpos
