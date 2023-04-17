@@ -15,6 +15,7 @@ var t = 0
 const DRAWTIME = 0.5
 const ORGANIZETIME = 0.25
 var tween
+var tween2
 
 enum {
 	IN_HAND,
@@ -70,8 +71,7 @@ func _physics_process(delta):
 					
 				#rotation = startrot*(1-t) + targetrot*t
 				
-				
-				
+
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
 					scale.x = orig_scale*abs(2*(2*t)-1)
@@ -89,10 +89,13 @@ func _physics_process(delta):
 		REORGANIZE_HAND:
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
+#				if tween2:
+#					tween2 = create_tween()
+#					tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
 #				if !tween:
 #					tween = create_tween()
-#					tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
-#					tween.tween_property(self, "position", targetpos, ORGANIZETIME)
+#					tween.interpolate_value(startpos, targetpos-startpos, t, ORGANIZETIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+					#tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
 				
 				rotation = startrot*(1-t) + targetrot*t
 				t += delta/float(ORGANIZETIME)

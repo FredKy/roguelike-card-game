@@ -16,6 +16,7 @@ var t = 0
 @onready var orig_scale = scale.x
 const DRAWTIME = 1
 const ORGANIZETIME = 0.5
+var tween
 
 enum {
 	IN_HAND,
@@ -38,6 +39,8 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	
+	position = startpos
+	
 func _physics_process(delta):
 	match state:
 		IN_HAND:
@@ -49,10 +52,16 @@ func _physics_process(delta):
 		FOCUS_IN_HAND:
 			pass
 		DRAWN_TO_HAND: #animate card from deck to player hand.
+			
 			if t <= 1:
-				position = startpos.lerp(targetpos, t)
-				rotation = startrot*(1-t) + targetrot*t
-				
+				if !tween:
+					tween = create_tween()
+					tween.set_ease(Tween.EASE_IN_OUT)
+					tween.set_trans(Tween.TRANS_CUBIC)
+					#tween.interpolate_value(startpos, targetpos-startpos, t, DRAWTIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+					tween.tween_property(self, "position", targetpos, DRAWTIME)
+					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
 					scale.x = orig_scale*abs(2*(2*t)-1)
@@ -69,7 +78,7 @@ func _physics_process(delta):
 				t = 0
 		REORGANIZE_HAND:
 			if t <= 1:
-				position = startpos.lerp(targetpos, t)
+				position = startpos.lerp(targetpos, t)			
 				rotation = startrot*(1-t) + targetrot*t
 				t += delta/float(ORGANIZETIME)
 			else:

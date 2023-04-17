@@ -52,8 +52,8 @@ func draw_card():
 		card.targetrot = -(angle-deg_to_rad(90))/4
 		card_numb += 1
 		if card.state == IN_HAND:
-			card.state = REORGANIZE_HAND
 			card.startpos = card.position
+			card.state = REORGANIZE_HAND
 		elif card.state == DRAWN_TO_HAND:
 			card.startpos = card.targetpos - ((card.targetpos - card.position)/(1-card.t))
 		
