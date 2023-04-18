@@ -13,10 +13,17 @@ var targetpos = Vector2()
 var startrot = 0
 var targetrot = 0
 var t = 0
-@onready var orig_scale = scale.x
-const DRAWTIME = 1
+@onready var orig_scale = scale
+const DRAWTIME = 0.5
 const ORGANIZETIME = 0.5
+const ZOOMTIME = 0.2
 var tween
+var tween2
+
+var setup = true
+var start_scale = Vector2()
+var default_pos = Vector2()
+var zoom_scale = 2
 
 enum {
 	IN_HAND,
@@ -50,23 +57,35 @@ func _physics_process(delta):
 		IN_MOUSE:
 			pass
 		FOCUS_IN_HAND:
-			pass
+			if setup:
+				reset_pos_rot_scale_and_time()
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + targetrot*t
+				scale = start_scale*(1-t) + orig_scale*zoom_scale*t
+				t += delta/float(ZOOMTIME)
+			else:
+				position = targetpos
+				rotation = targetrot
+				scale = orig_scale*zoom_scale
 		DRAWN_TO_HAND: #animate card from deck to player hand.
 			
 			if t <= 1:
-				if !tween:
-					tween = create_tween()
-					tween.set_ease(Tween.EASE_IN_OUT)
-					tween.set_trans(Tween.TRANS_CUBIC)
-					#tween.interpolate_value(startpos, targetpos-startpos, t, DRAWTIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-					tween.tween_property(self, "position", targetpos, DRAWTIME)
-					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + targetrot*t
+#				if !tween:
+#					tween = create_tween()
+#					tween.set_ease(Tween.EASE_IN_OUT)
+#					tween.set_trans(Tween.TRANS_CUBIC)
+#					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+#					tween.tween_property(self, "position", targetpos, DRAWTIME)
+#					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
 
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
-					scale.x = orig_scale*abs(2*(2*t)-1)
+					scale.x = orig_scale.x*abs(2*(2*t)-1)
 				else:
-					scale.x = orig_scale
+					scale.x = orig_scale.x
 				if $CardBack.visible:
 					if t >= 0.25:
 						$CardBack.visible = false
@@ -77,12 +96,43 @@ func _physics_process(delta):
 				state = IN_HAND
 				t = 0
 		REORGANIZE_HAND:
+			if setup:
+				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				position = startpos.lerp(targetpos, t)			
+				position = startpos.lerp(targetpos, t)
+#				if tween2:
+#					tween2 = create_tween()
+#					tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
+#				if !tween:
+#					tween = create_tween()
+#					tween.interpolate_value(startpos, targetpos-startpos, t, ORGANIZETIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
+					#tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
+				
 				rotation = startrot*(1-t) + targetrot*t
+				scale = start_scale*(1-t) + orig_scale*t
 				t += delta/float(ORGANIZETIME)
 			else:
 				position = targetpos
 				rotation = targetrot
+				scale = orig_scale
 				state = IN_HAND
 				t = 0
+
+func reset_pos_rot_scale_and_time():
+	startpos = position
+	startrot = rotation
+	start_scale = scale
+	t = 0
+	setup = false
+
+
+func _on_focus_mouse_entered():
+	match state:
+		IN_HAND, REORGANIZE_HAND:
+			state = FOCUS_IN_HAND
+
+
+func _on_focus_mouse_exited():
+	match state:
+		FOCUS_IN_HAND:
+			state = REORGANIZE_HAND

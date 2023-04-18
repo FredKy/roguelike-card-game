@@ -35,9 +35,10 @@ func draw_card():
 	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 	new_card.startpos = $Deck.position -new_card.size/2
 	new_card.targetpos = centre_card_oval + oval_angle_vector - new_card.size/2
+	new_card.default_pos = new_card.targetpos
 	new_card.startrot = 0
 	#new_card.targetrot = 2*PI + -(angle-deg_to_rad(90))/4
-	new_card.targetrot = -(angle-deg_to_rad(90))/4
+	new_card.targetrot = (PI/2-angle)/4
 	
 	new_card.state = DRAWN_TO_HAND
 	
@@ -47,9 +48,10 @@ func draw_card():
 		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 		
 		card.targetpos = centre_card_oval + oval_angle_vector - card.size/2
+		card.default_pos = new_card.targetpos
 		card.startrot = card.rotation
 		#new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
-		card.targetrot = -(angle-deg_to_rad(90))/4
+		card.targetrot = (PI/2-angle)/4
 		card_numb += 1
 		if card.state == IN_HAND:
 			card.startpos = card.position

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=15 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://o8pmfr3d2chn" path="res://assets/cards/card_borders_etc/gold_border.png" id="4_gj5vu"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -990,6 +991,10 @@ text = "Information"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Focus" type="TextureButton" parent="."]
+layout_mode = 2
+texture_hover = ExtResource("4_gj5vu")
+
 [node name="CardBack" type="Panel" parent="."]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
@@ -1014,3 +1019,6 @@ offset_top = -191.0
 offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")
+
+[connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
+[connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]

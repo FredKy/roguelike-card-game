@@ -11,11 +11,17 @@ var targetpos = Vector2()
 var startrot = 0
 var targetrot = 0
 var t = 0
-@onready var orig_scale = scale.x
+@onready var orig_scale = scale
 const DRAWTIME = 0.5
 const ORGANIZETIME = 0.25
+const ZOOMTIME = 0.2
 var tween
 var tween2
+
+var setup = true
+var start_scale = Vector2()
+var default_pos = Vector2()
+var zoom_scale = 2
 
 enum {
 	IN_HAND,
@@ -33,6 +39,8 @@ func _ready():
 	$Card.texture = load(card_img)
 	$Card.scale *= size/$Card.texture.get_size()
 	$CardBack.scale *= size/$CardBack.texture.get_size()
+	$Focus.scale *= size/$Focus.size
+	
 	var attack = str(card_info[1])
 	var retalition = str(card_info[2])
 	var health = str(card_info[3])
@@ -44,6 +52,7 @@ func _ready():
 	$Bars/BottomBar/Health/CenterContainer/Health.text = health
 	$Bars/BottomBar/Attack/CenterContainer/AR.text = str(attack,'/',retalition)
 	position = startpos
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -55,7 +64,17 @@ func _physics_process(delta):
 		IN_MOUSE:
 			pass
 		FOCUS_IN_HAND:
-			pass
+			if setup:
+				reset_pos_rot_scale_and_time()
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + targetrot*t
+				scale = start_scale*(1-t) + orig_scale*zoom_scale*t
+				t += delta/float(ZOOMTIME)
+			else:
+				position = targetpos
+				rotation = targetrot
+				scale = orig_scale*zoom_scale
 		DRAWN_TO_HAND: #animate card from deck to player hand.
 			
 			if t <= 1:
@@ -74,9 +93,9 @@ func _physics_process(delta):
 
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
-					scale.x = orig_scale*abs(2*(2*t)-1)
+					scale.x = orig_scale.x*abs(2*(2*t)-1)
 				else:
-					scale.x = orig_scale
+					scale.x = orig_scale.x
 				if $CardBack.visible:
 					if t >= 0.25:
 						$CardBack.visible = false
@@ -87,6 +106,8 @@ func _physics_process(delta):
 				state = IN_HAND
 				t = 0
 		REORGANIZE_HAND:
+			if setup:
+				reset_pos_rot_scale_and_time()
 			if t <= 1:
 				position = startpos.lerp(targetpos, t)
 #				if tween2:
@@ -98,9 +119,29 @@ func _physics_process(delta):
 					#tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
 				
 				rotation = startrot*(1-t) + targetrot*t
+				scale = start_scale*(1-t) + orig_scale*t
 				t += delta/float(ORGANIZETIME)
 			else:
 				position = targetpos
 				rotation = targetrot
+				scale = orig_scale
 				state = IN_HAND
 				t = 0
+
+func reset_pos_rot_scale_and_time():
+	startpos = position
+	startrot = rotation
+	start_scale = scale
+	t = 0
+	setup = false
+
+func _on_focus_mouse_entered():
+	match state:
+		IN_HAND, REORGANIZE_HAND:
+			state = FOCUS_IN_HAND
+
+
+func _on_focus_mouse_exited():
+	match state:
+		FOCUS_IN_HAND:
+			state = REORGANIZE_HAND
