@@ -71,15 +71,15 @@ func _physics_process(delta):
 		DRAWN_TO_HAND: #animate card from deck to player hand.
 			
 			if t <= 1:
-				position = startpos.lerp(targetpos, t)
-				rotation = startrot*(1-t) + targetrot*t
-#				if !tween:
-#					tween = create_tween()
-#					tween.set_ease(Tween.EASE_IN_OUT)
-#					tween.set_trans(Tween.TRANS_CUBIC)
-#					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
-#					tween.tween_property(self, "position", targetpos, DRAWTIME)
-#					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+#				position = startpos.lerp(targetpos, t)
+#				rotation = startrot*(1-t) + targetrot*t
+				if !tween:
+					tween = create_tween()
+					tween.set_ease(Tween.EASE_IN_OUT)
+					tween.set_trans(Tween.TRANS_CUBIC)
+					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+					tween.tween_property(self, "position", targetpos, DRAWTIME)
+					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
 
 				#scale.x = orig_scale*abs(2*t-1)
 				if t < 0.5:
