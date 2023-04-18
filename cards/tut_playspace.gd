@@ -29,9 +29,9 @@ func draw_card():
 	var deck_size = player_hand.card_list.size()
 	if (deck_size < 1):
 		return
-	card_selected = randi() % player_hand.card_list.size()
+	card_selected = randi() % deck_size
 	new_card.card_name = player_hand.card_list[card_selected]
-	new_card.scale *= CARD_SIZE/new_card.size
+	
 	
 	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 	new_card.startpos = $Deck.position -CARD_SIZE/2
@@ -40,7 +40,7 @@ func draw_card():
 	new_card.startrot = 0
 	#new_card.targetrot = 2*PI + -(angle-deg_to_rad(90))/4
 	new_card.targetrot = (PI/2-angle)/4
-	
+	new_card.scale *= CARD_SIZE/new_card.size
 	new_card.state = DRAWN_TO_HAND
 	new_card.card_numb = number_cards_hand
 	card_numb = 0
@@ -49,7 +49,7 @@ func draw_card():
 		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 		
 		card.targetpos = centre_card_oval + oval_angle_vector - CARD_SIZE
-		card.default_pos = new_card.targetpos
+		card.default_pos = card.targetpos
 		card.startrot = card.rotation
 		#new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
 		card.targetrot = (PI/2-angle)/4
@@ -63,8 +63,8 @@ func draw_card():
 		
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])
-	deck_size -= 1
 	angle += 0.25
+	deck_size -= 1
 	number_cards_hand += 1
 	#card_numb += 1
 	

@@ -4,7 +4,3 @@ res://tut_deck_draw.gd
 res://cards/my_card_base.tscn
 res://playspace.tscn
 res://tut_playscene.tscn
-res://cards/card_base.gd
-res://cards/tut_playspace.gd
-res://cards/my_card_base.gd
-res://playspace.gd

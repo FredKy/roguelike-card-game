@@ -4,9 +4,10 @@ var deck_size = INF
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#rect_scale *= $'../../'.CardSize/rect_size
-	scale *= 0.6*Vector2(250,350)/size
-	pivot_offset.x = size.x/2
-	pivot_offset.y = size.y/2
+	scale *= $'../../'.CARD_SIZE/size
+#	scale *= 0.6*Vector2(250,350)/size
+#	pivot_offset.x = size.x/2
+#	pivot_offset.y = size.y/2
 
 func _gui_input(event):
 	if Input.is_action_just_released("leftclick"):
