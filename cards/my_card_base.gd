@@ -51,8 +51,6 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	
-	position = startpos
-	
 func _physics_process(delta):
 	match state:
 		IN_HAND:
@@ -85,7 +83,8 @@ func _physics_process(delta):
 				rotation = 0
 				scale = orig_scale*zoom_scale
 		DRAWN_TO_HAND: #animate card from deck to player hand.
-			
+			if setup:
+				reset_pos_rot_scale_and_time()
 			if t <= 1:
 				#position = startpos.lerp(targetpos, t)
 				if !tween:
@@ -161,6 +160,7 @@ func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card.move_neighbor_card_check = true
 
 func reset_card(card_number):
+	neighbor_card = $'../'.get_child(card_number)
 #	if neighbor_card.move_neighbor_card_check:
 #		neighbor_card.move_neighbor_card_check = false
 #	else:

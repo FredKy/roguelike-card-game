@@ -13,6 +13,7 @@ var card_spread = 0.25
 var number_cards_hand = 0
 var card_numb = 0
 var oval_angle_vector = Vector2()
+@onready var deck_position = $Deck.position
 
 enum {
 	IN_HAND,
@@ -34,7 +35,7 @@ func draw_card():
 	
 	
 	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
-	new_card.startpos = $Deck.position -CARD_SIZE/2
+	new_card.position = deck_position -CARD_SIZE/2
 	new_card.targetpos = centre_card_oval + oval_angle_vector - CARD_SIZE
 	new_card.default_pos = new_card.targetpos
 	new_card.startrot = 0
@@ -56,7 +57,7 @@ func draw_card():
 		card.card_numb = card_numb
 		card_numb += 1
 		if card.state == IN_HAND:
-			card.startpos = card.position
+			card.setup = true
 			card.state = REORGANIZE_HAND
 		elif card.state == DRAWN_TO_HAND:
 			card.startpos = card.targetpos - ((card.targetpos - card.position)/(1-card.t))
