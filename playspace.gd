@@ -36,6 +36,7 @@ func draw_card():
 	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 	new_card.startpos = $Deck.position -CARD_SIZE/2
 	new_card.targetpos = centre_card_oval + oval_angle_vector - CARD_SIZE
+	#new_card.targetpos = $Deck.position -CARD_SIZE/2
 	new_card.default_pos = new_card.targetpos
 	new_card.startrot = 0
 	#new_card.targetrot = 2*PI + -(angle-deg_to_rad(90))/4

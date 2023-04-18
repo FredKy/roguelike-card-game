@@ -6,3 +6,4 @@ res://playspace.tscn
 res://tut_playscene.tscn
 res://cards/my_card_base.gd
 res://deck_draw.gd
+res://playspace.gd
