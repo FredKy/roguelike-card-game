@@ -157,8 +157,8 @@ func _physics_process(delta):
 				state = IN_HAND
 				#t = 0
 				
-func move_neighbor_card(card_numb, left, spread_factor):
-	neighbor_card = $'../'.get_child(card_numb) # Parent node in (playscene) scene is Cards
+func move_neighbor_card(card_number, left, spread_factor):
+	neighbor_card = $'../'.get_child(card_number) # Parent node in (playscene) scene is Cards
 	if left:
 		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2(65,0)
 	else:
@@ -167,12 +167,12 @@ func move_neighbor_card(card_numb, left, spread_factor):
 	neighbor_card.state = REORGANIZE_HAND
 	neighbor_card.move_neighbor_card_check = true
 
-func reset_card(card_numb):
+func reset_card(card_number):
 #	if neighbor_card.move_neighbor_card_check:
 #		neighbor_card.move_neighbor_card_check = false
 #	else:
 	if not neighbor_card.move_neighbor_card_check:
-		neighbor_card = $'../'.get_child(card_numb)
+		neighbor_card = $'../'.get_child(card_number)
 		if neighbor_card.state != FOCUS_IN_HAND:
 			neighbor_card.state = REORGANIZE_HAND
 			neighbor_card.targetpos = neighbor_card.default_pos

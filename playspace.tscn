@@ -23,7 +23,7 @@ corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y3hqf"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_1h6jl"]
 
 [node name="Playspace" type="Node2D"]
 script = ExtResource("1_rla1j")
@@ -82,5 +82,5 @@ grow_vertical = 2
 texture_normal = ExtResource("3_plwv1")
 texture_pressed = ExtResource("3_plwv1")
 texture_hover = ExtResource("3_plwv1")
-texture_disabled = SubResource("ViewportTexture_y3hqf")
+texture_disabled = SubResource("CanvasTexture_1h6jl")
 script = ExtResource("5_rd6np")
