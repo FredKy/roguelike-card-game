@@ -1,5 +1,6 @@
 extends Node2D
 
+const CARD_SIZE = Vector2(125,175)
 const CARD_BASE := preload("res://cards/card_base.tscn")
 var player_hand := preload("res://cards/tut_player_hand.gd").new()
 var card_selected = []
@@ -30,28 +31,29 @@ func draw_card():
 		return
 	card_selected = randi() % player_hand.card_list.size()
 	new_card.card_name = player_hand.card_list[card_selected]
-	new_card.scale *= 0.6
+	new_card.scale *= CARD_SIZE/new_card.size
 	
 	oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
-	new_card.startpos = $Deck.position -new_card.size/2
-	new_card.targetpos = centre_card_oval + oval_angle_vector - new_card.size/2
+	new_card.startpos = $Deck.position -CARD_SIZE/2
+	new_card.targetpos = centre_card_oval + oval_angle_vector - CARD_SIZE
 	new_card.default_pos = new_card.targetpos
 	new_card.startrot = 0
 	#new_card.targetrot = 2*PI + -(angle-deg_to_rad(90))/4
 	new_card.targetrot = (PI/2-angle)/4
 	
 	new_card.state = DRAWN_TO_HAND
-	
+	new_card.card_numb = number_cards_hand
 	card_numb = 0
 	for card in $Cards.get_children(): # reorganize hand
 		angle = PI/2 + card_spread*(float(number_cards_hand)/2-card_numb)
 		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 		
-		card.targetpos = centre_card_oval + oval_angle_vector - card.size/2
+		card.targetpos = centre_card_oval + oval_angle_vector - CARD_SIZE
 		card.default_pos = new_card.targetpos
 		card.startrot = card.rotation
 		#new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
 		card.targetrot = (PI/2-angle)/4
+		card.card_numb = card_numb
 		card_numb += 1
 		if card.state == IN_HAND:
 			card.startpos = card.position

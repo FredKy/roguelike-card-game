@@ -996,6 +996,7 @@ layout_mode = 2
 texture_hover = ExtResource("4_gj5vu")
 
 [node name="CardBack" type="Panel" parent="."]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
 

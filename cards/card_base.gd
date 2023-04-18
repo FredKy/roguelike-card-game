@@ -22,6 +22,10 @@ var setup = true
 var start_scale = Vector2()
 var default_pos = Vector2()
 var zoom_scale = 2
+var reorganize_neighbors = true
+var number_cards_hand_minus_one
+var card_numb = 0
+var neighbor_card
 
 enum {
 	IN_HAND,
@@ -71,6 +75,17 @@ func _physics_process(delta):
 				rotation = startrot*(1-t) + targetrot*t
 				scale = start_scale*(1-t) + orig_scale*zoom_scale*t
 				t += delta/float(ZOOMTIME)
+				if reorganize_neighbors:
+					reorganize_neighbors = false
+					number_cards_hand_minus_one = $'../../'.number_cards_hand - 1
+					if card_numb -1 >= 0:
+						move_neighbor_card(card_numb -1, true, 1) # true is left
+					if card_numb -2 >= 0:
+						move_neighbor_card(card_numb -2, true, 0.25)
+					if card_numb + 1 <= number_cards_hand_minus_one:
+						move_neighbor_card(card_numb +1, false, 1)
+					if card_numb + 2 <= number_cards_hand_minus_one:
+						move_neighbor_card(card_numb +2, false, 0.25)
 			else:
 				position = targetpos
 				rotation = targetrot
@@ -127,6 +142,15 @@ func _physics_process(delta):
 				scale = orig_scale
 				state = IN_HAND
 				t = 0
+				
+func move_neighbor_card(card_numb, left, spread_factor):
+	neighbor_card = $'../'.get_child(card_numb) # Parent node in scene is Cards
+	if left:
+		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2(100,0)
+	else:
+		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2(100,0)
+	neighbor_card.setup = true
+	neighbor_card.state = REORGANIZE_HAND
 
 func reset_pos_rot_scale_and_time():
 	startpos = position
@@ -138,10 +162,16 @@ func reset_pos_rot_scale_and_time():
 func _on_focus_mouse_entered():
 	match state:
 		IN_HAND, REORGANIZE_HAND:
+			setup = true
+			targetrot = 0
+			targetpos = default_pos
+			targetpos.y = get_viewport().size.y - $'../../'.CARD_SIZE.y*zoom_scale
 			state = FOCUS_IN_HAND
 
 
 func _on_focus_mouse_exited():
 	match state:
 		FOCUS_IN_HAND:
+			setup = true
+			targetpos = default_pos
 			state = REORGANIZE_HAND

@@ -129,10 +129,15 @@ func reset_pos_rot_scale_and_time():
 func _on_focus_mouse_entered():
 	match state:
 		IN_HAND, REORGANIZE_HAND:
+			setup = true
+			targetrot = 0
+			targetpos = default_pos
+			targetpos.y = get_viewport().size.y - $'../../'.CARD_SIZE.y*zoom_scale
 			state = FOCUS_IN_HAND
 
 
 func _on_focus_mouse_exited():
 	match state:
 		FOCUS_IN_HAND:
+			setup = true
 			state = REORGANIZE_HAND
