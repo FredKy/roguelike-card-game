@@ -101,12 +101,13 @@ func _physics_process(delta):
 				
 
 				#scale.x = orig_scale*abs(2*t-1)
-				if t < 0.5:
-					scale.x = orig_scale.x*abs(2*(2*t)-1)
+				var flip_time_factor = 1.2 # 20% faster
+				if t < float(1/flip_time_factor):
+					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
 				else:
 					scale.x = orig_scale.x
 				if $CardBack.visible:
-					if t >= 0.25:
+					if t >= float(0.5/flip_time_factor):
 						$CardBack.visible = false
 				t += delta/float(DRAWTIME)
 			else:
