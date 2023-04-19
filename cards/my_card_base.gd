@@ -50,6 +50,7 @@ func _ready():
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
+	$CardBack.visible = true
 	
 func _physics_process(delta):
 	match state:
