@@ -5,3 +5,4 @@ res://cards/my_card_base.tscn
 res://playspace.tscn
 res://tut_playscene.tscn
 res://cards/my_card_base.gd
+res://cards/card_base.gd

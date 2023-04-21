@@ -17,6 +17,7 @@ var t = 0
 const DRAWTIME = 0.5
 const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
+const IN_MOUSE_TIME = 0.1
 var tween
 var tween2
 
@@ -29,6 +30,8 @@ var number_cards_hand_minus_one = 0
 var card_numb = 0
 var neighbor_card
 var move_neighbor_card_check = false
+var card_select = true
+var old_state = INF
 
 enum {
 	IN_HAND,
@@ -51,6 +54,16 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
+
+func _input(event):
+	match state:
+		FOCUS_IN_HAND, IN_MOUSE, IN_PLAY:
+			if event.is_action_pressed("leftclick"): # Pick up card
+				if card_select:
+					old_state = state
+					state = IN_MOUSE
+					setup = true
+					card_select = false
 	
 func _physics_process(delta):
 	match state:
@@ -59,7 +72,16 @@ func _physics_process(delta):
 		IN_PLAY:
 			pass
 		IN_MOUSE:
-			pass
+			if setup:
+				reset_pos_rot_scale_and_time()
+			if t <= 1:
+				position = startpos.lerp(get_global_mouse_position() - $'../../'.CARD_SIZE, t)
+				rotation = startrot*(1-t) + 0*t
+				scale = start_scale*(1-t) + orig_scale*t
+				t += delta/float(IN_MOUSE_TIME)
+			else:
+				position = get_global_mouse_position() - $'../../'.CARD_SIZE
+				rotation = 0
 		FOCUS_IN_HAND:
 			if setup:
 				reset_pos_rot_scale_and_time()
