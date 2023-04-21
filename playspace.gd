@@ -24,6 +24,12 @@ enum {
 	REORGANIZE_HAND,
 }
 
+func _ready():
+	randomize()
+	$Enemies/Enemy.visible = true
+	$Enemies/Enemy.position = get_viewport().size*0.4 + Vector2(200,-300)
+	$Enemies/Enemy.scale *= 0.5
+
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()

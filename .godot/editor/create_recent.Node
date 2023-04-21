@@ -1,12 +1,12 @@
-TextureButton
 Sprite2D
-Node2D
-Node
-Panel
+MarginContainer
 VBoxContainer
+Node
+TextureButton
+Node2D
+Panel
 Control
 Container
-MarginContainer
 HBoxContainer
 Label
 CenterContainer
