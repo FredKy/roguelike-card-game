@@ -139,12 +139,12 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				position = startpos.lerp(get_global_mouse_position() - $'../../'.CARD_SIZE, t)
+				position = startpos.lerp(get_global_mouse_position() - $'../../'.CARD_SIZE/2, t)
 				rotation = startrot*(1-t) + 0*t
 				scale = start_scale*(1-t) + orig_scale*t
 				t += delta/float(IN_MOUSE_TIME)
 			else:
-				position = get_global_mouse_position() - $'../../'.CARD_SIZE
+				position = get_global_mouse_position() - $'../../'.CARD_SIZE/2
 				rotation = 0
 		FOCUS_IN_HAND:
 			if setup:
@@ -156,7 +156,7 @@ func _physics_process(delta):
 				t += delta/float(ZOOMTIME)
 				if reorganize_neighbors:
 					reorganize_neighbors = false
-					number_cards_hand_minus_one = $'../../'.number_cards_hand - 1
+					number_cards_hand_minus_one = $'../../'.number_cards_hand
 					if card_numb -1 >= 0:
 						move_neighbor_card(card_numb -1, true, 1) # true is left
 					if card_numb -2 >= 0:
@@ -253,9 +253,9 @@ func _physics_process(delta):
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../'.get_child(card_number) # Parent node in (playscene) scene is Cards
 	if left:
-		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2(65,0)
+		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2($'../../'.CARD_SIZE.x/2,0)
 	else:
-		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2(65,0)
+		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2($'../../'.CARD_SIZE.x/2,0)
 	neighbor_card.setup = true
 	neighbor_card.state = REORGANIZE_HAND
 	neighbor_card.move_neighbor_card_check = true
@@ -284,7 +284,7 @@ func _on_focus_mouse_entered():
 	match state:
 		IN_HAND, REORGANIZE_HAND:
 			setup = true
-			targetpos = default_pos
+			targetpos.x = default_pos.x - $'../../'.CARD_SIZE.x/2
 			targetpos.y = get_viewport().size.y - $'../../'.CARD_SIZE.y*zoom_scale
 			state = FOCUS_IN_HAND
 
