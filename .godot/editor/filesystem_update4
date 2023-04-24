@@ -10,3 +10,5 @@ res://enemy.tscn
 res://bar.tscn
 res://card_slot.tscn
 res://playspace.gd
+res://enemy.gd
+res://assets/cards/my_cards_database.gd

@@ -15,3 +15,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+func change_health(number):
+	current_health -= number
+	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
+	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)

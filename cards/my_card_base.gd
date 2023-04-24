@@ -99,6 +99,8 @@ func _input(event):
 							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
 								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
 									# Deal with damage
+									var attack_number = card_info[5]
+									enemies.get_child(i).change_health(attack_number)
 									setup = true
 									moving_into_play = true
 									state = IN_PLAY
