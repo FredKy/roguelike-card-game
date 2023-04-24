@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=11 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
 [ext_resource type="Texture2D" uid="uid://bnaeevijy5rpp" path="res://assets/images/bg/battleback2.png" id="2_tx2wc"]
 [ext_resource type="Texture2D" uid="uid://cex1jwjhicuct" path="res://assets/images/card_back.png" id="3_plwv1"]
 [ext_resource type="Script" path="res://deck_draw.gd" id="5_rd6np"]
+[ext_resource type="Script" path="res://discard_pile.gd" id="6_anmoi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -97,4 +98,4 @@ texture_normal = ExtResource("3_plwv1")
 texture_pressed = ExtResource("3_plwv1")
 texture_hover = ExtResource("3_plwv1")
 texture_disabled = SubResource("CanvasTexture_1h6jl")
-script = ExtResource("5_rd6np")
+script = ExtResource("6_anmoi")

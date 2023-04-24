@@ -34,6 +34,8 @@ var card_select = true
 var old_state = INF
 var moving_into_play = false
 var target_scale = Vector2()
+var discard_pile = Vector2()
+var moving_to_discard = false
 
 enum {
 	IN_HAND,
@@ -42,6 +44,7 @@ enum {
 	FOCUS_IN_HAND,
 	DRAWN_TO_HAND,
 	REORGANIZE_HAND,
+	MOVE_TO_DISCARD_PILE,
 }
 var state = IN_HAND
 
@@ -102,8 +105,10 @@ func _input(event):
 									var attack_number = card_info[5]
 									enemies.get_child(i).change_health(attack_number)
 									setup = true
-									moving_into_play = true
-									state = IN_PLAY
+									moving_to_discard = true
+									state = MOVE_TO_DISCARD_PILE
+#									moving_into_play = true
+#									state = IN_PLAY
 									card_select = true
 									break
 						if not card_select:
@@ -195,7 +200,6 @@ func _physics_process(delta):
 				position = targetpos
 				rotation = targetrot
 				state = IN_HAND
-				t = 0
 		REORGANIZE_HAND:
 			if setup:
 				reset_pos_rot_scale_and_time()
@@ -231,6 +235,20 @@ func _physics_process(delta):
 				scale = orig_scale
 				state = IN_HAND
 				#t = 0
+		MOVE_TO_DISCARD_PILE:
+			if moving_to_discard:
+				if setup:
+					reset_pos_rot_scale_and_time()
+					targetpos = discard_pile
+				if t <= 1:
+					position = startpos.lerp(targetpos, t)
+					scale = start_scale*(1-t) + orig_scale*t
+					t += delta/float(DRAWTIME)
+				else:
+					position = targetpos
+					scale = orig_scale
+					moving_to_discard = false
+					
 
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../'.get_child(card_number) # Parent node in (playscene) scene is Cards

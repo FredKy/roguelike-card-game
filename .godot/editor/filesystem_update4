@@ -1,14 +1,13 @@
 res://default_env.tres
 res://tut_playscene.tscn
 res://tut_deck_draw.gd
+res://cards/tut_playspace.gd
+res://cards/card_base.tscn
 res://cards/card_base.gd
 res://cards/my_card_base.gd
-res://cards/card_base.tscn
+res://playspace.gd
 res://cards/my_card_base.tscn
 res://playspace.tscn
 res://enemy.tscn
 res://bar.tscn
 res://card_slot.tscn
-res://playspace.gd
-res://enemy.gd
-res://assets/cards/my_cards_database.gd
