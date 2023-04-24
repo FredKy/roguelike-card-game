@@ -25,9 +25,28 @@ position = Vector2(463, 324)
 texture = ExtResource("1_6addw")
 
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(957, 133)
+position = Vector2(40, 434)
 
 [node name="Draw" type="TextureButton" parent="Deck"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 40.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_surax")
+texture_pressed = ExtResource("3_surax")
+texture_hover = ExtResource("3_surax")
+texture_disabled = ExtResource("4_tou5i")
+script = ExtResource("5_fapwd")
+
+[node name="Discard" type="Node2D" parent="."]
+position = Vector2(980, 434)
+
+[node name="DiscardPile" type="TextureButton" parent="Discard"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

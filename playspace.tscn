@@ -72,9 +72,23 @@ offset_bottom = 191.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_6qw88")
 
 [node name="Deck" type="Node2D" parent="."]
-position = Vector2(968, 200)
+position = Vector2(40, 434)
 
 [node name="DeckDraw" type="TextureButton" parent="Deck"]
+offset_left = -29.0
+offset_top = -40.0
+offset_right = 297.0
+offset_bottom = 409.0
+texture_normal = ExtResource("3_plwv1")
+texture_pressed = ExtResource("3_plwv1")
+texture_hover = ExtResource("3_plwv1")
+texture_disabled = SubResource("CanvasTexture_1h6jl")
+script = ExtResource("5_rd6np")
+
+[node name="Discard" type="Node2D" parent="."]
+position = Vector2(1000, 434)
+
+[node name="DiscardPile" type="TextureButton" parent="Discard"]
 offset_left = -29.0
 offset_top = -40.0
 offset_right = 297.0
