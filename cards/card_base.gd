@@ -30,7 +30,8 @@ var neighbor_card
 var move_neighbor_card_check = false
 var card_select = true
 var old_state = INF
-
+var moving_into_play = false
+var target_scale = Vector2()
 
 enum {
 	IN_HAND,
@@ -71,14 +72,69 @@ func _input(event):
 					state = IN_MOUSE
 					setup = true
 					card_select = false
-
+			if event.is_action_released("leftclick"):
+				if not card_select:
+					if old_state == FOCUS_IN_HAND: # Putting a card into a slot.
+						var card_slots = $'../../CardSlots'
+						var card_slot_empty = $'../../'.card_slot_empty
+						for i in range(card_slots.get_child_count()):
+							if card_slot_empty[i]:
+								var card_slot_pos = card_slots.get_child(i).position
+								var card_slot_size = card_slots.get_child(i).size
+								var mouse_pos = get_global_mouse_position()
+								if mouse_pos.x < card_slot_pos.x + card_slot_size.x and mouse_pos.x > card_slot_pos.x \
+								and mouse_pos.y < card_slot_pos.y + card_slot_size.y and mouse_pos.y > card_slot_pos.y:
+									setup = true
+									moving_into_play = true
+									targetpos = card_slot_pos-$'../../'.CARD_SIZE/2
+									target_scale = card_slot_size/size
+									state = IN_PLAY
+									card_select = true
+									break
+						if state != IN_PLAY:
+							setup = true
+							targetpos = default_pos
+							state = REORGANIZE_HAND
+							card_select = true
+					else: # Handle everything once the card is in play.
+						var enemies = $'../../Enemies'
+						for i in range(enemies.get_child_count()):
+							var enemy_pos = enemies.get_child(i).position
+							var enemy_size = enemies.get_child(i).size
+							var mouse_pos = get_global_mouse_position()
+							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
+								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+									# Deal with damage
+									setup = true
+									moving_into_play = true
+									state = IN_PLAY
+									card_select = true
+									break
+						if not card_select:
+							setup = true
+							moving_into_play = true
+							state = IN_PLAY
+							card_select = true
+						
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	match state:
 		IN_HAND:
 			pass
 		IN_PLAY:
-			pass
+			if moving_into_play:
+				if setup:
+					reset_pos_rot_scale_and_time()
+				if t <= 1:
+					position = startpos.lerp(targetpos, t)
+					rotation = startrot*(1-t) + 0*t
+					scale = start_scale*(1-t) + target_scale*t
+					t += delta/float(IN_MOUSE_TIME)
+				else:
+					position = targetpos
+					rotation = 0
+					scale = target_scale
+					moving_into_play = false
 		IN_MOUSE:
 			if setup:
 				reset_pos_rot_scale_and_time()

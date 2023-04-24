@@ -3,6 +3,7 @@ extends Node2D
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
 var player_hand := preload("res://cards/player_hand.gd").new()
+const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
 
 @onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.25)
@@ -24,11 +25,18 @@ enum {
 	REORGANIZE_HAND,
 }
 
+var card_slot_empty = []
+
 func _ready():
 	randomize()
 	#$Enemies/Enemy.visible = true
 	$Enemies/Enemy.position = get_viewport().size*0.4 + Vector2(200,-300)
 	$Enemies/Enemy.scale *= 0.5
+	var new_slot = card_slot.instantiate()
+	new_slot.position = get_viewport().size*0.4
+	new_slot.size = CARD_SIZE
+	$CardSlots.add_child(new_slot)
+	card_slot_empty.append(true)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
