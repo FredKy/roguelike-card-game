@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cukwo63gxcc2e"]
 
-[ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/GUI/label_HP_bg.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://b3pw2l1c71djm" path="res://assets/GUI/label_HP.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://hvu5cc61h6et" path="res://assets/GUI/lifebar_bg.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://mcu8my1sk6qm" path="res://assets/GUI/lifebar_fill.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b3pw2l1c71djm" path="res://assets/gui/label_hp.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://hvu5cc61h6et" path="res://assets/gui/lifebar_bg.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://mcu8my1sk6qm" path="res://assets/gui/lifebar_fill.png" id="5"]
 
 [node name="Bar" type="HBoxContainer"]
 

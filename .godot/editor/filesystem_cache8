@@ -1,14 +1,14 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1682098771
+::res://::1682099509
 bar.tscn::PackedScene::6198624464424786530::1682098771::0::1::::<><>::uid://cjlnx2vhd1kpo<>uid://b3pw2l1c71djm<>uid://hvu5cc61h6et<>uid://mcu8my1sk6qm
 deck_draw.gd::GDScript::-1::1681848139::0::1::::<>TextureButton<>::
-default_env.tres::Environment::37057992798485328::1682098771::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1681474250::0::1::::<><>::
-icon.png::CompressedTexture2D::3475557974187739395::1588836726::1681460804::1::::<><>::
-playspace.gd::GDScript::-1::1681890641::0::1::::<>Node2D<>::
-playspace.tscn::PackedScene::4580219534443628110::1682098771::0::1::::<><>::res://playspace.gd<>uid://bnaeevijy5rpp<>uid://cex1jwjhicuct<>res://deck_draw.gd
+default_env.tres::Environment::37057992798485328::1682099437::0::1::::<><>::
 enemy.gd::GDScript::-1::1682098528::0::1::::<>MarginContainer<>::
 enemy.tscn::PackedScene::716050707201687931::1682098771::0::1::::<><>::res://enemy.gd<>uid://b1aiaqcbedt5h<>uid://cukwo63gxcc2e
+export_presets.cfg::TextFile::-1::1681474250::0::1::::<><>::
+icon.png::CompressedTexture2D::3475557974187739395::1588836726::1681460804::1::::<><>::
+playspace.gd::GDScript::-1::1682099437::0::1::::<>Node2D<>::
+playspace.tscn::PackedScene::4580219534443628110::1682099437::0::1::::<><>::res://playspace.gd<>uid://bnaeevijy5rpp<>uid://cex1jwjhicuct<>res://deck_draw.gd
 tut_deck_draw.gd::GDScript::-1::1681890810::0::1::::<>TextureButton<>::
 tut_playscene.tscn::PackedScene::1745651867511250613::1682098771::0::1::::<><>::uid://dom5pju0ou2q2<>res://cards/tut_playspace.gd<>uid://kg4iru48tvr4<>uid://dgkg0aufrlj1n<>uid://o8pmfr3d2chn<>res://tut_deck_draw.gd
 ::res://addons/::1681480490
@@ -46,7 +46,7 @@ warrior.png::CompressedTexture2D::1085825486456728050::1588786064::1681460805::1
 ::res://assets/font/::1681460804
 Comfortaa-Bold.ttf::FontFile::1730787556074593440::1572287190::1681460804::1::::<><>::
 Yoster.ttf::FontFile::6628780893083408930::1678564538::1681460804::1::::<><>::
-::res://assets/gui/::1682098768
+::res://assets/gui/::1682099427
 background shade.png::CompressedTexture2D::3188751111576495802::1554355280::1682099427::1::::<><>::
 card_base_1.png::CompressedTexture2D::6710499463633039416::1575581884::1682099427::1::::<><>::
 card_base_2.png::CompressedTexture2D::118689178084684328::1575581894::1682099427::1::::<><>::
@@ -54,14 +54,6 @@ label_hp.png::CompressedTexture2D::4384058580201624538::1554355280::1682099427::
 label_hp_bg.png::CompressedTexture2D::5428080960483365332::1554355280::1682099427::1::::<><>::
 lifebar_bg.png::CompressedTexture2D::535941861553821263::1554355280::1682099427::1::::<><>::
 lifebar_fill.png::CompressedTexture2D::847668818780011224::1554355280::1682099427::1::::<><>::
-::res://assets/GUI/::1682098768
-background shade.png::CompressedTexture2D::3188751111576495802::1554355280::1682098767::1::::<><>::
-card_base_1.png::CompressedTexture2D::6710499463633039416::1575581884::1682098767::1::::<><>::
-card_base_2.png::CompressedTexture2D::118689178084684328::1575581894::1682098768::1::::<><>::
-label_hp.png::CompressedTexture2D::4384058580201624538::1554355280::1682098767::1::::<><>::
-label_hp_bg.png::CompressedTexture2D::5428080960483365332::1554355280::1682098767::1::::<><>::
-lifebar_bg.png::CompressedTexture2D::535941861553821263::1554355280::1682098767::1::::<><>::
-lifebar_fill.png::CompressedTexture2D::847668818780011224::1554355280::1682098767::1::::<><>::
 ::res://assets/images/::1682063358
 1.png::CompressedTexture2D::8486631358816982407::1648542717::1681460805::1::::<><>::
 2.png::CompressedTexture2D::2106066526323805833::1648542717::1681460805::1::::<><>::

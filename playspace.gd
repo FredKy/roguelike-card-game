@@ -26,7 +26,7 @@ enum {
 
 func _ready():
 	randomize()
-	$Enemies/Enemy.visible = true
+	#$Enemies/Enemy.visible = true
 	$Enemies/Enemy.position = get_viewport().size*0.4 + Vector2(200,-300)
 	$Enemies/Enemy.scale *= 0.5
 
