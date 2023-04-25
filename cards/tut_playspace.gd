@@ -1,6 +1,6 @@
 extends Node2D
 
-const CARD_SIZE = Vector2(125,175)*0.8
+const CARD_SIZE = Vector2(125,175)*0.6
 const CARD_BASE := preload("res://cards/card_base.tscn")
 var player_hand := preload("res://cards/tut_player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")
@@ -30,16 +30,47 @@ enum {
 
 var card_slot_empty = []
 
+var number_columns = 2 # Per side (4 in total)
+var number_rows = 5
+var card_slots_per_side = number_columns*number_rows
+@onready var view_port_size = get_viewport().size
+@onready var outer_x_margin = view_port_size.x/25
+@onready var outer_y_margin = view_port_size.y/25
+@onready var middle_x_margin = view_port_size.x/10
+@onready var card_zone_height = view_port_size.y - (centre_card_oval.y - CARD_SIZE.y - ver_rad)
+@onready var card_slot_y_gaps = view_port_size.y/40
+@onready var card_slot_x_gaps = view_port_size.x/40
+@onready var card_slot_base_width = view_port_size.x/10
+@onready var card_slot_total_height = view_port_size.y - outer_y_margin - card_zone_height
+@onready var card_slot_total_width = view_port_size.x/2 - outer_x_margin - middle_x_margin/2 - card_slot_base_width
+@onready var height_for_card = (card_slot_total_height - (number_rows-1)*card_slot_y_gaps)/number_rows
+@onready var width_for_card = (card_slot_total_width - (number_columns-1)*card_slot_x_gaps)/number_columns
+
+
 func _ready():
 	randomize()
-	$Enemies/Enemy.visible = true
-	$Enemies/Enemy.position = get_viewport().size*0.4 + Vector2(200,-300)
-	$Enemies/Enemy.scale *= 0.5
-	var new_slot = card_slot.instantiate()
-	new_slot.position = get_viewport().size*0.4
-	new_slot.size = CARD_SIZE
-	$CardSlots.add_child(new_slot)
-	card_slot_empty.append(true)
+	for i in range(2): # Both sets of player
+		for j in range(number_columns):
+			for k in range(number_rows):
+				var new_slot = card_slot.instantiate()
+				new_slot.size = Vector2(CARD_SIZE.y, CARD_SIZE.x)
+				new_slot.position = Vector2(outer_x_margin + card_slot_base_width, outer_y_margin) + k*Vector2(0, height_for_card + card_slot_y_gaps) \
+				+ j*Vector2(card_slot_total_width/number_columns, 0) + i*Vector2(card_slot_total_width + middle_x_margin, 0)
+				new_slot.scale *= height_for_card/new_slot.size.y
+				$CardSlots.add_child(new_slot)
+				card_slot_empty.append(true)
+	$Enemies/EnemyLeft.visible = true
+	$Enemies/EnemyLeft/VBoxContainer/ImageContainer/Image.flip_h = false
+	$Enemies/EnemyLeft.position = get_viewport().size*0.4 + Vector2(-400,-300)
+	$Enemies/EnemyLeft.scale *= 0.5
+	$Enemies/EnemyRight.visible = true
+	$Enemies/EnemyRight.position = get_viewport().size*0.4 + Vector2(200,-300)
+	$Enemies/EnemyRight.scale *= 0.5
+#	var new_slot = card_slot.instantiate()
+#	new_slot.position = get_viewport().size*0.4
+#	new_slot.size = CARD_SIZE
+#	$CardSlots.add_child(new_slot)
+#	card_slot_empty.append(true)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
