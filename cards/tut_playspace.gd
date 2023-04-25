@@ -115,6 +115,7 @@ func organize_hand():
 		card_numb += 1
 		if card.state == IN_HAND:
 			card.setup = true
+			card.target_scale = card.orig_scale
 			card.state = REORGANIZE_HAND
 			card.startpos = card.position
 		elif card.state == DRAWN_TO_HAND:

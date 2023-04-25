@@ -87,10 +87,12 @@ func _input(event):
 			if card_select:
 				#old_state = state
 				state = IN_MOUSE
+				#$'../'.z_index += 2
 				setup = true
 				card_select = false
 	if event.is_action_released("leftclick"):
 		if not card_select:
+			#$'../'.z_index -= 2
 			if old_state == IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
 				for i in range(card_slots.get_child_count()):
 					
@@ -119,6 +121,7 @@ func _input(event):
 				if state != IN_PLAY:
 					setup = true
 					targetpos = default_pos
+					target_scale = orig_scale
 					state = REORGANIZE_HAND
 					card_select = true
 			else: # Handle everything once the card is in play.
@@ -134,6 +137,7 @@ func _input(event):
 							enemies.get_child(i).change_health(attack_number)
 							setup = true
 							moving_to_discard = true
+							targetpos = discard_pile
 							state = MOVE_TO_DISCARD_PILE
 #									moving_into_play = true
 #									state = IN_PLAY
@@ -146,7 +150,71 @@ func _input(event):
 					card_select = true
 					if card_in_play:
 						targetpos = old_pos
-						
+						target_scale = old_scale
+
+func move_card(delta, state, time_scale, targetpos, target_scale, targetrot):
+	var finished = false
+	if setup:
+		reset_pos_rot_scale_and_time()
+		if state == IN_PLAY:
+			if reparent:
+				$'../../'.reparent_card(card_numb)
+				reparent = false
+		elif state == FOCUS_IN_HAND:
+			if not card_in_play:
+				if reorganize_neighbors:
+					reorganize_neighbors = false
+					number_cards_hand_minus_one = $'../../'.number_cards_hand
+					if card_numb -1 >= 0:
+						move_neighbor_card(card_numb -1, true, 1) # true is left
+					if card_numb -2 >= 0:
+						move_neighbor_card(card_numb -2, true, 0.25)
+					if card_numb + 1 <= number_cards_hand_minus_one:
+						move_neighbor_card(card_numb +1, false, 1)
+					if card_numb + 2 <= number_cards_hand_minus_one:
+						move_neighbor_card(card_numb +2, false, 0.25)
+		elif state == REORGANIZE_HAND:
+			if move_neighbor_card_check:
+				move_neighbor_card_check = false
+	if t <= 1:
+		if state == REORGANIZE_HAND and !card_in_play:
+			if not reorganize_neighbors:
+				reorganize_neighbors = true
+				if card_numb -1 >= 0:
+					reset_card(card_numb -1)
+				if card_numb -2 >= 0:
+					reset_card(card_numb -2)
+				if card_numb + 1 <= number_cards_hand_minus_one:
+					reset_card(card_numb +1)
+				if card_numb + 2 <= number_cards_hand_minus_one:
+					reset_card(card_numb +2)
+		if state == DRAWN_TO_HAND:
+			if !tween:
+				tween = create_tween()
+				tween.set_ease(Tween.EASE_IN_OUT)
+				tween.set_trans(Tween.TRANS_CUBIC)
+				#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+				tween.tween_property(self, "position", targetpos, DRAWTIME)
+				tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+			if t < 0.5:
+				scale.x = orig_scale.x*abs(2*(2*t)-1)
+			else:
+				scale.x = orig_scale.x
+			if $CardBack.visible:
+				if t >= 0.25:
+					$CardBack.visible = false
+		else:
+			position = startpos.lerp(targetpos, t)
+			rotation = startrot*(1-t) + targetrot*t
+			scale = start_scale*(1-t) + target_scale*t
+		t += delta/float(time_scale)
+	else:
+		position = targetpos
+		rotation = targetrot
+		scale = target_scale
+		finished = true
+		return finished
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	match state:
@@ -154,147 +222,26 @@ func _physics_process(delta):
 			pass
 		IN_PLAY:
 			if moving_into_play:
-				if setup:
-					reset_pos_rot_scale_and_time()
-					if reparent:
-						$'../../'.reparent_card(card_numb)
-						reparent = false
-				if t <= 1:
-					position = startpos.lerp(targetpos, t)
-					rotation = startrot*(1-t) + targetrot*t
-					scale = start_scale*(1-t) + target_scale*t
-					t += delta/float(IN_MOUSE_TIME)
-				else:
-					position = targetpos
-					rotation = targetrot
-					scale = target_scale
+				if move_card(delta, IN_PLAY, IN_MOUSE_TIME, targetpos, target_scale, targetrot):
 					moving_into_play = false
 		IN_MOUSE:
-			if setup:
-				reset_pos_rot_scale_and_time()
-			if t <= 1:
-				position = startpos.lerp(get_global_mouse_position() - $'../../'.CARD_SIZE/2, t)
-				rotation = startrot*(1-t) + 0*t
-				scale = start_scale*(1-t) + orig_scale*t
-				t += delta/float(IN_MOUSE_TIME)
-			else:
-				position = get_global_mouse_position() - $'../../'.CARD_SIZE/2
-				rotation = 0
+			move_card(delta, IN_MOUSE, IN_MOUSE_TIME, get_global_mouse_position() - $'../../'.CARD_SIZE/2, orig_scale, 0)
 		FOCUS_IN_HAND:
 			if zooming_in:
-				if setup:
-					reset_pos_rot_scale_and_time()
-				if t <= 1:
-					position = startpos.lerp(targetpos, t)
-					if card_in_play:
-						scale = start_scale*(1-t) + start_scale*zoom_scale_in_play*t
-						rotation = startrot*(1-t) + targetrot*t
-					else:
-						rotation = startrot*(1-t) + 0*t
-						scale = start_scale*(1-t) + orig_scale*zoom_scale*t
-					t += delta/float(ZOOMTIME)
-					if not card_in_play:
-						if reorganize_neighbors:
-							reorganize_neighbors = false
-							number_cards_hand_minus_one = $'../../'.number_cards_hand
-							if card_numb -1 >= 0:
-								move_neighbor_card(card_numb -1, true, 1) # true is left
-							if card_numb -2 >= 0:
-								move_neighbor_card(card_numb -2, true, 0.25)
-							if card_numb + 1 <= number_cards_hand_minus_one:
-								move_neighbor_card(card_numb +1, false, 1)
-							if card_numb + 2 <= number_cards_hand_minus_one:
-								move_neighbor_card(card_numb +2, false, 0.25)
-				else:
-					position = targetpos
-					if card_in_play:
-						scale = zoom_scale_in_play*start_scale
-					else:
-						rotation = 0
-						scale = orig_scale*zoom_scale
+				if move_card(delta, FOCUS_IN_HAND, ZOOMTIME, targetpos, target_scale, targetrot):
 					zooming_in = false
 		DRAWN_TO_HAND: #animate card from deck to player hand.
-			if setup:
-				reset_pos_rot_scale_and_time()
-			if t <= 1:
-				#position = startpos.lerp(targetpos, t)
-				if !tween:
-					tween = create_tween()
-					tween.set_ease(Tween.EASE_IN_OUT)
-					tween.set_trans(Tween.TRANS_CUBIC)
-					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
-					tween.tween_property(self, "position", targetpos, DRAWTIME)
-					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
-					
-					
-				#rotation = startrot*(1-t) + targetrot*t
-				
-
-				#scale.x = orig_scale*abs(2*t-1)
-				if t < 0.5:
-					scale.x = orig_scale.x*abs(2*(2*t)-1)
-				else:
-					scale.x = orig_scale.x
-				if $CardBack.visible:
-					if t >= 0.25:
-						$CardBack.visible = false
-				t += delta/float(DRAWTIME)
-			else:
-				position = targetpos
-				rotation = targetrot
+			if move_card(delta, DRAWN_TO_HAND, DRAWTIME, targetpos, orig_scale, targetrot):
 				state = IN_HAND
 		REORGANIZE_HAND:
-			if setup:
-				reset_pos_rot_scale_and_time()
-			if t <= 1:
-				if move_neighbor_card_check:
-					move_neighbor_card_check = false
-					
-				position = startpos.lerp(targetpos, t)
-#				if tween2:
-#					tween2 = create_tween()
-#					tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
-#				if !tween:
-#					tween = create_tween()
-#					tween.interpolate_value(startpos, targetpos-startpos, t, ORGANIZETIME, Tween.TRANS_CUBIC, Tween.EASE_IN_OUT)
-					#tween2.tween_property(self, "position", targetpos, ORGANIZETIME)
+			if move_card(delta, REORGANIZE_HAND, ORGANIZETIME, targetpos, target_scale, targetrot):
 				if card_in_play:
-					scale = start_scale*(1-t) + old_scale*t
-				else:
-					rotation = startrot*(1-t) + targetrot*t
-					scale = start_scale*(1-t) + orig_scale*t
-					if not reorganize_neighbors:
-						reorganize_neighbors = true
-						if card_numb -1 >= 0:
-							reset_card(card_numb -1)
-						if card_numb -2 >= 0:
-							reset_card(card_numb -2)
-						if card_numb + 1 <= number_cards_hand_minus_one:
-							reset_card(card_numb +1)
-						if card_numb + 2 <= number_cards_hand_minus_one:
-							reset_card(card_numb +2)
-				t += delta/float(ORGANIZETIME)
-			else:
-				position = targetpos
-				if card_in_play:
-					scale = old_scale
 					state = IN_PLAY
 				else:
-					rotation = targetrot
-					scale = orig_scale
 					state = IN_HAND
 		MOVE_TO_DISCARD_PILE:
 			if moving_to_discard:
-				if setup:
-					reset_pos_rot_scale_and_time()
-					targetpos = discard_pile
-				if t <= 1:
-					position = startpos.lerp(targetpos, t)
-					scale = start_scale*(1-t) + orig_scale*t
-					t += delta/float(DRAWTIME)
-				else:
-					position = targetpos
-					scale = orig_scale
+				if move_card(delta, MOVE_TO_DISCARD_PILE, DRAWTIME, targetpos, orig_scale, 0):
 					moving_to_discard = false
 
 
@@ -306,10 +253,11 @@ func move_neighbor_card(card_number, left, spread_factor):
 		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2($'../../'.CARD_SIZE.x/2, 0)
 	neighbor_card.setup = true
 	neighbor_card.state = REORGANIZE_HAND
+	neighbor_card.target_scale = orig_scale
 	neighbor_card.move_neighbor_card_check = true
 
 func reset_card(card_number):
-	neighbor_card = $'../'.get_child(card_number)
+	#neighbor_card = $'../'.get_child(card_number)
 #	if neighbor_card.move_neighbor_card_check:
 #		neighbor_card.move_neighbor_card_check = false
 #	else:
@@ -317,6 +265,7 @@ func reset_card(card_number):
 		neighbor_card = $'../'.get_child(card_number)
 		if neighbor_card.state != FOCUS_IN_HAND:
 			neighbor_card.state = REORGANIZE_HAND
+			neighbor_card.target_scale = orig_scale
 			neighbor_card.targetpos = neighbor_card.default_pos
 			neighbor_card.setup = true
 	
@@ -342,6 +291,7 @@ func _on_focus_mouse_entered():
 				setup = true
 				zooming_in = true
 				state = FOCUS_IN_HAND
+				target_scale = zoom_scale_in_play*Vector2(card_slot_size.y, card_slot_size.x)/size
 			else:
 				old_state = state
 				setup = true
@@ -349,6 +299,8 @@ func _on_focus_mouse_entered():
 				targetpos.y = get_viewport().size.y - $'../../'.CARD_SIZE.y*zoom_scale
 				zooming_in = true
 				state = FOCUS_IN_HAND
+				targetrot = 0
+				target_scale = orig_scale*zoom_scale
 
 
 func _on_focus_mouse_exited():
@@ -358,6 +310,8 @@ func _on_focus_mouse_exited():
 			state = REORGANIZE_HAND
 			if card_in_play:
 				targetpos = old_pos
+				target_scale = old_scale
 			else:
 				targetpos = default_pos
+				target_scale = orig_scale
 				
