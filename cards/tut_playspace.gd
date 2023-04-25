@@ -78,12 +78,13 @@ func _ready():
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()
+	var base = new_card.get_node("CardBase")
 	card_selected = randi() % deck_size
-	new_card.card_name = player_hand.card_list[card_selected]
-	new_card.position = deck_position
-	new_card.discard_pile = discard_position
-	new_card.scale *= CARD_SIZE/new_card.size
-	new_card.state = DRAWN_TO_HAND
+	base.card_name = player_hand.card_list[card_selected]
+	base.position = deck_position
+	base.discard_pile = discard_position
+	base.scale *= CARD_SIZE/base.size
+	base.state = DRAWN_TO_HAND
 	card_numb = 0
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])
@@ -105,22 +106,22 @@ func organize_hand():
 	for card in $Cards.get_children(): # reorganize hand
 		angle = PI/2 + card_spread*(float(number_cards_hand)/2-card_numb)
 		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
-		
-		card.targetpos = centre_card_oval + oval_angle_vector - Vector2(0, CARD_SIZE.y)
-		card.default_pos = card.targetpos
-		card.startrot = card.rotation
+		var base = card.get_node("CardBase")
+		base.targetpos = centre_card_oval + oval_angle_vector - Vector2(0, CARD_SIZE.y)
+		base.default_pos = base.targetpos
+		base.startrot = base.rotation
 		#new_card.targetrot = 2*PI + (angle-deg_to_rad(90))/4
-		card.targetrot = (PI/2-angle)/4
-		card.card_numb = card_numb
+		base.targetrot = (PI/2-angle)/4
+		base.card_numb = card_numb
 		card_numb += 1
-		if card.state == IN_HAND:
-			card.setup = true
-			card.target_scale = card.orig_scale
-			card.state = REORGANIZE_HAND
-			card.startpos = card.position
-		elif card.state == DRAWN_TO_HAND:
-			card.t -= 0.1
-			card.startpos = card.targetpos - ((card.targetpos - card.position)/(1-card.t))
+		if base.state == IN_HAND:
+			base.setup = true
+			base.target_scale = base.orig_scale
+			base.state = REORGANIZE_HAND
+			base.startpos = base.position
+		elif base.state == DRAWN_TO_HAND:
+			base.t -= 0.1
+			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):

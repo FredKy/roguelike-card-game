@@ -36,8 +36,8 @@ var target_scale = Vector2()
 var discard_pile = Vector2()
 var moving_to_discard = false
 
-@onready var card_slots = $'../../CardSlots'
-@onready var card_slot_empty = $'../../'.card_slot_empty
+@onready var card_slots = $'../../../CardSlots'
+@onready var card_slot_empty = $'../../../'.card_slot_empty
 var card_slot_pos = Vector2()
 var card_slot_size = Vector2()
 var mouse_pos = Vector2()
@@ -105,14 +105,14 @@ func _input(event):
 							card_slot_empty[i] = false
 							setup = true
 							moving_into_play = true
-							if i < $'../../'.card_slots_per_side:
+							if i < $'../../../'.card_slots_per_side:
 								left_hand_side = true
 								targetrot = PI/2
 								targetpos = card_slot_pos + Vector2(card_slot_size.x,0)
 							else:
 								targetrot = -PI/2
 								targetpos = card_slot_pos + Vector2(0, card_slot_size.y)
-#									targetpos = card_slot_pos-$'../../'.CARD_SIZE/2
+#									targetpos = card_slot_pos-$'../../../'.CARD_SIZE/2
 							target_scale = Vector2(card_slot_size.y, card_slot_size.x)/size
 							state = IN_PLAY
 							card_select = true
@@ -125,7 +125,7 @@ func _input(event):
 					state = REORGANIZE_HAND
 					card_select = true
 			else: # Handle everything once the card is in play.
-				var enemies = $'../../Enemies'
+				var enemies = $'../../../Enemies'
 				for i in range(enemies.get_child_count()):
 					var enemy_pos = enemies.get_child(i).position
 					var enemy_size = enemies.get_child(i).size*enemies.get_child(i).scale
@@ -158,13 +158,13 @@ func move_card(delta, state, time_scale, targetpos, target_scale, targetrot):
 		reset_pos_rot_scale_and_time()
 		if state == IN_PLAY:
 			if reparent:
-				$'../../'.reparent_card(card_numb)
+				$'../../../'.reparent_card(card_numb)
 				reparent = false
 		elif state == FOCUS_IN_HAND:
 			if not card_in_play:
 				if reorganize_neighbors:
 					reorganize_neighbors = false
-					number_cards_hand_minus_one = $'../../'.number_cards_hand
+					number_cards_hand_minus_one = $'../../../'.number_cards_hand
 					if card_numb -1 >= 0:
 						move_neighbor_card(card_numb -1, true, 1) # true is left
 					if card_numb -2 >= 0:
@@ -225,7 +225,7 @@ func _physics_process(delta):
 				if move_card(delta, IN_PLAY, IN_MOUSE_TIME, targetpos, target_scale, targetrot):
 					moving_into_play = false
 		IN_MOUSE:
-			move_card(delta, IN_MOUSE, IN_MOUSE_TIME, get_global_mouse_position() - $'../../'.CARD_SIZE/2, orig_scale, 0)
+			move_card(delta, IN_MOUSE, IN_MOUSE_TIME, get_global_mouse_position() - $'../../../'.CARD_SIZE/2, orig_scale, 0)
 		FOCUS_IN_HAND:
 			if zooming_in:
 				if move_card(delta, FOCUS_IN_HAND, ZOOMTIME, targetpos, target_scale, targetrot):
@@ -246,23 +246,22 @@ func _physics_process(delta):
 
 
 func move_neighbor_card(card_number, left, spread_factor):
-	neighbor_card = $'../'.get_child(card_number) # Parent node in (playscene) scene is Cards
+	neighbor_card = $'../../'.get_child(card_number).get_node('CardBase')
 	if left:
-		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2($'../../'.CARD_SIZE.x/2, 0)
+		neighbor_card.targetpos = neighbor_card.default_pos - spread_factor*Vector2($'../../../'.CARD_SIZE.x/2, 0)
 	else:
-		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2($'../../'.CARD_SIZE.x/2, 0)
+		neighbor_card.targetpos = neighbor_card.default_pos + spread_factor*Vector2($'../../../'.CARD_SIZE.x/2, 0)
 	neighbor_card.setup = true
 	neighbor_card.state = REORGANIZE_HAND
 	neighbor_card.target_scale = orig_scale
 	neighbor_card.move_neighbor_card_check = true
 
 func reset_card(card_number):
-	#neighbor_card = $'../'.get_child(card_number)
 #	if neighbor_card.move_neighbor_card_check:
 #		neighbor_card.move_neighbor_card_check = false
 #	else:
 	if not neighbor_card.move_neighbor_card_check:
-		neighbor_card = $'../'.get_child(card_number)
+		neighbor_card = $'../../'.get_child(card_number).get_node('CardBase')
 		if neighbor_card.state != FOCUS_IN_HAND:
 			neighbor_card.state = REORGANIZE_HAND
 			neighbor_card.target_scale = orig_scale
@@ -295,8 +294,8 @@ func _on_focus_mouse_entered():
 			else:
 				old_state = state
 				setup = true
-				targetpos.x = default_pos.x - $'../../'.CARD_SIZE.x/2
-				targetpos.y = get_viewport().size.y - $'../../'.CARD_SIZE.y*zoom_scale
+				targetpos.x = default_pos.x - $'../../../'.CARD_SIZE.x/2
+				targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*zoom_scale
 				zooming_in = true
 				state = FOCUS_IN_HAND
 				targetrot = 0
