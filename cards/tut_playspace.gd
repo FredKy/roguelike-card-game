@@ -5,7 +5,7 @@ const CARD_BASE := preload("res://cards/card_base.tscn")
 var player_hand := preload("res://cards/tut_player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
-
+@onready var deck_size = player_hand.card_list.size()
 @onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.32)
 @onready var hor_rad = get_viewport().size.x*0.45
 @onready var ver_rad = get_viewport().size.y*0.4
@@ -61,11 +61,14 @@ func _ready():
 				card_slot_empty.append(true)
 	$Enemies/EnemyLeft.visible = true
 	$Enemies/EnemyLeft/VBoxContainer/ImageContainer/Image.flip_h = false
-	$Enemies/EnemyLeft.position = get_viewport().size*0.4 + Vector2(-400,-300)
 	$Enemies/EnemyLeft.scale *= 0.5
+	$Enemies/EnemyLeft.position = Vector2(outer_x_margin + card_slot_base_width/2, card_slot_total_height/2) \
+	- $Enemies/EnemyLeft.size*$Enemies/EnemyLeft.scale/2
 	$Enemies/EnemyRight.visible = true
-	$Enemies/EnemyRight.position = get_viewport().size*0.4 + Vector2(200,-300)
 	$Enemies/EnemyRight.scale *= 0.5
+	$Enemies/EnemyRight.position = Vector2(view_port_size.x - outer_x_margin - card_slot_base_width/2, card_slot_total_height/2) \
+	- $Enemies/EnemyRight.size*$Enemies/EnemyRight.scale/2
+	
 #	var new_slot = card_slot.instantiate()
 #	new_slot.position = get_viewport().size*0.4
 #	new_slot.size = CARD_SIZE
@@ -75,9 +78,6 @@ func _ready():
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()
-	var deck_size = player_hand.card_list.size()
-	if (deck_size < 1):
-		return
 	card_selected = randi() % deck_size
 	new_card.card_name = player_hand.card_list[card_selected]
 	new_card.position = deck_position
@@ -85,17 +85,21 @@ func draw_card():
 	new_card.scale *= CARD_SIZE/new_card.size
 	new_card.state = DRAWN_TO_HAND
 	card_numb = 0
-	
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])
 	angle += 0.25
 	deck_size -= 1
 	number_cards_hand += 1
-	#card_numb += 1
-	
 	organize_hand()
-	
 	return deck_size
+
+func reparent_card(card_no):
+	number_cards_hand -= 1
+	card_numb = 0
+	var card = $Cards.get_child(card_no)
+	$Cards.remove_child(card)
+	$CardsInPlay.add_child(card)
+	organize_hand()
 
 func organize_hand():
 	for card in $Cards.get_children(): # reorganize hand
@@ -112,6 +116,7 @@ func organize_hand():
 		if card.state == IN_HAND:
 			card.setup = true
 			card.state = REORGANIZE_HAND
+			card.startpos = card.position
 		elif card.state == DRAWN_TO_HAND:
 			card.t -= 0.1
 			card.startpos = card.targetpos - ((card.targetpos - card.position)/(1-card.t))

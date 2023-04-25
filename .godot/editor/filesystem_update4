@@ -10,3 +10,4 @@ res://card_slot.tscn
 res://cards/my_card_base.gd
 res://playspace.gd
 res://cards/tut_playspace.gd
+res://cards/card_base.gd
