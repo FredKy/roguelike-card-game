@@ -6,12 +6,13 @@ var player_hand := preload("res://cards/tut_player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
 @onready var deck_size = player_hand.card_list.size()
-@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.25)
+@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.2)
 @onready var hor_rad = get_viewport().size.x*0.45
-@onready var ver_rad = get_viewport().size.y*0.4
+@onready var ver_rad = get_viewport().size.y*0.3
 var angle = 0
 #var card_spread = 0.25/125*CARD_SIZE.x
-var card_spread = 0.002*CARD_SIZE.x
+#var card_spread = 0.002*CARD_SIZE.xv
+var card_spread = 0.25
 var number_cards_hand = -1
 var card_numb = 0
 var oval_angle_vector = Vector2()
@@ -120,7 +121,7 @@ func organize_hand():
 			base.state = REORGANIZE_HAND
 			base.startpos = base.position
 		elif base.state == DRAWN_TO_HAND:
-			base.t -= 0.1
+			#base.t -= 0.1
 			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
 
 #func _input(event):
