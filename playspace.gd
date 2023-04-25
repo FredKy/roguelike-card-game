@@ -5,7 +5,7 @@ const CARD_BASE := preload("res://cards/my_card_base.tscn")
 var player_hand := preload("res://cards/player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
-
+@onready var deck_size = player_hand.card_list.size()
 @onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.32)
 @onready var hor_rad = get_viewport().size.x*0.45
 @onready var ver_rad = get_viewport().size.y*0.4
@@ -44,9 +44,6 @@ func _ready():
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()
-	var deck_size = player_hand.card_list.size()
-	if (deck_size < 1):
-		return
 	var base = new_card.get_node("MyCardBase")
 	card_selected = randi() % deck_size
 	base.card_name = player_hand.card_list[card_selected]
@@ -55,16 +52,12 @@ func draw_card():
 	base.scale *= CARD_SIZE/base.size
 	base.state = DRAWN_TO_HAND
 	card_numb = 0
-	
 	$Cards.add_child(new_card)
 	player_hand.card_list.erase(player_hand.card_list[card_selected])
 	angle += 0.25
 	deck_size -= 1
 	number_cards_hand += 1
-	#card_numb += 1
-	
 	organize_hand()
-	
 	return deck_size
 
 func reparent_card(card_no):
