@@ -869,16 +869,19 @@ corner_radius_top_right = 11
 corner_radius_bottom_right = 11
 corner_radius_bottom_left = 11
 
-[node name="MyCardBase" type="MarginContainer"]
+[node name="Root" type="Node2D"]
+
+[node name="MyCardBase" type="MarginContainer" parent="."]
 offset_right = 290.0
 offset_bottom = 400.0
+pivot_offset = Vector2(145, 200)
 script = ExtResource("2")
 
-[node name="Border" type="Panel" parent="."]
+[node name="Border" type="Panel" parent="MyCardBase"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("1")
 
-[node name="Inner" type="Panel" parent="Border"]
+[node name="Inner" type="Panel" parent="MyCardBase/Border"]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -890,18 +893,18 @@ offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("2")
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="MyCardBase"]
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="MyCardBase"]
 visible = false
 layout_mode = 2
 color = Color(0.560784, 0.560784, 0.560784, 1)
 
-[node name="HiddenPanel" type="Panel" parent="."]
+[node name="HiddenPanel" type="Panel" parent="MyCardBase"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pw0ky")
 
-[node name="ImageShadow" type="Panel" parent="HiddenPanel"]
+[node name="ImageShadow" type="Panel" parent="MyCardBase/HiddenPanel"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 50.0
@@ -909,21 +912,21 @@ offset_right = 275.0
 offset_bottom = 246.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kbiw7")
 
-[node name="Image" type="Sprite2D" parent="HiddenPanel"]
+[node name="Image" type="Sprite2D" parent="MyCardBase/HiddenPanel"]
 position = Vector2(17, 52)
 texture = ExtResource("1")
 centered = false
 region_enabled = true
 region_rect = Rect2(4864, 0, 256, 192)
 
-[node name="CostRect" type="Panel" parent="."]
+[node name="CostRect" type="Panel" parent="MyCardBase"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q0drq")
 
-[node name="CostRect2" type="Panel" parent="CostRect"]
+[node name="CostRect2" type="Panel" parent="MyCardBase/CostRect"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 4.0
@@ -933,7 +936,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_al25c")
 
-[node name="Cost" type="Label" parent="CostRect/CostRect2"]
+[node name="Cost" type="Label" parent="MyCardBase/CostRect/CostRect2"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 offset_left = -4.0
@@ -953,10 +956,10 @@ text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyCardBase"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="VBoxContainer"]
+[node name="Name" type="Label" parent="MyCardBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 size_flags_vertical = 0
@@ -970,11 +973,11 @@ text = "Ice Cannon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyCardBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 
-[node name="Info" type="Label" parent="VBoxContainer"]
+[node name="Info" type="Label" parent="MyCardBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 size_flags_vertical = 6
@@ -988,16 +991,16 @@ text = "Information"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Focus" type="TextureButton" parent="."]
+[node name="Focus" type="TextureButton" parent="MyCardBase"]
 layout_mode = 2
 texture_hover = ExtResource("4_gj5vu")
 
-[node name="CardBack" type="Panel" parent="."]
+[node name="CardBack" type="Panel" parent="MyCardBase"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
 
-[node name="CostRectBack" type="Panel" parent="CardBack"]
+[node name="CostRectBack" type="Panel" parent="MyCardBase/CardBack"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 offset_right = 54.0
@@ -1006,7 +1009,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oimp7")
 
-[node name="Inner" type="Panel" parent="CardBack"]
+[node name="Inner" type="Panel" parent="MyCardBase/CardBack"]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1018,5 +1021,5 @@ offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")
 
-[connection signal="mouse_entered" from="Focus" to="." method="_on_focus_mouse_entered"]
-[connection signal="mouse_exited" from="Focus" to="." method="_on_focus_mouse_exited"]
+[connection signal="mouse_entered" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_entered"]
+[connection signal="mouse_exited" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_exited"]

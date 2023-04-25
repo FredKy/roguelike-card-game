@@ -309,7 +309,6 @@ func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card.move_neighbor_card_check = true
 
 func reset_card(card_number):
-	neighbor_card = $'../'.get_child(card_number)
 #	if neighbor_card.move_neighbor_card_check:
 #		neighbor_card.move_neighbor_card_check = false
 #	else:

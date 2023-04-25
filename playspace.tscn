@@ -76,10 +76,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6qw88")
 position = Vector2(40, 434)
 
 [node name="DeckDraw" type="TextureButton" parent="Deck"]
-offset_left = -29.0
-offset_top = -40.0
-offset_right = 297.0
-offset_bottom = 409.0
+offset_right = 326.0
+offset_bottom = 449.0
+pivot_offset = Vector2(145, 200)
 texture_normal = ExtResource("3_plwv1")
 texture_pressed = ExtResource("3_plwv1")
 texture_hover = ExtResource("3_plwv1")
@@ -90,10 +89,9 @@ script = ExtResource("5_rd6np")
 position = Vector2(1000, 434)
 
 [node name="DiscardPile" type="TextureButton" parent="Discard"]
-offset_left = -29.0
-offset_top = -40.0
-offset_right = 297.0
-offset_bottom = 409.0
+offset_right = 326.0
+offset_bottom = 449.0
+pivot_offset = Vector2(145, 200)
 texture_normal = ExtResource("3_plwv1")
 texture_pressed = ExtResource("3_plwv1")
 texture_hover = ExtResource("3_plwv1")
