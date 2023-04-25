@@ -874,6 +874,7 @@ corner_radius_bottom_left = 11
 [node name="MyCardBase" type="MarginContainer" parent="."]
 offset_right = 290.0
 offset_bottom = 400.0
+pivot_offset = Vector2(145, 200)
 script = ExtResource("2")
 
 [node name="Border" type="Panel" parent="MyCardBase"]

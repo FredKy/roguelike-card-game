@@ -121,7 +121,7 @@ func organize_hand():
 			base.state = REORGANIZE_HAND
 			base.startpos = base.position
 		elif base.state == DRAWN_TO_HAND:
-			#base.t -= 0.1
+			base.t -= 0.1
 			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
 
 #func _input(event):

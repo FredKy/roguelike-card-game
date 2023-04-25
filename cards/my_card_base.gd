@@ -48,6 +48,7 @@ var card_in_play = false
 var zoom_scale_in_play = 1.2
 var old_pos = Vector2()
 var old_scale = Vector2()
+var old_rot = 0
 var reparent = true # Wether or not card can be reparented
 
 
@@ -80,13 +81,14 @@ func _input(event):
 		if state == FOCUS_IN_HAND:
 			if card_select:
 				#old_state = state
+				old_rot = rotation
 				state = IN_MOUSE
-				#$'../'.z_index += 2
+				$'../'.z_index += 2
 				setup = true
 				card_select = false
 	if event.is_action_released("leftclick"):
 		if not card_select:
-			#$'../'.z_index -= 2
+			$'../'.z_index -= 2
 			if old_state == IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
 				for i in range(card_slots.get_child_count()):
 					
@@ -116,6 +118,7 @@ func _input(event):
 					setup = true
 					targetpos = default_pos
 					target_scale = orig_scale
+					#targetrot = old_rot
 					state = REORGANIZE_HAND
 					card_select = true
 			else: # Handle everything once the card is in play.
@@ -272,6 +275,7 @@ func reset_pos_rot_scale_and_time():
 func _on_focus_mouse_entered():
 	match state:
 		IN_HAND, REORGANIZE_HAND, IN_PLAY:
+			old_rot = rotation
 			if card_in_play:
 				old_state = IN_PLAY
 				old_pos = targetpos
@@ -287,7 +291,9 @@ func _on_focus_mouse_entered():
 			else:
 				old_state = state
 				setup = true
-				targetpos.x = default_pos.x - $'../../../'.CARD_SIZE.x/2
+				#targetpos.x = default_pos.x - $'../../../'.CARD_SIZE.x/2
+				targetpos = default_pos
+				#
 				targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*zoom_scale
 				zooming_in = true
 				state = FOCUS_IN_HAND
@@ -304,5 +310,6 @@ func _on_focus_mouse_exited():
 				targetpos = old_pos
 				target_scale = old_scale
 			else:
+				targetrot = old_rot
 				targetpos = default_pos
 				target_scale = orig_scale
