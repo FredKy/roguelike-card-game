@@ -1,6 +1,6 @@
 extends Node2D
 
-const CARD_SIZE = Vector2(125,175)*0.6
+const CARD_SIZE = Vector2(125,175)
 const CARD_BASE := preload("res://cards/card_base.tscn")
 var player_hand := preload("res://cards/tut_player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")

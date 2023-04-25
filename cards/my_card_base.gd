@@ -287,8 +287,12 @@ func _on_focus_mouse_entered():
 		IN_HAND, REORGANIZE_HAND:
 			old_state = state
 			setup = true
-			targetpos.x = default_pos.x - $'../../../'.CARD_SIZE.x/2
-			targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*zoom_scale
+			targetpos.x = default_pos.x 
+			print(get_viewport().size)
+			print(float(get_viewport().size.y)/648)
+			print($'../../../'.CARD_SIZE)
+			targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*(float(get_viewport().size.x)/1152)*zoom_scale
+			print(targetpos.y)
 			zooming_in = true
 			state = FOCUS_IN_HAND
 
