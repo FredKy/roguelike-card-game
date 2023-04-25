@@ -1,12 +1,12 @@
 extends Node2D
 
-const CARD_SIZE = Vector2(125,175)*0.6
+const CARD_SIZE = Vector2(125,175)*1
 const CARD_BASE := preload("res://cards/card_base.tscn")
 var player_hand := preload("res://cards/tut_player_hand.gd").new()
 const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
 @onready var deck_size = player_hand.card_list.size()
-@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.32)
+@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.25)
 @onready var hor_rad = get_viewport().size.x*0.45
 @onready var ver_rad = get_viewport().size.y*0.4
 var angle = 0
