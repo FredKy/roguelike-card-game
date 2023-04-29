@@ -89,13 +89,13 @@ func _input(event):
 				if not card_select:
 					$'../'.z_index -= 2
 					if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
-						var card_slots = $'../../../CardSlots'
-						var card_slot_empty = $'../../../'.card_slot_empty
+						#var card_slots = $'../../../CardSlots'
+						#var card_slot_empty = $'../../../'.card_slot_empty
 						for i in range(card_slots.get_child_count()):
 							if card_slot_empty[i]:
-								var card_slot_pos = card_slots.get_child(i).position
-								var card_slot_size = card_slots.get_child(i).size*card_slots.get_child(i).scale
-								var mouse_pos = get_global_mouse_position()
+								card_slot_pos = card_slots.get_child(i).position
+								card_slot_size = card_slots.get_child(i).size*card_slots.get_child(i).scale
+								mouse_pos = get_global_mouse_position()
 								if mouse_pos.x < card_slot_pos.x + card_slot_size.x and mouse_pos.x > card_slot_pos.x \
 								and mouse_pos.y < card_slot_pos.y + card_slot_size.y and mouse_pos.y > card_slot_pos.y:
 									setup = true
@@ -115,7 +115,7 @@ func _input(event):
 						for i in range(enemies.get_child_count()):
 							var enemy_pos = enemies.get_child(i).position
 							var enemy_size = enemies.get_child(i).size
-							var mouse_pos = get_global_mouse_position()
+							mouse_pos = get_global_mouse_position()
 							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
 								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
 									# Deal with damage

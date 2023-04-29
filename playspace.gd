@@ -41,7 +41,7 @@ func _ready():
 	new_slot.size = CARD_SIZE
 	$CardSlots.add_child(new_slot)
 	card_slot_empty.append(true)
-	draw_x_cards(6, 0.2)
+	#draw_x_cards(6, 0.2)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
