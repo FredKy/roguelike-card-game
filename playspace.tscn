@@ -36,6 +36,8 @@ script = ExtResource("1_rla1j")
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_7uo8r")]
 
+[node name="CardsInPlay" type="Node" parent="."]
+
 [node name="Cards" type="Node" parent="."]
 
 [node name="Background2" type="Sprite2D" parent="."]
