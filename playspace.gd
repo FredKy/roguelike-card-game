@@ -27,6 +27,7 @@ enum {
 	DRAWN_TO_HAND,
 	REORGANIZE_HAND,
 	MOVE_TO_DISCARD_PILE,
+	IN_DISCARD_PILE,
 }
 
 var card_slot_empty = []

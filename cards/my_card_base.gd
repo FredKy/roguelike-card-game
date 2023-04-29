@@ -19,7 +19,7 @@ const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
 const IN_MOUSE_TIME = 0.1
 var tween
-var tween2
+var tween_d
 
 var setup = true
 var start_scale = Vector2()
@@ -60,6 +60,7 @@ enum {
 	DRAWN_TO_HAND,
 	REORGANIZE_HAND,
 	MOVE_TO_DISCARD_PILE,
+	IN_DISCARD_PILE,
 }
 var state = IN_HAND
 
@@ -244,14 +245,33 @@ func _physics_process(delta):
 					reset_pos_rot_scale_and_time()
 					targetpos = discard_pile
 				if t <= 1:
-					position = startpos.lerp(targetpos, t)
+#					position = startpos.lerp(targetpos, t)
+#					scale = start_scale*(1-t) + orig_scale*t
+#					t += delta/float(DRAWTIME)
+					if !tween_d:
+						tween_d = create_tween()
+						tween_d.set_ease(Tween.EASE_IN_OUT)
+						tween_d.set_trans(Tween.TRANS_CUBIC)
+						#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+						tween_d.tween_property(self, "position", targetpos, DRAWTIME)
+						tween_d.parallel().tween_property(self, "rotation", 2*PI, DRAWTIME)
 					scale = start_scale*(1-t) + orig_scale*t
+					var flip_time_factor = 1.2 # 20% faster
+					if t < float(1/flip_time_factor):
+						scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
+					else:
+						scale.x = orig_scale.x
+					if not $CardBack.visible:
+						if t >= float(0.5/flip_time_factor):
+							$CardBack.visible = true
 					t += delta/float(DRAWTIME)
 				else:
 					position = targetpos
 					scale = orig_scale
 					moving_to_discard = false
-					
+					state = IN_DISCARD_PILE
+		IN_DISCARD_PILE:
+			pass
 
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")

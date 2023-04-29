@@ -9,3 +9,4 @@ res://bar.tscn
 res://card_slot.tscn
 res://cards/my_card_base.gd
 res://playspace.gd
+res://deck_draw.gd
