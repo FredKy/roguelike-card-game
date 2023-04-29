@@ -9,10 +9,11 @@ func _ready():
 #	pivot_offset.x = size.x/2
 #	pivot_offset.y = size.y/2
 
-
-func _gui_input(_event):
-	if Input.is_action_just_released("leftclick"):
-		if deck_size > 0:
-			deck_size = $'../../'.draw_card()
-			if deck_size == 0:
-				disabled = true
+# No need for input now.
+#func _gui_input(_event):
+#	deck_size = $'../../'.player_deck.card_list.size()
+#	if Input.is_action_just_released("leftclick"):
+#		if deck_size > 0:
+#			deck_size = $'../../'.draw_card()
+#			if deck_size == 0:
+#				disabled = true
