@@ -89,51 +89,56 @@ func _input(event):
 			if event.is_action_released("leftclick"):
 				if not card_select:
 					$'../'.z_index -= 2
-					if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
-						#var card_slots = $'../../../CardSlots'
-						#var card_slot_empty = $'../../../'.card_slot_empty
-						for i in range(card_slots.get_child_count()):
-							if card_slot_empty[i]:
-								card_slot_pos = card_slots.get_child(i).position
-								card_slot_size = card_slots.get_child(i).size*card_slots.get_child(i).scale
-								mouse_pos = get_global_mouse_position()
-								if mouse_pos.x < card_slot_pos.x + card_slot_size.x and mouse_pos.x > card_slot_pos.x \
-								and mouse_pos.y < card_slot_pos.y + card_slot_size.y and mouse_pos.y > card_slot_pos.y:
-									setup = true
-									moving_into_play = true
-									targetpos = card_slot_pos-$'../../../'.CARD_SIZE/2
-									target_scale = card_slot_size/size
-									state = IN_PLAY
-									card_select = true
-									break
-						if state != IN_PLAY:
-							setup = true
-							targetpos = default_pos
-							state = REORGANIZE_HAND
-							card_select = true
-					else: # Handle everything once the card is in play.
-						var enemies = $'../../../Enemies'
-						for i in range(enemies.get_child_count()):
-							var enemy_pos = enemies.get_child(i).position
-							var enemy_size = enemies.get_child(i).size
-							mouse_pos = get_global_mouse_position()
-							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
-								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
-									# Deal with damage
-									var attack_number = card_info[5]
-									enemies.get_child(i).change_health(attack_number)
-									setup = true
-									moving_to_discard = true
-									state = MOVE_TO_DISCARD_PILE
+#					if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
+#						#var card_slots = $'../../../CardSlots'
+#						#var card_slot_empty = $'../../../'.card_slot_empty
+#						for i in range(card_slots.get_child_count()):
+#							if card_slot_empty[i]:
+#								card_slot_pos = card_slots.get_child(i).position
+#								card_slot_size = card_slots.get_child(i).size*card_slots.get_child(i).scale
+#								mouse_pos = get_global_mouse_position()
+#								if mouse_pos.x < card_slot_pos.x + card_slot_size.x and mouse_pos.x > card_slot_pos.x \
+#								and mouse_pos.y < card_slot_pos.y + card_slot_size.y and mouse_pos.y > card_slot_pos.y:
+#									setup = true
+#									moving_into_play = true
+#									targetpos = card_slot_pos-$'../../../'.CARD_SIZE/2
+#									target_scale = card_slot_size/size
+#									state = IN_PLAY
+#									card_select = true
+#									break
+#						if state != IN_PLAY:
+#							setup = true
+#							targetpos = default_pos
+#							state = REORGANIZE_HAND
+#							card_select = true
+#					else: # Handle everything once the card is in play.
+					var enemies = $'../../../Enemies'
+					for i in range(enemies.get_child_count()):
+						var enemy_pos = enemies.get_child(i).position
+						var enemy_size = enemies.get_child(i).size
+						mouse_pos = get_global_mouse_position()
+						if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
+							and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+								# Deal with damage
+								var attack_number = card_info[5]
+								enemies.get_child(i).change_health(attack_number)
+								setup = true
+								moving_to_discard = true
+								state = MOVE_TO_DISCARD_PILE
 #									moving_into_play = true
 #									state = IN_PLAY
-									card_select = true
-									break
-						if not card_select:
-							setup = true
-							moving_into_play = true
-							state = IN_PLAY
-							card_select = true
+								card_select = true
+								break
+#					if state != IN_DISCARD_PILE:
+#						setup = true
+#						targetpos = default_pos
+#						state = REORGANIZE_HAND
+#						card_select = true
+					if not card_select:
+						setup = true
+						moving_into_play = true
+						state = IN_DISCARD_PILE
+						card_select = true
 	
 func _physics_process(delta):
 	match state:
@@ -188,17 +193,6 @@ func _physics_process(delta):
 								move_neighbor_card(card_numb +1, false, 1)
 							if card_numb + 2 <= number_cards_hand_minus_one:
 								move_neighbor_card(card_numb +2, false, 0.25)
-#					if reorganize_neighbors:
-#						reorganize_neighbors = false
-#						number_cards_hand_minus_one = $'../../../'.number_cards_hand
-#						if card_numb -1 >= 0:
-#							move_neighbor_card(card_numb -1, true, 1) # true is left
-#						if card_numb -2 >= 0:
-#							move_neighbor_card(card_numb -2, true, 0.25)
-#						if card_numb + 1 <= number_cards_hand_minus_one:
-#							move_neighbor_card(card_numb +1, false, 1)
-#						if card_numb + 2 <= number_cards_hand_minus_one:
-#							move_neighbor_card(card_numb +2, false, 0.25)
 				else:
 					position = targetpos
 					rotation = 0
@@ -259,6 +253,7 @@ func _physics_process(delta):
 				if setup:
 					reset_pos_rot_scale_and_time()
 					targetpos = discard_pile
+					$'../../../'.reparent_to_discarded_cards(card_numb)
 				if t <= 1:
 #					position = startpos.lerp(targetpos, t)
 #					scale = start_scale*(1-t) + orig_scale*t

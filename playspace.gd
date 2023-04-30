@@ -79,6 +79,15 @@ func reparent_card(card_no):
 	$CardsInPlay.add_child(card)
 	organize_hand()
 
+func reparent_to_discarded_cards(card_no):
+	number_cards_hand -= 1
+	card_numb = 0
+	var card = $Cards.get_child(card_no)
+	$Cards.remove_child(card)
+	$DiscardedCards.add_child(card)
+	organize_hand()
+
+
 func organize_hand():
 	for card in $Cards.get_children(): # reorganize hand
 		angle = PI/2 + card_spread*(float(number_cards_hand)/2-card_numb)

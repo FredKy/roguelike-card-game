@@ -14,3 +14,4 @@ func _process(delta):
 func _on_gui_input(event):
 	if Input.is_action_just_released("leftclick"):
 		print("Hej")
+		
