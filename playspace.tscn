@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=12 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cex1jwjhicuct" path="res://assets/images/card_back.png" id="3_plwv1"]
 [ext_resource type="Script" path="res://deck_draw.gd" id="5_rd6np"]
 [ext_resource type="Script" path="res://discard_pile.gd" id="6_anmoi"]
+[ext_resource type="Script" path="res://button.gd" id="7_021k6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -99,3 +100,14 @@ texture_pressed = ExtResource("3_plwv1")
 texture_hover = ExtResource("3_plwv1")
 texture_disabled = SubResource("CanvasTexture_1h6jl")
 script = ExtResource("6_anmoi")
+
+[node name="TestingButton" type="Node2D" parent="."]
+position = Vector2(337, 103)
+
+[node name="Button" type="Button" parent="TestingButton"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Reshuffle"
+script = ExtResource("7_021k6")
+
+[connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
