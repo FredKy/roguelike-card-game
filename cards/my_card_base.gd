@@ -129,22 +129,32 @@ func _input(event):
 #									state = IN_PLAY
 								card_select = true
 								break
-#					if state != IN_DISCARD_PILE:
-#						setup = true
-#						targetpos = default_pos
-#						state = REORGANIZE_HAND
-#						card_select = true
+						else:
+							if state != IN_DISCARD_PILE:
+								setup = true
+								targetpos = default_pos
+								state = REORGANIZE_HAND
+								card_select = true
+							break
+					
 					if not card_select:
 						setup = true
 						moving_into_play = true
 						state = IN_DISCARD_PILE
 						card_select = true
+					#if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND:
+#					if state != IN_DISCARD_PILE:
+#						setup = true
+#						targetpos = default_pos
+#						state = REORGANIZE_HAND
+#						card_select = true
 	
 func _physics_process(delta):
 	match state:
 		IN_HAND:
 			pass
 		IN_PLAY:
+			pass
 			if moving_into_play:
 				if setup:
 					reset_pos_rot_scale_and_time()
