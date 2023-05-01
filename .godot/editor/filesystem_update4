@@ -10,3 +10,5 @@ res://card_slot.tscn
 res://cards/my_card_base.gd
 res://playspace.gd
 res://enemy.gd
+res://wanderer.gd
+res://wanderer.tscn

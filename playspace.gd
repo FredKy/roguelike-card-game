@@ -35,15 +35,13 @@ var card_slot_empty = []
 func _ready():
 	randomize()
 	#$Enemies/Enemy.visible = true
-	$Enemies/Enemy.position = Vector2(700, 80)
+	$Enemies/Enemy.position = Vector2(760, 80)
 	$Enemies/Enemy.scale *= 0.5
 	$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-#	var new_slot = card_slot.instantiate()
-#	new_slot.position = get_viewport().size*0.4
-#	new_slot.size = CARD_SIZE
-#	$CardSlots.add_child(new_slot)
-#	card_slot_empty.append(true)
-	#draw_x_cards(6, 0.2)
+	$Wanderer.position = Vector2(100, 80)
+	$Wanderer.scale *= 0.5
+	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+	draw_x_cards(6, 0.2)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)

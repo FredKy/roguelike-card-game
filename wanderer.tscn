@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://wdpqbbotx4pc"]
+
+[ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
+[ext_resource type="Texture2D" uid="uid://cbchirlwu8851" path="res://assets/images/wanderer_magician/Idle.png" id="2_fvs65"]
+[ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="4_mqgd7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f37n"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwaug"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqlcc"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7bs3"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15yxd"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md7da"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeq16"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m4rm"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a60l4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f37n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwaug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqlcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7bs3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15yxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md7da")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeq16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m4rm")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Wanderer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jynn3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 1
+position = Vector2(-264, -513)
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_a60l4")
+animation = &"idle"
+frame_progress = 0.0648107
+centered = false
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
+layout_mode = 2
