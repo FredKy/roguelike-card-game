@@ -91,7 +91,7 @@ texture_disabled = SubResource("CanvasTexture_1h6jl")
 script = ExtResource("5_rd6np")
 
 [node name="Discard" type="Node2D" parent="."]
-position = Vector2(955, 325)
+position = Vector2(916, 325)
 
 [node name="DiscardPile" type="TextureButton" parent="Discard"]
 offset_right = 326.0

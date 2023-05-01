@@ -174,9 +174,25 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
+				
 				position = startpos.lerp(get_global_mouse_position() - $'../../../'.CARD_SIZE/2, t)
 				rotation = startrot*(1-t) + 0*t
 				scale = start_scale*(1-t) + orig_scale*t
+				
+				if not reorganize_neighbors:
+					reorganize_neighbors = true
+					if card_numb -1 >= 0:
+						reset_card(card_numb -1)
+					if card_numb -2 >= 0:
+						reset_card(card_numb -2)
+					if card_numb -3 >= 0:
+						reset_card(card_numb -3)
+					if card_numb + 1 <= number_cards_hand_minus_one:
+						reset_card(card_numb +1)
+					if card_numb + 2 <= number_cards_hand_minus_one:
+						reset_card(card_numb +2)
+					if card_numb + 3 <= number_cards_hand_minus_one:
+						reset_card(card_numb +3)
 				t += delta/float(IN_MOUSE_TIME)
 			else:
 				position = get_global_mouse_position() - $'../../../'.CARD_SIZE/2
@@ -266,7 +282,6 @@ func _physics_process(delta):
 				rotation = targetrot
 				scale = orig_scale
 				state = IN_HAND
-				#t = 0
 		MOVE_TO_DISCARD_PILE:
 			if moving_to_discard:
 				if setup:
@@ -274,14 +289,10 @@ func _physics_process(delta):
 					targetpos = discard_pile
 					$'../../../'.reparent_to_discarded_cards(card_numb)
 				if t <= 1:
-#					position = startpos.lerp(targetpos, t)
-#					scale = start_scale*(1-t) + orig_scale*t
-#					t += delta/float(DRAWTIME)
 					if !tween_d:
 						tween_d = create_tween()
 						tween_d.set_ease(Tween.EASE_IN_OUT)
 						tween_d.set_trans(Tween.TRANS_CUBIC)
-						#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
 						tween_d.tween_property(self, "position", targetpos, DRAWTIME)
 						tween_d.parallel().tween_property(self, "rotation", 2*PI, DRAWTIME)
 					scale = start_scale*(1-t) + orig_scale*t
@@ -303,14 +314,9 @@ func _physics_process(delta):
 		IN_DISCARD_PILE:
 			pass
 		MOVE_TO_DECK:
-			#print(position)
-			#print(targetpos)
-			#print(targetpos)
 			if setup:
 				reset_pos_rot_scale_and_time()
 				targetpos = $'../../../Deck'.position + Vector2(9,9)
-				#targetpos = Vector2(-65, 315)
-				#print(targetpos)
 			if t <= 1:
 				if !tween_r:
 					tween_r = create_tween()
@@ -318,14 +324,6 @@ func _physics_process(delta):
 					tween_r.set_trans(Tween.TRANS_CUBIC)
 					tween_r.tween_property(self, "position", targetpos, DRAWTIME)
 					tween_r.parallel().tween_property(self, "rotation", -2*PI, DRAWTIME)
-#				var flip_time_factor = 1.2 # 20% faster
-#				if t < float(1/flip_time_factor):
-#					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
-#				else:
-#					scale.x = orig_scale.x
-#				if $CardBack.visible:
-#					if t >= float(0.5/flip_time_factor):
-#						$CardBack.visible = false
 				t += delta/float(DRAWTIME)
 			else:
 				position = targetpos
@@ -335,8 +333,6 @@ func _physics_process(delta):
 				state = NOTHING
 				print(self.card_name)
 				$'../../../'.remove_card_from_discard_pile()
-				
-				
 
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")
@@ -350,9 +346,6 @@ func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card.move_neighbor_card_check = true
 
 func reset_card(card_number):
-#	if neighbor_card.move_neighbor_card_check:
-#		neighbor_card.move_neighbor_card_check = false
-#	else:
 	if not neighbor_card.move_neighbor_card_check:
 		neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")
 		if neighbor_card.state != FOCUS_IN_HAND:
@@ -360,8 +353,7 @@ func reset_card(card_number):
 			#neighbor_card.target_scale = orig_scale
 			neighbor_card.targetpos = neighbor_card.default_pos
 			neighbor_card.setup = true
-	
-	
+
 func reset_pos_rot_scale_and_time():
 	startpos = position
 	startrot = rotation
