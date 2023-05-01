@@ -63,6 +63,7 @@ enum {
 	MOVE_TO_DISCARD_PILE,
 	IN_DISCARD_PILE,
 	MOVE_TO_DECK,
+	NOTHING,
 }
 var state = IN_HAND
 
@@ -148,6 +149,8 @@ func _input(event):
 
 func _physics_process(delta):
 	match state:
+		NOTHING:
+			pass
 		IN_HAND:
 			pass
 		IN_PLAY:
@@ -292,9 +295,10 @@ func _physics_process(delta):
 		MOVE_TO_DECK:
 			#print(position)
 			#print(targetpos)
+			#print(targetpos)
 			if setup:
 				reset_pos_rot_scale_and_time()
-				targetpos = $'../../../Deck'.position
+				targetpos = $'../../../Deck'.position + Vector2(9,9)
 				#targetpos = Vector2(-65, 315)
 				#print(targetpos)
 			if t <= 1:
@@ -303,7 +307,7 @@ func _physics_process(delta):
 					tween_r.set_ease(Tween.EASE_IN_OUT)
 					tween_r.set_trans(Tween.TRANS_CUBIC)
 					tween_r.tween_property(self, "position", targetpos, DRAWTIME)
-					tween_r.parallel().tween_property(self, "rotation", -2*PI+targetrot, DRAWTIME)
+					tween_r.parallel().tween_property(self, "rotation", -2*PI, DRAWTIME)
 #				var flip_time_factor = 1.2 # 20% faster
 #				if t < float(1/flip_time_factor):
 #					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
@@ -317,13 +321,10 @@ func _physics_process(delta):
 				position = targetpos
 				rotation = targetrot
 				$'../../../'.player_deck.card_list.append(self.card_name)
-				#if $'../../../'.player_deck.card_list.size() > 0:
 				$'../../../Deck/DeckDraw'.disabled = false
-				state = IN_HAND
-				#get_parent().remove_child(self)
+				state = NOTHING
 				print(self.card_name)
-#				get_parent().remove_child(self)
-				#$'../../../'.remove_card_from_discard_pile()
+				$'../../../'.remove_card_from_discard_pile()
 				
 				
 
