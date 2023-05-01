@@ -7,5 +7,5 @@ res://tut_playscene.tscn
 res://enemy.tscn
 res://bar.tscn
 res://card_slot.tscn
-res://playspace.gd
 res://cards/my_card_base.gd
+res://playspace.gd

@@ -95,13 +95,13 @@ func remove_card_from_discard_pile():
 	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)
 	$DiscardedCards.remove_child(card)
 
-#func reparent_card(card_no):
-#	number_cards_hand -= 1
-#	card_numb = 0
-#	var card = $Cards.get_child(card_no)
-#	$Cards.remove_child(card)
-#	$CardsInPlay.add_child(card)
-#	organize_hand()
+func reparent_card(card_no):
+	number_cards_hand -= 1
+	card_numb = 0
+	var card = $Cards.get_child(card_no)
+	$Cards.remove_child(card)
+	$CardsInPlay.add_child(card)
+	organize_hand()
 
 func reparent_to_discarded_cards(card_no):
 	number_cards_hand -= 1
@@ -127,7 +127,9 @@ func organize_hand():
 		card_numb += 1
 		if base.state == IN_HAND:
 			base.setup = true
+#			base.target_scale = base.orig_scale
 			base.state = REORGANIZE_HAND
+#			base.startpos = position
 		elif base.state == DRAWN_TO_HAND:
 			base.t -= 0.1
 			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
