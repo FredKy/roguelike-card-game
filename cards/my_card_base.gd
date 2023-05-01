@@ -317,11 +317,13 @@ func _physics_process(delta):
 				position = targetpos
 				rotation = targetrot
 				$'../../../'.player_deck.card_list.append(self.card_name)
+				#if $'../../../'.player_deck.card_list.size() > 0:
+				$'../../../Deck/DeckDraw'.disabled = false
 				state = IN_HAND
 				#get_parent().remove_child(self)
-				print(self)
+				print(self.card_name)
 #				get_parent().remove_child(self)
-				$'../../../'.remove_card_from_discard_pile()
+				#$'../../../'.remove_card_from_discard_pile()
 				
 				
 

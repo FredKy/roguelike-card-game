@@ -5,7 +5,7 @@ const CARD_BASE := preload("res://cards/my_card_base.tscn")
 var player_deck := preload("res://cards/player_deck.gd").new()
 const card_slot := preload("res://card_slot.tscn")
 var card_selected = []
-@onready var deck_size = player_deck.card_list.size()
+#@onready var deck_size = player_deck.card_list.size()
 #@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.32)
 @onready var centre_card_oval = Vector2(431, 830)
 @onready var hor_rad = 800
@@ -49,6 +49,7 @@ func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var new_card = CARD_BASE.instantiate()
 	var base = new_card.get_node("MyCardBase")
+	var deck_size = player_deck.card_list.size()
 	card_selected = randi() % deck_size
 	base.card_name = player_deck.card_list[card_selected]
 	base.position = deck_position
@@ -87,6 +88,8 @@ func reshuffle_card():
 		#top_card.state = MOVE_TO_DECK
 #	if deck_size == 0:
 #		$Deck/DeckDraw.disabled = true
+#	if player_deck.card_list.size() > 0:
+#		$Deck/DeckDraw.disabled = false
 
 func remove_card_from_discard_pile():
 	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)
