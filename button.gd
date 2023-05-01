@@ -19,4 +19,5 @@ func _on_gui_input(event):
 		print($'../../Cards'.get_child_count())
 		print($'../../DiscardedCards'.get_children())
 		print($'../../DiscardedCards'.get_child_count())
-		$'../../'.reshuffle_card()
+		#$'../../'.reshuffle_card()
+		$'../../'.reshuffle_x_cards($'../../DiscardedCards'.get_child_count(), 0.11)

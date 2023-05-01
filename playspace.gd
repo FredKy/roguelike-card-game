@@ -83,11 +83,12 @@ func reshuffle_card():
 		print($DiscardedCards.get_child_count())
 		#base.setup = true
 		base.state = MOVE_TO_DECK
-		#top_card.state = MOVE_TO_DECK
-#	if deck_size == 0:
-#		$Deck/DeckDraw.disabled = true
-#	if player_deck.card_list.size() > 0:
-#		$Deck/DeckDraw.disabled = false
+
+func reshuffle_x_cards(x, delay):
+	print("x: " + str(x))
+	for i in range(x):
+		reshuffle_card()
+		await get_tree().create_timer(delay).timeout
 
 func remove_card_from_discard_pile():
 	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)

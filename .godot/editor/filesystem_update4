@@ -12,3 +12,6 @@ res://playspace.gd
 res://enemy.gd
 res://wanderer.gd
 res://wanderer.tscn
+res://button.gd
+res://deck_draw.gd
+res://cards/player_deck.gd

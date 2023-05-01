@@ -15,6 +15,7 @@ var targetrot = 0
 var t = 0
 @onready var orig_scale = scale
 const DRAWTIME = 0.5
+const RESHUFFLE_TIME = 0.1
 const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
 const IN_MOUSE_TIME = 0.1
@@ -322,9 +323,9 @@ func _physics_process(delta):
 					tween_r = create_tween()
 					tween_r.set_ease(Tween.EASE_IN_OUT)
 					tween_r.set_trans(Tween.TRANS_CUBIC)
-					tween_r.tween_property(self, "position", targetpos, DRAWTIME)
-					tween_r.parallel().tween_property(self, "rotation", -2*PI, DRAWTIME)
-				t += delta/float(DRAWTIME)
+					tween_r.tween_property(self, "position", targetpos, RESHUFFLE_TIME)
+					tween_r.parallel().tween_property(self, "rotation", -2*PI, RESHUFFLE_TIME)
+				t += delta/float(RESHUFFLE_TIME)
 			else:
 				position = targetpos
 				rotation = targetrot
