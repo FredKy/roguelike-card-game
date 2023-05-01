@@ -20,4 +20,6 @@ func _on_gui_input(event):
 		print($'../../DiscardedCards'.get_children())
 		print($'../../DiscardedCards'.get_child_count())
 		#$'../../'.reshuffle_card()
-		$'../../'.reshuffle_x_cards($'../../DiscardedCards'.get_child_count(), 0.11)
+		if $'../../'.player_deck.card_list.size() == 0 and $'../../DiscardedCards'.get_child_count() > 5:
+			$'../../'.reshuffle_x_cards($'../../DiscardedCards'.get_child_count(), 0.11)
+			$'../../'.draw_x_cards(6, 0.2)

@@ -15,7 +15,7 @@ var targetrot = 0
 var t = 0
 @onready var orig_scale = scale
 const DRAWTIME = 0.5
-const RESHUFFLE_TIME = 0.1
+const RESHUFFLE_TIME = 0.25
 const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
 const IN_MOUSE_TIME = 0.1
@@ -333,7 +333,8 @@ func _physics_process(delta):
 				$'../../../Deck/DeckDraw'.disabled = false
 				state = NOTHING
 				print(self.card_name)
-				$'../../../'.remove_card_from_discard_pile()
+				#$'../../../'.remove_card_from_discard_pile()
+				$'../../../'.remove_card_from_reshuffled()
 
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")

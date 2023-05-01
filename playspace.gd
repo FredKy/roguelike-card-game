@@ -69,15 +69,16 @@ func draw_x_cards(x, delay):
 	await get_tree().create_timer(0.5).timeout
 	for i in range(x):
 		draw_card()
+		print(player_deck.card_list)
 		await get_tree().create_timer(delay).timeout
+	
 
 func reshuffle_card():
-#	print($DiscardedCards.get_children())
-#	print($DiscardedCards.get_child_count())
 	var discarded_cards = $DiscardedCards.get_children()
 	if discarded_cards.size() > 0:
 		
 		var top_card = discarded_cards[discarded_cards.size()-1]
+		reparent_discarded_card_to_reshuffled(top_card)
 		var base = top_card.get_node("MyCardBase")
 		#print($DiscardedCards.get_children())
 		print($DiscardedCards.get_child_count())
@@ -88,19 +89,28 @@ func reshuffle_x_cards(x, delay):
 	print("x: " + str(x))
 	for i in range(x):
 		reshuffle_card()
+		print(player_deck.card_list)
 		await get_tree().create_timer(delay).timeout
 
-func remove_card_from_discard_pile():
-	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)
+func reparent_discarded_card_to_reshuffled(card):
 	$DiscardedCards.remove_child(card)
+	$CardsReshuffled.add_child(card)
 
-func reparent_card(card_no):
-	number_cards_hand -= 1
-	card_numb = 0
-	var card = $Cards.get_child(card_no)
-	$Cards.remove_child(card)
-	$CardsInPlay.add_child(card)
-	organize_hand()
+func remove_card_from_reshuffled():
+	var card = $CardsReshuffled.get_child(0)
+	$CardsReshuffled.remove_child(card)
+
+#func remove_card_from_discard_pile():
+#	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)
+#	$DiscardedCards.remove_child(card)
+
+#func reparent_card(card_no):
+#	number_cards_hand -= 1
+#	card_numb = 0
+#	var card = $Cards.get_child(card_no)
+#	$Cards.remove_child(card)
+#	$CardsInPlay.add_child(card)
+#	organize_hand()
 
 func reparent_to_discarded_cards(card_no):
 	number_cards_hand -= 1

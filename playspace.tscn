@@ -32,13 +32,11 @@ corner_radius_bottom_left = 11
 [node name="Playspace" type="Node2D"]
 script = ExtResource("1_rla1j")
 
-[node name="CardSlots" type="Node" parent="."]
-
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_7uo8r")]
 
-[node name="CardsInPlay" type="Node" parent="."]
+[node name="CardsReshuffled" type="Node" parent="."]
 
 [node name="DiscardedCards" type="Node" parent="."]
 
