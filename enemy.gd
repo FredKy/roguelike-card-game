@@ -8,6 +8,7 @@ func _ready():
 	#$VBoxContainer/ImageContainer/Image.scale.x *= -1
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.get_minimum_size()/$VBoxContainer/ImageContainer/Image.texture.size
 	$VBoxContainer/ImageContainer/Image.scale *= 4
+	#$VBoxContainer/ImageContainer/AnimatedSprite2D.scale *= 4
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 
