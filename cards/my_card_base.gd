@@ -20,6 +20,7 @@ const ZOOMTIME = 0.2
 const IN_MOUSE_TIME = 0.1
 var tween
 var tween_d
+var tween_r
 
 var setup = true
 var start_scale = Vector2()
@@ -61,6 +62,7 @@ enum {
 	REORGANIZE_HAND,
 	MOVE_TO_DISCARD_PILE,
 	IN_DISCARD_PILE,
+	MOVE_TO_DECK,
 }
 var state = IN_HAND
 
@@ -142,19 +144,13 @@ func _input(event):
 						moving_into_play = true
 						state = IN_DISCARD_PILE
 						card_select = true
-					#if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND:
-#					if state != IN_DISCARD_PILE:
-#						setup = true
-#						targetpos = default_pos
-#						state = REORGANIZE_HAND
-#						card_select = true
-	
+
+
 func _physics_process(delta):
 	match state:
 		IN_HAND:
 			pass
 		IN_PLAY:
-			pass
 			if moving_into_play:
 				if setup:
 					reset_pos_rot_scale_and_time()
@@ -292,6 +288,38 @@ func _physics_process(delta):
 					state = IN_DISCARD_PILE
 		IN_DISCARD_PILE:
 			pass
+		MOVE_TO_DECK:
+			print(position)
+			print(targetpos)
+			if setup:
+				reset_pos_rot_scale_and_time()
+				#targetpos = $'../../Deck'.position
+				targetpos = Vector2(-65, 315)
+				print(targetpos)
+			if t <= 1:
+				if !tween_r:
+					tween_r = create_tween()
+					tween_r.set_ease(Tween.EASE_IN_OUT)
+					tween_r.set_trans(Tween.TRANS_CUBIC)
+					tween_r.tween_property(self, "position", targetpos, DRAWTIME)
+					tween_r.parallel().tween_property(self, "rotation", -2*PI+targetrot, DRAWTIME)
+#				var flip_time_factor = 1.2 # 20% faster
+#				if t < float(1/flip_time_factor):
+#					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
+#				else:
+#					scale.x = orig_scale.x
+#				if $CardBack.visible:
+#					if t >= float(0.5/flip_time_factor):
+#						$CardBack.visible = false
+				t += delta/float(DRAWTIME)
+			else:
+				position = targetpos
+				rotation = targetrot
+				$'../../../'.player_deck.card_list.append(self.card_name)
+				state = IN_HAND
+				get_parent().remove_child(self)
+				
+				
 
 func move_neighbor_card(card_number, left, spread_factor):
 	neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")

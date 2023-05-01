@@ -28,6 +28,7 @@ enum {
 	REORGANIZE_HAND,
 	MOVE_TO_DISCARD_PILE,
 	IN_DISCARD_PILE,
+	MOVE_TO_DECK,
 }
 
 var card_slot_empty = []
@@ -37,11 +38,11 @@ func _ready():
 	#$Enemies/Enemy.visible = true
 	$Enemies/Enemy.position = get_viewport().size*0.4 + Vector2(200,-300)
 	$Enemies/Enemy.scale *= 0.5
-	var new_slot = card_slot.instantiate()
-	new_slot.position = get_viewport().size*0.4
-	new_slot.size = CARD_SIZE
-	$CardSlots.add_child(new_slot)
-	card_slot_empty.append(true)
+#	var new_slot = card_slot.instantiate()
+#	new_slot.position = get_viewport().size*0.4
+#	new_slot.size = CARD_SIZE
+#	$CardSlots.add_child(new_slot)
+#	card_slot_empty.append(true)
 	#draw_x_cards(6, 0.2)
 
 func draw_card():
@@ -70,6 +71,19 @@ func draw_x_cards(x, delay):
 	for i in range(x):
 		draw_card()
 		await get_tree().create_timer(delay).timeout
+
+func reshuffle_card():
+#	print($DiscardedCards.get_children())
+#	print($DiscardedCards.get_child_count())
+	if $DiscardedCards.get_child_count() > 0:
+		#print($DiscardedCards.get_child_count())
+		var top_card = $DiscardedCards.get_children()[0]
+		var base = top_card.get_node("MyCardBase")
+		base.setup = true
+		base.state = MOVE_TO_DECK
+		#top_card.state = MOVE_TO_DECK
+#	if deck_size == 0:
+#		$Deck/DeckDraw.disabled = true
 
 func reparent_card(card_no):
 	number_cards_hand -= 1

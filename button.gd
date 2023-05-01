@@ -14,7 +14,9 @@ func _process(delta):
 func _on_gui_input(event):
 	if Input.is_action_just_released("leftclick"):
 		print("Hej")
+		print($'../../'.player_deck.card_list)
 		print($'../../Cards'.get_children())
 		print($'../../Cards'.get_child_count())
 		print($'../../DiscardedCards'.get_children())
 		print($'../../DiscardedCards'.get_child_count())
+		$'../../'.reshuffle_card()
