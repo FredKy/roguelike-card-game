@@ -75,23 +75,30 @@ func draw_x_cards(x, delay):
 func reshuffle_card():
 #	print($DiscardedCards.get_children())
 #	print($DiscardedCards.get_child_count())
-	if $DiscardedCards.get_child_count() > 0:
-		#print($DiscardedCards.get_child_count())
-		var top_card = $DiscardedCards.get_children()[0]
+	var discarded_cards = $DiscardedCards.get_children()
+	if discarded_cards.size() > 0:
+		
+		var top_card = discarded_cards[discarded_cards.size()-1]
 		var base = top_card.get_node("MyCardBase")
-		base.setup = true
+		#print($DiscardedCards.get_children())
+		print($DiscardedCards.get_child_count())
+		#base.setup = true
 		base.state = MOVE_TO_DECK
 		#top_card.state = MOVE_TO_DECK
 #	if deck_size == 0:
 #		$Deck/DeckDraw.disabled = true
 
-func reparent_card(card_no):
-	number_cards_hand -= 1
-	card_numb = 0
-	var card = $Cards.get_child(card_no)
-	$Cards.remove_child(card)
-	$CardsInPlay.add_child(card)
-	organize_hand()
+func remove_card_from_discard_pile():
+	var card = $DiscardedCards.get_child($DiscardedCards.get_child_count()-1)
+	$DiscardedCards.remove_child(card)
+
+#func reparent_card(card_no):
+#	number_cards_hand -= 1
+#	card_numb = 0
+#	var card = $Cards.get_child(card_no)
+#	$Cards.remove_child(card)
+#	$CardsInPlay.add_child(card)
+#	organize_hand()
 
 func reparent_to_discarded_cards(card_no):
 	number_cards_hand -= 1

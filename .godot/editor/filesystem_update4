@@ -8,5 +8,4 @@ res://enemy.tscn
 res://bar.tscn
 res://card_slot.tscn
 res://playspace.gd
-res://button.gd
 res://cards/my_card_base.gd

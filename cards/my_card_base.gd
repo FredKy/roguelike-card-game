@@ -285,17 +285,18 @@ func _physics_process(delta):
 					position = targetpos
 					scale = orig_scale
 					moving_to_discard = false
+					setup = true
 					state = IN_DISCARD_PILE
 		IN_DISCARD_PILE:
 			pass
 		MOVE_TO_DECK:
-			print(position)
-			print(targetpos)
+			#print(position)
+			#print(targetpos)
 			if setup:
 				reset_pos_rot_scale_and_time()
-				#targetpos = $'../../Deck'.position
-				targetpos = Vector2(-65, 315)
-				print(targetpos)
+				targetpos = $'../../../Deck'.position
+				#targetpos = Vector2(-65, 315)
+				#print(targetpos)
 			if t <= 1:
 				if !tween_r:
 					tween_r = create_tween()
@@ -317,7 +318,10 @@ func _physics_process(delta):
 				rotation = targetrot
 				$'../../../'.player_deck.card_list.append(self.card_name)
 				state = IN_HAND
-				get_parent().remove_child(self)
+				#get_parent().remove_child(self)
+				print(self)
+#				get_parent().remove_child(self)
+				$'../../../'.remove_card_from_discard_pile()
 				
 				
 
