@@ -85,11 +85,14 @@ func _input(event):
 					old_state = state
 					state = IN_MOUSE
 					$'../'.z_index += 2
+					#$GlowingBorder.visible = true
 					setup = true
 					card_select = false
 			if event.is_action_released("leftclick"):
 				if not card_select:
 					$'../'.z_index -= 2
+					$GlowingBorder.visible = false
+					$Focus.visible = false
 #					if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
 #						#var card_slots = $'../../../CardSlots'
 #						#var card_slot_empty = $'../../../'.card_slot_empty
@@ -150,7 +153,7 @@ func _physics_process(delta):
 		NOTHING:
 			pass
 		IN_HAND:
-			pass
+			$Focus.visible = true
 		IN_PLAY:
 			if moving_into_play:
 				if setup:
@@ -169,6 +172,7 @@ func _physics_process(delta):
 					scale = target_scale
 					moving_into_play = false
 		IN_MOUSE:
+			$GlowingBorder.visible = true
 			var enemies = $'../../../Enemies'
 			for i in range(enemies.get_child_count()):
 				var enemy_pos = enemies.get_child(i).position
