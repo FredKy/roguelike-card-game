@@ -177,8 +177,11 @@ func _physics_process(delta):
 				if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
 					and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
 						$Focus.set_modulate(Color(1,0.5,0.5,1))
+						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
+						#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
 				else:
 					$Focus.set_modulate(Color(1,1,1,1))
+					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 
 			if setup:
 				reset_pos_rot_scale_and_time()
@@ -207,6 +210,7 @@ func _physics_process(delta):
 				position = get_global_mouse_position() - $'../../../'.CARD_SIZE/2
 				rotation = 0
 		FOCUS_IN_HAND:
+			$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			if zooming_in:
 				if setup:
 					#print("I was here!")
@@ -292,6 +296,8 @@ func _physics_process(delta):
 				scale = orig_scale
 				state = IN_HAND
 		MOVE_TO_DISCARD_PILE:
+			$GlowingBorder.visible = false
+			$Focus.visible = false
 			if moving_to_discard:
 				if setup:
 					reset_pos_rot_scale_and_time()
@@ -373,7 +379,7 @@ func reset_pos_rot_scale_and_time():
 	setup = false
 
 func _on_focus_mouse_entered():
-	#$BorderGlow/WorldEnvironment.glow_enabled = true
+	$GlowingBorder.visible = true;
 	match state:
 		IN_HAND, REORGANIZE_HAND:
 			old_state = state
@@ -389,7 +395,7 @@ func _on_focus_mouse_entered():
 			state = FOCUS_IN_HAND
 
 func _on_focus_mouse_exited():
-	#$BorderGlow/WorldEnvironment.glow_enabled = false
+	$GlowingBorder.visible = false;
 	match state:
 		FOCUS_IN_HAND:
 			setup = true

@@ -1,12 +1,12 @@
 shader_type canvas_item;
 
-uniform float max_line_width = 15.0;
-uniform float min_line_width = 8.0;
-uniform float freq = 60.0;
+uniform float max_line_width = 30.0;
+uniform float min_line_width = 20.0;
+uniform float freq = 15.0;
 uniform float block_size = 20.0;
 uniform float line_width = 10.0;
 uniform vec4 starting_color = vec4(1,1,1,1);
-uniform vec4 ending_color = vec4(1,0,0,0);
+uniform vec4 ending_color = vec4(0.7,0.3,0,0);
 const float MY_PI = PI;
 const int ANG_RES = 16;
 const int GRAD_RES = 16;

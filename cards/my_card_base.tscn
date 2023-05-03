@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=16 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3"]
 [ext_resource type="Texture2D" uid="uid://b3b855l8tyo0d" path="res://assets/images/card_border_glow.png" id="4_5mwwu"]
+[ext_resource type="PackedScene" uid="uid://bu0nubybt1e1r" path="res://glowing_border.tscn" id="5_o3xn3"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -876,6 +877,9 @@ offset_right = 290.0
 offset_bottom = 400.0
 pivot_offset = Vector2(145, 200)
 script = ExtResource("2")
+
+[node name="GlowingBorder" parent="MyCardBase" instance=ExtResource("5_o3xn3")]
+visible = false
 
 [node name="Border" type="Panel" parent="MyCardBase"]
 layout_mode = 2

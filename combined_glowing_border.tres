@@ -4,10 +4,10 @@
 
 [resource]
 shader = ExtResource("1_orqu4")
-shader_parameter/max_line_width = 15.0
-shader_parameter/min_line_width = 5.0
-shader_parameter/freq = 6.0
+shader_parameter/max_line_width = 30.0
+shader_parameter/min_line_width = 20.0
+shader_parameter/freq = 15.0
 shader_parameter/block_size = 20.0
 shader_parameter/line_width = 10.0
-shader_parameter/starting_color = Quaternion(1, 1, 1, 1)
-shader_parameter/ending_color = Quaternion(1, 0, 0, 0)
+shader_parameter/starting_color = Vector4(1, 1, 1, 1)
+shader_parameter/ending_color = Vector4(0.7, 0.3, 0, 0)
