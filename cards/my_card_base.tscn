@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3"]
-[ext_resource type="Texture2D" uid="uid://o8pmfr3d2chn" path="res://assets/cards/card_borders_etc/gold_border.png" id="4_gj5vu"]
+[ext_resource type="Texture2D" uid="uid://b3b855l8tyo0d" path="res://assets/images/card_border_glow.png" id="4_5mwwu"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
@@ -992,8 +992,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Focus" type="TextureButton" parent="MyCardBase"]
+texture_filter = 1
 layout_mode = 2
-texture_hover = ExtResource("4_gj5vu")
+texture_hover = ExtResource("4_5mwwu")
 
 [node name="CardBack" type="Panel" parent="MyCardBase"]
 visible = false

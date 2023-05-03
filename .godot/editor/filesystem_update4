@@ -15,3 +15,5 @@ res://wanderer.tscn
 res://button.gd
 res://deck_draw.gd
 res://cards/player_deck.gd
+res://border_glow.tscn
+res://border_glow.gdshader

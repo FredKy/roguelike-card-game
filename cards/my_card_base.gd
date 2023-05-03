@@ -40,10 +40,7 @@ var target_scale = Vector2()
 var discard_pile = Vector2()
 var moving_to_discard = false
 
-@onready var card_slots = $'../../../CardSlots'
-@onready var card_slot_empty = $'../../../'.card_slot_empty
-var card_slot_pos = Vector2()
-var card_slot_size = Vector2()
+
 var mouse_pos = Vector2()
 var left_hand_side = false
 var card_in_play = false
@@ -172,6 +169,17 @@ func _physics_process(delta):
 					scale = target_scale
 					moving_into_play = false
 		IN_MOUSE:
+			var enemies = $'../../../Enemies'
+			for i in range(enemies.get_child_count()):
+				var enemy_pos = enemies.get_child(i).position
+				var enemy_size = enemies.get_child(i).size
+				mouse_pos = get_global_mouse_position()
+				if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
+					and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+						$Focus.set_modulate(Color(1,0.5,0.5,1))
+				else:
+					$Focus.set_modulate(Color(1,1,1,1))
+
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
@@ -361,9 +369,11 @@ func reset_pos_rot_scale_and_time():
 	startrot = rotation
 	start_scale = scale
 	t = 0
+	$Focus.set_modulate(Color(1,1,1,1))
 	setup = false
 
 func _on_focus_mouse_entered():
+	#$BorderGlow/WorldEnvironment.glow_enabled = true
 	match state:
 		IN_HAND, REORGANIZE_HAND:
 			old_state = state
@@ -379,6 +389,7 @@ func _on_focus_mouse_entered():
 			state = FOCUS_IN_HAND
 
 func _on_focus_mouse_exited():
+	#$BorderGlow/WorldEnvironment.glow_enabled = false
 	match state:
 		FOCUS_IN_HAND:
 			setup = true

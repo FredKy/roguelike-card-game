@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckbvfkkw7akdg"]
+
+[ext_resource type="Texture2D" uid="uid://b3b855l8tyo0d" path="res://assets/images/card_border_glow.png" id="1_ar1rb"]
+
+[sub_resource type="Environment" id="Environment_x3wvp"]
+background_mode = 3
+glow_intensity = 1.06
+glow_strength = 1.29
+glow_blend_mode = 0
+
+[node name="BorderGlow" type="Node2D"]
+
+[node name="Border" type="TextureRect" parent="."]
+self_modulate = Color(1.5, 1, 1, 1)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ar1rb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x3wvp")
