@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqg07q4rrgeo1"]
+
+[ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="1_347t3"]
+[ext_resource type="Script" path="res://energy.gd" id="1_m2br1"]
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="2_o6wks"]
+
+[node name="Energy" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m2br1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 40.0
+
+[node name="BG" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_347t3")
+
+[node name="Amount" type="Label" parent="MarginContainer/BG"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = -5.0
+offset_right = 81.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_o6wks")
+theme_override_font_sizes/font_size = 35
+text = "0/4"

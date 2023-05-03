@@ -9,3 +9,7 @@ res://wanderer.tscn
 res://border_glow.tscn
 res://glowing_border.tscn
 res://combined_glowing_border.gdshader
+res://energy.tscn
+res://energy.gd
+res://assets/cards/my_cards_database.gd
+res://playspace.gd

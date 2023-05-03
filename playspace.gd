@@ -144,6 +144,18 @@ func organize_hand():
 			base.t -= 0.1
 			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
 
+func update_energy_and_cards_playability(n):
+	$Energy.reduce_energy(n)
+	
+	for card in $Cards.get_children():
+		var base = card.get_node("MyCardBase")
+#		print(base)
+		print("Cost: " + str(base.get_card_cost()))
+		print("Energy: " + str($Energy.energy))
+		if base.get_card_cost() > $Energy.energy:
+			print(base.card_name)
+			base.set_focus(false)
+
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
 #		var new_card = CARD_BASE.instantiate()

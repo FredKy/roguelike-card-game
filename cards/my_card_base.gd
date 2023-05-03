@@ -49,7 +49,7 @@ var old_pos = Vector2()
 var old_scale = Vector2()
 var reparent = true # Wether or not card can be reparented
 
-
+var disabled = false
 
 enum {
 	IN_HAND,
@@ -94,54 +94,42 @@ func _input(event):
 					$'../'.z_index -= 2
 					$GlowingBorder.visible = false
 					$Focus.visible = false
-#					if old_state == FOCUS_IN_HAND or old_state == REORGANIZE_HAND: # Putting a card into a slot.
-#						#var card_slots = $'../../../CardSlots'
-#						#var card_slot_empty = $'../../../'.card_slot_empty
-#						for i in range(card_slots.get_child_count()):
-#							if card_slot_empty[i]:
-#								card_slot_pos = card_slots.get_child(i).position
-#								card_slot_size = card_slots.get_child(i).size*card_slots.get_child(i).scale
-#								mouse_pos = get_global_mouse_position()
-#								if mouse_pos.x < card_slot_pos.x + card_slot_size.x and mouse_pos.x > card_slot_pos.x \
-#								and mouse_pos.y < card_slot_pos.y + card_slot_size.y and mouse_pos.y > card_slot_pos.y:
-#									setup = true
-#									moving_into_play = true
-#									targetpos = card_slot_pos-$'../../../'.CARD_SIZE/2
-#									target_scale = card_slot_size/size
-#									state = IN_PLAY
-#									card_select = true
-#									break
-#						if state != IN_PLAY:
-#							setup = true
-#							targetpos = default_pos
-#							state = REORGANIZE_HAND
-#							card_select = true
-#					else: # Handle everything once the card is in play.
-					var enemies = $'../../../Enemies'
-					for i in range(enemies.get_child_count()):
-						var enemy_pos = enemies.get_child(i).position
-						var enemy_size = enemies.get_child(i).size
-						mouse_pos = get_global_mouse_position()
-						if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
-							and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
-								# Deal with damage
-								var attack_number = card_info[5]
-								enemies.get_child(i).change_health(attack_number)
-								setup = true
-								moving_to_discard = true
-								state = MOVE_TO_DISCARD_PILE
-#									moving_into_play = true
-#									state = IN_PLAY
-								card_select = true
-								break
-						else:
-							if state != IN_DISCARD_PILE:
-								setup = true
-								targetpos = default_pos
-								state = REORGANIZE_HAND
-								card_select = true
-							break
 					
+					if card_info[0] == "attack":
+						var enemies = $'../../../Enemies'
+						for i in range(enemies.get_child_count()):
+							var enemy_pos = enemies.get_child(i).position
+							var enemy_size = enemies.get_child(i).size
+							mouse_pos = get_global_mouse_position()
+							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
+								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+									# Deal with damage
+									var attack_number = card_info[5]
+									enemies.get_child(i).change_health(attack_number)
+									
+									#$'../../../Energy'.reduce_energy(card_info[1])
+									$'../../../'.update_energy_and_cards_playability(card_info[1])
+									
+									setup = true
+									moving_to_discard = true
+									state = MOVE_TO_DISCARD_PILE
+	#									moving_into_play = true
+	#									state = IN_PLAY
+									card_select = true
+									break
+							else:
+								if state != IN_DISCARD_PILE:
+									setup = true
+									targetpos = default_pos
+									state = REORGANIZE_HAND
+									card_select = true
+								break
+					else:
+						if state != IN_DISCARD_PILE:
+							setup = true
+							targetpos = default_pos
+							state = REORGANIZE_HAND
+							card_select = true
 					if not card_select:
 						setup = true
 						moving_into_play = true
@@ -175,19 +163,20 @@ func _physics_process(delta):
 					moving_into_play = false
 		IN_MOUSE:
 			$GlowingBorder.visible = true
-			var enemies = $'../../../Enemies'
-			for i in range(enemies.get_child_count()):
-				var enemy_pos = enemies.get_child(i).position
-				var enemy_size = enemies.get_child(i).size
-				mouse_pos = get_global_mouse_position()
-				if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
-					and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
-						$Focus.set_modulate(Color(1,0.5,0.5,1))
-						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
-						#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
-				else:
-					$Focus.set_modulate(Color(1,1,1,1))
-					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
+			if card_info[0] == "attack":
+				var enemies = $'../../../Enemies'
+				for i in range(enemies.get_child_count()):
+					var enemy_pos = enemies.get_child(i).position
+					var enemy_size = enemies.get_child(i).size
+					mouse_pos = get_global_mouse_position()
+					if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
+						and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+							$Focus.set_modulate(Color(1,0.5,0.5,1))
+							$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
+							#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
+					else:
+						$Focus.set_modulate(Color(1,1,1,1))
+						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 
 			if setup:
 				reset_pos_rot_scale_and_time()
@@ -407,3 +396,9 @@ func _on_focus_mouse_exited():
 			setup = true
 			state = REORGANIZE_HAND
 			targetpos = default_pos
+
+func get_card_cost():
+	return card_info[1]
+
+func set_focus(b):
+	$Focus.visible = b
