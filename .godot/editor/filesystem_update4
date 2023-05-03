@@ -1,12 +1,10 @@
 res://default_env.tres
-res://cards/my_card_base.tscn
-res://combined_glowing_border.tres
 res://playspace.tscn
+res://combined_glowing_border.tres
+res://cards/my_card_base.tscn
 res://enemy.tscn
 res://bar.tscn
 res://wanderer.tscn
 res://border_glow.tscn
 res://glowing_border.tscn
 res://energy.tscn
-res://cards/my_card_base.gd
-res://playspace.gd

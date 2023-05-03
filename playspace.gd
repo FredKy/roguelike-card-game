@@ -151,10 +151,10 @@ func update_energy_and_cards_playability(n):
 	for card in $Cards.get_children():
 		var base = card.get_node("MyCardBase")
 #		print(base)
-		print("Cost: " + str(base.get_card_cost()))
-		print("Energy: " + str($Energy.energy))
+#		print("Cost: " + str(base.get_card_cost()))
+#		print("Energy: " + str($Energy.energy))
 		if base.get_card_cost() > $Energy.energy:
-			print(base.card_name)
+			#print(base.card_name)
 			#base.set_focus(false)
 			base.set_enabled(false)
 		else:
