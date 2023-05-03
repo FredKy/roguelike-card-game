@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://rhtxk2gds8rm"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
 
-[ext_resource type="Shader" path="res://changing_glowing_border.gdshader" id="1_cj0le"]
+[ext_resource type="Shader" path="res://gradient_glowing_border.gdshader" id="1_cj0le"]
 
 [resource]
 shader = ExtResource("1_cj0le")

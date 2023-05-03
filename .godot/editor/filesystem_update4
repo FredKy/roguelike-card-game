@@ -22,3 +22,6 @@ res://glowing_border.gdshader
 res://changing_glowing_border.tres
 res://glowing_border.tres
 res://changing_glowing_border.gdshader
+res://gradient_glowing_border.gdshader
+res://combined_glowing_border.gdshader
+res://combined_glowing_border.tres
