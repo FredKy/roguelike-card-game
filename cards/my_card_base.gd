@@ -405,3 +405,9 @@ func set_focus(b):
 
 func set_enabled(b):
 	enabled = b
+	if !enabled:
+		$CostRect/CostRect2.add_theme_color_override("panel", Color(1, 1, 1, 1))
+		#CostRect/CostRect2
+	else:
+		$CostRect/CostRect2.remove_theme_color_override("panel")
+
