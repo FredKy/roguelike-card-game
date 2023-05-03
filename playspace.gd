@@ -65,6 +65,7 @@ func draw_card():
 	if deck_size == 0:
 		$Deck/DeckDraw.disabled = true
 	#return deck_size
+	update_energy_and_cards_playability(0)
 
 func draw_x_cards(x, delay):
 	await get_tree().create_timer(0.5).timeout

@@ -405,9 +405,13 @@ func set_focus(b):
 
 func set_enabled(b):
 	enabled = b
+	var style_box_flat = StyleBoxFlat.new()
+	style_box_flat.corner_radius_top_left = 9
+	style_box_flat.corner_radius_bottom_right = 9
 	if !enabled:
-		$CostRect/CostRect2.add_theme_color_override("panel", Color(1, 1, 1, 1))
-		#CostRect/CostRect2
+		style_box_flat.bg_color = Color(0.53, 0, 0.24, 1)
+		$CostRect/CostRect2.add_theme_stylebox_override("panel", style_box_flat)
 	else:
-		$CostRect/CostRect2.remove_theme_color_override("panel")
+		style_box_flat.bg_color = Color(0.76, 0.45, 0, 1)
+		$CostRect/CostRect2.add_theme_stylebox_override("panel", style_box_flat)
 
