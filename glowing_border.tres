@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c243w24mg00fd"]
+
+[ext_resource type="Shader" path="res://changing_glowing_border.gdshader" id="1_ai06q"]
+
+[resource]
+shader = ExtResource("1_ai06q")
+shader_parameter/max_line_width = 10.0
+shader_parameter/min_line_width = 5.0
+shader_parameter/freq = 1.0
+shader_parameter/block_size = 20.0
+shader_parameter/outline_color = Quaternion(0, 0, 0, 1)

@@ -17,3 +17,8 @@ res://deck_draw.gd
 res://cards/player_deck.gd
 res://border_glow.tscn
 res://border_glow.gdshader
+res://glowing_border.tscn
+res://glowing_border.gdshader
+res://changing_glowing_border.tres
+res://glowing_border.tres
+res://changing_glowing_border.gdshader

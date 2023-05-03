@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ykodjvrmcpvt"]
+[gd_scene load_steps=3 format=3 uid="uid://ykodjvrmcpvt"]
 
-[ext_resource type="Shader" path="res://glowing_border.gdshader" id="1_4jwj3"]
-[ext_resource type="Texture2D" uid="uid://b3b855l8tyo0d" path="res://assets/images/card_border_glow.png" id="2_mfvo7"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vb1em"]
-shader = ExtResource("1_4jwj3")
+[ext_resource type="Material" uid="uid://rhtxk2gds8rm" path="res://changing_glowing_border.tres" id="1_760y1"]
+[ext_resource type="Texture2D" uid="uid://ba3hw422i0jx1" path="res://assets/images/card_border_glow_with_margin.png" id="2_3f6vd"]
 
 [node name="GlowingBorder" type="Node2D"]
 
 [node name="CardBorderGlow" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_vb1em")
+material = ExtResource("1_760y1")
 position = Vector2(214, 237)
-texture = ExtResource("2_mfvo7")
+texture = ExtResource("2_3f6vd")
