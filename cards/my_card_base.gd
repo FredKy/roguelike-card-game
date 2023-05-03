@@ -85,6 +85,7 @@ func _input(event):
 					old_state = state
 					state = IN_MOUSE
 					$'../'.z_index += 2
+					#print($'../'.z_index)
 					#$GlowingBorder.visible = true
 					setup = true
 					card_select = false
@@ -154,6 +155,7 @@ func _physics_process(delta):
 			pass
 		IN_HAND:
 			$Focus.visible = true
+			$'../'.z_index = 0
 		IN_PLAY:
 			if moving_into_play:
 				if setup:
