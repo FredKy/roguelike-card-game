@@ -49,7 +49,7 @@ var old_pos = Vector2()
 var old_scale = Vector2()
 var reparent = true # Wether or not card can be reparented
 
-var disabled = false
+var enabled = true
 
 enum {
 	IN_HAND,
@@ -81,7 +81,7 @@ func _input(event):
 	match state:
 		FOCUS_IN_HAND, IN_MOUSE, IN_PLAY:
 			if event.is_action_pressed("leftclick"): # Pick up card
-				if card_select:
+				if card_select && enabled:
 					old_state = state
 					state = IN_MOUSE
 					$'../'.z_index += 2
@@ -402,3 +402,6 @@ func get_card_cost():
 
 func set_focus(b):
 	$Focus.visible = b
+
+func set_enabled(b):
+	enabled = b

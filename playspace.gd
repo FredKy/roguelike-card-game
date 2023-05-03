@@ -154,7 +154,10 @@ func update_energy_and_cards_playability(n):
 		print("Energy: " + str($Energy.energy))
 		if base.get_card_cost() > $Energy.energy:
 			print(base.card_name)
-			base.set_focus(false)
+			#base.set_focus(false)
+			base.set_enabled(false)
+		else:
+			base.set_enabled(true)
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
