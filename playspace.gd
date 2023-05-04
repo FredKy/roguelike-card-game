@@ -189,11 +189,14 @@ func move_cards_from_hand_to_discard(time):
 func end_turn():
 	$EndTurnButtonNode.visible = false
 	move_cards_from_hand_to_discard(0.5)
-	await get_tree().create_timer(1.5).timeout
+	#await get_tree().create_timer(1.5).timeout
 	run_through_enemy_actions()
 	
 func run_through_enemy_actions():
 	if $Enemies/Enemy.intent == ATTACK:
+		await get_tree().create_timer(1.0).timeout
+		$Enemies/Enemy/AttackIntent.visible = false
+		await get_tree().create_timer(0.5).timeout
 		$Enemies/Enemy.start_attacking()
 
 #func _input(event):

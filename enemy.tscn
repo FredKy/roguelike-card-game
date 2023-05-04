@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=33 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="Texture2D" uid="uid://b1aiaqcbedt5h" path="res://assets/images/enemies/skeleton_warrior/Protect.png" id="2_parg0"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bak1k7u81vc4c" path="res://assets/images/enemies/skeleton_warrior/Attack_1.png" id="3_g685r"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://bvjoo1eg2j1v1" path="res://assets/images/enemies/skeleton_warrior/Attack_3.png" id="5_l8fmw"]
+[ext_resource type="Texture2D" uid="uid://dqf3f1oybljsh" path="res://assets/images/enemies/stiletto_red_outline.png" id="8_3pfcg"]
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="9_oe0vm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xym3p"]
 atlas = ExtResource("3_g685r")
@@ -217,11 +219,33 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"attack_3"
+animation = &"idle"
 centered = false
 flip_h = true
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("3_p63tj")]
 layout_mode = 2
+
+[node name="AttackIntent" type="Sprite2D" parent="."]
+position = Vector2(235, -55)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_3pfcg")
+
+[node name="Damage" type="Label" parent="AttackIntent"]
+offset_left = -173.333
+offset_top = 233.333
+offset_right = 473.667
+offset_bottom = 437.333
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/shadow_outline_size = 9
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("9_oe0vm")
+theme_override_font_sizes/font_size = 200
+text = "2x2
+"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

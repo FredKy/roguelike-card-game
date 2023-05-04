@@ -1,6 +1,7 @@
+Label
+HBoxContainer
 Button
 Node2D
-Label
 NinePatchRect
 MarginContainer
 WorldEnvironment
@@ -13,5 +14,4 @@ TextureButton
 Panel
 Control
 Container
-HBoxContainer
 CenterContainer
