@@ -32,6 +32,8 @@ enum {
 
 var card_slot_empty = []
 
+var player_turn = true
+
 func _ready():
 	randomize()
 	$Enemies/Enemy.visible = true
@@ -184,6 +186,11 @@ func move_cards_from_hand_to_discard(time):
 	for i in range(cards_count):
 		move_one_card_from_hand_to_discard()
 		await get_tree().create_timer(delay).timeout
+
+func end_turn():
+	$EndTurnButtonNode.visible = false
+	move_cards_from_hand_to_discard(0.5)
+	
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
