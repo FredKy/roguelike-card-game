@@ -160,6 +160,31 @@ func update_energy_and_cards_playability(n):
 		else:
 			base.set_enabled(true)
 
+func move_one_card_from_hand_to_discard():
+	var cards = $Cards.get_children()
+	if cards.size() > 0:
+		var first_card = cards[cards.size()-1]
+		var base = first_card.get_node("MyCardBase")
+		print($DiscardedCards.get_child_count())
+		base.setup = true
+		base.moving_to_discard = true
+		base.state = MOVE_TO_DISCARD_PILE
+
+#func reshuffle_x_cards(x, delay):
+#	print("x: " + str(x))
+#	for i in range(x):
+#		reshuffle_card()
+#		print(player_deck.card_list)
+#		await get_tree().create_timer(delay).timeout
+
+func move_cards_from_hand_to_discard(time):
+	var cards_count = $Cards.get_child_count() 
+	var delay = time / float(cards_count)
+	print("Delay: " + str(delay))
+	for i in range(cards_count):
+		move_one_card_from_hand_to_discard()
+		await get_tree().create_timer(delay).timeout
+
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
 #		var new_card = CARD_BASE.instantiate()

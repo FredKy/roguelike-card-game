@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=15 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://button.gd" id="7_021k6"]
 [ext_resource type="PackedScene" uid="uid://wdpqbbotx4pc" path="res://wanderer.tscn" id="8_ur5lf"]
 [ext_resource type="PackedScene" uid="uid://cqg07q4rrgeo1" path="res://energy.tscn" id="9_520xi"]
+[ext_resource type="Script" path="res://end_turn_button.gd" id="10_hjo2l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -126,15 +127,17 @@ offset_top = 386.0
 offset_right = 89.0
 offset_bottom = 386.0
 
-[node name="EndTurnButton" type="Node2D" parent="."]
+[node name="EndTurnButtonNode" type="Node2D" parent="."]
 z_index = 1
 position = Vector2(337, 103)
 
-[node name="Button" type="Button" parent="EndTurnButton"]
+[node name="EndTurnButton" type="Button" parent="EndTurnButtonNode"]
 offset_left = 658.0
 offset_top = 286.0
 offset_right = 733.0
 offset_bottom = 317.0
 text = "End turn"
+script = ExtResource("10_hjo2l")
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
+[connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
