@@ -10,6 +10,7 @@ func _ready():
 	#$VBoxContainer/ImageContainer/AnimatedSprite2D.scale *= 4
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,5 +21,13 @@ func change_health(number):
 	current_health -= number
 	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	if current_health <= 0:
+		play_death_animation()
+		return true
+	return false
+
+func play_death_animation():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
+
 
 

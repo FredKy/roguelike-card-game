@@ -56,7 +56,10 @@ func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
 	var deck_size = player_deck.card_list.size()
 	if deck_size == 0:
-		reshuffle_x_cards($DiscardedCards.get_child_count(), 0.5/float($DiscardedCards.get_child_count()))
+		reshuffle_x_cards(
+			$DiscardedCards.get_child_count(),
+			0.5/float($DiscardedCards.get_child_count())
+		)
 		await get_tree().create_timer(0.51).timeout
 	
 	deck_size = player_deck.card_list.size()
@@ -213,6 +216,8 @@ func run_through_enemy_actions():
 		$Enemies/Enemy.start_attacking()
 		await get_tree().create_timer(2.5).timeout
 		print("Attack done")
+		if $Enemies/Enemy.has_killed_player:
+			print("Game over man")
 	start_player_turn()
 
 func start_player_turn():

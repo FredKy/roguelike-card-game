@@ -1,8 +1,25 @@
-[gd_scene load_steps=13 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=18 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
+[ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
 [ext_resource type="Texture2D" uid="uid://cbchirlwu8851" path="res://assets/images/wanderer_magician/Idle.png" id="2_fvs65"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="4_mqgd7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6krfa"]
+atlas = ExtResource("2_av464")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yeltp"]
+atlas = ExtResource("2_av464")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbxe4"]
+atlas = ExtResource("2_av464")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaymg"]
+atlas = ExtResource("2_av464")
+region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6f37n"]
 atlas = ExtResource("2_fvs65")
@@ -38,6 +55,23 @@ region = Rect2(896, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a60l4"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6krfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yeltp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbxe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaymg")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6f37n")
@@ -87,7 +121,6 @@ position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
 animation = &"idle"
-frame_progress = 0.0648107
 centered = false
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
