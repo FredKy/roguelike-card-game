@@ -31,9 +31,14 @@ func change_health(number):
 	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 
-func attack():
+func start_attacking():
 	print("Attack!")
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
-	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished:
-		print("Animation över")
+
+func _on_animated_sprite_2d_animation_finished():
+	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "attack_2":
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()

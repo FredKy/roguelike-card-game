@@ -30,6 +30,12 @@ enum {
 	MOVE_TO_DECK,
 }
 
+#Enemy intent
+enum {
+	ATTACK,
+	DEFEND,
+}
+
 var card_slot_empty = []
 
 var player_turn = true
@@ -183,11 +189,12 @@ func move_cards_from_hand_to_discard(time):
 func end_turn():
 	$EndTurnButtonNode.visible = false
 	move_cards_from_hand_to_discard(0.5)
+	await get_tree().create_timer(1.5).timeout
 	run_through_enemy_actions()
 	
 func run_through_enemy_actions():
-	pass
-	$Enemies/Enemy.attack()
+	if $Enemies/Enemy.intent == ATTACK:
+		$Enemies/Enemy.start_attacking()
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
