@@ -85,7 +85,7 @@ func reshuffle_card():
 		reparent_discarded_card_to_reshuffled(top_card)
 		var base = top_card.get_node("MyCardBase")
 		#print($DiscardedCards.get_children())
-		print($DiscardedCards.get_child_count())
+		#print($DiscardedCards.get_child_count())
 		#base.setup = true
 		base.state = MOVE_TO_DECK
 
@@ -130,7 +130,7 @@ func organize_hand():
 		angle = PI/2 + card_spread*(float(number_cards_hand)/2-card_numb)
 		oval_angle_vector = Vector2(hor_rad*cos(angle), -ver_rad*sin(angle))
 		var base = card.get_node("MyCardBase")
-		print(centre_card_oval)
+		#print(centre_card_oval)
 		base.targetpos = centre_card_oval + oval_angle_vector - Vector2(0, CARD_SIZE.y)
 		base.default_pos = base.targetpos
 		base.startrot = base.rotation
@@ -167,17 +167,10 @@ func move_one_card_from_hand_to_discard():
 	if cards.size() > 0:
 		var first_card = cards[cards.size()-1]
 		var base = first_card.get_node("MyCardBase")
-		print($DiscardedCards.get_child_count())
+		#print($DiscardedCards.get_child_count())
 		base.setup = true
 		base.moving_to_discard = true
 		base.state = MOVE_TO_DISCARD_PILE
-
-#func reshuffle_x_cards(x, delay):
-#	print("x: " + str(x))
-#	for i in range(x):
-#		reshuffle_card()
-#		print(player_deck.card_list)
-#		await get_tree().create_timer(delay).timeout
 
 func move_cards_from_hand_to_discard(time):
 	var cards_count = $Cards.get_child_count() 
@@ -190,7 +183,11 @@ func move_cards_from_hand_to_discard(time):
 func end_turn():
 	$EndTurnButtonNode.visible = false
 	move_cards_from_hand_to_discard(0.5)
+	run_through_enemy_actions()
 	
+func run_through_enemy_actions():
+	pass
+	$Enemies/Enemy.attack()
 
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):

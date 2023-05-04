@@ -85,8 +85,6 @@ func _input(event):
 					old_state = state
 					state = IN_MOUSE
 					$'../'.z_index += 2
-					#print($'../'.z_index)
-					#$GlowingBorder.visible = true
 					setup = true
 					card_select = false
 			if event.is_action_released("leftclick"):
@@ -380,12 +378,13 @@ func _on_focus_mouse_entered():
 			old_state = state
 			setup = true
 			targetpos.x = default_pos.x 
-			print(get_viewport().size)
-			print(float(get_viewport().size.y)/648)
-			print($'../../../'.CARD_SIZE)
+#			print(get_viewport().size)
+#			print(float(get_viewport().size.y)/648)
+#			print($'../../../'.CARD_SIZE)
+			
 			#targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*(float(get_viewport().size.x)/1152)*zoom_scale
 			targetpos.y = 690 - $'../../../'.CARD_SIZE.y*zoom_scale
-			print(targetpos.y)
+#			print(targetpos.y)
 			zooming_in = true
 			state = FOCUS_IN_HAND
 

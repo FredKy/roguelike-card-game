@@ -12,3 +12,4 @@ res://cards/my_card_base.gd
 res://playspace.gd
 res://deck_draw.gd
 res://end_turn_button.gd
+res://enemy.gd
