@@ -182,7 +182,7 @@ func _physics_process(delta):
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
 				
-				position = startpos.lerp(get_global_mouse_position() - $'../../../'.CARD_SIZE/2, t)
+				position = startpos.lerp(get_global_mouse_position() - $'../../../'.CARD_SIZE + Vector2(30, 45), t)
 				rotation = startrot*(1-t) + 0*t
 				scale = start_scale*(1-t) + orig_scale*t
 				
@@ -202,7 +202,7 @@ func _physics_process(delta):
 						reset_card(card_numb +3)
 				t += delta/float(IN_MOUSE_TIME)
 			else:
-				position = get_global_mouse_position() - $'../../../'.CARD_SIZE/2
+				position = get_global_mouse_position() - $'../../../'.CARD_SIZE + Vector2(30, 45)
 				rotation = 0
 		FOCUS_IN_HAND:
 			$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))

@@ -42,7 +42,7 @@ func _ready():
 	$Wanderer.position = Vector2(100, 80)
 	$Wanderer.scale *= 0.5
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-	#draw_x_cards(6, 0.2)
+	draw_x_cards(6, 0.2)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)

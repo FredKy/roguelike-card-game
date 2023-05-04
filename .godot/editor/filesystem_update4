@@ -8,3 +8,6 @@ res://wanderer.tscn
 res://border_glow.tscn
 res://glowing_border.tscn
 res://energy.tscn
+res://cards/my_card_base.gd
+res://playspace.gd
+res://deck_draw.gd
