@@ -17,3 +17,7 @@ func _process(delta):
 func reduce_energy(n):
 	energy -= n
 	$MarginContainer/BG/Amount.text = str(energy) + "/" + str(MAX_ENERGY)
+
+func reset_energy():
+	energy = STARTING_ENERGY
+	$MarginContainer/BG/Amount.text = str(energy) + "/" + str(MAX_ENERGY)

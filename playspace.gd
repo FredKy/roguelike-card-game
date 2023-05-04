@@ -50,13 +50,18 @@ func _ready():
 	$Wanderer.position = Vector2(100, 80)
 	$Wanderer.scale *= 0.5
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-	draw_x_cards(6, 0.2)
+	draw_x_cards(3, 0.2)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
+	var deck_size = player_deck.card_list.size()
+	if deck_size == 0:
+		reshuffle_x_cards($DiscardedCards.get_child_count(), 0.5/float($DiscardedCards.get_child_count()))
+		await get_tree().create_timer(0.51).timeout
+	
+	deck_size = player_deck.card_list.size()
 	var new_card = CARD_BASE.instantiate()
 	var base = new_card.get_node("MyCardBase")
-	var deck_size = player_deck.card_list.size()
 	card_selected = randi() % deck_size
 	base.card_name = player_deck.card_list[card_selected]
 	base.position = deck_position
@@ -155,7 +160,6 @@ func organize_hand():
 
 func update_energy_and_cards_playability(n):
 	$Energy.reduce_energy(n)
-	
 	for card in $Cards.get_children():
 		var base = card.get_node("MyCardBase")
 #		print(base)
@@ -164,6 +168,15 @@ func update_energy_and_cards_playability(n):
 		if base.get_card_cost() > $Energy.energy:
 			#print(base.card_name)
 			#base.set_focus(false)
+			base.set_enabled(false)
+		else:
+			base.set_enabled(true)
+
+func reset_energy_and_cards_playability():
+	$Energy.reset_energy()
+	for card in $Cards.get_children():
+		var base = card.get_node("MyCardBase")
+		if base.get_card_cost() > $Energy.energy:
 			base.set_enabled(false)
 		else:
 			base.set_enabled(true)
@@ -198,7 +211,17 @@ func run_through_enemy_actions():
 		$Enemies/Enemy/AttackIntent.visible = false
 		await get_tree().create_timer(0.5).timeout
 		$Enemies/Enemy.start_attacking()
+		await get_tree().create_timer(2.5).timeout
+		print("Attack done")
+	start_player_turn()
 
+func start_player_turn():
+	$EndTurnButtonNode.visible = true
+	reset_energy_and_cards_playability()
+	draw_x_cards(3,0.2)
+	
+	
+	
 #func _input(event):
 #	if Input.is_action_just_released("leftclick"):
 #		var new_card = CARD_BASE.instantiate()
