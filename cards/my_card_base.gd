@@ -101,19 +101,25 @@ func _input(event):
 							mouse_pos = get_global_mouse_position()
 							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
 								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+									
+									# Remove energy
+									$'../../../'.update_energy_and_cards_playability(card_info[1])
+									
+									# Move card to discard pile
+									setup = true
+									moving_to_discard = true
+									state = MOVE_TO_DISCARD_PILE
+									card_select = true
+									
+									# Play attack animation
+									if card_info[2] == "Ice Cannon":
+										$'../../../Wanderer'.ice_cannon()
+										await get_tree().create_timer(2.0).timeout
+									
 									# Deal with damage
 									var attack_number = card_info[5]
 									enemies.get_child(i).change_health(attack_number)
 									
-									#$'../../../Energy'.reduce_energy(card_info[1])
-									$'../../../'.update_energy_and_cards_playability(card_info[1])
-									
-									setup = true
-									moving_to_discard = true
-									state = MOVE_TO_DISCARD_PILE
-	#									moving_into_play = true
-	#									state = IN_PLAY
-									card_select = true
 									break
 							else:
 								if state != IN_DISCARD_PILE:

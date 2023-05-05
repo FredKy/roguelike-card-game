@@ -35,13 +35,13 @@ func change_health(number):
 func start_attacking():
 	print("Attack!")
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
-	has_killed_player = $'../../Wanderer'.change_health(2)
+	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(2)
 
 func _on_animated_sprite_2d_animation_finished():
 	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "attack_2":
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-		has_killed_player = $'../../Wanderer'.change_health(2)
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(2)
 	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
