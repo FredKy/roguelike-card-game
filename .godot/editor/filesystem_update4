@@ -11,3 +11,4 @@ res://energy.tscn
 res://wanderer.gd
 res://cards/my_card_base.gd
 res://enemy.gd
+cards/my_card_base.tscn

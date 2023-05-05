@@ -4,6 +4,7 @@ var current_health = 30
 var max_health = 30
 var attack_damage = 4
 var has_killed_player = false
+
 #Intents
 enum {
 	ATTACK,

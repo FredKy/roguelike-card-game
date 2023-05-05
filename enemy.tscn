@@ -248,4 +248,8 @@ text = "2x2
 "
 metadata/_edit_use_anchors_ = true
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 2
+
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

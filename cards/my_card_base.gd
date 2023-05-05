@@ -99,8 +99,8 @@ func _input(event):
 							var enemy_pos = enemies.get_child(i).position
 							var enemy_size = enemies.get_child(i).size
 							mouse_pos = get_global_mouse_position()
-							if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
-								and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+							if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
+								and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
 									
 									# Remove energy
 									$'../../../'.update_energy_and_cards_playability(card_info[1])
@@ -174,8 +174,8 @@ func _physics_process(delta):
 					var enemy_pos = enemies.get_child(i).position
 					var enemy_size = enemies.get_child(i).size
 					mouse_pos = get_global_mouse_position()
-					if mouse_pos.x < enemy_pos.x + enemy_size.x and mouse_pos.x > enemy_pos.x \
-						and mouse_pos.y < enemy_pos.y + enemy_size.y and mouse_pos.y > enemy_pos.y:
+					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
+						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
 							$Focus.set_modulate(Color(1,0.5,0.5,1))
 							$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
 							#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
