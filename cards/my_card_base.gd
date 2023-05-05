@@ -147,6 +147,7 @@ func _physics_process(delta):
 			pass
 		IN_HAND:
 			$Focus.visible = true
+			$GlowingBorder.visible = false
 			$'../'.z_index = 0
 		IN_PLAY:
 			if moving_into_play:
