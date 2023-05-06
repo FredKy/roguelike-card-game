@@ -22,6 +22,7 @@ func _ready():
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+	$AttackIntent/Damage.text = "2x" + str(attack_damage)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,13 +37,13 @@ func change_health(number):
 func start_attacking():
 	print("Attack!")
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
-	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(2)
+	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 
 func _on_animated_sprite_2d_animation_finished():
 	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "attack_2":
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(2)
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()

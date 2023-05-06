@@ -221,6 +221,7 @@ func run_through_enemy_actions():
 
 func start_player_turn():
 	$EndTurnButtonNode.visible = true
+	$Wanderer.reset_shield()
 	reset_energy_and_cards_playability()
 	draw_x_cards(4,0.2)
 	

@@ -287,7 +287,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnergyShield/ColorRect:scale")
+tracks/0/path = NodePath("VBoxContainer/EnergyShield/ColorRect:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -302,7 +302,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("EnergyShield/ColorRect:scale")
+tracks/0/path = NodePath("VBoxContainer/EnergyShield/ColorRect:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -388,17 +388,10 @@ sprite_frames = SubResource("SpriteFrames_a60l4")
 animation = &"idle"
 centered = false
 
-[node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
-z_index = 1
-layout_mode = 2
-
-[node name="ShieldBar" parent="VBoxContainer" instance=ExtResource("6_3505e")]
-layout_mode = 2
-
-[node name="EnergyShield" type="Node2D" parent="."]
+[node name="EnergyShield" type="Node2D" parent="VBoxContainer"]
 scale = Vector2(1.5, 1.5)
 
-[node name="ColorRect" type="ColorRect" parent="EnergyShield"]
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/EnergyShield"]
 material = SubResource("ShaderMaterial_liq2o")
 offset_left = -122.0
 offset_top = -144.0
@@ -406,6 +399,12 @@ offset_right = 448.0
 offset_bottom = 496.0
 pivot_offset = Vector2(285, 320)
 color = Color(1, 1, 1, 0)
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
+layout_mode = 2
+
+[node name="ShieldBar" parent="VBoxContainer" instance=ExtResource("6_3505e")]
+layout_mode = 2
 
 [node name="Highlight" type="Node2D" parent="."]
 
