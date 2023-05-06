@@ -128,6 +128,32 @@ func _input(event):
 									state = REORGANIZE_HAND
 									card_select = true
 								break
+					elif card_info[0] == "shield":
+						mouse_pos = get_global_mouse_position()
+						if mouse_pos.y < 400:
+							# Remove energy
+							$'../../../'.update_energy_and_cards_playability(card_info[1])
+							
+							# Move card to discard pile
+							setup = true
+							moving_to_discard = true
+							state = MOVE_TO_DISCARD_PILE
+							card_select = true
+							
+							# Play animation
+							if card_info[2] == "Energy Shield":
+								$'../../../Wanderer'.ice_cannon() #Placeholder animation
+								await get_tree().create_timer(2.0).timeout
+							
+							# Add shield
+							var shield_number = card_info[6]
+							$'../../../Wanderer'.add_shield(shield_number)
+						else:
+							if state != IN_DISCARD_PILE:
+									setup = true
+									targetpos = default_pos
+									state = REORGANIZE_HAND
+									card_select = true
 					else:
 						if state != IN_DISCARD_PILE:
 							setup = true
@@ -182,7 +208,14 @@ func _physics_process(delta):
 					else:
 						$Focus.set_modulate(Color(1,1,1,1))
 						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
-
+			elif card_info[0] == "shield":
+				mouse_pos = get_global_mouse_position()
+				if mouse_pos.y < 400:
+					$Focus.set_modulate(Color(0.3,0.3,1,1))
+					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.3,0.3,1,1))
+				else:
+					$Focus.set_modulate(Color(1,1,1,1))
+					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
