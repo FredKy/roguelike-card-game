@@ -106,6 +106,7 @@ texture_disabled = SubResource("CanvasTexture_1h6jl")
 script = ExtResource("6_anmoi")
 
 [node name="TestingButton" type="Node2D" parent="."]
+visible = false
 position = Vector2(337, 103)
 
 [node name="Button" type="Button" parent="TestingButton"]

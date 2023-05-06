@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://l6jjeq6u8fxo"]
+[gd_scene load_steps=3 format=3 uid="uid://l6jjeq6u8fxo"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_fclv2"]
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="2_djac2"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -16,22 +17,32 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 50.0
+offset_left = 150.0
 offset_top = -101.0
 offset_right = 84.0
-offset_bottom = -50.0
+offset_bottom = -120.0
 grow_vertical = 0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_djac2")
+theme_override_font_sizes/font_size = 25
 text = "Start"
+alignment = 0
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_djac2")
+theme_override_font_sizes/font_size = 25
 text = "Options"
+alignment = 0
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_djac2")
+theme_override_font_sizes/font_size = 25
 text = "Exit game"
+alignment = 0
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

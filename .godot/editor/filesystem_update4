@@ -14,3 +14,5 @@ res://enemy.gd
 cards/my_card_base.tscn
 res://menu.tscn
 res://menu.gd
+res://energy_shield.gdshader
+res://shieldbar.tscn
