@@ -1,10 +1,11 @@
-[gd_scene load_steps=37 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=38 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
 [ext_resource type="Texture2D" uid="uid://cbchirlwu8851" path="res://assets/images/wanderer_magician/Idle.png" id="2_fvs65"]
 [ext_resource type="Texture2D" uid="uid://3hoft6eutndb" path="res://assets/images/wanderer_magician/Magic_sphere.png" id="3_63e62"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="4_mqgd7"]
+[ext_resource type="PackedScene" uid="uid://bskhplsh6jx4v" path="res://shieldbar.tscn" id="6_3505e"]
 [ext_resource type="Shader" path="res://energy_shield.gdshader" id="6_wah1t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6krfa"]
@@ -248,6 +249,9 @@ centered = false
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
 z_index = 1
+layout_mode = 2
+
+[node name="ShieldBar" parent="VBoxContainer" instance=ExtResource("6_3505e")]
 layout_mode = 2
 
 [node name="EnergyShield" type="Node2D" parent="."]

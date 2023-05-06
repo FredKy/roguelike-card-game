@@ -2,6 +2,7 @@ extends MarginContainer
 
 var current_health = 10
 var max_health = 10
+var current_shield = 0
 var alive = true
 
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +12,9 @@ func _ready():
 	#$VBoxContainer/ImageContainer/AnimatedSprite2D.scale *= 4
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	$VBoxContainer/ShieldBar/TextureProgress.value = 0
+	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
+	
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 
 

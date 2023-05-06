@@ -16,3 +16,5 @@ res://menu.tscn
 res://menu.gd
 res://energy_shield.gdshader
 res://shieldbar.tscn
+res://assets/cards/my_cards_database.gd
+res://cards/player_deck.gd

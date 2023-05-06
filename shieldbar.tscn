@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://gsinq5jj58i" path="res://assets/gui/shieldbar_bg.png" id="3_gf0ag"]
 [ext_resource type="Texture2D" uid="uid://le3wyax6ppp5" path="res://assets/gui/shieldbar_fill.png" id="4_x67ng"]
 
-[node name="Bar" type="HBoxContainer"]
+[node name="ShieldBar" type="HBoxContainer"]
 offset_right = 510.0
 offset_bottom = 53.0
 
