@@ -1,7 +1,8 @@
+Button
+VBoxContainer
 ColorRect
 Label
 HBoxContainer
-Button
 Node2D
 NinePatchRect
 MarginContainer
@@ -10,7 +11,6 @@ TextureRect
 AnimatedSprite2D
 Node
 Sprite2D
-VBoxContainer
 TextureButton
 Panel
 Control
