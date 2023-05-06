@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=49 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -281,6 +281,43 @@ animations = [{
 shader = ExtResource("6_wah1t")
 shader_parameter/color = Vector4(0.5, 0.7, 1, 1)
 
+[sub_resource type="Animation" id="Animation_b0ugh"]
+resource_name = "create_shield"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyShield/ColorRect:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nc0o0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnergyShield/ColorRect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ubqqh"]
+_data = {
+"RESET": SubResource("Animation_nc0o0"),
+"create_shield": SubResource("Animation_b0ugh")
+}
+
 [node name="Wanderer" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -299,9 +336,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"shield"
-frame = 6
-frame_progress = 1.0
+animation = &"idle"
 centered = false
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
@@ -316,10 +351,16 @@ scale = Vector2(1.5, 1.5)
 
 [node name="ColorRect" type="ColorRect" parent="EnergyShield"]
 material = SubResource("ShaderMaterial_liq2o")
-offset_left = -139.333
-offset_top = -171.333
-offset_right = 431.667
-offset_bottom = 465.667
+offset_left = -122.0
+offset_top = -144.0
+offset_right = 448.0
+offset_bottom = 496.0
+pivot_offset = Vector2(285, 320)
 color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ubqqh")
+}
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
