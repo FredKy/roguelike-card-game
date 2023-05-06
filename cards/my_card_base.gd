@@ -142,8 +142,8 @@ func _input(event):
 							
 							# Play animation
 							if card_info[2] == "Energy Shield":
-								$'../../../Wanderer'.ice_cannon() #Placeholder animation
-								await get_tree().create_timer(2.0).timeout
+								$'../../../Wanderer'.shield()
+								await get_tree().create_timer(1.0).timeout
 							
 							# Add shield
 							var shield_number = card_info[6]

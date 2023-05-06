@@ -54,6 +54,9 @@ func play_death_animation():
 
 func ice_cannon():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"
+
+func shield():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "shield"
 	
 func _on_animated_sprite_2d_animation_finished():
 	if not alive:
