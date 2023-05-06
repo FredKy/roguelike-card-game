@@ -36,9 +36,8 @@ enum {
 	DEFEND,
 }
 
-var card_slot_empty = []
-
 var player_turn = true
+var a_card_is_in_mouse = false
 
 func _ready():
 	randomize()
@@ -50,7 +49,7 @@ func _ready():
 	$Wanderer.position = Vector2(100, 80)
 	$Wanderer.scale *= 0.5
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-	draw_x_cards(3, 0.2)
+	draw_x_cards(4, 0.2)
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
@@ -223,7 +222,7 @@ func run_through_enemy_actions():
 func start_player_turn():
 	$EndTurnButtonNode.visible = true
 	reset_energy_and_cards_playability()
-	draw_x_cards(3,0.2)
+	draw_x_cards(4,0.2)
 	
 	
 	

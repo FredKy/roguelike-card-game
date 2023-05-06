@@ -1,7 +1,7 @@
 AnimationPlayer
-Label
-Node2D
 ColorRect
+Node2D
+Label
 Sprite2D
 Button
 VBoxContainer

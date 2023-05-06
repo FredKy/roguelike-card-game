@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=52 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -311,11 +311,60 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Highlight/ColorRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ubqqh"]
 _data = {
 "RESET": SubResource("Animation_nc0o0"),
 "create_shield": SubResource("Animation_b0ugh")
+}
+
+[sub_resource type="Animation" id="Animation_h2r7w"]
+resource_name = "wanderer_highlighted"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Highlight/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.34902), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tt8ck"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Highlight/ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q1dwc"]
+_data = {
+"RESET": SubResource("Animation_tt8ck"),
+"wanderer_highlighted": SubResource("Animation_h2r7w")
 }
 
 [node name="Wanderer" type="MarginContainer"]
@@ -358,9 +407,21 @@ offset_bottom = 496.0
 pivot_offset = Vector2(285, 320)
 color = Color(1, 1, 1, 0)
 
+[node name="Highlight" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Highlight"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 529.0
+offset_bottom = 517.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ubqqh")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_q1dwc")
 }
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -85,13 +85,22 @@ func _input(event):
 					old_state = state
 					state = IN_MOUSE
 					$'../'.z_index += 2
+					$'../../../'.a_card_is_in_mouse = true
+					#Turn off mouse interaction with other cards meanwhile.
+#					var cards = $'../../../Cards'.get_children()
+#					for card in cards:
+#						if card.card_numb != card_numb:
+#							card.$Focus.visible = false
+					
 					setup = true
 					card_select = false
 			if event.is_action_released("leftclick"):
 				if not card_select:
 					$'../'.z_index -= 2
+					$'../../../'.a_card_is_in_mouse = false
 					$GlowingBorder.visible = false
 					$Focus.visible = false
+					$'../../../Wanderer'.stop_highlight()
 					
 					if card_info[0] == "attack":
 						var enemies = $'../../../Enemies'
@@ -175,6 +184,8 @@ func _physics_process(delta):
 			$Focus.visible = true
 			$GlowingBorder.visible = false
 			$'../'.z_index = 0
+			if $'../../../'.a_card_is_in_mouse:
+				$Focus.visible = false
 		IN_PLAY:
 			if moving_into_play:
 				if setup:
@@ -211,9 +222,11 @@ func _physics_process(delta):
 			elif card_info[0] == "shield":
 				mouse_pos = get_global_mouse_position()
 				if mouse_pos.y < 400:
+					$'../../../Wanderer'.play_highlight()
 					$Focus.set_modulate(Color(0.3,0.3,1,1))
 					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.3,0.3,1,1))
 				else:
+					$'../../../Wanderer'.stop_highlight()
 					$Focus.set_modulate(Color(1,1,1,1))
 					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			if setup:

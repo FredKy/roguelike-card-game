@@ -16,6 +16,7 @@ func _ready():
 	$VBoxContainer/ShieldBar/TextureProgress.value = 0
 	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 	$EnergyShield/ColorRect.scale = Vector2(0,0)
+	$EnergyShield/ColorRect.visible = true
 	
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 
@@ -61,7 +62,13 @@ func shield():
 	if current_shield == 0:
 		await get_tree().create_timer(0.7).timeout
 		$AnimationPlayer.play("create_shield")
-	
+
+func play_highlight():
+	$AnimationPlayer2.play("wanderer_highlighted")
+
+func stop_highlight():
+	$AnimationPlayer2.stop(false)
+
 func _on_animated_sprite_2d_animation_finished():
 	if not alive:
 		return
