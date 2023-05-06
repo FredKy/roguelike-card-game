@@ -71,7 +71,7 @@ func reset_shield():
 	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 
 func play_highlight():
-	$AnimationPlayer2.play("wanderer_highlighted")
+	$AnimationPlayer2.play("highlight_wanderer")
 
 func stop_highlight():
 	$AnimationPlayer2.stop(false)
