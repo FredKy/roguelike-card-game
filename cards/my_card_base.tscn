@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=17 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
@@ -852,6 +852,8 @@ cache/0/45/0/kerning_overrides/25/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/35/0 = Vector2(0, 0)
 cache/0/45/0/kerning_overrides/45/0 = Vector2(0, 0)
 
+[sub_resource type="CanvasTexture" id="CanvasTexture_j53ea"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1l8gm"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
 corner_radius_top_left = 16
@@ -1000,6 +1002,7 @@ modulate = Color(0.878431, 0.227451, 0.262745, 1)
 texture_filter = 1
 layout_mode = 2
 texture_hover = ExtResource("5_l3b3e")
+texture_disabled = SubResource("CanvasTexture_j53ea")
 
 [node name="CardBack" type="Panel" parent="MyCardBase"]
 visible = false

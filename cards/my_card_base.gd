@@ -79,6 +79,8 @@ func _ready():
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
 
 func _input(event):
+	if $'../../../'.is_dealing_cards:
+		return
 	match state:
 		FOCUS_IN_HAND, IN_MOUSE, IN_PLAY:
 			if event.is_action_pressed("leftclick"): # Pick up card
@@ -87,12 +89,6 @@ func _input(event):
 					state = IN_MOUSE
 					$'../'.z_index += 2
 					$'../../../'.a_card_is_in_mouse = true
-					#Turn off mouse interaction with other cards meanwhile.
-#					var cards = $'../../../Cards'.get_children()
-#					for card in cards:
-#						if card.card_numb != card_numb:
-#							card.$Focus.visible = false
-					
 					setup = true
 					card_select = false
 			if event.is_action_released("leftclick"):
@@ -182,11 +178,15 @@ func _physics_process(delta):
 		NOTHING:
 			pass
 		IN_HAND:
-			$Focus.visible = true
 			$GlowingBorder.visible = false
+			#$CardBack.visible = false #Inferior hack to fix bug. Try to fix it for real.
 			$'../'.z_index = 0
-			if $'../../../'.a_card_is_in_mouse:
+			if $'../../../'.a_card_is_in_mouse or $'../../../'.is_dealing_cards:
 				$Focus.visible = false
+				$Focus.disabled = true
+			else:
+				$Focus.visible = true
+				$Focus.disabled = false
 		IN_PLAY:
 			if moving_into_play:
 				if setup:
@@ -291,6 +291,7 @@ func _physics_process(delta):
 					scale = orig_scale*zoom_scale
 					zooming_in = false
 		DRAWN_TO_HAND: #animate card from deck to player hand.
+			$Focus.visible = false
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
@@ -426,7 +427,13 @@ func reset_pos_rot_scale_and_time():
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
 	setup = false
 
+func set_focus_disabled():
+	$Focus.disabled = true
+
 func _on_focus_mouse_entered():
+	if $'../../../'.is_dealing_cards:
+		#$Focus.disabled = true
+		return
 	$GlowingBorder.visible = true;
 	match state:
 		IN_HAND, REORGANIZE_HAND:
@@ -444,6 +451,9 @@ func _on_focus_mouse_entered():
 			state = FOCUS_IN_HAND
 
 func _on_focus_mouse_exited():
+	if $'../../../'.is_dealing_cards:
+		#$Focus.disabled = true
+		return
 	$GlowingBorder.visible = false;
 	match state:
 		FOCUS_IN_HAND:

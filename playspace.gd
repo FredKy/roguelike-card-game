@@ -38,6 +38,7 @@ enum {
 
 var player_turn = true
 var a_card_is_in_mouse = false
+var is_dealing_cards = false
 
 func _ready():
 	randomize()
@@ -71,6 +72,7 @@ func draw_card():
 	base.scale *= CARD_SIZE/base.size
 	base.state = DRAWN_TO_HAND
 	card_numb = 0
+	base.set_focus_disabled()
 	$Cards.add_child(new_card)
 	player_deck.card_list.erase(player_deck.card_list[card_selected])
 	angle += 0.05
@@ -83,11 +85,14 @@ func draw_card():
 	update_energy_and_cards_playability(0)
 
 func draw_x_cards(x, delay):
+	is_dealing_cards = true
 	await get_tree().create_timer(0.5).timeout
 	for i in range(x):
 		draw_card()
 		print(player_deck.card_list)
 		await get_tree().create_timer(delay).timeout
+	await get_tree().create_timer(0.5).timeout
+	is_dealing_cards = false
 	
 
 func reshuffle_card():
