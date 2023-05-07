@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bu0nubybt1e1r"]
 
 [ext_resource type="Material" uid="uid://35l7sko6n56c" path="res://combined_glowing_border.tres" id="1_7qtdy"]
-[ext_resource type="Texture2D" uid="uid://ba3hw422i0jx1" path="res://assets/images/card_border_glow_with_margin.png" id="2_3f6vd"]
+[ext_resource type="Texture2D" uid="uid://cuu6iyd7finge" path="res://assets/images/card_border_glow_white_with_margin.png" id="2_c7vsd"]
 
 [node name="GlowingBorder" type="Node2D"]
 
 [node name="CardBorderGlow" type="Sprite2D" parent="."]
 material = ExtResource("1_7qtdy")
-texture = ExtResource("2_3f6vd")
+texture = ExtResource("2_c7vsd")
 centered = false
 offset = Vector2(-25, -25)

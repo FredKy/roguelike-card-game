@@ -76,6 +76,7 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
+	$Focus.set_modulate(Color(1,0.8,0.2,1))
 
 func _input(event):
 	match state:
@@ -213,11 +214,12 @@ func _physics_process(delta):
 					mouse_pos = get_global_mouse_position()
 					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
 						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-							$Focus.set_modulate(Color(1,0.5,0.5,1))
+							#$Focus.set_modulate(Color(0.79,0.18,0.21,1))
+							$Focus.set_modulate(Color(0.88,0.23,0.26,1))
 							$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
 							#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
 					else:
-						$Focus.set_modulate(Color(1,1,1,1))
+						$Focus.set_modulate(Color(1,0.8,0.2,1))
 						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			elif card_info[0] == "shield":
 				mouse_pos = get_global_mouse_position()
@@ -227,7 +229,7 @@ func _physics_process(delta):
 					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.3,0.3,1,1))
 				else:
 					$'../../../Wanderer'.stop_highlight()
-					$Focus.set_modulate(Color(1,1,1,1))
+					$Focus.set_modulate(Color(1,0.8,0.2,1))
 					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			if setup:
 				reset_pos_rot_scale_and_time()
@@ -421,7 +423,7 @@ func reset_pos_rot_scale_and_time():
 	startrot = rotation
 	start_scale = scale
 	t = 0
-	$Focus.set_modulate(Color(1,1,1,1))
+	$Focus.set_modulate(Color(1,0.8,0.2,1))
 	setup = false
 
 func _on_focus_mouse_entered():
