@@ -44,11 +44,11 @@ func _ready():
 	randomize()
 	$Enemies/Enemy.visible = true
 	$Enemies/Enemy.position = Vector2(760, 80)
-	$Enemies/Enemy.scale *= 0.5
+	$Enemies/Enemy.scale *= 0.4
 	$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true
 	$Wanderer.position = Vector2(100, 80)
-	$Wanderer.scale *= 0.5
+	$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	draw_x_cards(4, 0.2)
 
