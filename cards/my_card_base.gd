@@ -22,6 +22,7 @@ const IN_MOUSE_TIME = 0.1
 var tween
 var tween_d
 var tween_r
+var tween_reorganize
 
 var setup = true
 var start_scale = Vector2()
@@ -79,8 +80,8 @@ func _ready():
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
 
 func _input(event):
-	if $'../../../'.is_dealing_cards:
-		return
+#	if $'../../../'.is_dealing_cards:
+#		return
 	match state:
 		FOCUS_IN_HAND, IN_MOUSE, IN_PLAY:
 			if event.is_action_pressed("leftclick"): # Pick up card
@@ -295,13 +296,18 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				if !tween:
-					tween = create_tween()
-					tween.set_ease(Tween.EASE_IN_OUT)
-					tween.set_trans(Tween.TRANS_CUBIC)
-					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
-					tween.tween_property(self, "position", targetpos, DRAWTIME)
-					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+#				if !tween:
+#					tween = create_tween()
+#					tween.set_ease(Tween.EASE_IN_OUT)
+#					tween.set_trans(Tween.TRANS_CUBIC)
+#					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
+#					tween.tween_property(self, "position", targetpos, DRAWTIME)
+#					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
+				var x = parametric_blend(t)
+				position = startpos.lerp(targetpos, x)
+				rotation = startrot*(1-x) + (2*PI+targetrot)*x
+#				position = startpos.lerp(targetpos, t)
+#				rotation = startrot*(1-t) + (2*PI+targetrot)*t
 				var flip_time_factor = 1.2 # 20% faster
 				if t < float(1/flip_time_factor):
 					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
@@ -414,10 +420,11 @@ func reset_card(card_number):
 	if not neighbor_card.move_neighbor_card_check:
 		neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")
 		if neighbor_card.state != FOCUS_IN_HAND:
+			neighbor_card.setup = true
 			neighbor_card.state = REORGANIZE_HAND
 			#neighbor_card.target_scale = orig_scale
 			neighbor_card.targetpos = neighbor_card.default_pos
-			neighbor_card.setup = true
+			#neighbor_card.setup = true
 
 func reset_pos_rot_scale_and_time():
 	startpos = position
@@ -478,4 +485,10 @@ func set_enabled(b):
 	else:
 		style_box_flat.bg_color = Color(0.76, 0.45, 0, 1)
 		$CostRect/CostRect2.add_theme_stylebox_override("panel", style_box_flat)
+
+#Custom ease in and ease out-like curve
+#https://stackoverflow.com/questions/13462001/ease-in-and-ease-out-animation-formula
+func parametric_blend(t):
+	var sqt = t * t
+	return sqt / (2.0 * (sqt - t) + 1.0)
 
