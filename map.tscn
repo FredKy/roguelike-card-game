@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbsyeffo6745e"]
+
+[ext_resource type="Texture2D" uid="uid://c6v1uure6k4a5" path="res://assets/images/bg/parchment.jpg" id="1_ip8hl"]
+[ext_resource type="Texture2D" uid="uid://boqdqa7qcv2sg" path="res://assets/images/icons/Skull_Icon_(Noun_Project).svg" id="2_25cxp"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Parchment" type="Sprite2D" parent="."]
+position = Vector2(576.5, 323)
+scale = Vector2(0.247059, 0.208)
+texture = ExtResource("1_ip8hl")
+
+[node name="SkullIcon(nounProject)" type="Sprite2D" parent="."]
+position = Vector2(228, 268)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_25cxp")
