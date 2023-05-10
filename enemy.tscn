@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=41 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="Texture2D" uid="uid://b1aiaqcbedt5h" path="res://assets/images/enemies/skeleton_warrior/Protect.png" id="2_parg0"]
@@ -229,6 +229,42 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_24ata"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Bar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ufw2g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Bar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fh61g"]
+_data = {
+"RESET": SubResource("Animation_ufw2g"),
+"fade_out": SubResource("Animation_24ata")
+}
+
 [node name="Enemy" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -285,5 +321,10 @@ metadata/_edit_use_anchors_ = true
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 layout_mode = 2
+
+[node name="AnimateBars" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fh61g")
+}
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

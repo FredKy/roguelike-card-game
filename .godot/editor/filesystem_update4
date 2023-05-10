@@ -1,6 +1,8 @@
 res://default_env.tres
-res://cards/my_card_base.tscn
+res://game_over_bg.tscn
 res://combined_glowing_border.tres
+res://game_over_bg.gdshader
+res://cards/my_card_base.tscn
 res://playspace.tscn
 res://enemy.tscn
 res://shieldbar.tscn
@@ -10,7 +12,10 @@ res://glowing_border.tscn
 res://energy.tscn
 res://menu.tscn
 res://map.tscn
-res://cards/my_card_base.gd
-res://playspace.gd
+res://game_over_pink_bg.gdshader
+res://game_over_smoke_bg.gdshader
 res://wanderer.gd
+res://game_over_bg.gd
+res://playspace.gd
 res://enemy.gd
+res://cards/my_card_base.gd

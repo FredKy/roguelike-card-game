@@ -492,3 +492,7 @@ func parametric_blend(t):
 	var sqt = t * t
 	return sqt / (2.0 * (sqt - t) + 1.0)
 
+func fade_out():
+	print("here")
+	$AnimationPlayer.play("fade_out")
+

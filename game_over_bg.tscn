@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://6s5jpexrmdd1"]
+
+[ext_resource type="Script" path="res://game_over_bg.gd" id="1_luahk"]
+[ext_resource type="Shader" path="res://game_over_smoke_bg.gdshader" id="2_ythqb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgvib"]
+shader = ExtResource("2_ythqb")
+shader_parameter/fade = 0.7
+
+[sub_resource type="Animation" id="Animation_hanh0"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:material:shader_parameter/fade")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.7]
+}
+
+[sub_resource type="Animation" id="Animation_yg53x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:material:shader_parameter/fade")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vffe"]
+_data = {
+"RESET": SubResource("Animation_yg53x"),
+"fade_in": SubResource("Animation_hanh0")
+}
+
+[node name="GameOverBG" type="Node2D"]
+script = ExtResource("1_luahk")
+
+[node name="Smoke" type="ColorRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_bgvib")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1vffe")
+}

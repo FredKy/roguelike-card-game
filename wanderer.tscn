@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=61 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -417,6 +417,66 @@ _data = {
 "wanderer_highlighted": SubResource("Animation_h2r7w")
 }
 
+[sub_resource type="Animation" id="Animation_jnq6f"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Bar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ShieldBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ewjjk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/Bar:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/ShieldBar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsdud"]
+_data = {
+"RESET": SubResource("Animation_ewjjk"),
+"fade_out": SubResource("Animation_jnq6f")
+}
+
 [node name="Wanderer" type="MarginContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
@@ -471,6 +531,11 @@ libraries = {
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_q1dwc")
+}
+
+[node name="AnimateBars" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xsdud")
 }
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

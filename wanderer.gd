@@ -1,7 +1,7 @@
 extends MarginContainer
 
-var current_health = 10
-var max_health = 10
+var current_health = 4
+var max_health = 4
 var current_shield = 0
 var max_shield = 100
 var alive = true
@@ -55,6 +55,7 @@ func add_shield(shield_number):
 
 func play_death_animation_and_die():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
+	$AnimateBars.play("fade_out")
 	alive = false
 
 func play_hurt():

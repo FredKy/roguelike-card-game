@@ -233,19 +233,3 @@ func start_player_turn():
 	draw_x_cards(4,0.2)
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
 	$EndTurnButtonNode.visible = true
-	#$EndTurnButtonNode.visible = true
-	
-	
-	
-#func _input(event):
-#	if Input.is_action_just_released("leftclick"):
-#		var new_card = CARD_BASE.instantiate()
-#		var deck_size = player_deck.card_list.size()
-#		if (deck_size < 1):
-#			return
-#		card_selected = randi() % player_deck.card_list.size()
-#		new_card.card_name = player_deck.card_list[card_selected]
-#		new_card.position = get_global_mouse_position()
-#		new_card.scale *= 0.6
-#		$Cards.add_child(new_card)
-#		player_deck.card_list.erase(player_deck.card_list[card_selected])

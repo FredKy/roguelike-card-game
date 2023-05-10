@@ -45,6 +45,8 @@ func start_attacking():
 	await get_tree().create_timer(0.5).timeout
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+	if has_killed_player:
+		animate_stuff_when_player_dies()
 
 func complete_attack():
 	await get_tree().create_timer(1.0).timeout
@@ -63,6 +65,8 @@ func _on_animated_sprite_2d_animation_finished():
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+		if has_killed_player:
+			animate_stuff_when_player_dies()
 	elif $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "dead":
 		pass
 	else:
@@ -77,5 +81,18 @@ func play_death_animation_and_die():
 func set_new_intent_when_player_turn_starts():
 	$AttackIntent.visible = true
 	intent = ATTACK
+
+func animate_stuff_when_player_dies():
+	$'../../Wanderer'.z_index = 3
+	z_index = 3
+	$'../../GameOverBG/AnimationPlayer'.play("fade_in")
+	$'../../AnimationPlayer'.play("fade_out_stuff")
+	print($'../../DiscardedCards'.get_children())
+	for card in $'../../DiscardedCards'.get_children():
+		var base = card.get_node("MyCardBase")
+		base.fade_out()
+	
+	$AnimateBars.play("fade_out")
+	
 
 
