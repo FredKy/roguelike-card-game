@@ -85,9 +85,8 @@ func set_new_intent_when_player_turn_starts():
 func animate_stuff_when_player_dies():
 	$'../../Wanderer'.z_index = 3
 	z_index = 3
-	$'../../GameOverBG/AnimationPlayer'.play("fade_in")
+	$'../../'.show_game_over_bg()
 	$'../../AnimationPlayer'.play("fade_out_stuff")
-	print($'../../DiscardedCards'.get_children())
 	for card in $'../../DiscardedCards'.get_children():
 		var base = card.get_node("MyCardBase")
 		base.fade_out()

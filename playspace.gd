@@ -2,6 +2,7 @@ extends Node2D
 
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
+const GAME_OVER_BG := preload("res://game_over_bg.tscn")
 var player_deck := preload("res://cards/player_deck.gd").new()
 var card_selected = []
 #@onready var deck_size = player_deck.card_list.size()
@@ -233,3 +234,7 @@ func start_player_turn():
 	draw_x_cards(4,0.2)
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
 	$EndTurnButtonNode.visible = true
+
+func show_game_over_bg():
+	var instance = GAME_OVER_BG.instantiate()
+	add_child(instance)

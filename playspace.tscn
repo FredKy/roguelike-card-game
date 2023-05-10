@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=19 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://deck_draw.gd" id="5_rd6np"]
 [ext_resource type="Script" path="res://discard_pile.gd" id="6_anmoi"]
 [ext_resource type="Script" path="res://button.gd" id="7_021k6"]
-[ext_resource type="PackedScene" uid="uid://6s5jpexrmdd1" path="res://game_over_bg.tscn" id="8_r0dsi"]
 [ext_resource type="PackedScene" uid="uid://wdpqbbotx4pc" path="res://wanderer.tscn" id="8_ur5lf"]
 [ext_resource type="PackedScene" uid="uid://cqg07q4rrgeo1" path="res://energy.tscn" id="9_520xi"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="10_bugjp"]
@@ -180,8 +179,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Reshuffle"
 script = ExtResource("7_021k6")
-
-[node name="GameOverBG" parent="." instance=ExtResource("8_r0dsi")]
 
 [node name="Wanderer" parent="." instance=ExtResource("8_ur5lf")]
 offset_left = 100.0
