@@ -1,9 +1,10 @@
 extends MarginContainer
 
-var current_health = 30
-var max_health = 30
+var current_health = 10
+var max_health = 10
 var attack_damage = 4
 var has_killed_player = false
+var alive = true
 
 #Intents
 enum {
@@ -29,21 +30,52 @@ func _ready():
 func _process(delta):
 	pass
 
-func change_health(number):
+func change_health_and_check_if_dead(number):
 	current_health -= number
 	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	if current_health <= 0:
+		play_death_animation_and_die()
+		return true
+	return false
 
 func start_attacking():
 	print("Attack!")
+	$AttackIntent.visible = false
+	await get_tree().create_timer(0.5).timeout
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 
+func complete_attack():
+	await get_tree().create_timer(1.0).timeout
+	$AttackIntent.visible = false
+	await get_tree().create_timer(0.5).timeout
+	start_attacking()
+	await get_tree().create_timer(2.5).timeout
+
 func _on_animated_sprite_2d_animation_finished():
+	if has_killed_player:
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+		return
+		
 	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "attack_2":
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+	elif $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "dead":
+		pass
 	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+
+func play_death_animation_and_die():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
+	$AttackIntent.visible = false
+	alive = false
+
+func set_new_intent_when_player_turn_starts():
+	$AttackIntent.visible = true
+	intent = ATTACK
+
+

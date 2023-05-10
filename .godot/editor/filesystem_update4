@@ -13,3 +13,4 @@ res://map.tscn
 res://cards/my_card_base.gd
 res://playspace.gd
 res://wanderer.gd
+res://enemy.gd

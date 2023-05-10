@@ -42,15 +42,18 @@ var is_dealing_cards = false
 
 func _ready():
 	randomize()
+	$EndTurnButtonNode.visible = false
 	$Enemies/Enemy.visible = true
-	$Enemies/Enemy.position = Vector2(760, 80)
-	$Enemies/Enemy.scale *= 0.4
+	#$Enemies/Enemy.position = Vector2(760, 80)
+	#$Enemies/Enemy.scale *= 0.4
 	$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true
-	$Wanderer.position = Vector2(100, 80)
-	$Wanderer.scale *= 0.4
+	#$Wanderer.position = Vector2(100, 80)
+	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-	draw_x_cards(4, 0.2)
+	#draw_x_cards(4, 0.2)
+	start_player_turn()
+	#$EndTurnButtonNode.visible = true
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
@@ -89,7 +92,7 @@ func draw_x_cards(x, delay):
 	await get_tree().create_timer(0.5).timeout
 	for i in range(x):
 		draw_card()
-		print(player_deck.card_list)
+		#print(player_deck.card_list)
 		await get_tree().create_timer(delay).timeout
 	await get_tree().create_timer(0.5).timeout
 	is_dealing_cards = false
@@ -108,10 +111,10 @@ func reshuffle_card():
 		base.state = MOVE_TO_DECK
 
 func reshuffle_x_cards(x, delay):
-	print("x: " + str(x))
+	#print("x: " + str(x))
 	for i in range(x):
 		reshuffle_card()
-		print(player_deck.card_list)
+		#print(player_deck.card_list)
 		await get_tree().create_timer(delay).timeout
 
 func reparent_discarded_card_to_reshuffled(card):
@@ -201,7 +204,7 @@ func move_one_card_from_hand_to_discard():
 func move_cards_from_hand_to_discard(time):
 	var cards_count = $Cards.get_child_count() 
 	var delay = time / float(cards_count)
-	print("Delay: " + str(delay))
+	#print("Delay: " + str(delay))
 	for i in range(cards_count):
 		move_one_card_from_hand_to_discard()
 		await get_tree().create_timer(delay).timeout
@@ -215,20 +218,22 @@ func end_turn():
 func run_through_enemy_actions():
 	if $Enemies/Enemy.intent == ATTACK:
 		await get_tree().create_timer(1.0).timeout
-		$Enemies/Enemy/AttackIntent.visible = false
-		await get_tree().create_timer(0.5).timeout
 		$Enemies/Enemy.start_attacking()
 		await get_tree().create_timer(2.5).timeout
 		print("Attack done")
 		if $Enemies/Enemy.has_killed_player:
 			print("Game over man")
+			return
+	$Enemies/Enemy.set_new_intent_when_player_turn_starts()
 	start_player_turn()
 
 func start_player_turn():
-	$EndTurnButtonNode.visible = true
 	$Wanderer.reset_shield()
 	reset_energy_and_cards_playability()
 	draw_x_cards(4,0.2)
+	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
+	$EndTurnButtonNode.visible = true
+	#$EndTurnButtonNode.visible = true
 	
 	
 	

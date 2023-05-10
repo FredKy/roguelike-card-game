@@ -26,6 +26,7 @@ func _process(delta):
 	pass
 
 func change_health_and_check_if_dead(damage_number):
+	play_hurt()
 	if damage_number > current_shield:
 		damage_number -= current_shield
 		current_shield = 0
@@ -43,7 +44,7 @@ func change_health_and_check_if_dead(damage_number):
 		$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 			
 	if current_health <= 0:
-		play_death_animation()
+		play_death_animation_and_die()
 		return true
 	return false
 
@@ -52,9 +53,12 @@ func add_shield(shield_number):
 	$VBoxContainer/ShieldBar/TextureProgress.value = min(100*current_shield/max_shield, 100)
 	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 
-func play_death_animation():
+func play_death_animation_and_die():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
 	alive = false
+
+func play_hurt():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "hurt"
 
 func ice_cannon():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"

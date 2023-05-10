@@ -68,11 +68,11 @@ var state = IN_HAND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(card_info)
+	#print(card_info)
 	$CardBack.scale *= size/$CardBack.size
 	
 	$HiddenPanel/Image.region_rect = card_info[4]
-	print($HiddenPanel/Image.region_rect)
+	#print($HiddenPanel/Image.region_rect)
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
@@ -125,7 +125,7 @@ func _input(event):
 									
 									# Deal with damage
 									var attack_number = card_info[5]
-									enemies.get_child(i).change_health(attack_number)
+									enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 									
 									break
 							else:
