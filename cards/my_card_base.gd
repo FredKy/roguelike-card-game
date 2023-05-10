@@ -419,7 +419,7 @@ func move_neighbor_card(card_number, left, spread_factor):
 func reset_card(card_number):
 	if not neighbor_card.move_neighbor_card_check:
 		neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")
-		if neighbor_card.state != FOCUS_IN_HAND:
+		if neighbor_card.state != FOCUS_IN_HAND && neighbor_card.state != DRAWN_TO_HAND:
 			neighbor_card.setup = true
 			neighbor_card.state = REORGANIZE_HAND
 			#neighbor_card.target_scale = orig_scale

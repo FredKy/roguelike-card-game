@@ -9,6 +9,7 @@ res://wanderer.tscn
 res://glowing_border.tscn
 res://energy.tscn
 res://menu.tscn
+res://map.tscn
 res://cards/my_card_base.gd
 res://playspace.gd
-res://map.tscn
+res://wanderer.gd

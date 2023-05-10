@@ -29,8 +29,10 @@ func change_health_and_check_if_dead(damage_number):
 	if damage_number > current_shield:
 		damage_number -= current_shield
 		current_shield = 0
+		$AnimationPlayer.stop()
 		$VBoxContainer/ShieldBar/TextureProgress.value = 100*current_shield/max_shield
 		$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
+		
 		
 		current_health -= damage_number
 		$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
