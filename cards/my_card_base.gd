@@ -112,28 +112,30 @@ func _input(event):
 							mouse_pos = get_global_mouse_position()
 							if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
 								and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-									$'../../../Wanderer'.number_of_buffered_attacks += 1
-									print("attacking")
-									# Remove energy
-									$'../../../'.update_energy_and_cards_playability(card_info[1])
-									
 									# Move card to discard pile
 									setup = true
 									moving_to_discard = true
 									state = MOVE_TO_DISCARD_PILE
 									card_select = true
 									
-									# Play attack animation
-									if card_info[2] == "Ice Cannon":
-										$'../../../Wanderer'.ice_cannon()
-										await get_tree().create_timer(2.0).timeout
-									
-									# Deal with damage
-									var attack_number = card_info[5]
-									enemies.get_child(i).change_health_and_check_if_dead(attack_number)
-									
-									$'../../../Wanderer'.number_of_buffered_attacks -= 1
-									print("stopped attacking")
+									if enemies.get_child(i).alive:
+										$'../../../Wanderer'.number_of_buffered_attacks += 1
+										print("attacking")
+										
+										# Remove energy
+										$'../../../'.update_energy_and_cards_playability(card_info[1])
+										
+										# Play attack animation
+										if card_info[2] == "Ice Cannon":
+											$'../../../Wanderer'.ice_cannon()
+											await get_tree().create_timer(2.0).timeout
+										
+										# Deal with damage
+										var attack_number = card_info[5]
+										enemies.get_child(i).change_health_and_check_if_dead(attack_number)
+										
+										$'../../../Wanderer'.number_of_buffered_attacks -= 1
+										print("stopped attacking")
 									break
 							else:
 								if state != IN_DISCARD_PILE:
