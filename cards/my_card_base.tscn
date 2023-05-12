@@ -1067,7 +1067,7 @@ offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MyCardBase"]
+[node name="FadeOutAnimationPlayer" type="AnimationPlayer" parent="MyCardBase"]
 libraries = {
 "": SubResource("AnimationLibrary_ur34d")
 }
