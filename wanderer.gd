@@ -44,6 +44,9 @@ func change_health_and_check_if_dead(damage_number):
 		$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 			
 	if current_health <= 0:
+		current_health = 0
+		$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
+		$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 		play_death_animation_and_die()
 		return true
 	return false
