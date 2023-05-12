@@ -5,6 +5,7 @@ var max_health = 10
 var attack_damage = 4
 var has_killed_player = false
 var alive = true
+var shield_value = 8
 
 #Intents
 enum {
@@ -57,6 +58,9 @@ func complete_attack():
 	await get_tree().create_timer(0.5).timeout
 	start_attacking()
 	await get_tree().create_timer(2.5).timeout
+
+func start_defending():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "defend"
 
 func _on_animated_sprite_2d_animation_finished():
 	if has_killed_player:

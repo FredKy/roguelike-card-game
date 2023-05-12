@@ -1153,6 +1153,7 @@ pivot_offset = Vector2(145, 200)
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
 
 [node name="TextureRect" type="TextureRect" parent="FadeOutCardBack"]
+layout_mode = 0
 offset_right = 290.0
 offset_bottom = 499.0
 texture = ExtResource("6_4rmaw")

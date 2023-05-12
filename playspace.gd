@@ -257,6 +257,8 @@ func run_through_enemies_actions():
 			print("Attack done")
 			if enemy.has_killed_player:
 				return false
+		elif enemy.intent == DEFEND:
+			pass
 		enemy.set_new_intent()
 	return true
 
