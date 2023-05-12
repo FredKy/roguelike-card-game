@@ -57,6 +57,7 @@ func _ready():
 	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$TurnMessage.modulate = Color(1,1,1,0)
+	show_turn_message("Player turn")
 	start_player_turn()
 	#$EndTurnButtonNode.visible = true
 

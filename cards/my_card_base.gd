@@ -112,7 +112,9 @@ func _input(event):
 							mouse_pos = get_global_mouse_position()
 							if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
 								and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-									
+									$'../../../Wanderer'.is_attacking = true
+									print($'../../../Wanderer'.is_attacking)
+									print("attacking")
 									# Remove energy
 									$'../../../'.update_energy_and_cards_playability(card_info[1])
 									
@@ -131,6 +133,9 @@ func _input(event):
 									var attack_number = card_info[5]
 									enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 									
+									$'../../../Wanderer'.is_attacking = false
+									print($'../../../Wanderer'.is_attacking)
+									print("stopped attacking")
 									break
 							else:
 								if state != IN_DISCARD_PILE:

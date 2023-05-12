@@ -5,6 +5,7 @@ var max_health = 4
 var current_shield = 0
 var max_shield = 100
 var alive = true
+var is_attacking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
