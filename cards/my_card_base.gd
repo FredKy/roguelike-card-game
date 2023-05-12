@@ -320,8 +320,19 @@ func _physics_process(delta):
 			else:
 				position = targetpos
 				rotation = targetrot
+				#Lines to prevent spinning card bug.
+				while startrot > 1:
+					startrot -= 2*PI
+				while startrot < -1:
+					startrot += 2*PI
+#				print("Before in hand stats:")
+#				print("startrot: " + str(startrot))
+#				print("targetrot: " + str(targetrot))
 				state = IN_HAND
 		REORGANIZE_HAND:
+#			print("Reorganize stats:")
+#			print("startrot: " + str(startrot))
+#			print("targetrot: " + str(targetrot))
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:

@@ -1,10 +1,7 @@
 res://default_env.tres
 res://cards/my_card_base.tscn
 res://combined_glowing_border.tres
-res://scripts/game_state.gd
-res://scripts/player_deck.gd
 res://playspace.tscn
-res://playspace.gd
 res://enemy.tscn
 res://shieldbar.tscn
 res://bar.tscn
@@ -15,4 +12,3 @@ res://menu.tscn
 res://map.tscn
 res://game_over_bg.tscn
 res://cards/my_card_base.gd
-res://deck_draw.gd
