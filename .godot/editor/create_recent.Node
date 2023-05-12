@@ -1,9 +1,9 @@
+AnimationPlayer
 TextureRect
 Node2D
 Button
 Label
 TextureButton
-AnimationPlayer
 ColorRect
 Sprite2D
 VBoxContainer

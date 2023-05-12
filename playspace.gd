@@ -42,6 +42,7 @@ enum {
 var player_turn = true
 var a_card_is_in_mouse = false
 var is_dealing_cards = false
+var player_alive = true
 
 func _ready():
 	player_deck = game_state.global_player_deck.duplicate()
@@ -55,7 +56,7 @@ func _ready():
 	#$Wanderer.position = Vector2(100, 80)
 	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-	#draw_x_cards(4, 0.2)
+	$TurnMessage.modulate = Color(1,1,1,0)
 	start_player_turn()
 	#$EndTurnButtonNode.visible = true
 
@@ -224,14 +225,21 @@ func end_player_turn():
 	#$EndTurnButtonNode/EndTurnButton.text = "Enemy turn"
 	move_cards_from_hand_to_discard(0.5)
 	#await get_tree().create_timer(1.5).timeout
+	show_turn_message("Enemy turn")
+	await get_tree().create_timer(1).timeout
 	start_enemy_turn()
 
 func start_enemy_turn():
 	if not some_enemy_is_alive():
 		print("You win!")
 		return
-	var player_alive = await run_through_enemies_actions()
+	player_alive = await run_through_enemies_actions()
+	end_enemy_turn()
+
+func end_enemy_turn():
 	if player_alive:
+		show_turn_message("Player turn")
+		await get_tree().create_timer(1).timeout
 		start_player_turn()
 	else:
 		print("Game over man")
@@ -268,6 +276,10 @@ func start_player_turn():
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
 	
 	$EndTurnButtonNode/EndTurnButton.disabled = false
+
+func show_turn_message(txt):
+	$TurnMessage.text = txt
+	$TurnMessageAP.play("show_message")
 
 func show_game_over_bg():
 	var instance = GAME_OVER_BG.instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=22 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
@@ -114,6 +114,43 @@ tracks/2/keys = {
 _data = {
 "RESET": SubResource("Animation_juo2g"),
 "fade_out_stuff": SubResource("Animation_rlrku")
+}
+
+[sub_resource type="Animation" id="Animation_nv1lr"]
+resource_name = "show_message"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_am5vv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6vfkj"]
+_data = {
+"RESET": SubResource("Animation_am5vv"),
+"show_message": SubResource("Animation_nv1lr")
 }
 
 [node name="Playspace" type="Node2D"]
@@ -235,6 +272,31 @@ script = ExtResource("10_hjo2l")
 libraries = {
 "": SubResource("AnimationLibrary_ha7vi")
 }
+
+[node name="TurnMessageAP" type="AnimationPlayer" parent="."]
+root_node = NodePath("../TurnMessage")
+libraries = {
+"": SubResource("AnimationLibrary_6vfkj")
+}
+
+[node name="TurnMessage" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+offset_right = 1151.0
+offset_bottom = 734.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.76863, 0.717647, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("10_bugjp")
+theme_override_font_sizes/font_size = 60
+text = "Player turn"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
