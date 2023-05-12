@@ -51,7 +51,8 @@ func copy_global_deck_to_player_deck():
 	return player_current_battle_deck
 
 func _ready():
-	player_deck = copy_global_deck_to_player_deck()
+	#player_deck = copy_global_deck_to_player_deck()
+	player_deck = game_state.global_player_deck.duplicate()
 	randomize()
 	$EndTurnButtonNode.visible = false
 	$Enemies/Enemy.visible = true
