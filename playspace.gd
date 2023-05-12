@@ -227,7 +227,11 @@ func start_enemy_turn():
 	if not some_enemy_is_alive():
 		print("You win!")
 		return
-	run_through_enemies_actions()
+	var player_alive = await run_through_enemies_actions()
+	if player_alive:
+		start_player_turn()
+	else:
+		print("Game over man")
 
 func some_enemy_is_alive():
 	for enemy in $Enemies.get_children():
@@ -236,17 +240,18 @@ func some_enemy_is_alive():
 			return true
 	return false
 
+#Performs enemy actions but stops and returns false if the player is killed.
 func run_through_enemies_actions():
-	if $Enemies/Enemy.intent == ATTACK:
-		await get_tree().create_timer(1.0).timeout
-		$Enemies/Enemy.start_attacking()
-		await get_tree().create_timer(2.5).timeout
-		print("Attack done")
-		if $Enemies/Enemy.has_killed_player:
-			print("Game over man")
-			return
-	$Enemies/Enemy.set_new_intent_when_player_turn_starts()
-	start_player_turn()
+	for enemy in $Enemies.get_children():
+		if enemy.intent == ATTACK:
+			await get_tree().create_timer(1.0).timeout
+			enemy.start_attacking()
+			await get_tree().create_timer(2.5).timeout
+			print("Attack done")
+			if enemy.has_killed_player:
+				return false
+		enemy.set_new_intent()
+	return true
 
 func start_player_turn():
 	$Wanderer.reset_shield()

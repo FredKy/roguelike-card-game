@@ -78,7 +78,7 @@ func play_death_animation_and_die():
 	$AttackIntent.visible = false
 	alive = false
 
-func set_new_intent_when_player_turn_starts():
+func set_new_intent():
 	$AttackIntent.visible = true
 	intent = ATTACK
 
