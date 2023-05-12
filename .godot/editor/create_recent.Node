@@ -1,3 +1,4 @@
+TextureButton
 AnimationPlayer
 ColorRect
 Node2D
@@ -12,7 +13,6 @@ WorldEnvironment
 TextureRect
 AnimatedSprite2D
 Node
-TextureButton
 Panel
 Control
 Container

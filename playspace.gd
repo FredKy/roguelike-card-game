@@ -1,9 +1,11 @@
 extends Node2D
 
+@onready var game_state = get_node("/root/GameState")
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
 const GAME_OVER_BG := preload("res://game_over_bg.tscn")
-var player_deck := preload("res://cards/player_deck.gd").new()
+#var player_deck := preload("res://scripts/player_deck.gd").new()
+var player_deck = []
 var card_selected = []
 #@onready var deck_size = player_deck.card_list.size()
 #@onready var centre_card_oval = Vector2(get_viewport().size) * Vector2(0.5, 1.32)
@@ -42,6 +44,7 @@ var a_card_is_in_mouse = false
 var is_dealing_cards = false
 
 func _ready():
+	player_deck = game_state.global_player_deck
 	randomize()
 	$EndTurnButtonNode.visible = false
 	$Enemies/Enemy.visible = true
@@ -58,7 +61,8 @@ func _ready():
 
 func draw_card():
 	angle = PI/2 + card_spread*(float(number_cards_hand)/2-number_cards_hand)
-	var deck_size = player_deck.card_list.size()
+	#var deck_size = player_deck.card_list.size()
+	var deck_size = player_deck.size()
 	if deck_size == 0:
 		reshuffle_x_cards(
 			$DiscardedCards.get_child_count(),
@@ -66,11 +70,13 @@ func draw_card():
 		)
 		await get_tree().create_timer(0.51).timeout
 	
-	deck_size = player_deck.card_list.size()
+	#deck_size = player_deck.card_list.size()
+	deck_size = player_deck.size()
 	var new_card = CARD_BASE.instantiate()
 	var base = new_card.get_node("MyCardBase")
 	card_selected = randi() % deck_size
-	base.card_name = player_deck.card_list[card_selected]
+	#base.card_name = player_deck.card_list[card_selected]
+	base.card_name = player_deck[card_selected]
 	base.position = deck_position
 	base.discard_pile = discard_position
 	base.scale *= CARD_SIZE/base.size
@@ -78,7 +84,8 @@ func draw_card():
 	card_numb = 0
 	base.set_focus_disabled()
 	$Cards.add_child(new_card)
-	player_deck.card_list.erase(player_deck.card_list[card_selected])
+	#player_deck.card_list.erase(player_deck.card_list[card_selected])
+	player_deck.erase(player_deck[card_selected])
 	angle += 0.05
 	deck_size -= 1
 	number_cards_hand += 1

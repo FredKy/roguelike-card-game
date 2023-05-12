@@ -2,7 +2,7 @@ extends MarginContainer
 
 
 # Declare member variables here.
-@onready var card_database = preload("res://assets/cards/my_cards_database.gd").new()
+@onready var card_database = preload("res://scripts/my_cards_database.gd").new()
 #var card_name = 'ice_cannon'
 #var card_name = 'warp_time'
 var card_name = 'cold_touch'
@@ -398,7 +398,8 @@ func _physics_process(delta):
 			else:
 				position = targetpos
 				rotation = targetrot
-				$'../../../'.player_deck.card_list.append(self.card_name)
+				#$'../../../'.player_deck.card_list.append(self.card_name)
+				$'../../../'.player_deck.append(self.card_name)
 				$'../../../Deck/DeckDraw'.disabled = false
 				state = NOTHING
 				print(self.card_name)

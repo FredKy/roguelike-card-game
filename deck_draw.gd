@@ -10,8 +10,9 @@ func _ready():
 #	pivot_offset.y = size.y/2
 
 # No need for input now.
-func _gui_input(_event):
-	deck_size = $'../../'.player_deck.card_list.size()
+#func _gui_input(_event):
+#	#deck_size = $'../../'.player_deck.card_list.size()
+#	deck_size = $'../../'.player_deck.size()
 #	if Input.is_action_just_released("leftclick"):
 #		if deck_size > 0:
 #			deck_size = $'../../'.draw_card()
