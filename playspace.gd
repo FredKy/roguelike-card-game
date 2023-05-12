@@ -43,8 +43,15 @@ var player_turn = true
 var a_card_is_in_mouse = false
 var is_dealing_cards = false
 
+func copy_global_deck_to_player_deck():
+	var global_deck = game_state.global_player_deck
+	var player_current_battle_deck = []
+	for card_name in global_deck:
+		player_current_battle_deck.append(card_name)
+	return player_current_battle_deck
+
 func _ready():
-	player_deck = game_state.global_player_deck
+	player_deck = copy_global_deck_to_player_deck()
 	randomize()
 	$EndTurnButtonNode.visible = false
 	$Enemies/Enemy.visible = true

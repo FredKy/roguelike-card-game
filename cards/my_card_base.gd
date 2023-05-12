@@ -78,6 +78,10 @@ func _ready():
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
+	#Set position for FadeOutCardBack to Discard pile pos
+	$'../FadeOutCardBack'.position = $'../../../Discard'.position
+	#This scaling will result in size Vector2(174,240), i.e. CARD_SIZE
+	$'../FadeOutCardBack'.scale *= 0.6
 
 func _input(event):
 #	if $'../../../'.is_dealing_cards:

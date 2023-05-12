@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://6s5jpexrmdd1"]
+[gd_scene load_steps=8 format=3 uid="uid://6s5jpexrmdd1"]
 
 [ext_resource type="Script" path="res://game_over_bg.gd" id="1_luahk"]
 [ext_resource type="Shader" path="res://game_over_smoke_bg.gdshader" id="2_ythqb"]
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3_so5qv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bgvib"]
 shader = ExtResource("2_ythqb")
@@ -21,9 +22,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.7]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visibility:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_hanh0"]
 resource_name = "fade_in"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,6 +49,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.85]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visibility:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vffe"]
@@ -52,7 +78,51 @@ material = SubResource("ShaderMaterial_bgvib")
 offset_right = 1152.0
 offset_bottom = 648.0
 
+[node name="Visibility" type="Node2D" parent="."]
+
+[node name="Slain" type="Label" parent="Visibility"]
+z_index = 3
+offset_left = 484.0
+offset_top = 329.0
+offset_right = 751.0
+offset_bottom = 433.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.76863, 0.521569, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_so5qv")
+theme_override_font_sizes/font_size = 60
+text = "Slain"
+
+[node name="Message" type="Label" parent="Visibility"]
+z_index = 2
+offset_left = 365.0
+offset_top = 418.0
+offset_right = 776.0
+offset_bottom = 447.0
+theme_override_colors/font_color = Color(1, 0.929412, 0.811765, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_so5qv")
+theme_override_font_sizes/font_size = 25
+text = "Be better prepared next time."
+
+[node name="Button" type="Button" parent="Visibility"]
+z_index = 2
+offset_left = 500.0
+offset_top = 505.0
+offset_right = 637.0
+offset_bottom = 549.0
+theme_override_fonts/font = ExtResource("3_so5qv")
+theme_override_font_sizes/font_size = 35
+text = "Return"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1vffe")
 }
+
+[connection signal="pressed" from="Visibility/Button" to="." method="_on_button_pressed"]
