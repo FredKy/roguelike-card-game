@@ -14,4 +14,4 @@ func _process(delta):
 func _on_gui_input(event):
 	if Input.is_action_just_released("leftclick"):
 		#$'../../'.move_cards_from_hand_to_discard(0.5) #Parameter is how long discard animation takes.
-		$'../../'.end_turn()
+		$'../../'.end_player_turn()

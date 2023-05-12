@@ -12,3 +12,6 @@ res://menu.tscn
 res://map.tscn
 res://game_over_bg.tscn
 res://cards/my_card_base.gd
+res://enemy.gd
+res://playspace.gd
+res://end_turn_button.gd

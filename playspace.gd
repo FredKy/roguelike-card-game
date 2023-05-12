@@ -217,13 +217,26 @@ func move_cards_from_hand_to_discard(time):
 		move_one_card_from_hand_to_discard()
 		await get_tree().create_timer(delay).timeout
 
-func end_turn():
+func end_player_turn():
 	$EndTurnButtonNode.visible = false
 	move_cards_from_hand_to_discard(0.5)
 	#await get_tree().create_timer(1.5).timeout
-	run_through_enemy_actions()
-	
-func run_through_enemy_actions():
+	start_enemy_turn()
+
+func start_enemy_turn():
+	if not some_enemy_is_alive():
+		print("You win!")
+		return
+	run_through_enemies_actions()
+
+func some_enemy_is_alive():
+	for enemy in $Enemies.get_children():
+		print(enemy.alive)
+		if enemy.alive:
+			return true
+	return false
+
+func run_through_enemies_actions():
 	if $Enemies/Enemy.intent == ATTACK:
 		await get_tree().create_timer(1.0).timeout
 		$Enemies/Enemy.start_attacking()

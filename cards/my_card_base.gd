@@ -330,6 +330,10 @@ func _physics_process(delta):
 #				print("targetrot: " + str(targetrot))
 				state = IN_HAND
 		REORGANIZE_HAND:
+			while startrot > 1:
+				startrot -= 2*PI
+			while startrot < -1:
+				startrot += 2*PI
 #			print("Reorganize stats:")
 #			print("startrot: " + str(startrot))
 #			print("targetrot: " + str(targetrot))
