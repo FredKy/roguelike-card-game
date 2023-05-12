@@ -50,7 +50,9 @@ func start_attacking():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 	if has_killed_player:
-		animate_stuff_when_player_dies()
+		z_index = 3
+		$AnimateBars.play("fade_out")
+		$'../../'.animate_stuff_when_player_dies()
 
 func complete_attack():
 	await get_tree().create_timer(1.0).timeout
@@ -73,7 +75,7 @@ func _on_animated_sprite_2d_animation_finished():
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 		if has_killed_player:
-			animate_stuff_when_player_dies()
+			$'../../'.animate_stuff_when_player_dies()
 	elif $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "dead":
 		pass
 	else:
@@ -84,21 +86,17 @@ func play_death_animation_and_die():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
 	$AttackIntent.visible = false
 	alive = false
+	#Check if any buddies are alive, if not fade out UI stuff and trigger win function
+	var buddies_alive = $'../../'.some_enemy_is_alive()
+	if not buddies_alive:
+		$'../../'.do_stuff_when_all_enemies_are_dead()
 
 func set_new_intent():
 	$AttackIntent.visible = true
 	intent = ATTACK
 
-func animate_stuff_when_player_dies():
-	$'../../Wanderer'.z_index = 3
-	z_index = 3
-	$'../../'.show_game_over_bg()
-	$'../../AnimationPlayer'.play("fade_out_stuff")
-	for card in $'../../DiscardedCards'.get_children():
-		var base = card.get_node("MyCardBase")
-		base.fade_out()
+
 	
-	$AnimateBars.play("fade_out")
 	
 
 

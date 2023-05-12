@@ -218,7 +218,10 @@ func move_cards_from_hand_to_discard(time):
 		await get_tree().create_timer(delay).timeout
 
 func end_player_turn():
-	$EndTurnButtonNode.visible = false
+	#var test_var = $EndTurnButtonNode
+	#$EndTurnButtonNode.visible = false
+	$EndTurnButtonNode/EndTurnButton.disabled = true
+	#$EndTurnButtonNode/EndTurnButton.text = "Enemy turn"
 	move_cards_from_hand_to_discard(0.5)
 	#await get_tree().create_timer(1.5).timeout
 	start_enemy_turn()
@@ -256,12 +259,37 @@ func run_through_enemies_actions():
 	return true
 
 func start_player_turn():
+	$EndTurnButtonNode/EndTurnButton.text = "End turn"
+	$EndTurnButtonNode.visible = true
+	$EndTurnButtonNode/EndTurnButton.disabled = true
 	$Wanderer.reset_shield()
 	reset_energy_and_cards_playability()
 	draw_x_cards(4,0.2)
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
-	$EndTurnButtonNode.visible = true
+	
+	$EndTurnButtonNode/EndTurnButton.disabled = false
 
 func show_game_over_bg():
 	var instance = GAME_OVER_BG.instantiate()
 	add_child(instance)
+
+func animate_stuff_when_player_dies():
+	$Wanderer.z_index = 3
+	show_game_over_bg()
+	$AnimationPlayer.play("fade_out_stuff")
+	for card in $DiscardedCards.get_children():
+		var base = card.get_node("MyCardBase")
+		base.fade_out()
+
+func do_stuff_when_all_enemies_are_dead():
+	await move_cards_from_hand_to_discard(0.5)
+	#$'../../EndTurnButtonNode'.visible = false
+	$EndTurnButtonNode/EndTurnButton.disabled = true
+	$AnimationPlayer.play("fade_out_stuff")
+	for card in $DiscardedCards.get_children():
+		var base = card.get_node("MyCardBase")
+		base.fade_out()
+	player_has_won()
+
+func player_has_won():
+	pass
