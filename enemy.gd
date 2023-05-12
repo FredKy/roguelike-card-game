@@ -7,6 +7,9 @@ var has_killed_player = false
 var alive = true
 var shield_value = 8
 
+#May be simplified later
+var buffered_damage = 0
+
 #Intents
 enum {
 	ATTACK,
@@ -32,6 +35,7 @@ func _process(delta):
 	pass
 
 func change_health_and_check_if_dead(number):
+	buffered_damage -= number
 	current_health -= number
 	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
@@ -42,6 +46,13 @@ func change_health_and_check_if_dead(number):
 		play_death_animation_and_die()
 		return true
 	return false
+
+#Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
+func is_already_dead():
+	if current_health <= buffered_damage:
+		return true
+	else:
+		return false
 
 func start_attacking():
 	print("Attack!")
