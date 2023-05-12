@@ -302,7 +302,8 @@ func do_stuff_when_all_enemies_are_dead():
 	for card in $DiscardedCards.get_children():
 		var base = card.get_node("MyCardBase")
 		base.fade_out()
-	player_has_won()
+	do_stuff_when_player_has_won()
 
-func player_has_won():
+func do_stuff_when_player_has_won():
+	game_state.global_player_current_health = $Wanderer.current_health
 	$SkipAP.play("fade_in")

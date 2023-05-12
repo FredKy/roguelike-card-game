@@ -1,5 +1,6 @@
 extends MarginContainer
 
+@onready var game_state = get_node("/root/GameState")
 var current_health = 4
 var max_health = 4
 var current_shield = 0
@@ -11,13 +12,15 @@ var number_of_buffered_attacks = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	max_health = game_state.global_player_max_health
+	current_health = game_state.global_player_current_health
 	#$VBoxContainer/ImageContainer/Image.scale.x *= -1
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.get_minimum_size()/$VBoxContainer/ImageContainer/Image.texture.size
 	#$VBoxContainer/ImageContainer/AnimatedSprite2D.scale *= 4
-	$VBoxContainer/Bar/TextureProgress.value = 100
+	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	$VBoxContainer/ShieldBar/TextureProgress.value = 0
-	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
+	$VBoxContainer/ShieldBar/TextureProgress.value = 100*current_shield/max_shield
 	$VBoxContainer/EnergyShield/ColorRect.scale = Vector2(0,0)
 	$VBoxContainer/EnergyShield/ColorRect.visible = true
 	
