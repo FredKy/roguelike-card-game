@@ -17,3 +17,4 @@ res://playspace.gd
 res://end_turn_button.gd
 res://wanderer.gd
 res://game_over_bg.gd
+res://scripts/game_state.gd
