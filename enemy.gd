@@ -48,6 +48,7 @@ func change_health_and_check_if_dead(number):
 	return false
 
 #Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
+#This function is used to prevent the player from wasting an attack card on an already dead enemy.
 func is_already_dead():
 	if current_health <= buffered_damage:
 		return true
