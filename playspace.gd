@@ -305,4 +305,4 @@ func do_stuff_when_all_enemies_are_dead():
 	player_has_won()
 
 func player_has_won():
-	pass
+	$SkipAP.play("fade_in")

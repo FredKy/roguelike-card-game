@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=26 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cqg07q4rrgeo1" path="res://energy.tscn" id="9_520xi"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="10_bugjp"]
 [ext_resource type="Script" path="res://end_turn_button.gd" id="10_hjo2l"]
+[ext_resource type="Script" path="res://skip.gd" id="12_rw0w6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -151,6 +152,42 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_am5vv"),
 "show_message": SubResource("Animation_nv1lr")
+}
+
+[sub_resource type="Animation" id="Animation_7myyp"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1yk0s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jnspr"]
+_data = {
+"RESET": SubResource("Animation_1yk0s"),
+"fade_in": SubResource("Animation_7myyp")
 }
 
 [node name="Playspace" type="Node2D"]
@@ -298,5 +335,23 @@ text = "Player turn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="SkipAP" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Skip")
+libraries = {
+"": SubResource("AnimationLibrary_jnspr")
+}
+
+[node name="Skip" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 901.0
+offset_top = 480.0
+offset_right = 1066.0
+offset_bottom = 533.0
+theme_override_fonts/font = ExtResource("10_bugjp")
+theme_override_font_sizes/font_size = 35
+text = "Move on"
+script = ExtResource("12_rw0w6")
+
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
+[connection signal="gui_input" from="Skip" to="Skip" method="_on_gui_input"]
