@@ -136,7 +136,12 @@ func _input(event):
 										
 										# Deal with damage
 										#var attack_number = card_info[5]
-										enemies.get_child(i).change_health_and_check_if_dead(attack_number)
+										#Queue up enemy for damage calculation in Wanderers animation finished function
+										$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
+										#Queue up damage
+										$'../../../Wanderer'.attack_number_queue.append(attack_number)
+										
+										#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 										
 										$'../../../Wanderer'.number_of_buffered_attacks -= 1
 										print("stopped attacking")

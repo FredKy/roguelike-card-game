@@ -12,6 +12,12 @@ var number_of_buffered_attacks = 0
 
 #Eperiment to queue animations
 var animation_queue = []
+var previous_animation = "idle"
+
+#Targeted enemies references
+var target_queue = []
+#Damage queue
+var attack_number_queue = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,10 +81,13 @@ func play_hurt():
 
 func ice_cannon():
 	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
+	animation_queue.append("ice_cannon")
 	if animation == "idle":
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"
-	else:
-		animation_queue.append("ice_cannon")
+		
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
+#		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"
+#	else:
+#		animation_queue.append("ice_cannon")
 
 func shield():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "shield"
@@ -102,11 +111,14 @@ func stop_highlight():
 func _on_animated_sprite_2d_animation_finished():
 	if not alive:
 		return
+	if target_queue.size() > 0:
+		if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation  == "ice_cannon":
+			var enemy = target_queue.pop_front()
+			print(enemy)
+			enemy.change_health_and_check_if_dead(attack_number_queue.pop_front())
 	if animation_queue.size() > 0:
-		var next_animation = animation_queue.pop_front()
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = next_animation
-		if next_animation == "ice_cannon":
-			await get_tree().create_timer(2.0).timeout
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
+
 	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()

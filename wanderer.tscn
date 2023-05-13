@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=62 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -166,6 +166,10 @@ region = Rect2(640, 0, 128, 128)
 atlas = ExtResource("5_psjj0")
 region = Rect2(768, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxecb"]
+atlas = ExtResource("2_fvs65")
+region = Rect2(0, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a60l4"]
 animations = [{
 "frames": [{
@@ -308,6 +312,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"shield",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxecb")
+}],
+"loop": false,
+"name": &"trigger_queue",
 "speed": 8.0
 }]
 
@@ -496,7 +508,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"ice_cannon"
+animation = &"trigger_queue"
 centered = false
 
 [node name="EnergyShield" type="Node2D" parent="VBoxContainer"]
