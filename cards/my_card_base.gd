@@ -126,7 +126,7 @@ func _input(event):
 										var attack_number = card_info[5]
 										enemies.get_child(i).buffered_damage += attack_number
 
-										$'../../../Wanderer'.number_of_buffered_attacks += 1
+										#$'../../../Wanderer'.number_of_buffered_attacks += 1
 										print("attacking")
 										
 										# Play attack animation
@@ -143,7 +143,7 @@ func _input(event):
 										
 										#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 										
-										$'../../../Wanderer'.number_of_buffered_attacks -= 1
+										#$'../../../Wanderer'.number_of_buffered_attacks -= 1
 										print("stopped attacking")
 										break
 									else:

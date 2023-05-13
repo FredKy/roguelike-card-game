@@ -7,8 +7,8 @@ var current_shield = 0
 var max_shield = 100
 var alive = true
 
-#If larger than 1, wanderer is attacking
-var number_of_buffered_attacks = 0
+##If larger than 0, wanderer is attacking
+#var number_of_buffered_attacks = 0
 
 #Eperiment to queue animations
 var animation_queue = []
@@ -92,7 +92,8 @@ func shield():
 	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
 	animation_queue.append("shield")
 	if animation == "idle":
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
+		#$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
 
 
 func reset_shield():
