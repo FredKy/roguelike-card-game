@@ -496,7 +496,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"hurt"
+animation = &"ice_cannon"
 centered = false
 
 [node name="EnergyShield" type="Node2D" parent="VBoxContainer"]

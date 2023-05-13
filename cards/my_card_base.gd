@@ -132,7 +132,7 @@ func _input(event):
 										# Play attack animation
 										if card_info[2] == "Ice Cannon":
 											$'../../../Wanderer'.ice_cannon()
-											await get_tree().create_timer(2.0).timeout
+											#await get_tree().create_timer(2.0).timeout
 										
 										# Deal with damage
 										#var attack_number = card_info[5]

@@ -10,6 +10,9 @@ var alive = true
 #If larger than 1, wanderer is attacking
 var number_of_buffered_attacks = 0
 
+#Eperiment to queue animations
+var animation_queue = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	max_health = game_state.global_player_max_health
@@ -71,7 +74,11 @@ func play_hurt():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "hurt"
 
 func ice_cannon():
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"
+	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
+	if animation == "idle":
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "ice_cannon"
+	else:
+		animation_queue.append("ice_cannon")
 
 func shield():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "shield"
@@ -95,6 +102,12 @@ func stop_highlight():
 func _on_animated_sprite_2d_animation_finished():
 	if not alive:
 		return
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+	if animation_queue.size() > 0:
+		var next_animation = animation_queue.pop_front()
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = next_animation
+		if next_animation == "ice_cannon":
+			await get_tree().create_timer(2.0).timeout
+	else:
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 
