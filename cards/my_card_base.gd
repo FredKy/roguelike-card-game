@@ -135,7 +135,7 @@ func _input(event):
 											#await get_tree().create_timer(2.0).timeout
 										
 										# Deal with damage
-										#var attack_number = card_info[5]
+
 										#Queue up enemy for damage calculation in Wanderers animation finished function
 										$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
 										#Queue up damage
@@ -175,11 +175,12 @@ func _input(event):
 							# Play animation
 							if card_info[2] == "Energy Shield":
 								$'../../../Wanderer'.shield()
-								await get_tree().create_timer(1.0).timeout
+								#await get_tree().create_timer(1.0).timeout
 							
 							# Add shield
 							var shield_number = card_info[6]
-							$'../../../Wanderer'.add_shield(shield_number)
+							#Queue up shield number to be used when Wanderer animation finished
+							$'../../../Wanderer'.shield_number_queue.append(shield_number)
 						else:
 							if state != IN_DISCARD_PILE:
 									setup = true
