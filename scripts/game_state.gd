@@ -5,6 +5,9 @@ const STARTER_PLAYER_MAX_HEALTH = 20
 var global_player_deck = []
 var global_player_max_health
 var global_player_current_health
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	reset_game_state()

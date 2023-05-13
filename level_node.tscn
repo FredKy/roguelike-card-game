@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2crre43hhnbc"]
+
+[ext_resource type="Texture2D" uid="uid://deqtr5lcm0jb1" path="res://assets/images/icons/Skull_Icon_(Noun_Project)_modified.png" id="1_sgxtr"]
+[ext_resource type="Script" path="res://level_node.gd" id="2_u3mta"]
+
+[sub_resource type="Animation" id="Animation_mmtfu"]
+resource_name = "scale"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.3, 0.3), Vector2(0.36, 0.36), Vector2(0.3, 0.3), Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.45, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.69), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yrwpn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cd4q"]
+_data = {
+"RESET": SubResource("Animation_yrwpn"),
+"scale": SubResource("Animation_mmtfu")
+}
+
+[node name="Level" type="TextureButton"]
+offset_right = 87.0
+offset_bottom = 100.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("1_sgxtr")
+stretch_mode = 0
+script = ExtResource("2_u3mta")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2cd4q")
+}

@@ -530,9 +530,9 @@ func set_enabled(b):
 
 #Custom ease in and ease out-like curve
 #https://stackoverflow.com/questions/13462001/ease-in-and-ease-out-animation-formula
-func parametric_blend(t):
-	var sqt = t * t
-	return sqt / (2.0 * (sqt - t) + 1.0)
+func parametric_blend(x):
+	var sq = x * x
+	return sq / (2.0 * (sq - x) + 1.0)
 
 func fade_out():
 	#print("here")

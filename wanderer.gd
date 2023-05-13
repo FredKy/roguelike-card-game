@@ -85,7 +85,8 @@ func ice_cannon():
 	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
 	animation_queue.append("ice_cannon")
 	if animation == "idle":
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
+		#$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
+		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
 
 func shield():
 	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
@@ -120,10 +121,11 @@ func _on_animated_sprite_2d_animation_finished():
 			var enemy = target_queue.pop_front()
 			print(enemy)
 			enemy.change_health_and_check_if_dead(attack_number_queue.pop_front())
+	
 	if animation_queue.size() > 0:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
-
 	else:
 		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+	
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 
