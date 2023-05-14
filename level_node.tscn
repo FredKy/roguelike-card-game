@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://deqtr5lcm0jb1" path="res://assets/images/icons/Skull_Icon_(Noun_Project)_modified.png" id="1_sgxtr"]
 [ext_resource type="Script" path="res://level_node.gd" id="2_u3mta"]
-[ext_resource type="Texture2D" uid="uid://dlwb2x2g43fjy" path="res://assets/images/icons/red_down_arrow.svg" id="3_depom"]
+[ext_resource type="Texture2D" uid="uid://bn3jc2ack0wh6" path="res://assets/images/icons/red_down_arrow_74_74.png" id="3_u1uut"]
 [ext_resource type="Texture2D" uid="uid://blyj8abhsj6fn" path="res://assets/images/icons/wanderer.png" id="4_cqa50"]
 
 [sub_resource type="Animation" id="Animation_yrwpn"]
@@ -121,8 +121,7 @@ libraries = {
 [node name="RedDownArrow" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(40, -63.3334)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_depom")
+texture = ExtResource("3_u1uut")
 
 [node name="ArrowAP" type="AnimationPlayer" parent="RedDownArrow"]
 libraries = {

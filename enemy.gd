@@ -10,7 +10,8 @@ var shield_value = 8.0
 #May be simplified later
 var buffered_damage = 0
 
-@export var enemy_resource: Resource
+@export var enemy_resource: Resource = load("res://resources/skeleton_spearman.tres")
+@export var loaded_sprite_frames: SpriteFrames = load("res://resources/skeleton_spearman_sprite_frames.tres")
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
 
 #Intents
@@ -23,7 +24,7 @@ var intent = ATTACK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	enemy_resource = load("res://resources/skeleton_spearman.tres")
+	sprite.sprite_frames = loaded_sprite_frames
 	print(enemy_resource.intent_position)
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100
