@@ -10,6 +10,14 @@ func _ready():
 	texture_normal = texture
 	texture_disabled = texture
 
+func player_is_on_node(b):
+	$RedDownArrow/ArrowAP.play("move_up_and_down")
+	$RedDownArrow.visible = b
+	$Wanderer.visible = b
+	if b:
+		self_modulate = Color(1,1,1,0)
+	else:
+		self_modulate = Color(1,1,1,1)
 
 func play_scale_animation():
 	$AnimationPlayer.play("scale")

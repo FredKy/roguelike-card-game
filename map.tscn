@@ -20,7 +20,6 @@ script = ExtResource("4_bm7yo")
 [node name="MapNodes" type="Node" parent="."]
 
 [node name="Start" parent="MapNodes" instance=ExtResource("3_8kd4y")]
-visible = false
 offset_left = 96.0
 offset_top = 285.0
 offset_right = 183.0

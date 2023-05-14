@@ -19,7 +19,12 @@ func _draw():
 		for index in path_end_node_indeces:
 			for end_node in $'../MapNodes'.get_children():
 				if end_node.index == index:
-					draw_dashed(node.position + Vector2(S+20,S), end_node.position + Vector2(S-20,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
+					var diff = end_node.position - node.position 
+					var start_diff = 0.1*diff
+					diff *= 0.88
+					
+					#draw_dashed(node.position + Vector2(S+20,S), end_node.position + Vector2(S-20,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
+					draw_dashed(node.position + start_diff + Vector2(S,S), node.position + diff + Vector2(S,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
 		
 	
 

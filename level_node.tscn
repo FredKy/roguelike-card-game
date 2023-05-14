@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2crre43hhnbc"]
+[gd_scene load_steps=11 format=3 uid="uid://b2crre43hhnbc"]
 
 [ext_resource type="Texture2D" uid="uid://deqtr5lcm0jb1" path="res://assets/images/icons/Skull_Icon_(Noun_Project)_modified.png" id="1_sgxtr"]
 [ext_resource type="Script" path="res://level_node.gd" id="2_u3mta"]
+[ext_resource type="Texture2D" uid="uid://dlwb2x2g43fjy" path="res://assets/images/icons/red_down_arrow.svg" id="3_depom"]
+[ext_resource type="Texture2D" uid="uid://blyj8abhsj6fn" path="res://assets/images/icons/wanderer.png" id="4_cqa50"]
 
 [sub_resource type="Animation" id="Animation_mmtfu"]
 resource_name = "scale"
@@ -65,18 +67,69 @@ _data = {
 "scale": SubResource("Animation_mmtfu")
 }
 
+[sub_resource type="Animation" id="Animation_ugsaq"]
+resource_name = "move_up_and_down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(40, -63.3334), Vector2(40, -73.333), Vector2(40, -63.3334)]
+}
+
+[sub_resource type="Animation" id="Animation_8k4ev"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, -63.3334)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aj72r"]
+_data = {
+"RESET": SubResource("Animation_8k4ev"),
+"move_up_and_down": SubResource("Animation_ugsaq")
+}
+
 [node name="Level" type="TextureButton"]
 offset_right = 87.0
 offset_bottom = 100.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("1_sgxtr")
 texture_disabled = ExtResource("1_sgxtr")
-stretch_mode = 0
+stretch_mode = 4
 script = ExtResource("2_u3mta")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2cd4q")
 }
+
+[node name="RedDownArrow" type="Sprite2D" parent="."]
+position = Vector2(40, -63.3334)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_depom")
+
+[node name="ArrowAP" type="AnimationPlayer" parent="RedDownArrow"]
+libraries = {
+"": SubResource("AnimationLibrary_aj72r")
+}
+
+[node name="Wanderer" type="Sprite2D" parent="."]
+position = Vector2(46.6667, 46.6667)
+texture = ExtResource("4_cqa50")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

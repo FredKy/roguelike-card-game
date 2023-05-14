@@ -18,8 +18,11 @@ func _ready():
 func activate_nodes_on_player_path():
 	var node_indeces = map_nodes[current_map_node]
 	for node in $MapNodes.get_children():
+		node.player_is_on_node(false)
+		if node.index == current_map_node:
+			node.player_is_on_node(true)
 		node.disabled = true
 		if node_indeces.find(node.index) > -1:
 			node.disabled = false
 			node.play_scale_animation()
-
+	
