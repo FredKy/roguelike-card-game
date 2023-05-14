@@ -12,19 +12,39 @@ position = Vector2(576.5, 323)
 scale = Vector2(0.247059, 0.208)
 texture = ExtResource("1_ip8hl")
 
-[node name="Level1" type="Node" parent="."]
+[node name="MapNodes" type="Node" parent="."]
 
-[node name="Level1A" parent="Level1" instance=ExtResource("3_8kd4y")]
-offset_left = 242.0
-offset_top = 206.0
-offset_right = 329.0
-offset_bottom = 306.0
+[node name="Level1A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 203.0
+offset_top = 222.0
+offset_right = 290.0
+offset_bottom = 322.0
+index = 1
 
-[node name="Level1B" parent="Level1" instance=ExtResource("3_8kd4y")]
-offset_left = 245.0
-offset_top = 340.0
-offset_right = 332.0
-offset_bottom = 440.0
+[node name="Level1B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 206.0
+offset_top = 356.0
+offset_right = 293.0
+offset_bottom = 456.0
+index = 2
 
-[connection signal="pressed" from="Level1/Level1A" to="." method="_on_level_1a_pressed"]
-[connection signal="pressed" from="Level1/Level1B" to="." method="_on_level_1b_pressed"]
+[node name="Level2A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 356.0
+offset_top = 156.0
+offset_right = 443.0
+offset_bottom = 256.0
+index = 3
+
+[node name="Level2B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 359.0
+offset_top = 285.0
+offset_right = 446.0
+offset_bottom = 385.0
+index = 4
+
+[node name="Level2C" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 362.0
+offset_top = 414.0
+offset_right = 449.0
+offset_bottom = 514.0
+index = 5

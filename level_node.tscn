@@ -70,6 +70,7 @@ offset_right = 87.0
 offset_bottom = 100.0
 scale = Vector2(0.3, 0.3)
 texture_normal = ExtResource("1_sgxtr")
+texture_disabled = ExtResource("1_sgxtr")
 stretch_mode = 0
 script = ExtResource("2_u3mta")
 
@@ -77,3 +78,5 @@ script = ExtResource("2_u3mta")
 libraries = {
 "": SubResource("AnimationLibrary_2cd4q")
 }
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

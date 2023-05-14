@@ -7,10 +7,7 @@ var current_shield = 0
 var max_shield = 100
 var alive = true
 
-##If larger than 0, wanderer is attacking
-#var number_of_buffered_attacks = 0
-
-#Eperiment to queue animations
+#Array to store all upcoming animations, animation is popped from front when time to play it comes
 var animation_queue = []
 
 #Targeted enemies references
