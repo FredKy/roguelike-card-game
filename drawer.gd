@@ -1,7 +1,7 @@
 extends Node2D
 
 const S = 15
-const GAP = 25
+const GAP = 20
 const LINE_WIDTH = 2
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +24,12 @@ func _draw():
 					var direction = diff.normalized()
 					var start_diff = GAP*direction
 					var end_diff = -GAP*direction
-					draw_dashed(node.position + start_diff + Vector2(S,S), end_node.position + end_diff + Vector2(S,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
+					var start_pos = node.position + start_diff + Vector2(S,S)
+					var end_pos = end_node.position + end_diff + Vector2(S,S)
+					if end_node.big:
+						end_pos += Vector2(15, 15)
+					#draw_dashed(node.position + start_diff + Vector2(S,S), end_node.position + end_diff + Vector2(S,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
+					draw_dashed_line(start_pos, end_pos, Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
 
 
 func draw_dashed(from, to, color, width, dash_length = 5, cap_end = false, antialiased = false):

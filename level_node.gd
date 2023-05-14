@@ -5,6 +5,7 @@ extends TextureButton
 @export var index: int = 0
 @export var texture: Texture = load("res://assets/images/icons/Skull_Icon_(Noun_Project)_modified.png")
 @export var scene_path = "res://playspace.tscn"
+@export var big = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	texture_normal = texture
