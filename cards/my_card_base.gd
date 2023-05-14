@@ -114,52 +114,50 @@ func _input(event):
 					var enemy_size = enemies.get_child(i).size
 					mouse_pos = get_global_mouse_position()
 					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-							#Only allow attack if it's not wasted damage, otherwise return to hand.
-							if not enemies.get_child(i).is_already_dead():
-								# Move card to discard pile
-								setup = true
-								moving_to_discard = true
-								state = MOVE_TO_DISCARD_PILE
-								card_select = true
-								
-								# Remove energy
-								$'../../../'.update_energy_and_cards_playability(card_info[1])
-								
-								var attack_number = card_info[5]
-								enemies.get_child(i).buffered_damage += attack_number
+					and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+						#Only allow attack if it's not wasted damage, otherwise return to hand.
+						if not enemies.get_child(i).is_already_dead():
+							# Move card to discard pile
+							setup = true
+							moving_to_discard = true
+							state = MOVE_TO_DISCARD_PILE
+							card_select = true
+							
+							# Remove energy
+							$'../../../'.update_energy_and_cards_playability(card_info[1])
+							
+							var attack_number = card_info[5]
+							enemies.get_child(i).buffered_damage += attack_number
 
-								print("attacking")
-								
-								# Play attack animation
-								if card_info[2] == "Ice Cannon":
-									$'../../../Wanderer'.ice_cannon()
-									#await get_tree().create_timer(2.0).timeout
-								
-								# Deal with damage
+							print("attacking")
+							
+							# Play attack animation
+							if card_info[2] == "Ice Cannon":
+								$'../../../Wanderer'.ice_cannon()
+								#await get_tree().create_timer(2.0).timeout
+							
+							# Deal with damage
 
-								#Queue up enemy for damage calculation in Wanderers animation finished function
-								$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
-								#Queue up damage
-								$'../../../Wanderer'.attack_number_queue.append(attack_number)
-								
-								#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
+							#Queue up enemy for damage calculation in Wanderers animation finished function
+							$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
+							#Queue up damage
+							$'../../../Wanderer'.attack_number_queue.append(attack_number)
+							
+							#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 
-								print("stopped attacking")
-								break
-							else:
-								if state != IN_DISCARD_PILE:
-									setup = true
-									targetpos = default_pos
-									state = REORGANIZE_HAND
-									card_select = true
-								break
-					else:
-						if state != IN_DISCARD_PILE:
+							print("stopped attacking")
+							break
+						else:
 							setup = true
 							targetpos = default_pos
 							state = REORGANIZE_HAND
 							card_select = true
+							break
+					else:
+						setup = true
+						targetpos = default_pos
+						state = REORGANIZE_HAND
+						card_select = true
 						break
 			elif card_info[0] == "shield":
 				mouse_pos = get_global_mouse_position()
@@ -183,21 +181,14 @@ func _input(event):
 					#Queue up shield number to be used when Wanderer animation finished
 					$'../../../Wanderer'.shield_number_queue.append(shield_number)
 				else:
-					if state != IN_DISCARD_PILE:
-							setup = true
-							targetpos = default_pos
-							state = REORGANIZE_HAND
-							card_select = true
-			else:
-				if state != IN_DISCARD_PILE:
 					setup = true
 					targetpos = default_pos
 					state = REORGANIZE_HAND
 					card_select = true
-			if not card_select:
+			else:
 				setup = true
-				moving_into_play = true
-				state = IN_DISCARD_PILE
+				targetpos = default_pos
+				state = REORGANIZE_HAND
 				card_select = true
 
 
