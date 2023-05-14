@@ -19,10 +19,6 @@ const RESHUFFLE_TIME = 0.25
 const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
 const IN_MOUSE_TIME = 0.1
-var tween
-var tween_d
-var tween_r
-var tween_reorganize
 
 var setup = true
 var start_scale = Vector2()
@@ -290,13 +286,6 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-#				if !tween:
-#					tween = create_tween()
-#					tween.set_ease(Tween.EASE_IN_OUT)
-#					tween.set_trans(Tween.TRANS_CUBIC)
-#					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
-#					tween.tween_property(self, "position", targetpos, DRAWTIME)
-#					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
 				position = startpos.lerp(targetpos, parametric_blend(t))
 				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
 #				position = startpos.lerp(targetpos, t)
