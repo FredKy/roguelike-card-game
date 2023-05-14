@@ -24,3 +24,5 @@ res://level_node.tscn
 res://level_node.gd
 res://button.gd
 res://energy.gd
+res://resources/enemy_resource_base.gd
+res://scripts/enemy_resource_base.gd

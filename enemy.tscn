@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=45 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="Texture2D" uid="uid://b1aiaqcbedt5h" path="res://assets/images/enemies/skeleton_warrior/Protect.png" id="2_parg0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://bvjoo1eg2j1v1" path="res://assets/images/enemies/skeleton_warrior/Attack_3.png" id="5_l8fmw"]
 [ext_resource type="Texture2D" uid="uid://pavcyv5by8mp" path="res://assets/images/enemies/skeleton_warrior/Dead.png" id="6_kv6fw"]
+[ext_resource type="Texture2D" uid="uid://0q1ht45o1cu" path="res://assets/images/enemies/skeleton_warrior/Hurt.png" id="7_6p4jh"]
 [ext_resource type="Texture2D" uid="uid://dqf3f1oybljsh" path="res://assets/images/enemies/stiletto_red_outline.png" id="8_3pfcg"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="9_oe0vm"]
 
@@ -90,6 +91,14 @@ region = Rect2(384, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_q1qny"]
 atlas = ExtResource("2_parg0")
 region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll8x6"]
+atlas = ExtResource("7_6p4jh")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4c1v"]
+atlas = ExtResource("7_6p4jh")
+region = Rect2(128, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sbn5g"]
 atlas = ExtResource("3_812oa")
@@ -216,6 +225,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ll8x6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4c1v")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_sbn5g")
 }, {
 "duration": 1.0,
@@ -301,7 +321,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"defend"
+animation = &"hurt"
 centered = false
 flip_h = true
 

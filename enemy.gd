@@ -10,6 +10,8 @@ var shield_value = 8.0
 #May be simplified later
 var buffered_damage = 0
 
+@onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
+
 #Intents
 enum {
 	ATTACK,
@@ -23,14 +25,15 @@ func _ready():
 	#$VBoxContainer/ImageContainer/Image.scale.x *= -1
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.get_minimum_size()/$VBoxContainer/ImageContainer/Image.texture.size
 	$VBoxContainer/ImageContainer/Image.scale *= 4
-	#$VBoxContainer/ImageContainer/AnimatedSprite2D.scale *= 4
+	#sprite.scale *= 4
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+	sprite.animation = "idle"
 	$AttackIntent/Damage.text = "2x" + str(attack_damage)
 
 
 func change_health_and_check_if_dead(number):
+	play_hurt()
 	buffered_damage -= number
 	current_health -= number
 	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
@@ -42,6 +45,9 @@ func change_health_and_check_if_dead(number):
 		play_death_animation_and_die()
 		return true
 	return false
+
+func play_hurt():
+	sprite.animation = "hurt"
 
 #Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
 #This function is used to prevent the player from wasting an attack card on an already dead enemy.
@@ -55,7 +61,7 @@ func start_attacking():
 	print("Attack!")
 	$AttackIntent.visible = false
 	await get_tree().create_timer(0.5).timeout
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_2"
+	sprite.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 	if has_killed_player:
 		z_index = 3
@@ -70,28 +76,28 @@ func complete_attack():
 	await get_tree().create_timer(2.5).timeout
 
 func start_defending():
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "defend"
+	sprite.animation = "defend"
 
 func _on_animated_sprite_2d_animation_finished():
 	if has_killed_player:
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+		sprite.animation = "idle"
+		sprite.play()
 		return
 		
-	if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "attack_2":
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "attack_3"
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+	if sprite.animation == "attack_2":
+		sprite.animation = "attack_3"
+		sprite.play()
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 		if has_killed_player:
 			$'../../'.animate_stuff_when_player_dies()
-	elif $VBoxContainer/ImageContainer/AnimatedSprite2D.animation == "dead":
+	elif sprite.animation == "dead":
 		pass
 	else:
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+		sprite.animation = "idle"
+		sprite.play()
 
 func play_death_animation_and_die():
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
+	sprite.animation = "dead"
 	$AttackIntent.visible = false
 	alive = false
 	#Check if any buddies are alive, if not fade out UI stuff and trigger win function
