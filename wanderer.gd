@@ -1,10 +1,10 @@
 extends MarginContainer
 
 @onready var game_state = get_node("/root/GameState")
-var current_health = 4
-var max_health = 4
-var current_shield = 0
-var max_shield = 100
+var current_health = 4.0
+var max_health = 4.0
+var current_shield = 0.0
+var max_shield = 100.0
 var alive = true
 
 #Array to store all upcoming animations, animation is popped from front when time to play it comes

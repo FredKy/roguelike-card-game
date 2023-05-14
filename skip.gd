@@ -6,6 +6,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-func _on_gui_input(event):
+func _on_gui_input(_event):
 	if Input.is_action_just_released("leftclick") and disabled == false:
 		get_tree().change_scene_to_file("res://map.tscn")

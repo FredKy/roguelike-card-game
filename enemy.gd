@@ -1,11 +1,11 @@
 extends MarginContainer
 
-var current_health = 10
-var max_health = 10
-var attack_damage = 4
+var current_health = 10.0
+var max_health = 10.0
+var attack_damage = 4.0
 var has_killed_player = false
 var alive = true
-var shield_value = 8
+var shield_value = 8.0
 
 #May be simplified later
 var buffered_damage = 0
