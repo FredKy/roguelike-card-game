@@ -26,3 +26,7 @@ res://button.gd
 res://energy.gd
 res://resources/enemy_resource_base.gd
 res://scripts/enemy_resource_base.gd
+res://resources/skeleton_spearman_sprite_frames.tres
+res://resources/skeleton_spearman.tres
+res://resources/skeleton_warrior.tres
+res://resources/skeleton_warrior_sprite_frames.tres

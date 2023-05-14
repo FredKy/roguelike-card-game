@@ -10,6 +10,7 @@ var shield_value = 8.0
 #May be simplified later
 var buffered_damage = 0
 
+@export var enemy_resource: Resource
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
 
 #Intents
@@ -22,14 +23,14 @@ var intent = ATTACK
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$VBoxContainer/ImageContainer/Image.scale.x *= -1
-	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.get_minimum_size()/$VBoxContainer/ImageContainer/Image.texture.size
-	$VBoxContainer/ImageContainer/Image.scale *= 4
-	#sprite.scale *= 4
+	enemy_resource = load("res://resources/skeleton_spearman.tres")
+	print(enemy_resource.intent_position)
+	
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
 	$AttackIntent/Damage.text = "2x" + str(attack_damage)
+	$AttackIntent.position = enemy_resource.intent_position
 
 
 func change_health_and_check_if_dead(number):
