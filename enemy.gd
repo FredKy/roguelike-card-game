@@ -32,6 +32,8 @@ func _ready():
 	sprite.animation = "idle"
 	$AttackIntent/Damage.text = "2x" + str(attack_damage)
 	$AttackIntent.position = enemy_resource.intent_position
+	
+	scale *= 0.4
 
 
 func change_health_and_check_if_dead(number):
@@ -110,9 +112,5 @@ func play_death_animation_and_die():
 func set_new_intent():
 	$AttackIntent.visible = true
 	intent = ATTACK
-
-
-	
-	
 
 

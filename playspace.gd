@@ -4,6 +4,7 @@ extends Node2D
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
 const GAME_OVER_BG := preload("res://game_over_bg.tscn")
+const ENEMY := preload("res://enemy.tscn")
 #var player_deck := preload("res://scripts/player_deck.gd").new()
 var player_deck = []
 var card_selected = []
@@ -38,6 +39,15 @@ enum {
 	DEFEND,
 }
 
+#Battle type
+enum {
+	SKELETON_WARRIOR,
+	SKELETON_SPEARMAN,
+	WARRIOR_AND_SPEARMAN,
+}
+
+var battle_type = WARRIOR_AND_SPEARMAN
+
 var player_turn = true
 var a_card_is_in_mouse = false
 var is_dealing_cards = false
@@ -47,6 +57,33 @@ func _ready():
 	player_deck = game_state.global_player_deck.duplicate()
 	randomize()
 	$EndTurnButtonNode.visible = false
+	
+	match battle_type:
+		SKELETON_WARRIOR:
+			var e = ENEMY.instantiate()
+			e.enemy_resource = load("res://resources/skeleton_warrior.tres")
+			e.loaded_sprite_frames = load("res://resources/skeleton_warrior_sprite_frames.tres")
+			e.position = Vector2(760, 80)
+			$Enemies.add_child(e)
+		SKELETON_SPEARMAN:
+			var e = ENEMY.instantiate()
+			e.enemy_resource = load("res://resources/skeleton_spearman.tres")
+			e.loaded_sprite_frames = load("res://resources/skeleton_spearman_sprite_frames.tres")
+			e.position = Vector2(760, 80)
+			$Enemies.add_child(e)
+		WARRIOR_AND_SPEARMAN:
+			var warrior = ENEMY.instantiate()
+			warrior.enemy_resource = load("res://resources/skeleton_warrior.tres")
+			warrior.loaded_sprite_frames = load("res://resources/skeleton_warrior_sprite_frames.tres")
+			warrior.position = Vector2(550, 80)
+			$Enemies.add_child(warrior)
+			var spearman = ENEMY.instantiate()
+			spearman.enemy_resource = load("res://resources/skeleton_spearman.tres")
+			spearman.loaded_sprite_frames = load("res://resources/skeleton_spearman_sprite_frames.tres")
+			spearman.position = Vector2(800, 80)
+			$Enemies.add_child(spearman)
+			
+	
 	$Enemies/Enemy.visible = true
 	#$Enemies/Enemy.position = Vector2(760, 80)
 	#$Enemies/Enemy.scale *= 0.4

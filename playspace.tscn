@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=25 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
-[ext_resource type="PackedScene" uid="uid://kg4iru48tvr4" path="res://enemy.tscn" id="2_7uo8r"]
 [ext_resource type="Texture2D" uid="uid://bnaeevijy5rpp" path="res://assets/images/bg/battleback2.png" id="2_tx2wc"]
 [ext_resource type="Texture2D" uid="uid://cex1jwjhicuct" path="res://assets/images/card_back.png" id="3_plwv1"]
 [ext_resource type="Script" path="res://deck_draw.gd" id="5_rd6np"]
@@ -194,13 +193,6 @@ _data = {
 script = ExtResource("1_rla1j")
 
 [node name="Enemies" type="Node" parent="."]
-
-[node name="Enemy" parent="Enemies" instance=ExtResource("2_7uo8r")]
-offset_left = 760.0
-offset_top = 80.0
-offset_right = 1270.0
-offset_bottom = 657.0
-scale = Vector2(0.4, 0.4)
 
 [node name="CardsReshuffled" type="Node" parent="."]
 

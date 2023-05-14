@@ -16,3 +16,4 @@ res://cards/my_card_base.gd
 res://playspace.gd
 res://enemy.gd
 res://resources/skeleton_warrior_sprite_frames.tres
+res://scripts/game_state.gd
