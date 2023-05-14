@@ -397,12 +397,6 @@ func _physics_process(delta):
 					targetpos = discard_pile
 					$'../../../'.reparent_to_discarded_cards(card_numb)
 				if t <= 1:
-#					if !tween_d:
-#						tween_d = create_tween()
-#						tween_d.set_ease(Tween.EASE_IN_OUT)
-#						tween_d.set_trans(Tween.TRANS_CUBIC)
-#						tween_d.tween_property(self, "position", targetpos, DRAWTIME)
-#						tween_d.parallel().tween_property(self, "rotation", 2*PI, DRAWTIME)
 					position = startpos.lerp(targetpos, parametric_blend(t))
 					rotation = startrot*(1-parametric_blend(t)) + (2*PI)*parametric_blend(t)
 					scale = start_scale*(1-t) + orig_scale*t
@@ -428,12 +422,6 @@ func _physics_process(delta):
 				reset_pos_rot_scale_and_time()
 				targetpos = $'../../../Deck'.position + Vector2(9,9)
 			if t <= 1:
-#				if !tween_r:
-#					tween_r = create_tween()
-#					tween_r.set_ease(Tween.EASE_IN_OUT)
-#					tween_r.set_trans(Tween.TRANS_CUBIC)
-#					tween_r.tween_property(self, "position", targetpos, RESHUFFLE_TIME)
-#					tween_r.parallel().tween_property(self, "rotation", -2*PI, RESHUFFLE_TIME)
 				position = startpos.lerp(targetpos, parametric_blend(t))
 				rotation = startrot*(1-parametric_blend(t)) + (-2*PI)*parametric_blend(t)
 				

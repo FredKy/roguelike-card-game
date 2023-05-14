@@ -28,7 +28,6 @@ func _draw():
 					var end_pos = end_node.position + end_diff + Vector2(S,S)
 					if end_node.big:
 						end_pos += Vector2(15, 15)
-					#draw_dashed(node.position + start_diff + Vector2(S,S), end_node.position + end_diff + Vector2(S,S), Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
 					draw_dashed_line(start_pos, end_pos, Color(0, 0, 0, 1), LINE_WIDTH, 10, false)
 
 

@@ -280,7 +280,7 @@ func start_player_turn():
 
 func show_turn_message(txt):
 	$TurnMessage.text = txt
-	$TurnMessageAP.play("show_message")
+	$TurnMessage/TurnMessageAP.play("show_message")
 
 func show_game_over_bg():
 	var instance = GAME_OVER_BG.instantiate()
@@ -306,4 +306,4 @@ func do_stuff_when_all_enemies_are_dead():
 
 func do_stuff_when_player_has_won():
 	game_state.global_player_current_health = $Wanderer.current_health
-	$SkipAP.play("fade_in")
+	$Skip/SkipAP.play("fade_in")

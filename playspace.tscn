@@ -310,12 +310,6 @@ libraries = {
 "": SubResource("AnimationLibrary_ha7vi")
 }
 
-[node name="TurnMessageAP" type="AnimationPlayer" parent="."]
-root_node = NodePath("../TurnMessage")
-libraries = {
-"": SubResource("AnimationLibrary_6vfkj")
-}
-
 [node name="TurnMessage" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = 3
@@ -335,10 +329,9 @@ text = "Player turn"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SkipAP" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Skip")
+[node name="TurnMessageAP" type="AnimationPlayer" parent="TurnMessage"]
 libraries = {
-"": SubResource("AnimationLibrary_jnspr")
+"": SubResource("AnimationLibrary_6vfkj")
 }
 
 [node name="Skip" type="Button" parent="."]
@@ -351,6 +344,11 @@ theme_override_fonts/font = ExtResource("10_bugjp")
 theme_override_font_sizes/font_size = 35
 text = "Move on"
 script = ExtResource("12_rw0w6")
+
+[node name="SkipAP" type="AnimationPlayer" parent="Skip"]
+libraries = {
+"": SubResource("AnimationLibrary_jnspr")
+}
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
