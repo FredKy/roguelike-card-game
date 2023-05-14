@@ -10,8 +10,10 @@ var shield_value = 8.0
 #May be simplified later
 var buffered_damage = 0
 
-@export var enemy_resource: Resource = load("res://resources/skeleton_spearman.tres")
-@export var loaded_sprite_frames: SpriteFrames = load("res://resources/skeleton_spearman_sprite_frames.tres")
+#@export var enemy_resource: Resource = load("res://resources/skeleton_spearman.tres")
+@export var enemy_resource: Resource
+#@export var loaded_sprite_frames: SpriteFrames = load("res://resources/skeleton_spearman_sprite_frames.tres")
+@export var loaded_sprite_frames: SpriteFrames
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
 
 #Intents
@@ -21,6 +23,11 @@ enum {
 }
 
 var intent = ATTACK
+
+func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), l_s_f = load("res://resources/skeleton_spearman_sprite_frames.tres")):
+	position = pos
+	enemy_resource = e_r
+	loaded_sprite_frames = l_s_f
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +41,7 @@ func _ready():
 	$AttackIntent.position = enemy_resource.intent_position
 	
 	scale *= 0.4
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 
 
 func change_health_and_check_if_dead(number):
@@ -112,5 +120,6 @@ func play_death_animation_and_die():
 func set_new_intent():
 	$AttackIntent.visible = true
 	intent = ATTACK
+
 
 

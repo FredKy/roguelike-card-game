@@ -46,7 +46,7 @@ enum {
 	WARRIOR_AND_SPEARMAN,
 }
 
-var battle_type = WARRIOR_AND_SPEARMAN
+var battle_type = SKELETON_WARRIOR
 
 var player_turn = true
 var a_card_is_in_mouse = false
@@ -61,33 +61,22 @@ func _ready():
 	match battle_type:
 		SKELETON_WARRIOR:
 			var e = ENEMY.instantiate()
-			e.enemy_resource = load("res://resources/skeleton_warrior.tres")
-			e.loaded_sprite_frames = load("res://resources/skeleton_warrior_sprite_frames.tres")
-			e.position = Vector2(760, 80)
+			e.init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres"))
 			$Enemies.add_child(e)
 		SKELETON_SPEARMAN:
 			var e = ENEMY.instantiate()
-			e.enemy_resource = load("res://resources/skeleton_spearman.tres")
-			e.loaded_sprite_frames = load("res://resources/skeleton_spearman_sprite_frames.tres")
-			e.position = Vector2(760, 80)
+			e.init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres"))
 			$Enemies.add_child(e)
 		WARRIOR_AND_SPEARMAN:
 			var warrior = ENEMY.instantiate()
-			warrior.enemy_resource = load("res://resources/skeleton_warrior.tres")
-			warrior.loaded_sprite_frames = load("res://resources/skeleton_warrior_sprite_frames.tres")
-			warrior.position = Vector2(550, 80)
+			warrior.init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres"))
 			$Enemies.add_child(warrior)
 			var spearman = ENEMY.instantiate()
-			spearman.enemy_resource = load("res://resources/skeleton_spearman.tres")
-			spearman.loaded_sprite_frames = load("res://resources/skeleton_spearman_sprite_frames.tres")
-			spearman.position = Vector2(800, 80)
+			spearman.init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres"))
 			$Enemies.add_child(spearman)
 			
 	
-	$Enemies/Enemy.visible = true
-	#$Enemies/Enemy.position = Vector2(760, 80)
-	#$Enemies/Enemy.scale *= 0.4
-	$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true
 	#$Wanderer.position = Vector2(100, 80)
 	#$Wanderer.scale *= 0.4
