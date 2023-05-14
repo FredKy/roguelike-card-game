@@ -31,3 +31,5 @@ res://resources/skeleton_spearman.tres
 res://resources/skeleton_warrior.tres
 res://resources/skeleton_warrior_sprite_frames.tres
 res://drawer.gd
+cards/my_card_base.gd
+level_node.tscn

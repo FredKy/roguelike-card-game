@@ -119,6 +119,7 @@ libraries = {
 }
 
 [node name="RedDownArrow" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(40, -63.3334)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_depom")
@@ -129,6 +130,7 @@ libraries = {
 }
 
 [node name="Wanderer" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(46.6667, 46.6667)
 texture = ExtResource("4_cqa50")
 

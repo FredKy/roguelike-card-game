@@ -327,9 +327,8 @@ func _physics_process(delta):
 #					#tween.interpolate_value(startpos, targetpos-startpos,DRAWTIME,1,Tween.TRANS_CUBIC,Tween.EASE_IN_OUT)
 #					tween.tween_property(self, "position", targetpos, DRAWTIME)
 #					tween.parallel().tween_property(self, "rotation", 2*PI+targetrot, DRAWTIME)
-				var x = parametric_blend(t)
-				position = startpos.lerp(targetpos, x)
-				rotation = startrot*(1-x) + (2*PI+targetrot)*x
+				position = startpos.lerp(targetpos, parametric_blend(t))
+				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
 #				position = startpos.lerp(targetpos, t)
 #				rotation = startrot*(1-t) + (2*PI+targetrot)*t
 				var flip_time_factor = 1.2 # 20% faster
@@ -398,12 +397,14 @@ func _physics_process(delta):
 					targetpos = discard_pile
 					$'../../../'.reparent_to_discarded_cards(card_numb)
 				if t <= 1:
-					if !tween_d:
-						tween_d = create_tween()
-						tween_d.set_ease(Tween.EASE_IN_OUT)
-						tween_d.set_trans(Tween.TRANS_CUBIC)
-						tween_d.tween_property(self, "position", targetpos, DRAWTIME)
-						tween_d.parallel().tween_property(self, "rotation", 2*PI, DRAWTIME)
+#					if !tween_d:
+#						tween_d = create_tween()
+#						tween_d.set_ease(Tween.EASE_IN_OUT)
+#						tween_d.set_trans(Tween.TRANS_CUBIC)
+#						tween_d.tween_property(self, "position", targetpos, DRAWTIME)
+#						tween_d.parallel().tween_property(self, "rotation", 2*PI, DRAWTIME)
+					position = startpos.lerp(targetpos, parametric_blend(t))
+					rotation = startrot*(1-parametric_blend(t)) + (2*PI)*parametric_blend(t)
 					scale = start_scale*(1-t) + orig_scale*t
 					var flip_time_factor = 1.2 # 20% faster
 					if t < float(1/flip_time_factor):
@@ -427,12 +428,15 @@ func _physics_process(delta):
 				reset_pos_rot_scale_and_time()
 				targetpos = $'../../../Deck'.position + Vector2(9,9)
 			if t <= 1:
-				if !tween_r:
-					tween_r = create_tween()
-					tween_r.set_ease(Tween.EASE_IN_OUT)
-					tween_r.set_trans(Tween.TRANS_CUBIC)
-					tween_r.tween_property(self, "position", targetpos, RESHUFFLE_TIME)
-					tween_r.parallel().tween_property(self, "rotation", -2*PI, RESHUFFLE_TIME)
+#				if !tween_r:
+#					tween_r = create_tween()
+#					tween_r.set_ease(Tween.EASE_IN_OUT)
+#					tween_r.set_trans(Tween.TRANS_CUBIC)
+#					tween_r.tween_property(self, "position", targetpos, RESHUFFLE_TIME)
+#					tween_r.parallel().tween_property(self, "rotation", -2*PI, RESHUFFLE_TIME)
+				position = startpos.lerp(targetpos, parametric_blend(t))
+				rotation = startrot*(1-parametric_blend(t)) + (-2*PI)*parametric_blend(t)
+				
 				t += delta/float(RESHUFFLE_TIME)
 			else:
 				position = targetpos
