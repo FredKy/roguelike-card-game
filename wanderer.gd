@@ -35,10 +35,6 @@ func _ready():
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func change_health_and_check_if_dead(damage_number):
 	play_hurt()
 	if damage_number > current_shield:

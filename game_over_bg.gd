@@ -7,10 +7,6 @@ func _ready():
 	$AnimationPlayer.play("fade_in")
 	$Visibility.modulate = Color(1,1,1,0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-#
 #func fade_in():
 #	$AnimationPlayer.play("fade_in")
 

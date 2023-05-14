@@ -6,12 +6,7 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_gui_input(event):
+func _on_gui_input(_event):
 	var player_animation = $'../../Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D'.animation
 	if Input.is_action_just_released("leftclick") and disabled == false\
 	and player_animation == "idle" and $'../../'.some_enemy_is_alive()\

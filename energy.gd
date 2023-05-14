@@ -10,10 +10,6 @@ func _ready():
 	$MarginContainer/BG/Amount.text = str(STARTING_ENERGY) + "/" + str(MAX_ENERGY)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func reduce_energy(n):
 	energy -= n
 	$MarginContainer/BG/Amount.text = str(energy) + "/" + str(MAX_ENERGY)

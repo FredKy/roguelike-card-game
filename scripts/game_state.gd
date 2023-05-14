@@ -17,11 +17,6 @@ func _ready():
 	reset_game_state()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func reset_game_state():
 	global_player_deck = STARTER_DECK.duplicate()
 	global_player_max_health = STARTER_PLAYER_MAX_HEALTH

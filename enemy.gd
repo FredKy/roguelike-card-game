@@ -30,10 +30,6 @@ func _ready():
 	$AttackIntent/Damage.text = "2x" + str(attack_damage)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func change_health_and_check_if_dead(number):
 	buffered_damage -= number
 	current_health -= number

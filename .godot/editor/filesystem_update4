@@ -22,3 +22,5 @@ res://skip.gd
 res://map.gd
 res://level_node.tscn
 res://level_node.gd
+res://button.gd
+res://energy.gd
