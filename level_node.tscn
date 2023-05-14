@@ -5,6 +5,33 @@
 [ext_resource type="Texture2D" uid="uid://dlwb2x2g43fjy" path="res://assets/images/icons/red_down_arrow.svg" id="3_depom"]
 [ext_resource type="Texture2D" uid="uid://blyj8abhsj6fn" path="res://assets/images/icons/wanderer.png" id="4_cqa50"]
 
+[sub_resource type="Animation" id="Animation_yrwpn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_mmtfu"]
 resource_name = "scale"
 loop_mode = 1
@@ -34,37 +61,25 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.69), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_yrwpn"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cd4q"]
+_data = {
+"RESET": SubResource("Animation_yrwpn"),
+"scale": SubResource("Animation_mmtfu")
+}
+
+[sub_resource type="Animation" id="Animation_8k4ev"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.3, 0.3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cd4q"]
-_data = {
-"RESET": SubResource("Animation_yrwpn"),
-"scale": SubResource("Animation_mmtfu")
+"values": [Vector2(40, -63.3334)]
 }
 
 [sub_resource type="Animation" id="Animation_ugsaq"]
@@ -81,21 +96,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(40, -63.3334), Vector2(40, -73.333), Vector2(40, -63.3334)]
-}
-
-[sub_resource type="Animation" id="Animation_8k4ev"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(40, -63.3334)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_aj72r"]
