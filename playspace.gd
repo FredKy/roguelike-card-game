@@ -23,7 +23,6 @@ var oval_angle_vector = Vector2()
 
 enum {
 	IN_HAND,
-	IN_PLAY,
 	IN_MOUSE,
 	FOCUS_IN_HAND,
 	DRAWN_TO_HAND,

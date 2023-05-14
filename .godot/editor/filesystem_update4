@@ -13,3 +13,4 @@ res://menu.tscn
 res://map.tscn
 res://game_over_bg.tscn
 res://cards/my_card_base.gd
+res://playspace.gd

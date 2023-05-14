@@ -44,8 +44,6 @@ var moving_to_discard = false
 
 var mouse_pos = Vector2()
 var left_hand_side = false
-var card_in_play = false
-var zoom_scale_in_play = 1.2
 var old_pos = Vector2()
 var old_scale = Vector2()
 var reparent = true # Wether or not card can be reparented
@@ -54,7 +52,6 @@ var enabled = true
 
 enum {
 	IN_HAND,
-	IN_PLAY,
 	IN_MOUSE,
 	FOCUS_IN_HAND,
 	DRAWN_TO_HAND,
@@ -64,7 +61,7 @@ enum {
 	MOVE_TO_DECK,
 	NOTHING,
 }
-var state = IN_HAND
+var state = DRAWN_TO_HAND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -86,10 +83,6 @@ func _ready():
 func _input(event):
 #	if $'../../../'.is_dealing_cards:
 #		return
-#	if event.is_action_pressed("rightclick") or event.is_action_released("leftclick"):
-#		return
-#	match state:
-#		FOCUS_IN_HAND, IN_MOUSE, IN_PLAY:
 	if event.is_action_pressed("leftclick"): # Pick up card
 		if state == FOCUS_IN_HAND:
 			if card_select && enabled:
@@ -206,23 +199,6 @@ func _physics_process(delta):
 			else:
 				$Focus.visible = true
 				$Focus.disabled = false
-		IN_PLAY:
-			if moving_into_play:
-				if setup:
-					reset_pos_rot_scale_and_time()
-					if reparent:
-						$'../../../'.reparent_card(card_numb)
-						reparent = false
-				if t <= 1:
-					position = startpos.lerp(targetpos, t)
-					rotation = startrot*(1-t) + 0*t
-					scale = start_scale*(1-t) + target_scale*t
-					t += delta/float(IN_MOUSE_TIME)
-				else:
-					position = targetpos
-					rotation = 0
-					scale = target_scale
-					moving_into_play = false
 		IN_MOUSE:
 			$GlowingBorder.visible = true
 			if card_info[0] == "attack":
