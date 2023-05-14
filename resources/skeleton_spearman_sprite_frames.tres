@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=32 format=3 uid="uid://br00wojcy2l6p"]
+[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://br00wojcy2l6p"]
 
 [ext_resource type="Texture2D" uid="uid://bvwq38pok8rsn" path="res://assets/images/enemies/skeleton_spearman/Idle.png" id="1_pyqgl"]
 [ext_resource type="Texture2D" uid="uid://bt80ngkbgg6t1" path="res://assets/images/enemies/skeleton_spearman/Attack_1.png" id="1_wlq1w"]
@@ -37,6 +37,22 @@ region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yofj5"]
 atlas = ExtResource("2_leumt")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxc21"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv3h6"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrt52"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tml87"]
+atlas = ExtResource("1_wlq1w")
 region = Rect2(384, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uut1o"]
@@ -141,6 +157,23 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxc21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv3h6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrt52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tml87")
+}],
+"loop": false,
+"name": &"attack_3",
 "speed": 5.0
 }, {
 "frames": [{

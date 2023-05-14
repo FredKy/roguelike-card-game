@@ -22,3 +22,4 @@ func activate_nodes_on_player_path():
 		if node_indeces.find(node.index) > -1:
 			node.disabled = false
 			node.play_scale_animation()
+

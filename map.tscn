@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbsyeffo6745e"]
+[gd_scene load_steps=6 format=3 uid="uid://bbsyeffo6745e"]
 
 [ext_resource type="Texture2D" uid="uid://c6v1uure6k4a5" path="res://assets/images/bg/parchment.jpg" id="1_ip8hl"]
 [ext_resource type="Script" path="res://map.gd" id="1_prldi"]
 [ext_resource type="PackedScene" uid="uid://b2crre43hhnbc" path="res://level_node.tscn" id="3_8kd4y"]
+[ext_resource type="Script" path="res://drawer.gd" id="4_bm7yo"]
+[ext_resource type="Texture2D" uid="uid://cgc467sbj5xq2" path="res://assets/images/icons/desert-skull-smaller.png" id="4_g0hpy"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_prldi")
@@ -12,7 +14,17 @@ position = Vector2(576.5, 323)
 scale = Vector2(0.247059, 0.208)
 texture = ExtResource("1_ip8hl")
 
+[node name="Drawer" type="Node2D" parent="."]
+script = ExtResource("4_bm7yo")
+
 [node name="MapNodes" type="Node" parent="."]
+
+[node name="Start" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+visible = false
+offset_left = 96.0
+offset_top = 285.0
+offset_right = 183.0
+offset_bottom = 385.0
 
 [node name="Level1A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 203.0
@@ -111,3 +123,11 @@ offset_top = 441.0
 offset_right = 935.0
 offset_bottom = 541.0
 index = 14
+
+[node name="Boss" parent="MapNodes" instance=ExtResource("3_8kd4y")]
+offset_left = 965.0
+offset_top = 265.0
+offset_right = 1052.0
+offset_bottom = 365.0
+index = 15
+texture = ExtResource("4_g0hpy")
