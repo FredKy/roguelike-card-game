@@ -60,20 +60,12 @@ func _ready():
 	
 	match battle_type:
 		SKELETON_WARRIOR:
-			var e = ENEMY.instantiate()
-			e.init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres"))
-			$Enemies.add_child(e)
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres")))
 		SKELETON_SPEARMAN:
-			var e = ENEMY.instantiate()
-			e.init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres"))
-			$Enemies.add_child(e)
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres")))
 		WARRIOR_AND_SPEARMAN:
-			var warrior = ENEMY.instantiate()
-			warrior.init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres"))
-			$Enemies.add_child(warrior)
-			var spearman = ENEMY.instantiate()
-			spearman.init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres"))
-			$Enemies.add_child(spearman)
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres")))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()

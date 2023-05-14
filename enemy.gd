@@ -28,6 +28,7 @@ func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.
 	position = pos
 	enemy_resource = e_r
 	loaded_sprite_frames = l_s_f
+	return self
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
