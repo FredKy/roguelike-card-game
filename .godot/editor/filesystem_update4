@@ -16,3 +16,5 @@ res://map.tscn
 res://game_over_bg.tscn
 res://level_node.tscn
 res://misc_scenes/counter.tscn
+res://resources/skeleton_warrior.tres
+res://resources/skeleton_warrior_sprite_frames.tres

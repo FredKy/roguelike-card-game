@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=19 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="SpriteFrames" uid="uid://br00wojcy2l6p" path="res://resources/skeleton_spearman_sprite_frames.tres" id="2_ii8hw"]
@@ -7,6 +7,110 @@
 [ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="7_wyw8v"]
 [ext_resource type="Texture2D" uid="uid://dqf3f1oybljsh" path="res://assets/images/enemies/stiletto_red_outline.png" id="8_3pfcg"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="9_oe0vm"]
+
+[sub_resource type="Animation" id="Animation_jwo5n"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_24toj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_q8ekm"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_23igd"]
+_data = {
+"RESET": SubResource("Animation_24toj"),
+"fade_in": SubResource("Animation_jwo5n"),
+"fade_out": SubResource("Animation_q8ekm")
+}
+
+[sub_resource type="Animation" id="Animation_my6j8"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uwqji"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4vy50"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ayi8b"]
+_data = {
+"RESET": SubResource("Animation_uwqji"),
+"fade_in": SubResource("Animation_my6j8"),
+"fade_out": SubResource("Animation_4vy50")
+}
 
 [sub_resource type="Animation" id="Animation_ufw2g"]
 length = 0.001
@@ -22,6 +126,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Indicators:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_24ata"]
 resource_name = "fade_out"
@@ -32,6 +148,18 @@ tracks/0/path = NodePath("VBoxContainer/Bar:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Indicators:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -69,16 +197,20 @@ flip_h = true
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("3_p63tj")]
 layout_mode = 2
 
-[node name="AttackIntent" type="Sprite2D" parent="."]
+[node name="Intents" type="Node2D" parent="."]
+
+[node name="AttackIntent" type="Sprite2D" parent="Intents"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(235, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_3pfcg")
 
-[node name="Damage" type="Label" parent="AttackIntent"]
-offset_left = -173.333
-offset_top = 233.333
-offset_right = 473.667
-offset_bottom = 437.333
+[node name="Damage" type="Label" parent="Intents/AttackIntent"]
+offset_left = -315.0
+offset_top = 200.0
+offset_right = 332.0
+offset_bottom = 459.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 9
@@ -86,27 +218,36 @@ theme_override_constants/shadow_offset_y = 9
 theme_override_constants/shadow_outline_size = 9
 theme_override_constants/line_spacing = 9
 theme_override_fonts/font = ExtResource("9_oe0vm")
-theme_override_font_sizes/font_size = 200
+theme_override_font_sizes/font_size = 250
 text = "2x2
 "
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="DefendIntent" type="Sprite2D" parent="."]
+[node name="AP" type="AnimationPlayer" parent="Intents/AttackIntent"]
+libraries = {
+"": SubResource("AnimationLibrary_23igd")
+}
+
+[node name="DefendIntent" type="Sprite2D" parent="Intents"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 self_modulate = Color(0.490196, 0.87451, 1, 1)
 position = Vector2(235, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_fe2xb")
+offset = Vector2(0, 60)
 
-[node name="ShieldAmount" type="Label" parent="DefendIntent"]
+[node name="ShieldAmount" type="Label" parent="Intents/DefendIntent"]
 anchors_preset = -1
 anchor_left = -0.5931
 anchor_top = -0.000650376
 anchor_right = -0.5931
 anchor_bottom = 0.0110683
-offset_left = -173.333
-offset_top = 233.333
-offset_right = 473.667
-offset_bottom = 437.333
+offset_left = -21.333
+offset_top = -84.667
+offset_right = 625.667
+offset_bottom = 218.333
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 9
@@ -114,11 +255,16 @@ theme_override_constants/shadow_offset_y = 9
 theme_override_constants/shadow_outline_size = 9
 theme_override_constants/line_spacing = 9
 theme_override_fonts/font = ExtResource("9_oe0vm")
-theme_override_font_sizes/font_size = 200
+theme_override_font_sizes/font_size = 300
 text = "8
 "
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="AP" type="AnimationPlayer" parent="Intents/DefendIntent"]
+libraries = {
+"": SubResource("AnimationLibrary_ayi8b")
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

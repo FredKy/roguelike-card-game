@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_hsxtf")
-intent_position = Vector2(235, -55)
+intent_position = Vector2(235, -75)

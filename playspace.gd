@@ -257,6 +257,8 @@ func start_enemy_turn():
 	if not some_enemy_is_alive():
 		print("You win!")
 		return
+	for enemy in $Enemies.get_children():
+		enemy.reset_shield()
 	player_alive = await run_through_enemies_actions()
 	end_enemy_turn()
 
@@ -281,17 +283,17 @@ func run_through_enemies_actions():
 		#Check so the enemy doesn't return from the dead!
 		if not enemy.alive:
 			continue
+		await get_tree().create_timer(1.0).timeout
 		if enemy.intent == ATTACK:
-			await get_tree().create_timer(1.0).timeout
 			enemy.start_attacking()
 			await get_tree().create_timer(2.5).timeout
 			print("Attack done")
 			if enemy.has_killed_player:
 				return false
 		elif enemy.intent == DEFEND:
-			await get_tree().create_timer(1.0).timeout
 			enemy.start_defending()
 			print("Defending")
+			await get_tree().create_timer(1.5).timeout
 		enemy.shift_to_next_intent()
 	return true
 

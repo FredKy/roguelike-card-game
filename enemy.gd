@@ -6,6 +6,7 @@ var attack_damage = 4.0
 var has_killed_player = false
 var alive = true
 var shield_value = 8.0
+var current_shield = 0
 
 #May be simplified later
 var buffered_damage = 0
@@ -39,13 +40,16 @@ func _ready():
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
-	$AttackIntent/Damage.text = "2x" + str(attack_damage)
-	$AttackIntent.position = enemy_resource.intent_position
-	$DefendIntent/ShieldAmount.text = str(shield_value)
-	set_shield_amount(0)
-	$Indicators/Shield.visible = false
-	$DefendIntent.position = enemy_resource.intent_position
+	$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
+	$Intents/AttackIntent.position = enemy_resource.intent_position
+#	$Intents/DefendIntent/ShieldAmount.text = str(shield_value)
+#	set_shield_amount(0)
+#	$Indicators/Shield.visible = false
+	reset_shield()
+	$Intents/DefendIntent.position = enemy_resource.intent_position
+	
 	shift_to_next_intent()
+	
 	
 	scale *= 0.4
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
@@ -95,6 +99,11 @@ func start_defending():
 	set_shield_amount(shield_value)
 	sprite.animation = "defend"
 
+func reset_shield():
+	current_shield = 0
+	set_shield_amount(0)
+	$Indicators/Shield.visible = false
+
 func _on_animated_sprite_2d_animation_finished():
 	if has_killed_player:
 		sprite.animation = "idle"
@@ -130,10 +139,16 @@ func set_new_intent(new_intent):
 	hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
-			$AttackIntent.visible = true
+			$Intents/AttackIntent/AP.play("RESET")
+			await get_tree().create_timer(0.05).timeout
+			$Intents/AttackIntent.visible = true
+			$Intents/AttackIntent/AP.play("fade_in")
 			intent = ATTACK
 		DEFEND:
-			$DefendIntent.visible = true
+			$Intents/DefendIntent/AP.play("RESET")
+			await get_tree().create_timer(0.05).timeout
+			$Intents/DefendIntent.visible = true
+			$Intents/DefendIntent/AP.play("fade_in")
 			intent = DEFEND
 
 func shift_to_next_intent():
@@ -143,8 +158,12 @@ func shift_to_next_intent():
 	set_new_intent(new_intent)
 
 func hide_all_intent_sprites():
-	$AttackIntent.visible = false
-	$DefendIntent.visible = false
+	for intent in $Intents.get_children():
+		intent.visible = false
+#		if intent.visible:
+#			intent.get_node("AP").play("fade_out")
+#			await get_tree().create_timer(1.0).timeout
+#			intent.visible = false
 
 func fade_out_bars():
 	$AnimateBars.play("fade_out")
