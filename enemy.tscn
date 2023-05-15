@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=11 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="SpriteFrames" uid="uid://br00wojcy2l6p" path="res://resources/skeleton_spearman_sprite_frames.tres" id="2_ii8hw"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://c6711dvcosymh" path="res://assets/images/enemies/checked-shield-white.png" id="6_fe2xb"]
+[ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="7_wyw8v"]
 [ext_resource type="Texture2D" uid="uid://dqf3f1oybljsh" path="res://assets/images/enemies/stiletto_red_outline.png" id="8_3pfcg"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="9_oe0vm"]
 
@@ -68,14 +69,12 @@ flip_h = true
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("3_p63tj")]
 layout_mode = 2
 
-[node name="Intents" type="Node" parent="."]
-
-[node name="AttackIntent" type="Sprite2D" parent="Intents"]
+[node name="AttackIntent" type="Sprite2D" parent="."]
 position = Vector2(235, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_3pfcg")
 
-[node name="Damage" type="Label" parent="Intents/AttackIntent"]
+[node name="Damage" type="Label" parent="AttackIntent"]
 offset_left = -173.333
 offset_top = 233.333
 offset_right = 473.667
@@ -92,11 +91,34 @@ text = "2x2
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="DefendIntent" type="Sprite2D" parent="Intents"]
-modulate = Color(0, 0.611765, 0.74902, 1)
+[node name="DefendIntent" type="Sprite2D" parent="."]
+self_modulate = Color(0.490196, 0.87451, 1, 1)
 position = Vector2(235, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("6_fe2xb")
+
+[node name="ShieldAmount" type="Label" parent="DefendIntent"]
+anchors_preset = -1
+anchor_left = -0.5931
+anchor_top = -0.000650376
+anchor_right = -0.5931
+anchor_bottom = 0.0110683
+offset_left = -173.333
+offset_top = 233.333
+offset_right = 473.667
+offset_bottom = 437.333
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 9
+theme_override_constants/shadow_outline_size = 9
+theme_override_constants/line_spacing = 9
+theme_override_fonts/font = ExtResource("9_oe0vm")
+theme_override_font_sizes/font_size = 200
+text = "8
+"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -106,5 +128,40 @@ layout_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_fh61g")
 }
+
+[node name="Indicators" type="Node2D" parent="."]
+
+[node name="Shield" type="NinePatchRect" parent="Indicators"]
+offset_left = 137.0
+offset_top = 593.0
+offset_right = 246.0
+offset_bottom = 644.0
+texture = ExtResource("7_wyw8v")
+
+[node name="ShieldSprite" type="Sprite2D" parent="Indicators/Shield"]
+self_modulate = Color(0.490196, 0.87451, 1, 1)
+position = Vector2(27, 26)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("6_fe2xb")
+
+[node name="Amount" type="Label" parent="Indicators/Shield"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = -25.5
+offset_right = -3.0
+offset_bottom = 23.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.878431, 0.854902, 0, 1)
+theme_override_fonts/font = ExtResource("9_oe0vm")
+theme_override_font_sizes/font_size = 40
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

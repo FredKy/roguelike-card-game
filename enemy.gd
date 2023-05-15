@@ -39,9 +39,12 @@ func _ready():
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
-	$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
-	$Intents/AttackIntent.position = enemy_resource.intent_position
-	$Intents/DefendIntent.position = enemy_resource.intent_position
+	$AttackIntent/Damage.text = "2x" + str(attack_damage)
+	$AttackIntent.position = enemy_resource.intent_position
+	$DefendIntent/ShieldAmount.text = str(shield_value)
+	set_shield_amount(0)
+	$DefendIntent.position = enemy_resource.intent_position
+	shift_to_next_intent()
 	
 	scale *= 0.4
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
@@ -82,11 +85,13 @@ func start_attacking():
 		for enemy in $'../../Enemies'.get_children():
 			enemy.z_index = 3
 			enemy.fade_out_bars()
-			enemy.hide_intents()
+			enemy.hide_all_intent_sprites()
 		$'../../'.animate_stuff_when_player_dies()
 
 func start_defending():
 	hide_all_intent_sprites()
+	$Indicators/Shield.visible = true
+	set_shield_amount(shield_value)
 	sprite.animation = "defend"
 
 func _on_animated_sprite_2d_animation_finished():
@@ -119,13 +124,15 @@ func play_death_animation_and_die():
 		$'../../'.do_stuff_when_all_enemies_are_dead()
 
 func set_new_intent(new_intent):
+	print(new_intent)
+	print(intent_queue)
 	hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
-			$Intents/AttackIntent.visible = true
+			$AttackIntent.visible = true
 			intent = ATTACK
 		DEFEND:
-			$Intents/DefendIntent.visible = true
+			$DefendIntent.visible = true
 			intent = DEFEND
 
 func shift_to_next_intent():
@@ -135,13 +142,13 @@ func shift_to_next_intent():
 	set_new_intent(new_intent)
 
 func hide_all_intent_sprites():
-	for intent in $Intents.get_children():
-		intent.visible = false
+	$AttackIntent.visible = false
+	$DefendIntent.visible = false
 
 func fade_out_bars():
 	$AnimateBars.play("fade_out")
 
-func hide_intents():
-	$AttackIntent.visible = false
+func set_shield_amount(value):
+	$Indicators/Shield/Amount.text = str(value)
 
 

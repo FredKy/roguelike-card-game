@@ -3,3 +3,16 @@ res://enemy.tscn
 res://combined_glowing_border.tres
 res://resources/skeleton_spearman_sprite_frames.tres
 res://enemy.gd
+res://playspace.tscn
+res://playspace.gd
+res://wanderer.gd
+res://cards/my_card_base.tscn
+res://shieldbar.tscn
+res://bar.tscn
+res://wanderer.tscn
+res://energy.tscn
+res://menu.tscn
+res://map.tscn
+res://game_over_bg.tscn
+res://level_node.tscn
+res://misc_scenes/counter.tscn

@@ -522,6 +522,7 @@ offset_right = 448.0
 offset_bottom = 496.0
 pivot_offset = Vector2(285, 320)
 color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("4_mqgd7")]
 layout_mode = 2

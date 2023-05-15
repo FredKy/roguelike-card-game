@@ -80,14 +80,12 @@ func ice_cannon():
 	var animation = sprite.animation
 	animation_queue.append("ice_cannon")
 	if animation == "idle":
-		#sprite.animation = "trigger_queue"
 		sprite.animation = animation_queue.pop_front()
 
 func shield():
 	var animation = sprite.animation
 	animation_queue.append("shield")
 	if animation == "idle":
-		#sprite.animation = "trigger_queue"
 		sprite.animation = animation_queue.pop_front()
 
 

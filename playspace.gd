@@ -46,7 +46,8 @@ enum {
 	WARRIOR_AND_SPEARMAN,
 }
 
-var battle_type = WARRIOR_AND_SPEARMAN
+#var battle_type = WARRIOR_AND_SPEARMAN
+var battle_type = SKELETON_WARRIOR
 
 var player_turn = true
 var a_card_is_in_mouse = false
@@ -288,8 +289,10 @@ func run_through_enemies_actions():
 			if enemy.has_killed_player:
 				return false
 		elif enemy.intent == DEFEND:
-			pass
-		enemy.set_new_intent()
+			await get_tree().create_timer(1.0).timeout
+			enemy.start_defending()
+			print("Defending")
+		enemy.shift_to_next_intent()
 	return true
 
 func start_player_turn():
