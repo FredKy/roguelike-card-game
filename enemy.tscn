@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=10 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
 [ext_resource type="SpriteFrames" uid="uid://br00wojcy2l6p" path="res://resources/skeleton_spearman_sprite_frames.tres" id="2_ii8hw"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
+[ext_resource type="Texture2D" uid="uid://c6711dvcosymh" path="res://assets/images/enemies/checked-shield-white.png" id="6_fe2xb"]
 [ext_resource type="Texture2D" uid="uid://dqf3f1oybljsh" path="res://assets/images/enemies/stiletto_red_outline.png" id="8_3pfcg"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="9_oe0vm"]
 
@@ -67,12 +68,14 @@ flip_h = true
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("3_p63tj")]
 layout_mode = 2
 
-[node name="AttackIntent" type="Sprite2D" parent="."]
+[node name="Intents" type="Node" parent="."]
+
+[node name="AttackIntent" type="Sprite2D" parent="Intents"]
 position = Vector2(235, -55)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_3pfcg")
 
-[node name="Damage" type="Label" parent="AttackIntent"]
+[node name="Damage" type="Label" parent="Intents/AttackIntent"]
 offset_left = -173.333
 offset_top = 233.333
 offset_right = 473.667
@@ -88,6 +91,12 @@ theme_override_font_sizes/font_size = 200
 text = "2x2
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="DefendIntent" type="Sprite2D" parent="Intents"]
+modulate = Color(0, 0.611765, 0.74902, 1)
+position = Vector2(235, -55)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_fe2xb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

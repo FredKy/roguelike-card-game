@@ -39,8 +39,9 @@ func _ready():
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
-	$AttackIntent/Damage.text = "2x" + str(attack_damage)
-	$AttackIntent.position = enemy_resource.intent_position
+	$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
+	$Intents/AttackIntent.position = enemy_resource.intent_position
+	$Intents/DefendIntent.position = enemy_resource.intent_position
 	
 	scale *= 0.4
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
@@ -73,7 +74,7 @@ func is_already_dead():
 
 func start_attacking():
 	print("Attack!")
-	$AttackIntent.visible = false
+	hide_all_intent_sprites()
 	await get_tree().create_timer(0.5).timeout
 	sprite.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
@@ -84,14 +85,8 @@ func start_attacking():
 			enemy.hide_intents()
 		$'../../'.animate_stuff_when_player_dies()
 
-func complete_attack():
-	await get_tree().create_timer(1.0).timeout
-	$AttackIntent.visible = false
-	await get_tree().create_timer(0.5).timeout
-	start_attacking()
-	await get_tree().create_timer(2.5).timeout
-
 func start_defending():
+	hide_all_intent_sprites()
 	sprite.animation = "defend"
 
 func _on_animated_sprite_2d_animation_finished():
@@ -106,6 +101,8 @@ func _on_animated_sprite_2d_animation_finished():
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 		if has_killed_player:
 			$'../../'.animate_stuff_when_player_dies()
+	elif sprite.animation == "defend":
+		pass
 	elif sprite.animation == "dead":
 		pass
 	else:
@@ -114,7 +111,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func play_death_animation_and_die():
 	sprite.animation = "dead"
-	$AttackIntent.visible = false
+	hide_all_intent_sprites()
 	alive = false
 	#Check if any buddies are alive, if not fade out UI stuff and trigger win function
 	var buddies_alive = $'../../'.some_enemy_is_alive()
@@ -122,14 +119,13 @@ func play_death_animation_and_die():
 		$'../../'.do_stuff_when_all_enemies_are_dead()
 
 func set_new_intent(new_intent):
-	$AttackIntent.visible = false
-	$DefendIntent.visible = false
+	hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
-			$AttackIntent.visible = true
+			$Intents/AttackIntent.visible = true
 			intent = ATTACK
 		DEFEND:
-			$DefendIntent.visible = true
+			$Intents/DefendIntent.visible = true
 			intent = DEFEND
 
 func shift_to_next_intent():
@@ -137,6 +133,10 @@ func shift_to_next_intent():
 	var new_intent = intent_queue.pop_front()
 	intent_queue.append(temp)
 	set_new_intent(new_intent)
+
+func hide_all_intent_sprites():
+	for intent in $Intents.get_children():
+		intent.visible = false
 
 func fade_out_bars():
 	$AnimateBars.play("fade_out")

@@ -1,5 +1,5 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1684177046
+::res://::1684177301
 bar.tscn::PackedScene::6198624464424786530::1684164341::0::1::::<><>::uid://cjlnx2vhd1kpo<>uid://c1pbb2crnyoby<>uid://hvu5cc61h6et<>uid://mcu8my1sk6qm
 border_glow.gdshader::Shader::-1::1683100431::0::1::::<><>::
 border_glow.tscn::PackedScene::5478078709062105300::1683385036::0::1::::<><>::uid://b3b855l8tyo0d
@@ -171,11 +171,13 @@ battleback9-1.png::CompressedTexture2D::8574377318365528769::1525026793::1681766
 battleback9-2.png::CompressedTexture2D::541286725715673448::1525026779::1681766727::1::::<><>::
 battleback10-1.png::CompressedTexture2D::8901160432629988646::1525027150::1681766727::1::::<><>::
 battleback10-2.png::CompressedTexture2D::5268444818363954120::1525027127::1681766726::1::::<><>::
-::res://assets/images/enemies/::1684051993
+::res://assets/images/enemies/::1684177238
 bone-knife.png::CompressedTexture2D::1541376924443318862::1525108518::1683231071::1::::<><>::
 bowie-knife.png::CompressedTexture2D::9056030583994655309::1525108518::1683231071::1::::<><>::
 broad-dagger.png::CompressedTexture2D::6086102856295587416::1525108518::1683231071::1::::<><>::
 broadsword.png::CompressedTexture2D::3083799939698089549::1525108518::1683231071::1::::<><>::
+checked-shield-white.png::CompressedTexture2D::7016380870869832559::1684177238::1684177302::1::::<><>::
+checked-shield.png::CompressedTexture2D::4941824937802351235::1525108518::1684177302::1::::<><>::
 stiletto.png::CompressedTexture2D::4039982541617557298::1525108518::1683231071::1::::<><>::
 stiletto_red.png::CompressedTexture2D::8065392288204914249::1683231486::1683231492::1::::<><>::
 stiletto_red_outline.png::CompressedTexture2D::8294315831151701111::1683232892::1683232900::1::::<><>::
@@ -215,7 +217,7 @@ Run+attack.png::CompressedTexture2D::3796450113259340941::1668597467::1682064763
 Run.png::CompressedTexture2D::1468689186156052381::1668597400::1682064763::1::::<><>::
 skeleton_warrior_idle.png::CompressedTexture2D::6915203231799072628::1679267736::1682064763::1::::<><>::
 Walk.png::CompressedTexture2D::4462896253157782198::1668597312::1682064763::1::::<><>::
-::res://assets/images/icons/::1684094492
+::res://assets/images/icons/::1684177139
 anvil-impact.png::CompressedTexture2D::2764042141544725599::1525108518::1683588573::1::::<><>::
 arrow_down_red.png::CompressedTexture2D::1190588850955674631::1684060470::1684060648::1::::<><>::
 campfire.png::CompressedTexture2D::6987259132028551634::1525108518::1683588573::1::::<><>::
