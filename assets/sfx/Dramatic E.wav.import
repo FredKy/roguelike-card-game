@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d30bw5fgkgxbg"
+path="res://.godot/imported/Dramatic E.wav-8f86bfafaf04da6d395368830868a790.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Dramatic E.wav"
+dest_files=["res://.godot/imported/Dramatic E.wav-8f86bfafaf04da6d395368830868a790.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://nwlmt5p06qj0"
+path="res://.godot/imported/Bass Gritty Wobble.wav-44a96c74c313e2c847c603e3d2d5eb1b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Bass Gritty Wobble.wav"
+dest_files=["res://.godot/imported/Bass Gritty Wobble.wav-44a96c74c313e2c847c603e3d2d5eb1b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

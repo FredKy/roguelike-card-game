@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bk2505rghg37a"
+path="res://.godot/imported/Warlock D.wav-df673ee3349d1e25aa6c66e62dea9902.sample"
+
+[deps]
+
+source_file="res://assets/sfx/Warlock D.wav"
+dest_files=["res://.godot/imported/Warlock D.wav-df673ee3349d1e25aa6c66e62dea9902.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
