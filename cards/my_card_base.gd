@@ -136,19 +136,19 @@ func _input(event):
 							#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
 
 							print("stopped attacking")
-							break
+							return
 						else:
 							setup = true
 							targetpos = default_pos
 							state = REORGANIZE_HAND
 							card_select = true
-							break
+							return
 					else:
-						setup = true
-						targetpos = default_pos
-						state = REORGANIZE_HAND
-						card_select = true
-						break
+						continue
+				setup = true
+				targetpos = default_pos
+				state = REORGANIZE_HAND
+				card_select = true
 			elif card_info[0] == "shield":
 				mouse_pos = get_global_mouse_position()
 				if mouse_pos.y < 400:
