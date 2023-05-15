@@ -272,6 +272,9 @@ func some_enemy_is_alive():
 #Performs enemy actions but stops and returns false if the player is killed.
 func run_through_enemies_actions():
 	for enemy in $Enemies.get_children():
+		#Check so the enemy doesn't return from the dead!
+		if not enemy.alive:
+			continue
 		if enemy.intent == ATTACK:
 			await get_tree().create_timer(1.0).timeout
 			enemy.start_attacking()
