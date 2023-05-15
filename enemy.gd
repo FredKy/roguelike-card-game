@@ -77,8 +77,10 @@ func start_attacking():
 	sprite.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 	if has_killed_player:
-		z_index = 3
-		$AnimateBars.play("fade_out")
+		for enemy in $'../../Enemies'.get_children():
+			enemy.z_index = 3
+			enemy.fade_out_bars()
+			enemy.hide_intents()
 		$'../../'.animate_stuff_when_player_dies()
 
 func complete_attack():
@@ -122,5 +124,10 @@ func set_new_intent():
 	$AttackIntent.visible = true
 	intent = ATTACK
 
+func fade_out_bars():
+	$AnimateBars.play("fade_out")
+
+func hide_intents():
+	$AttackIntent.visible = false
 
 
