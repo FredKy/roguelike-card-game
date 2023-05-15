@@ -24,6 +24,7 @@ offset_left = 96.0
 offset_top = 285.0
 offset_right = 183.0
 offset_bottom = 385.0
+visited = true
 
 [node name="Level1A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 203.0

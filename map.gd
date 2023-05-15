@@ -6,12 +6,14 @@ extends Node2D
 var map_nodes = {}
 
 var current_map_node = 0
+var visited_nodes = []
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	map_nodes = game_state.MAP_NODES
 	current_map_node = game_state.global_current_map_node
+	setup_visited_nodes()
 	activate_nodes_on_player_path()
 	
 
@@ -25,4 +27,10 @@ func activate_nodes_on_player_path():
 		if node_indeces.find(node.index) > -1:
 			node.disabled = false
 			node.play_scale_animation()
-	
+
+func setup_visited_nodes():
+	visited_nodes = game_state.global_visited_nodes
+	for node in $MapNodes.get_children():
+		if visited_nodes.find(node.index) > -1:
+			node.visited = true
+			node.transparent()

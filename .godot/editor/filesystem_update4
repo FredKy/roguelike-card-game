@@ -1,8 +1,7 @@
 res://default_env.tres
-res://level_node.tscn
+res://cards/my_card_base.tscn
 res://combined_glowing_border.tres
 res://resources/skeleton_spearman_sprite_frames.tres
-res://cards/my_card_base.tscn
 res://playspace.tscn
 res://enemy.tscn
 res://shieldbar.tscn
@@ -12,8 +11,8 @@ res://energy.tscn
 res://menu.tscn
 res://map.tscn
 res://game_over_bg.tscn
-res://cards/my_card_base.gd
-res://playspace.gd
-res://enemy.gd
-res://resources/skeleton_warrior_sprite_frames.tres
+res://level_node.tscn
+res://level_node.gd
+res://drawer.gd
+res://map.gd
 res://scripts/game_state.gd
