@@ -21,12 +21,13 @@ enum {
 	DEFEND,
 }
 
-var intent = ATTACK
-var intent_queue = [ATTACK, DEFEND]
+var intent
+var intent_queue
 
-func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres")):
+func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [DEFEND, ATTACK]):
 	position = pos
 	enemy_resource = e_r
+	intent_queue = i_q
 	return self
 
 # Called when the node enters the scene tree for the first time.
@@ -55,9 +56,19 @@ func _ready():
 func change_health_and_check_if_dead(number):
 	play_hurt()
 	buffered_damage -= number
-	current_health -= number
-	$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
-	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	if number > current_shield:
+		number -= current_shield
+		current_shield = 0
+		set_shield_amount(current_shield)
+		
+		current_health -= number
+		$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
+		$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
+	else:
+		current_shield -= number
+		set_shield_amount(current_shield)
+	
+	
 	if current_health <= 0:
 		current_health = 0
 		$VBoxContainer/Bar/TextureProgress.value = 100*current_health/max_health
@@ -72,7 +83,7 @@ func play_hurt():
 #Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
 #This function is used to prevent the player from wasting an attack card on an already dead enemy.
 func is_already_dead():
-	if current_health <= buffered_damage:
+	if current_health + current_shield <= buffered_damage:
 		return true
 	else:
 		return false
@@ -171,5 +182,6 @@ func fade_out_bars():
 
 func set_shield_amount(value):
 	$Indicators/Shield/Amount.text = str(value)
+	current_shield = value
 
 

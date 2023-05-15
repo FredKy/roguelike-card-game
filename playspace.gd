@@ -46,8 +46,8 @@ enum {
 	WARRIOR_AND_SPEARMAN,
 }
 
-var battle_type = WARRIOR_AND_SPEARMAN
-#var battle_type = SKELETON_WARRIOR
+#var battle_type = WARRIOR_AND_SPEARMAN
+var battle_type = SKELETON_WARRIOR
 
 var player_turn = true
 var a_card_is_in_mouse = false
