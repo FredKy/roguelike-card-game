@@ -23,6 +23,7 @@ enum {
 }
 
 var intent = ATTACK
+var intent_queue = [ATTACK, DEFEND]
 
 func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), l_s_f = load("res://resources/skeleton_spearman_sprite_frames.tres")):
 	position = pos
@@ -120,9 +121,22 @@ func play_death_animation_and_die():
 	if not buddies_alive:
 		$'../../'.do_stuff_when_all_enemies_are_dead()
 
-func set_new_intent():
-	$AttackIntent.visible = true
-	intent = ATTACK
+func set_new_intent(new_intent):
+	$AttackIntent.visible = false
+	$DefendIntent.visible = false
+	match new_intent:
+		ATTACK:
+			$AttackIntent.visible = true
+			intent = ATTACK
+		DEFEND:
+			$DefendIntent.visible = true
+			intent = DEFEND
+
+func shift_to_next_intent():
+	var temp = intent_queue[0]
+	var new_intent = intent_queue.pop_front()
+	intent_queue.append(temp)
+	set_new_intent(new_intent)
 
 func fade_out_bars():
 	$AnimateBars.play("fade_out")
