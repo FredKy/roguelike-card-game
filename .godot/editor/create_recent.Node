@@ -1,9 +1,9 @@
+Label
 AnimationPlayer
 Node2D
 Node
 Button
 TextureRect
-Label
 TextureButton
 ColorRect
 Sprite2D

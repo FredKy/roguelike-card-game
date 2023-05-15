@@ -20,3 +20,7 @@ res://cards/my_card_base.gd
 res://playspace.gd
 res://enemy.gd
 res://menu.gd
+res://misc_scenes/counter.tscn
+res://misc_scenes/counter.gd
+res://end_turn_button.gd
+res://wanderer.gd

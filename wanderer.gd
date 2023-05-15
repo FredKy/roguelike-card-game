@@ -18,6 +18,8 @@ var attack_number_queue = []
 #Shield number queue
 var shield_number_queue = []
 
+@onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	max_health = game_state.global_player_max_health
@@ -32,7 +34,7 @@ func _ready():
 	$VBoxContainer/EnergyShield/ColorRect.scale = Vector2(0,0)
 	$VBoxContainer/EnergyShield/ColorRect.visible = true
 	
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+	sprite.animation = "idle"
 
 
 func change_health_and_check_if_dead(damage_number):
@@ -67,26 +69,26 @@ func add_shield(shield_number):
 	$VBoxContainer/ShieldBar/Count/Background/Number.text = str(current_shield)
 
 func play_death_animation_and_die():
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "dead"
+	sprite.animation = "dead"
 	$AnimateBars.play("fade_out")
 	alive = false
 
 func play_hurt():
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "hurt"
+	sprite.animation = "hurt"
 
 func ice_cannon():
-	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
+	var animation = sprite.animation
 	animation_queue.append("ice_cannon")
 	if animation == "idle":
-		#$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
+		#sprite.animation = "trigger_queue"
+		sprite.animation = animation_queue.pop_front()
 
 func shield():
-	var animation = $VBoxContainer/ImageContainer/AnimatedSprite2D.animation
+	var animation = sprite.animation
 	animation_queue.append("shield")
 	if animation == "idle":
-		#$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "trigger_queue"
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
+		#sprite.animation = "trigger_queue"
+		sprite.animation = animation_queue.pop_front()
 
 
 func reset_shield():
@@ -106,20 +108,19 @@ func _on_animated_sprite_2d_animation_finished():
 	if not alive:
 		return
 	if shield_number_queue.size() > 0:
-		if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation  == "shield":
+		if sprite.animation  == "shield":
 			if current_shield == 0:
 				$AnimationPlayer.play("create_shield")
 			add_shield(shield_number_queue.pop_front())
 	if target_queue.size() > 0:
-		if $VBoxContainer/ImageContainer/AnimatedSprite2D.animation  == "ice_cannon":
+		if sprite.animation  == "ice_cannon":
 			var enemy = target_queue.pop_front()
 			print(enemy)
 			enemy.change_health_and_check_if_dead(attack_number_queue.pop_front())
 	
 	if animation_queue.size() > 0:
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = animation_queue.pop_front()
+		sprite.animation = animation_queue.pop_front()
 	else:
-		$VBoxContainer/ImageContainer/AnimatedSprite2D.animation = "idle"
+		sprite.animation = "idle"
 	
-	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
-
+	sprite.play()

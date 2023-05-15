@@ -53,8 +53,13 @@ var a_card_is_in_mouse = false
 var is_dealing_cards = false
 var player_alive = true
 
+func _process(_delta):
+	$DeckCounter.set_label_text(player_deck.size())
+	$DiscardCounter.set_label_text($DiscardedCards.get_child_count())
+
 func _ready():
 	player_deck = game_state.global_player_deck.duplicate()
+	$DeckCounter.set_label_text(player_deck.size())
 	randomize()
 	$EndTurnButtonNode.visible = false
 	

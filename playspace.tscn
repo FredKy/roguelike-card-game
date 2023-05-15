@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=26 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="Texture2D" uid="uid://bnaeevijy5rpp" path="res://assets/images/bg/battleback2.png" id="2_tx2wc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cqg07q4rrgeo1" path="res://energy.tscn" id="9_520xi"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="10_bugjp"]
 [ext_resource type="Script" path="res://end_turn_button.gd" id="10_hjo2l"]
+[ext_resource type="PackedScene" uid="uid://d2bx32qoc54yx" path="res://misc_scenes/counter.tscn" id="12_32nrx"]
 [ext_resource type="Script" path="res://skip.gd" id="12_rw0w6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
@@ -70,6 +71,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeckCounter:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiscardCounter:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_rlrku"]
 resource_name = "fade_out_stuff"
@@ -104,6 +129,30 @@ tracks/2/path = NodePath("EndTurnButtonNode:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DeckCounter:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DiscardCounter:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -341,6 +390,23 @@ script = ExtResource("12_rw0w6")
 libraries = {
 "": SubResource("AnimationLibrary_jnspr")
 }
+
+[node name="DeckCounter" parent="." instance=ExtResource("12_32nrx")]
+offset_left = 75.0
+offset_top = 502.0
+offset_right = 75.0
+offset_bottom = 502.0
+
+[node name="DiscardCounter" parent="." instance=ExtResource("12_32nrx")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 1048.0
+offset_top = 499.0
+offset_right = 1048.0
+offset_bottom = 499.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
