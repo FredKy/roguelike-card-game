@@ -43,6 +43,7 @@ func _ready():
 	$AttackIntent.position = enemy_resource.intent_position
 	$DefendIntent/ShieldAmount.text = str(shield_value)
 	set_shield_amount(0)
+	$Indicators/Shield.visible = false
 	$DefendIntent.position = enemy_resource.intent_position
 	shift_to_next_intent()
 	
