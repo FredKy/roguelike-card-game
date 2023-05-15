@@ -200,19 +200,22 @@ func _physics_process(delta):
 			$GlowingBorder.visible = true
 			if card_info[0] == "attack":
 				var enemies = $'../../../Enemies'
+				var change_color = false
 				for i in range(enemies.get_child_count()):
 					var enemy_pos = enemies.get_child(i).position
 					var enemy_size = enemies.get_child(i).size
 					mouse_pos = get_global_mouse_position()
 					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-							#$Focus.set_modulate(Color(0.79,0.18,0.21,1))
-							$Focus.set_modulate(Color(0.88,0.23,0.26,1))
-							$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
-							#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
-					else:
-						$Focus.set_modulate(Color(1,0.8,0.2,1))
-						$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
+					and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+						change_color = true
+				if change_color:
+					#$Focus.set_modulate(Color(0.79,0.18,0.21,1))
+					$Focus.set_modulate(Color(0.88,0.23,0.26,1))
+					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(1,0,0,0))
+					#print($GlowingBorder/CardBorderGlow.material.get_shader_parameter("ending_color"))
+				else:
+					$Focus.set_modulate(Color(1,0.8,0.2,1))
+					$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 			elif card_info[0] == "shield":
 				mouse_pos = get_global_mouse_position()
 				if mouse_pos.y < 400:

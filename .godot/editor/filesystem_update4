@@ -16,3 +16,5 @@ res://level_node.gd
 res://drawer.gd
 res://map.gd
 res://scripts/game_state.gd
+res://cards/my_card_base.gd
+res://playspace.gd
