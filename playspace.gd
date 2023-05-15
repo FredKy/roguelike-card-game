@@ -80,6 +80,8 @@ func _ready():
 	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$TurnMessage.modulate = Color(1,1,1,0)
+	show_turn_message("BATTLE!")
+	await get_tree().create_timer(1.5).timeout
 	show_turn_message("Player turn")
 	start_player_turn()
 	#$EndTurnButtonNode.visible = true
@@ -277,7 +279,7 @@ func some_enemy_is_alive():
 			return true
 	return false
 
-#Performs enemy actions but stops and returns false if the player is killed.
+#Performs enemy actions but stops and returns false if the player is killed, true if player survives enemy onslaught.
 func run_through_enemies_actions():
 	for enemy in $Enemies.get_children():
 		#Check so the enemy doesn't return from the dead!

@@ -413,6 +413,11 @@ func move_neighbor_card(card_number, left, spread_factor):
 
 func reset_card(card_number):
 	if not neighbor_card.move_neighbor_card_check:
+		#Potential bug fix
+		var number_of_cards = $'../../'.get_child_count()
+		if card_number > number_of_cards:
+			return
+		
 		neighbor_card = $'../../'.get_child(card_number).get_node("MyCardBase")
 		if neighbor_card.state != FOCUS_IN_HAND && neighbor_card.state != DRAWN_TO_HAND:
 			neighbor_card.setup = true

@@ -82,8 +82,9 @@ func is_already_dead():
 
 func start_attacking():
 	print("Attack!")
-	hide_all_intent_sprites()
-	await get_tree().create_timer(0.5).timeout
+	$Intents/AttackIntent/AP.play("fade_out")
+	await get_tree().create_timer(1.0).timeout
+	$Intents/AttackIntent.visible = false
 	sprite.animation = "attack_2"
 	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 	if has_killed_player:
@@ -94,7 +95,9 @@ func start_attacking():
 		$'../../'.animate_stuff_when_player_dies()
 
 func start_defending():
-	hide_all_intent_sprites()
+	$Intents/DefendIntent/AP.play("fade_out")
+	await get_tree().create_timer(1.0).timeout
+	$Intents/DefendIntent.visible = false
 	$Indicators/Shield.visible = true
 	set_shield_amount(shield_value)
 	sprite.animation = "defend"
@@ -127,6 +130,7 @@ func _on_animated_sprite_2d_animation_finished():
 func play_death_animation_and_die():
 	sprite.animation = "dead"
 	hide_all_intent_sprites()
+	$Indicators/Shield.visible = false
 	alive = false
 	#Check if any buddies are alive, if not fade out UI stuff and trigger win function
 	var buddies_alive = $'../../'.some_enemy_is_alive()
@@ -136,7 +140,7 @@ func play_death_animation_and_die():
 func set_new_intent(new_intent):
 	print(new_intent)
 	print(intent_queue)
-	hide_all_intent_sprites()
+	#hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
 			$Intents/AttackIntent/AP.play("RESET")
