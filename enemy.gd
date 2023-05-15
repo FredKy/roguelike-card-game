@@ -8,13 +8,11 @@ var alive = true
 var shield_value = 8.0
 var current_shield = 0
 
-#May be simplified later
+#Used to determine if enemy is going to die from queued up damage
 var buffered_damage = 0
 
-#@export var enemy_resource: Resource = load("res://resources/skeleton_spearman.tres")
 @export var enemy_resource: Resource
-#@export var loaded_sprite_frames: SpriteFrames = load("res://resources/skeleton_spearman_sprite_frames.tres")
-@export var loaded_sprite_frames: SpriteFrames
+
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
 
 #Intents
@@ -26,15 +24,14 @@ enum {
 var intent = ATTACK
 var intent_queue = [ATTACK, DEFEND]
 
-func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), l_s_f = load("res://resources/skeleton_spearman_sprite_frames.tres")):
+func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres")):
 	position = pos
 	enemy_resource = e_r
-	loaded_sprite_frames = l_s_f
 	return self
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite.sprite_frames = loaded_sprite_frames
+	sprite.sprite_frames = enemy_resource.sprite_frames_resource
 	print(enemy_resource.intent_position)
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100

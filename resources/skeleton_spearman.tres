@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=2 format=3 uid="uid://oo0qkm8em3jr"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://oo0qkm8em3jr"]
 
 [ext_resource type="Script" path="res://scripts/enemy_resource_base.gd" id="1_hjydf"]
+[ext_resource type="SpriteFrames" uid="uid://br00wojcy2l6p" path="res://resources/skeleton_spearman_sprite_frames.tres" id="2_4rr1n"]
 
 [resource]
 script = ExtResource("1_hjydf")
 intent_position = Vector2(235, -120)
+sprite_frames_resource = ExtResource("2_4rr1n")

@@ -46,8 +46,8 @@ enum {
 	WARRIOR_AND_SPEARMAN,
 }
 
-#var battle_type = WARRIOR_AND_SPEARMAN
-var battle_type = SKELETON_WARRIOR
+var battle_type = WARRIOR_AND_SPEARMAN
+#var battle_type = SKELETON_WARRIOR
 
 var player_turn = true
 var a_card_is_in_mouse = false
@@ -66,12 +66,12 @@ func _ready():
 	
 	match battle_type:
 		SKELETON_WARRIOR:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres")))
 		SKELETON_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres")))
 		WARRIOR_AND_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres"), load("res://resources/skeleton_warrior_sprite_frames.tres")))
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), load("res://resources/skeleton_spearman_sprite_frames.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres")))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
