@@ -345,7 +345,6 @@ func do_stuff_when_player_has_won():
 	$Skip/SkipAP.play("fade_in")
 
 func create_draftable_card():
-	var draft_card_base = CARD_BASE.instantiate().get_node("MyCardBase").init_for_draft()
 	var new_card = DRAFT_CARD_BASE.instantiate()
 	var base = new_card.get_node("MyCardBase")
 	#base.card_name = player_deck.card_list[card_selected]
@@ -356,5 +355,5 @@ func create_draftable_card():
 	base.state = NOTHING
 	card_numb = 0
 	base.set_focus_disabled()
-	$Cards.add_child(new_card)
-	add_child(draft_card_base)
+	$Draftables.add_child(new_card)
+	#add_child(draft_card_base)

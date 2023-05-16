@@ -18,3 +18,4 @@ res://playspace.gd
 res://cards/drafting_card_base.gd
 res://cards/draft_card_base.tscn
 res://cards/draft_card_base.gd
+res://glowing_border.tscn

@@ -60,12 +60,6 @@ enum {
 }
 var state = DRAWN_TO_HAND
 
-func init_for_draft(pos = Vector2(500,500)):
-	set_script("res://cards/draft_card_base.gd")
-	position = pos
-	return self
-	print("initialized")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#print(card_info)

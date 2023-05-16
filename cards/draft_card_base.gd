@@ -71,7 +71,7 @@ func _ready():
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = false
-	$Focus.set_modulate(Color(1,0.8,0.2,1))
+	#$Focus.set_modulate(Color(1,0.8,0.2,1))
 	#$Focus.visible = false
 	#$GlowingBorder.visible = true
 	#Set position for FadeOutCardBack to Discard pile pos

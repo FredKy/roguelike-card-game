@@ -249,6 +249,8 @@ script = ExtResource("1_rla1j")
 
 [node name="Cards" type="Node" parent="."]
 
+[node name="Draftables" type="Node" parent="."]
+
 [node name="Background2" type="Sprite2D" parent="."]
 position = Vector2(572.5, 326)
 scale = Vector2(1.1, 1.065)
