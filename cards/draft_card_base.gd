@@ -19,7 +19,7 @@ const RESHUFFLE_TIME = 0.25
 const ORGANIZETIME = 0.25
 const ZOOMTIME = 0.2
 const SHRINK_TIME = 0.7
-
+const MOVE_TO_TOP_BAR_TIME = 1.5
 
 var setup = true
 var start_scale = Vector2()
@@ -172,7 +172,7 @@ func _physics_process(delta):
 				if not $CardBack.visible:
 					if t >= float(0.5/flip_time_factor):
 						$CardBack.visible = true
-				t += delta/float(DRAWTIME)
+				t += delta/float(MOVE_TO_TOP_BAR_TIME)
 				#t += delta/float(15)
 			else:
 				print(game_state.global_player_deck)
