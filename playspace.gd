@@ -67,7 +67,7 @@ func _ready():
 	randomize()
 	$EndTurnButtonNode.visible = false
 	
-	create_random_draftable_cards()
+	#create_random_draftable_cards()
 	
 	match battle_type:
 		SKELETON_WARRIOR:
@@ -343,6 +343,9 @@ func do_stuff_when_all_enemies_are_dead():
 
 func do_stuff_when_player_has_won():
 	game_state.global_player_current_health = $Wanderer.current_health
+	await get_tree().create_timer(1.0).timeout
+	create_random_draftable_cards()
+	$DraftScene.visible = true
 	$Skip/SkipAP.play("fade_in")
 
 func create_draftable_card(c_name, pos):

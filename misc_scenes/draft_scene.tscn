@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctnp68p2nyt6n"]
+[gd_scene load_steps=5 format=3 uid="uid://ctnp68p2nyt6n"]
 
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="1_1dhmi"]
+
+[sub_resource type="Animation" id="Animation_vd8d1"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Z2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_66s2b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Z2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6yewb"]
+_data = {
+"RESET": SubResource("Animation_66s2b"),
+"fade_out": SubResource("Animation_vd8d1")
+}
 
 [node name="DraftScene" type="Node2D"]
 z_index = 4
@@ -26,7 +63,7 @@ theme_override_constants/outline_size = 12
 theme_override_constants/shadow_outline_size = 6
 theme_override_fonts/font = ExtResource("1_1dhmi")
 theme_override_font_sizes/font_size = 60
-text = "Victory!"
+text = "Battle won!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -48,3 +85,10 @@ theme_override_font_sizes/font_size = 40
 text = "Pick a new card"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Cards" type="Node" parent="."]
+
+[node name="AP" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6yewb")
+}

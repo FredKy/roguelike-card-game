@@ -1,7 +1,7 @@
-ColorRect
-Node2D
 AnimationPlayer
 Node
+ColorRect
+Node2D
 Label
 Button
 TextureRect

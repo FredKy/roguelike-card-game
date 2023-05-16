@@ -152,12 +152,28 @@ func _physics_process(delta):
 				state = ON_TABLE
 		MOVE_TO_UI_DECK:
 			if setup:
+				$'../../../DraftScene/AP'.play("fade_out")
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
 				position = startpos.lerp(Vector2(-100,-180), parametric_blend(t))
-				rotation = startrot*(1-t) + 4*PI*t
-				scale = start_scale*(1-t) + Vector2(0.075,0.075)*t
+				if t < 0.75:
+					rotation = startrot*(1-t/float(0.75)) + 4*PI*t/float(0.75)
+				else:
+					rotation = 4*PI
+				if t < 0.5:
+					scale = start_scale*(1-2*t) + Vector2(0.075,0.075)*2*t
+				else:
+					scale = Vector2(0.075,0.075)
+				var flip_time_factor = 1.9 # 20% faster
+				if t < float(1/flip_time_factor):
+					scale.x = scale.x*abs(2*(flip_time_factor*t)-1)
+				else:
+					scale.x = scale.x
+				if not $CardBack.visible:
+					if t >= float(0.5/flip_time_factor):
+						$CardBack.visible = true
 				t += delta/float(DRAWTIME)
+				#t += delta/float(15)
 			else:
 				print(game_state.global_player_deck)
 				game_state.global_player_deck.append(card_name_converter(card_info[2]))
