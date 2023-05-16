@@ -3,6 +3,7 @@ extends Node2D
 @onready var game_state = get_node("/root/GameState")
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
+const DRAFT_CARD_BASE := preload("res://cards/draft_card_base.tscn")
 const GAME_OVER_BG := preload("res://game_over_bg.tscn")
 const ENEMY := preload("res://enemy.tscn")
 #var player_deck := preload("res://scripts/player_deck.gd").new()
@@ -31,6 +32,7 @@ enum {
 	MOVE_TO_DISCARD_PILE,
 	IN_DISCARD_PILE,
 	MOVE_TO_DECK,
+	NOTHING,
 }
 
 #Enemy intent
@@ -63,6 +65,8 @@ func _ready():
 	$DeckCounter.set_label_text(player_deck.size())
 	randomize()
 	$EndTurnButtonNode.visible = false
+	
+	create_draftable_card()
 	
 	match battle_type:
 		SKELETON_WARRIOR:
@@ -339,3 +343,18 @@ func do_stuff_when_all_enemies_are_dead():
 func do_stuff_when_player_has_won():
 	game_state.global_player_current_health = $Wanderer.current_health
 	$Skip/SkipAP.play("fade_in")
+
+func create_draftable_card():
+	var draft_card_base = CARD_BASE.instantiate().get_node("MyCardBase").init_for_draft()
+	var new_card = DRAFT_CARD_BASE.instantiate()
+	var base = new_card.get_node("MyCardBase")
+	#base.card_name = player_deck.card_list[card_selected]
+	base.card_name = "ice_cannon"
+	base.position = Vector2(500, 100)
+	base.discard_pile = discard_position
+	base.scale *= CARD_SIZE/base.size
+	base.state = NOTHING
+	card_numb = 0
+	base.set_focus_disabled()
+	$Cards.add_child(new_card)
+	add_child(draft_card_base)

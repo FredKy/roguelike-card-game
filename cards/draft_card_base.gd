@@ -58,13 +58,7 @@ enum {
 	MOVE_TO_DECK,
 	NOTHING,
 }
-var state = DRAWN_TO_HAND
-
-func init_for_draft(pos = Vector2(500,500)):
-	set_script("res://cards/draft_card_base.gd")
-	position = pos
-	return self
-	print("initialized")
+var state = NOTHING
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -76,12 +70,18 @@ func _ready():
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
 	$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Info.text = card_info[3]
-	$CardBack.visible = true
+	$CardBack.visible = false
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
+	#$Focus.visible = false
+	#$GlowingBorder.visible = true
 	#Set position for FadeOutCardBack to Discard pile pos
 	$'../FadeOutCardBack'.position = $'../../../Discard'.position
 	#This scaling will result in size Vector2(174,240), i.e. CARD_SIZE
 	$'../FadeOutCardBack'.scale *= 0.6
+	
+#	$Focus.set_modulate(Color(1,0.8,0.2,1))
+#	$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
+
 
 func _input(event):
 #	if $'../../../'.is_dealing_cards:
@@ -444,35 +444,15 @@ func set_focus_disabled():
 	$Focus.disabled = true
 
 func _on_focus_mouse_entered():
-	if $'../../../'.is_dealing_cards:
-		#$Focus.disabled = true
-		return
+	$Focus.disabled = false
 	$GlowingBorder.visible = true;
-	match state:
-		IN_HAND, REORGANIZE_HAND:
-			old_state = state
-			setup = true
-			targetpos.x = default_pos.x 
-#			print(get_viewport().size)
-#			print(float(get_viewport().size.y)/648)
-#			print($'../../../'.CARD_SIZE)
-			
-			#targetpos.y = get_viewport().size.y - $'../../../'.CARD_SIZE.y*(float(get_viewport().size.x)/1152)*zoom_scale
-			targetpos.y = 690 - $'../../../'.CARD_SIZE.y*zoom_scale
-#			print(targetpos.y)
-			zooming_in = true
-			state = FOCUS_IN_HAND
+	return
 
 func _on_focus_mouse_exited():
-	if $'../../../'.is_dealing_cards:
-		#$Focus.disabled = true
-		return
+	$Focus.disabled = true
 	$GlowingBorder.visible = false;
-	match state:
-		FOCUS_IN_HAND:
-			setup = true
-			state = REORGANIZE_HAND
-			targetpos = default_pos
+	return
+
 
 func get_card_cost():
 	return card_info[1]
