@@ -1,4 +1,4 @@
-# Spellinfo = [Type, Cost, Name, Effect, Image, Damage, Shield]
+# Spellinfo = [Type, Cost, Name, Effect, Image, Damage, Shield, ]
 enum {ICE_CANNON, WARP_TIME, COLD_TOUCH, ENERGY_SHIELD}
 
 const DATA = {

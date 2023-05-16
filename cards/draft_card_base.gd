@@ -1,6 +1,6 @@
 extends MarginContainer
 
-
+@onready var game_state = get_node("/root/GameState")
 # Declare member variables here.
 @onready var card_database = preload("res://scripts/my_cards_database.gd").new()
 #var card_name = 'ice_cannon'
@@ -93,9 +93,10 @@ func _input(event):
 					enabled = false
 					set_focus(false)
 					$GlowingBorder.visible = false
+					
+					await get_tree().create_timer(1-t).timeout
 					setup = true
 					targetpos = default_pos
-					await get_tree().create_timer(1).timeout
 					state = SELECTED
 					#card_picked_animation()
 				elif state == ON_TABLE or state == REORGANIZE_HAND:
@@ -133,27 +134,25 @@ func _physics_process(delta):
 					scale = orig_scale*zoom_scale
 					zooming_in = false
 		SELECTED:
-			if zooming_in:
-				if setup:
-					reset_pos_rot_scale_and_time()
-				if t <= 1:
-					position = startpos.lerp(targetpos, t)
-					rotation = startrot*(1-t) + 0*t
-					#orig_scale*zoom_scale = 0.6*1.1 = 0.66
-					scale = start_scale*(1-t) + orig_scale*zoom_scale*t
-					t += delta/float(ZOOMTIME)
-				else:
-					position = targetpos
-					rotation = 0
-					scale = orig_scale*zoom_scale
-					zooming_in = false
-					state = MOVE_TO_UI_DECK
+			if setup:
+				reset_pos_rot_scale_and_time()
+			if t <= 1:
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot*(1-t) + 0*t
+				#orig_scale*zoom_scale = 0.6*1.1 = 0.66
+				scale = start_scale*(1-t) + orig_scale*zoom_scale*t
+				t += delta/float(ZOOMTIME)
+			else:
+				position = targetpos
+				rotation = 0
+				scale = orig_scale*zoom_scale
+				zooming_in = false
+				setup = true
+				state = MOVE_TO_UI_DECK
 		REORGANIZE_HAND:
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				if move_neighbor_card_check:
-					move_neighbor_card_check = false
 				position = startpos.lerp(targetpos, t)
 				rotation = startrot*(1-t) + targetrot*t
 				scale = start_scale*(1-t) + orig_scale*t
@@ -164,7 +163,22 @@ func _physics_process(delta):
 				scale = orig_scale
 				state = ON_TABLE
 		MOVE_TO_UI_DECK:
-			pass
+			if setup:
+				reset_pos_rot_scale_and_time()
+			if t <= 1:
+				position = startpos.lerp(Vector2(-100,-175), parametric_blend(t))
+				rotation = startrot*(1-t) + 4*PI*t
+				scale = start_scale*(1-t) + Vector2(0.05,0.05)*t
+				t += delta/float(DRAWTIME)
+			else:
+				print(game_state.global_player_deck)
+				game_state.global_player_deck.append(card_name_converter(card_info[2]))
+				print("Added to global deck")
+				print(game_state.global_player_deck)
+				position = Vector2(-100,-175)
+				rotation = 4*PI
+				scale = Vector2(0.075,0.075)
+				state = NOTHING
 		SHRINK:
 			if setup:
 				reset_pos_rot_scale_and_time()
@@ -227,5 +241,10 @@ func parametric_blend(x):
 func fade_out():
 	#print("here")
 	$AnimationPlayer.play("fade_out")
+
+#Changes "Ice Cannon" to "ice_cannon"
+func card_name_converter(string):
+	#print(string.to_lower().replace(' ', '_'))
+	return string.to_lower().replace(' ', '_')
 
 
