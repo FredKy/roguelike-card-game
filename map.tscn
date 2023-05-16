@@ -39,6 +39,7 @@ offset_top = 356.0
 offset_right = 293.0
 offset_bottom = 456.0
 index = 2
+battle_type = 1
 
 [node name="Level2A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 339.0
@@ -46,6 +47,7 @@ offset_top = 128.0
 offset_right = 426.0
 offset_bottom = 228.0
 index = 3
+battle_type = 1
 
 [node name="Level2B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 369.0
@@ -53,6 +55,7 @@ offset_top = 290.0
 offset_right = 456.0
 offset_bottom = 390.0
 index = 4
+battle_type = 2
 
 [node name="Level2C" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 362.0
@@ -60,6 +63,7 @@ offset_top = 414.0
 offset_right = 449.0
 offset_bottom = 514.0
 index = 5
+battle_type = 2
 
 [node name="Level3A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 525.0
@@ -67,6 +71,7 @@ offset_top = 141.0
 offset_right = 612.0
 offset_bottom = 241.0
 index = 6
+battle_type = 1
 
 [node name="Level3B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 526.0
@@ -81,6 +86,7 @@ offset_top = 472.0
 offset_right = 596.0
 offset_bottom = 572.0
 index = 8
+battle_type = 2
 
 [node name="Level4A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 687.0
@@ -88,6 +94,7 @@ offset_top = 166.0
 offset_right = 774.0
 offset_bottom = 266.0
 index = 9
+battle_type = 2
 
 [node name="Level4B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 677.0
@@ -102,6 +109,7 @@ offset_top = 424.0
 offset_right = 791.0
 offset_bottom = 524.0
 index = 11
+battle_type = 1
 
 [node name="Level5A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 876.0
@@ -109,6 +117,7 @@ offset_top = 160.0
 offset_right = 963.0
 offset_bottom = 260.0
 index = 12
+battle_type = 1
 
 [node name="Level5B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 842.0
@@ -116,6 +125,7 @@ offset_top = 328.0
 offset_right = 929.0
 offset_bottom = 428.0
 index = 13
+battle_type = 2
 
 [node name="Level5C" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 848.0

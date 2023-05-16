@@ -152,6 +152,10 @@ func _physics_process(delta):
 				state = ON_TABLE
 		MOVE_TO_UI_DECK:
 			if setup:
+				print(game_state.global_player_deck)
+				game_state.global_player_deck.append(card_name_converter(card_info[2]))
+				print("Added to global deck")
+				print(game_state.global_player_deck)
 				$'../../../DraftScene/AP'.play("fade_out")
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
@@ -175,10 +179,7 @@ func _physics_process(delta):
 				t += delta/float(MOVE_TO_TOP_BAR_TIME)
 				#t += delta/float(15)
 			else:
-				print(game_state.global_player_deck)
-				game_state.global_player_deck.append(card_name_converter(card_info[2]))
-				print("Added to global deck")
-				print(game_state.global_player_deck)
+				$'../../../'.update_global_deck_counter()
 				position = Vector2(-100,-180)
 				rotation = 4*PI
 				scale = Vector2(0.075,0.075)

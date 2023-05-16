@@ -49,7 +49,7 @@ enum {
 }
 
 #var battle_type = WARRIOR_AND_SPEARMAN
-var battle_type = SKELETON_WARRIOR
+var battle_type = WARRIOR_AND_SPEARMAN
 
 var player_turn = true
 var a_card_is_in_mouse = false
@@ -59,10 +59,14 @@ var player_alive = true
 func _process(_delta):
 	$DeckCounter.set_label_text(player_deck.size())
 	$DiscardCounter.set_label_text($DiscardedCards.get_child_count())
+
+func update_global_deck_counter():
 	$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
 
 func _ready():
+	battle_type = game_state.global_next_battle_type
 	player_deck = game_state.global_player_deck.duplicate()
+	update_global_deck_counter()
 	$DeckCounter.set_label_text(player_deck.size())
 	randomize()
 	$EndTurnButtonNode.visible = false
@@ -76,7 +80,7 @@ func _ready():
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres")))
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres")))
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, DEFEND]))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()

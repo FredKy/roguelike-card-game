@@ -17,3 +17,5 @@ res://misc_scenes/counter.tscn
 res://cards/draft_card_base.gd
 res://scripts/my_cards_database.gd
 res://playspace.gd
+res://scripts/game_state.gd
+res://level_node.gd

@@ -7,6 +7,15 @@ extends TextureButton
 @export var scene_path = "res://playspace.tscn"
 @export var big = false
 
+enum BATTLE_TYPE {
+	SKELETON_WARRIOR,
+	SKELETON_SPEARMAN,
+	WARRIOR_AND_SPEARMAN,
+}
+
+#Determines what enemies to load in playscape
+@export var battle_type: BATTLE_TYPE
+
 # Player has visited node
 @export var visited = false
 
@@ -34,4 +43,5 @@ func play_scale_animation():
 func _on_pressed():
 	game_state.global_current_map_node = index
 	game_state.global_visited_nodes.append(index)
+	game_state.global_next_battle_type = battle_type
 	get_tree().change_scene_to_file(scene_path)
