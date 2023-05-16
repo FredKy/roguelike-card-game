@@ -354,7 +354,7 @@ func do_stuff_when_all_enemies_are_dead():
 
 func do_stuff_when_player_has_won():
 	game_state.global_player_current_health = $Wanderer.current_health
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.7).timeout
 	create_random_draftable_cards()
 	$DraftScene.visible = true
 	$Skip/SkipAP.play("fade_in")
@@ -378,7 +378,7 @@ func create_random_draftable_cards():
 func set_background_texture(background):
 	match background:
 		SUMMER_FOREST:
-			$Background.texture = load("res://assets/images/bg/battleback1_without_red_flowers.png")
+			$Background.texture = load("res://assets/images/bg/Paralax/battleback1-2.png")
 		WINTER_FOREST:
 			$Background.texture = load("res://assets/images/bg/battleback2.png")
 		_:
