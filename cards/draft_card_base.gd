@@ -32,18 +32,7 @@ var neighbor_card
 var move_neighbor_card_check = false
 var zooming_in = true
 var old_state = INF
-var card_select = true
-var moving_into_play = false
 var target_scale = Vector2()
-var discard_pile = Vector2()
-var moving_to_discard = false
-
-
-var mouse_pos = Vector2()
-var left_hand_side = false
-var old_pos = Vector2()
-var old_scale = Vector2()
-var reparent = true # Wether or not card can be reparented
 
 var enabled = true
 
@@ -98,14 +87,13 @@ func _input(event):
 					setup = true
 					targetpos = default_pos
 					state = SELECTED
-					#card_picked_animation()
+					
 				elif state == ON_TABLE or state == REORGANIZE_HAND:
 					enabled = false
 					set_focus(false)
 					$GlowingBorder.visible = false
 					state = NOTHING
 					await get_tree().create_timer(0.3).timeout
-					#shrink()
 					state = SHRINK
 	if event.is_action_released("leftclick"):
 		pass
@@ -166,16 +154,16 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				position = startpos.lerp(Vector2(-100,-175), parametric_blend(t))
+				position = startpos.lerp(Vector2(-100,-180), parametric_blend(t))
 				rotation = startrot*(1-t) + 4*PI*t
-				scale = start_scale*(1-t) + Vector2(0.05,0.05)*t
+				scale = start_scale*(1-t) + Vector2(0.075,0.075)*t
 				t += delta/float(DRAWTIME)
 			else:
 				print(game_state.global_player_deck)
 				game_state.global_player_deck.append(card_name_converter(card_info[2]))
 				print("Added to global deck")
 				print(game_state.global_player_deck)
-				position = Vector2(-100,-175)
+				position = Vector2(-100,-180)
 				rotation = 4*PI
 				scale = Vector2(0.075,0.075)
 				state = NOTHING

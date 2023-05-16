@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=28 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="Texture2D" uid="uid://bnaeevijy5rpp" path="res://assets/images/bg/battleback2.png" id="2_tx2wc"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d2bx32qoc54yx" path="res://misc_scenes/counter.tscn" id="12_32nrx"]
 [ext_resource type="Script" path="res://skip.gd" id="12_rw0w6"]
 [ext_resource type="PackedScene" uid="uid://ctnp68p2nyt6n" path="res://misc_scenes/draft_scene.tscn" id="13_h0qf1"]
+[ext_resource type="Script" path="res://misc_scenes/counter.gd" id="14_cknvf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -413,6 +414,57 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="DraftScene" parent="." instance=ExtResource("13_h0qf1")]
+visible = false
+
+[node name="TopBar" type="Node2D" parent="."]
+z_index = 6
+
+[node name="ColorRect" type="ColorRect" parent="TopBar"]
+offset_right = 90.0
+offset_bottom = 40.0
+color = Color(0.337255, 0.337255, 0.337255, 0.639216)
+
+[node name="Deck" type="TextureRect" parent="TopBar"]
+z_index = 1
+offset_left = 34.0
+offset_top = 5.0
+offset_right = 57.0
+offset_bottom = 35.0
+texture = ExtResource("3_plwv1")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="GlobalDeckCounter" type="Control" parent="TopBar/Deck"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -11.0
+offset_right = -14.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_cknvf")
+
+[node name="Label" type="Label" parent="TopBar/Deck/GlobalDeckCounter"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 13.0
+offset_right = 43.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.835294, 0.835294, 0.835294, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 1
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("10_bugjp")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]

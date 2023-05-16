@@ -1,6 +1,6 @@
-AnimationPlayer
-Node2D
 ColorRect
+Node2D
+AnimationPlayer
 Node
 Label
 Button

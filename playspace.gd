@@ -59,6 +59,7 @@ var player_alive = true
 func _process(_delta):
 	$DeckCounter.set_label_text(player_deck.size())
 	$DiscardCounter.set_label_text($DiscardedCards.get_child_count())
+	$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
 
 func _ready():
 	player_deck = game_state.global_player_deck.duplicate()
@@ -350,7 +351,6 @@ func create_draftable_card(c_name, pos):
 	#base.card_name = player_deck.card_list[card_selected]
 	base.card_name = c_name
 	base.position = pos
-	base.discard_pile = discard_position
 	base.scale *= CARD_SIZE/base.size #Equivalent of 0.6
 	#base.set_focus(true)
 	$Draftables.add_child(draft_card)
