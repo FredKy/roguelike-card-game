@@ -1,11 +1,11 @@
-Node
 AnimationPlayer
 Node2D
+ColorRect
+Node
 Label
 Button
 TextureRect
 TextureButton
-ColorRect
 Sprite2D
 VBoxContainer
 HBoxContainer

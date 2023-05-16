@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6ixst20tmhni"]
+[gd_scene load_steps=27 format=3 uid="uid://b6ixst20tmhni"]
 
 [ext_resource type="Script" path="res://playspace.gd" id="1_rla1j"]
 [ext_resource type="Texture2D" uid="uid://bnaeevijy5rpp" path="res://assets/images/bg/battleback2.png" id="2_tx2wc"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://end_turn_button.gd" id="10_hjo2l"]
 [ext_resource type="PackedScene" uid="uid://d2bx32qoc54yx" path="res://misc_scenes/counter.tscn" id="12_32nrx"]
 [ext_resource type="Script" path="res://skip.gd" id="12_rw0w6"]
+[ext_resource type="PackedScene" uid="uid://ctnp68p2nyt6n" path="res://misc_scenes/draft_scene.tscn" id="13_h0qf1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_urolt"]
 bg_color = Color(0.513726, 0.372549, 0.203922, 1)
@@ -379,6 +380,7 @@ libraries = {
 
 [node name="Skip" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
+z_index = 5
 offset_left = 901.0
 offset_top = 480.0
 offset_right = 1066.0
@@ -409,6 +411,8 @@ offset_right = 1043.0
 offset_bottom = 494.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="DraftScene" parent="." instance=ExtResource("13_h0qf1")]
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]

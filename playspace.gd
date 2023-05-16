@@ -66,7 +66,7 @@ func _ready():
 	randomize()
 	$EndTurnButtonNode.visible = false
 	
-	create_draftable_card()
+	create_random_draftable_cards()
 	
 	match battle_type:
 		SKELETON_WARRIOR:
@@ -344,16 +344,19 @@ func do_stuff_when_player_has_won():
 	game_state.global_player_current_health = $Wanderer.current_health
 	$Skip/SkipAP.play("fade_in")
 
-func create_draftable_card():
-	var new_card = DRAFT_CARD_BASE.instantiate()
-	var base = new_card.get_node("MyCardBase")
+func create_draftable_card(c_name, pos):
+	var draft_card = DRAFT_CARD_BASE.instantiate()
+	var base = draft_card.get_node("MyDraftBase")
 	#base.card_name = player_deck.card_list[card_selected]
-	base.card_name = "ice_cannon"
-	base.position = Vector2(500, 100)
+	base.card_name = c_name
+	base.position = pos
 	base.discard_pile = discard_position
-	base.scale *= CARD_SIZE/base.size
-	base.state = NOTHING
-	card_numb = 0
-	base.set_focus_disabled()
-	$Draftables.add_child(new_card)
+	base.scale *= CARD_SIZE/base.size #Equivalent of 0.6
+	#base.set_focus(true)
+	$Draftables.add_child(draft_card)
 	#add_child(draft_card_base)
+
+func create_random_draftable_cards():
+	create_draftable_card("ice_cannon", Vector2(220, 120))
+	create_draftable_card("energy_shield", Vector2(431, 120))
+	create_draftable_card("ice_cannon", Vector2(642, 120))

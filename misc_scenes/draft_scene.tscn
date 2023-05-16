@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctnp68p2nyt6n"]
+
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="1_1dhmi"]
+
+[node name="DraftScene" type="Node2D"]
+z_index = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.85098)
+
+[node name="Z" type="Node2D" parent="."]
+
+[node name="Message" type="Label" parent="Z"]
+offset_right = 1151.0
+offset_bottom = 144.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.76863, 0.717647, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_1dhmi")
+theme_override_font_sizes/font_size = 60
+text = "Victory!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Z2" type="Node2D" parent="."]
+
+[node name="Message2" type="Label" parent="Z2"]
+offset_right = 1151.0
+offset_bottom = 275.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.858824, 0.858824, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_1dhmi")
+theme_override_font_sizes/font_size = 40
+text = "Pick a new card"
+horizontal_alignment = 1
+vertical_alignment = 1

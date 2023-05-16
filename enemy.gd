@@ -170,8 +170,8 @@ func shift_to_next_intent():
 	set_new_intent(new_intent)
 
 func hide_all_intent_sprites():
-	for intent in $Intents.get_children():
-		intent.visible = false
+	for i in $Intents.get_children():
+		i.visible = false
 #		if intent.visible:
 #			intent.get_node("AP").play("fade_out")
 #			await get_tree().create_timer(1.0).timeout

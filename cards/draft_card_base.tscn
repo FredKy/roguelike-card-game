@@ -923,6 +923,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_nwckl"]
 resource_name = "fade_out"
@@ -983,21 +995,22 @@ _data = {
 }
 
 [node name="DraftRoot" type="Node2D"]
+z_index = 6
 
-[node name="MyCardBase" type="MarginContainer" parent="."]
+[node name="MyDraftBase" type="MarginContainer" parent="."]
 offset_right = 290.0
 offset_bottom = 400.0
 pivot_offset = Vector2(145, 200)
 script = ExtResource("1_26ohx")
 
-[node name="GlowingBorder" parent="MyCardBase" instance=ExtResource("2_3hy1j")]
+[node name="GlowingBorder" parent="MyDraftBase" instance=ExtResource("2_3hy1j")]
 visible = false
 
-[node name="Border" type="Panel" parent="MyCardBase"]
+[node name="Border" type="Panel" parent="MyDraftBase"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("1")
 
-[node name="Inner" type="Panel" parent="MyCardBase/Border"]
+[node name="Inner" type="Panel" parent="MyDraftBase/Border"]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1009,18 +1022,13 @@ offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("2")
 
-[node name="Background" type="Sprite2D" parent="MyCardBase"]
+[node name="Background" type="Sprite2D" parent="MyDraftBase"]
 
-[node name="ColorRect" type="ColorRect" parent="MyCardBase"]
-visible = false
-layout_mode = 2
-color = Color(0.560784, 0.560784, 0.560784, 1)
-
-[node name="HiddenPanel" type="Panel" parent="MyCardBase"]
+[node name="HiddenPanel" type="Panel" parent="MyDraftBase"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_pw0ky")
 
-[node name="ImageShadow" type="Panel" parent="MyCardBase/HiddenPanel"]
+[node name="ImageShadow" type="Panel" parent="MyDraftBase/HiddenPanel"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 50.0
@@ -1028,21 +1036,21 @@ offset_right = 275.0
 offset_bottom = 246.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kbiw7")
 
-[node name="Image" type="Sprite2D" parent="MyCardBase/HiddenPanel"]
+[node name="Image" type="Sprite2D" parent="MyDraftBase/HiddenPanel"]
 position = Vector2(17, 52)
 texture = ExtResource("3_1qnc2")
 centered = false
 region_enabled = true
 region_rect = Rect2(4864, 0, 256, 192)
 
-[node name="CostRect" type="Panel" parent="MyCardBase"]
+[node name="CostRect" type="Panel" parent="MyDraftBase"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_q0drq")
 
-[node name="CostRect2" type="Panel" parent="MyCardBase/CostRect"]
+[node name="CostRect2" type="Panel" parent="MyDraftBase/CostRect"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 4.0
@@ -1052,7 +1060,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_kuay7")
 
-[node name="Cost" type="Label" parent="MyCardBase/CostRect/CostRect2"]
+[node name="Cost" type="Label" parent="MyDraftBase/CostRect/CostRect2"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 offset_left = -4.0
@@ -1072,10 +1080,10 @@ text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MyCardBase"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyDraftBase"]
 layout_mode = 2
 
-[node name="Name" type="Label" parent="MyCardBase/VBoxContainer"]
+[node name="Name" type="Label" parent="MyDraftBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 size_flags_vertical = 0
@@ -1089,11 +1097,11 @@ text = "Ice Cannon"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MyCardBase/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyDraftBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 
-[node name="Info" type="Label" parent="MyCardBase/VBoxContainer"]
+[node name="Info" type="Label" parent="MyDraftBase/VBoxContainer"]
 custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 size_flags_vertical = 6
@@ -1107,19 +1115,19 @@ text = "Information"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Focus" type="TextureButton" parent="MyCardBase"]
+[node name="Focus" type="TextureButton" parent="MyDraftBase"]
 modulate = Color(1, 0.8, 0.2, 1)
 texture_filter = 1
 layout_mode = 2
 texture_hover = ExtResource("5_xdihi")
 texture_disabled = SubResource("CanvasTexture_j53ea")
 
-[node name="CardBack" type="Panel" parent="MyCardBase"]
+[node name="CardBack" type="Panel" parent="MyDraftBase"]
 visible = false
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
 
-[node name="CostRectBack" type="Panel" parent="MyCardBase/CardBack"]
+[node name="CostRectBack" type="Panel" parent="MyDraftBase/CardBack"]
 custom_minimum_size = Vector2(54, 54)
 layout_mode = 2
 offset_right = 54.0
@@ -1128,7 +1136,7 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_oimp7")
 
-[node name="Inner" type="Panel" parent="MyCardBase/CardBack"]
+[node name="Inner" type="Panel" parent="MyDraftBase/CardBack"]
 layout_mode = 0
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1140,7 +1148,7 @@ offset_right = 136.0
 offset_bottom = 191.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")
 
-[node name="FadeOutAnimationPlayer" type="AnimationPlayer" parent="MyCardBase"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MyDraftBase"]
 libraries = {
 "": SubResource("AnimationLibrary_ur34d")
 }
@@ -1160,5 +1168,5 @@ texture = ExtResource("6_li5w8")
 expand_mode = 4
 stretch_mode = 4
 
-[connection signal="mouse_entered" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_entered"]
-[connection signal="mouse_exited" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_exited"]
+[connection signal="mouse_entered" from="MyDraftBase/Focus" to="MyDraftBase" method="_on_focus_mouse_entered"]
+[connection signal="mouse_exited" from="MyDraftBase/Focus" to="MyDraftBase" method="_on_focus_mouse_exited"]
