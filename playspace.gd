@@ -48,6 +48,12 @@ enum {
 	WARRIOR_AND_SPEARMAN,
 }
 
+#Backgrounds
+enum {
+	SUMMER_FOREST,
+	WINTER_FOREST,
+}
+
 #var battle_type = WARRIOR_AND_SPEARMAN
 var battle_type = WARRIOR_AND_SPEARMAN
 
@@ -64,6 +70,7 @@ func update_global_deck_counter():
 	$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
 
 func _ready():
+	set_background_texture(game_state.global_next_background)
 	battle_type = game_state.global_next_battle_type
 	player_deck = game_state.global_player_deck.duplicate()
 	update_global_deck_counter()
@@ -367,3 +374,12 @@ func create_random_draftable_cards():
 	create_draftable_card("ice_cannon", Vector2(220, 120))
 	create_draftable_card("energy_shield", Vector2(431, 120))
 	create_draftable_card("ice_cannon", Vector2(642, 120))
+
+func set_background_texture(background):
+	match background:
+		SUMMER_FOREST:
+			$Background.texture = load("res://assets/images/bg/battleback1_without_red_flowers.png")
+		WINTER_FOREST:
+			$Background.texture = load("res://assets/images/bg/battleback2.png")
+		_:
+			$Background.texture = load("res://assets/images/bg/battleback5.png")

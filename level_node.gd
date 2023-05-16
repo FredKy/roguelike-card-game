@@ -13,8 +13,16 @@ enum BATTLE_TYPE {
 	WARRIOR_AND_SPEARMAN,
 }
 
+enum BACKGROUND {
+	SUMMER_FOREST,
+	WINTER_FOREST,
+}
+
 #Determines what enemies to load in playscape
 @export var battle_type: BATTLE_TYPE
+
+#Determines what background to load in playscape
+@export var background: BACKGROUND
 
 # Player has visited node
 @export var visited = false
@@ -44,4 +52,5 @@ func _on_pressed():
 	game_state.global_current_map_node = index
 	game_state.global_visited_nodes.append(index)
 	game_state.global_next_battle_type = battle_type
+	game_state.global_next_background = background
 	get_tree().change_scene_to_file(scene_path)

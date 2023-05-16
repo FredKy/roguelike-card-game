@@ -13,8 +13,8 @@ var global_current_map_node
 var global_visited_nodes
 
 #Battle type
-#var battle_type: int
 var global_next_battle_type
+var global_next_background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
