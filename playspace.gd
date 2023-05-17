@@ -105,6 +105,12 @@ func _ready():
 	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$TurnMessage.modulate = Color(1,1,1,0)
+	
+	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+	add_child(transition)
+	await transition.fade_out()
+	transition.queue_free()
+	
 	show_turn_message("BATTLE!")
 	await get_tree().create_timer(1.5).timeout
 	show_turn_message("Player turn")

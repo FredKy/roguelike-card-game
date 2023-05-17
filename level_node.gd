@@ -54,4 +54,7 @@ func _on_pressed():
 	game_state.global_visited_nodes.append(index)
 	game_state.global_next_battle_type = battle_type
 	game_state.global_next_background = background
+	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+	$'../../'.add_child(transition)
+	await transition.fade_in()
 	get_tree().change_scene_to_file(scene_path)
