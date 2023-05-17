@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://oo0qkm8em3jr"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=4 format=3 uid="uid://oo0qkm8em3jr"]
 
+[ext_resource type="Script" path="res://resources/skeleton_spearman_extra.gd" id="1_5203t"]
 [ext_resource type="Script" path="res://scripts/enemy_resource_base.gd" id="1_hjydf"]
 [ext_resource type="SpriteFrames" uid="uid://br00wojcy2l6p" path="res://resources/skeleton_spearman_sprite_frames.tres" id="2_4rr1n"]
 
@@ -10,3 +11,4 @@ sprite_frames_resource = ExtResource("2_4rr1n")
 attack_damage = 11
 double_attack_damage = 5
 shield_value = 6
+extra_script = ExtResource("1_5203t")

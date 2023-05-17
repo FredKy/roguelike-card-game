@@ -310,4 +310,6 @@ text = "8"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ExtraScripts" type="Node" parent="."]
+
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

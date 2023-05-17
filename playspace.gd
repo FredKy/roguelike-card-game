@@ -45,6 +45,7 @@ enum {
 enum {
 	NORMAL_ATTACK,
 	DOUBLE_ATTACK,
+	SPECIAL_ATTACK_ONE,
 }
 
 #Battle type
@@ -93,7 +94,7 @@ func _ready():
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(600, 80), load("res://resources/skeleton_warrior.tres")))
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [SPECIAL_ATTACK_ONE, NORMAL_ATTACK, DOUBLE_ATTACK]))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()

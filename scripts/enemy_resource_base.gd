@@ -7,3 +7,4 @@ class_name EnemyResource
 @export var attack_damage : int
 @export var double_attack_damage : int
 @export var shield_value : int
+@export var extra_script : Script

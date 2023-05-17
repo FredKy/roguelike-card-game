@@ -23,6 +23,7 @@ var damage_queues = {}
 @export var enemy_resource: Resource
 
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
+@onready var extra = $ExtraScripts
 
 #Intents
 enum {
@@ -34,6 +35,7 @@ enum {
 enum {
 	NORMAL_ATTACK,
 	DOUBLE_ATTACK,
+	SPECIAL_ATTACK_ONE,
 }
 
 var intent
@@ -53,6 +55,8 @@ func _ready():
 	attack_damage = enemy_resource.attack_damage
 	double_attack_damage = enemy_resource.double_attack_damage
 	shield_value = enemy_resource.shield_value
+	if enemy_resource.extra_script != null:
+		extra.set_script(enemy_resource.extra_script)
 	#print(enemy_resource.intent_position)
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100
@@ -120,6 +124,8 @@ func start_attacking():
 		NORMAL_ATTACK:
 			print("Normal attack type")
 			await normal_attack()
+		SPECIAL_ATTACK_ONE:
+			await extra.attack_one(self)
 		_:
 			await get_tree().create_timer(1).timeout
 
@@ -211,6 +217,16 @@ func _on_animated_sprite_2d_animation_finished():
 			return
 		sprite.animation = "idle"
 		sprite.play()
+	
+	elif sprite.animation == "special_attack":
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(
+			damage_queues["special_attack_damage"].pop_front()
+			)
+		if has_killed_player:
+			_on_animated_sprite_2d_animation_finished()
+			return
+		sprite.animation = "idle"
+		sprite.play()
 		
 	elif sprite.animation == "defend":
 		pass
@@ -278,6 +294,8 @@ func set_attack_intent_text():
 			$Intents/AttackIntent/Damage.text = "2x" + str(double_attack_damage)
 		NORMAL_ATTACK:
 			$Intents/AttackIntent/Damage.text = str(attack_damage)
+		SPECIAL_ATTACK_ONE:
+			$Intents/AttackIntent/Damage.text = str(extra.attack_damage_one)
 
 func hide_all_intent_sprites():
 	for i in $Intents.get_children():

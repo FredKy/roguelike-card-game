@@ -27,3 +27,4 @@ res://resources/skeleton_warrior_sprite_frames.tres
 res://scripts/enemy_resource_base.gd
 res://resources/skeleton_spearman.tres
 res://resources/skeleton_warrior.tres
+res://resources/skeleton_spearman_extra.gd
