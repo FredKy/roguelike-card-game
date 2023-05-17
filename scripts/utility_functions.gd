@@ -14,3 +14,12 @@ extends Node
 func parametric_blend(x):
 	var sq = x * x
 	return sq / (2.0 * (sq - x) + 1.0)
+
+func append_value_to_queue(name_of_queue: String, value, dict):
+	if not name_of_queue in dict:
+		dict[name_of_queue] = [value]
+		print("Queue with name " + name_of_queue + " created: " + str(dict))
+	else:
+		print("Before append: " + str(dict))
+		dict[name_of_queue].append(value)
+		print("After append: " + str(dict))

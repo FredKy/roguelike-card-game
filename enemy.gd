@@ -15,7 +15,7 @@ var buffered_damage = 0
 var animation_queue = []
 
 #Dictionary with damage queues
-var dict = {}
+var dictionary_of_queues = {}
 
 @export var enemy_resource: Resource
 
@@ -152,27 +152,6 @@ func _on_animated_sprite_2d_animation_finished():
 		sprite.animation = "idle"
 		sprite.play()
 
-func on_animation_finished():
-	if has_killed_player:
-		sprite.animation = "idle"
-		sprite.play()
-		return
-		
-	if sprite.animation == "attack_2":
-		sprite.animation = "attack_3"
-		sprite.play()
-		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
-		if has_killed_player:
-			$'../../'.animate_stuff_when_player_dies()
-	elif sprite.animation == "defend":
-		pass
-	elif sprite.animation == "dead":
-		pass
-	else:
-		sprite.animation = "idle"
-		sprite.play()
-		#await get_tree().create_timer(1.5).timeout
-
 func play_death_animation_and_die():
 	sprite.animation = "dead"
 	hide_all_intent_sprites()
@@ -223,4 +202,11 @@ func set_shield_amount(value):
 	$Indicators/Shield/Amount.text = str(value)
 	current_shield = value
 
-
+func append_value_to_queue(name_of_queue: String, value, dict):
+	if not name_of_queue in dict:
+		dict[name_of_queue] = [value]
+		print("Queue with name " + name_of_queue + " created: " + str(dict))
+	else:
+		print("Before append: " + str(dict))
+		dict[name_of_queue].append(value)
+		print("After append: " + str(dict))
