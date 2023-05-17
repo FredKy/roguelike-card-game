@@ -1,6 +1,6 @@
 extends Node2D
 
-const LENGTH = 1.0
+const LENGTH = 0.7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ColorRect.modulate = Color(1,1,1,0)
