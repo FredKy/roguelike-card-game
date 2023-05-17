@@ -3,6 +3,7 @@ extends MarginContainer
 var current_health = 10.0
 var max_health = 10.0
 var attack_damage = 4.0
+var double_attack_damage = 4.0
 var has_killed_player = false
 var alive = true
 var shield_value = 8.0
@@ -95,12 +96,20 @@ func is_already_dead():
 
 #Returns duration to wait to playscape scene
 func start_attacking():
-	print("Attack!")
+	await double_attack()
+
+func double_attack():
+	print("Double attack started!")
 	$Intents/AttackIntent/AP.play("fade_out")
 	#Wait while attack intent fades out
 	await get_tree().create_timer(1.0).timeout
 	$Intents/AttackIntent.visible = false
-	sprite.animation = "attack_2"
+	sprite.animation = "double_attack_1"
+#	append_value_to_queue("attack_2", double_attack_damage, dictionary_of_queues)
+#	animation_queue.append("attack_2")
+	if sprite.animation == "idle":
+		sprite.animation = animation_queue.pop_front()
+
 	#Wait for attack to occur, playscape scene is awaiting this
 	await get_tree().create_timer(2.5).timeout
 
@@ -128,15 +137,15 @@ func _on_animated_sprite_2d_animation_finished():
 		$'../../'.animate_stuff_when_player_dies()
 		return
 	
-	if sprite.animation == "attack_2":
+	if sprite.animation == "double_attack_1":
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 		if has_killed_player:
 			_on_animated_sprite_2d_animation_finished()
 			return
-		sprite.animation = "attack_3"
+		sprite.animation = "double_attack_2"
 		sprite.play()
 		
-	elif sprite.animation == "attack_3":
+	elif sprite.animation == "double_attack_2":
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
 		if has_killed_player:
 			_on_animated_sprite_2d_animation_finished()
