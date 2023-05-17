@@ -1,3 +1,4 @@
+extends Node
 # Spellinfo = [Type, Cost, Name, Effect, Image, Damage, Shield, ]
 enum {ICE_CANNON, WARP_TIME, COLD_TOUCH, ENERGY_SHIELD}
 
@@ -22,7 +23,19 @@ func card_data_array_to_dictionary(arr):
 	dict["damage"] = arr[5]
 	dict["shield"] = arr[6]
 	return dict
-	
+
+#var cards = DATA.duplicate()
+#
+#func change_card_data_arrays_to_dictionaries():
+#	for key in cards.keys():
+#		print(key)
+#		cards[key] = card_data_array_to_dictionary(cards[key])
+
+#func _ready():
+#	change_card_data_arrays_to_dictionaries()
+#	for key in cards.keys():
+#		print(key)
+#		cards[key] = card_data_array_to_dictionary(cards[key])
 #const CARDS = {
 #	COLD_TOUCH:
 #		{"type": "spell", "cost": 1, "name": "Cold Touch", "effect": "Apply 2 chill\nto an enemy", "image_pos": Rect2(9728,64,256,192), "damage": 2, "shield": 0},
