@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://dk3hyhaqcw2ds"]
+
+[ext_resource type="Script" path="res://scripts/enemy_resource_base.gd" id="1_5mo1b"]
+[ext_resource type="SpriteFrames" uid="uid://i7hyu83xvek0" path="res://resources/skeleton_archer_sprite_frames.tres" id="2_42nrb"]
+
+[resource]
+script = ExtResource("1_5mo1b")
+intent_position = Vector2(235, -75)
+sprite_frames_resource = ExtResource("2_42nrb")
+attack_damage = 10
+double_attack_damage = 5
+shield_value = 0

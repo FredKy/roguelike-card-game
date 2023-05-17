@@ -53,6 +53,7 @@ enum {
 	SKELETON_WARRIOR,
 	SKELETON_SPEARMAN,
 	WARRIOR_AND_SPEARMAN,
+	SKELETON_ARCHER,
 }
 
 #Backgrounds
@@ -95,7 +96,8 @@ func _ready():
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(600, 80), load("res://resources/skeleton_warrior.tres")))
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [SPECIAL_ATTACK_ONE, NORMAL_ATTACK, DOUBLE_ATTACK]))
-			
+		SKELETON_ARCHER:
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_archer.tres"), [ATTACK, DEFEND], [NORMAL_ATTACK]))
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true
