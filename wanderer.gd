@@ -12,8 +12,9 @@ var animation_queue = []
 
 #Targeted enemies references
 var target_queue = []
-#Damage queue
-var attack_number_queue = []
+
+#Dictionary for storing damage queues for every distinct attack card
+var dict = {}
 
 #Shield number queue
 var shield_number_queue = []
@@ -76,7 +77,8 @@ func play_death_animation_and_die():
 func play_hurt():
 	sprite.animation = "hurt"
 
-func ice_cannon():
+func ice_cannon(attack_number):
+	append_value_to_queue("ice_cannon_damage", attack_number)
 	animation_queue.append("ice_cannon")
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
@@ -111,8 +113,7 @@ func _on_animated_sprite_2d_animation_finished():
 	if target_queue.size() > 0:
 		if sprite.animation  == "ice_cannon":
 			var enemy = target_queue.pop_front()
-			print(enemy)
-			enemy.change_health_and_check_if_dead(attack_number_queue.pop_front())
+			enemy.change_health_and_check_if_dead(dict["ice_cannon_damage"].pop_front())
 	
 	if animation_queue.size() > 0:
 		sprite.animation = animation_queue.pop_front()
@@ -120,3 +121,12 @@ func _on_animated_sprite_2d_animation_finished():
 		sprite.animation = "idle"
 	
 	sprite.play()
+
+func append_value_to_queue(name_of_queue: String, value):
+	if not name_of_queue in dict:
+		dict[name_of_queue] = [value]
+		print("Queue with name " + name_of_queue + " created: " + str(dict))
+	else:
+		print("Before append: " + str(dict))
+		dict[name_of_queue].append(value)
+		print("After append: " + str(dict))

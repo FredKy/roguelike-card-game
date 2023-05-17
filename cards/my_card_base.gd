@@ -117,27 +117,19 @@ func _input(event):
 							card_select = true
 							
 							# Remove energy
-							$'../../../'.update_energy_and_cards_playability(card_info[1])
+							$'../../../'.update_energy_and_cards_playability(card_data["cost"])
 							
-							var attack_number = card_info[5]
+							var attack_number = card_data["damage"]
 							enemies.get_child(i).buffered_damage += attack_number
-
-							print("attacking")
-							
-							# Play attack animation
-							if card_info[2] == "Ice Cannon":
-								$'../../../Wanderer'.ice_cannon()
-								#await get_tree().create_timer(2.0).timeout
-							
-							# Deal with damage
-
 							#Queue up enemy for damage calculation in Wanderers animation finished function
 							$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
-							#Queue up damage
-							$'../../../Wanderer'.attack_number_queue.append(attack_number)
 							
-							#enemies.get_child(i).change_health_and_check_if_dead(attack_number)
-
+							print("attacking")
+							
+							# Play attack animation and handle damage
+							if card_data["name"] == "Ice Cannon":
+								$'../../../Wanderer'.ice_cannon(attack_number)
+								
 							print("stopped attacking")
 							return
 						else:

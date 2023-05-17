@@ -11,6 +11,12 @@ var current_shield = 0
 #Used to determine if enemy is going to die from queued up damage
 var buffered_damage = 0
 
+#Array to store all upcoming animations, animation is popped from front when time to play it comes
+var animation_queue = []
+
+#Dictionary with damage queues
+var dict = {}
+
 @export var enemy_resource: Resource
 
 @onready var sprite: AnimatedSprite2D = $VBoxContainer/ImageContainer/AnimatedSprite2D
