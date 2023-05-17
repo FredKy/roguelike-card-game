@@ -101,6 +101,7 @@ func change_health_and_check_if_dead(number):
 func play_hurt():
 	animation_queue.append(sprite.animation)
 	sprite.animation = "hurt"
+	$VBoxContainer/ImageContainer/AnimatedSprite2D/AP.play("hurt_modulation")
 
 #Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
 #This function is used to prevent the player from wasting an attack card on an already dead enemy.
