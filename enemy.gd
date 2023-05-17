@@ -33,12 +33,11 @@ func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.sprite_frames = enemy_resource.sprite_frames_resource
-	print(enemy_resource.intent_position)
+	#print(enemy_resource.intent_position)
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
-	$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
 	$Intents/AttackIntent.position = enemy_resource.intent_position
 #	$Intents/DefendIntent/ShieldAmount.text = str(shield_value)
 #	set_shield_amount(0)
@@ -151,6 +150,7 @@ func set_new_intent(new_intent):
 	#hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
+			$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
 			$Intents/AttackIntent/AP.play("RESET")
 			await get_tree().create_timer(0.05).timeout
 			$Intents/AttackIntent.visible = true

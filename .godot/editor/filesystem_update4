@@ -21,3 +21,5 @@ res://scripts/game_state.gd
 res://level_node.gd
 res://cards/my_card_base.gd
 res://scripts/utility_functions.gd
+res://wanderer.gd
+res://enemy.gd

@@ -7,7 +7,7 @@ extends MarginContainer
 #var card_name = 'warp_time'
 var card_name = 'cold_touch'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
-@onready var info = card_database.card_data_array_to_dictionary(card_info)
+@onready var card_data = card_database.card_data_array_to_dictionary(card_info)
 
 var startpos = Vector2()
 var targetpos = Vector2()
@@ -63,7 +63,7 @@ var state = DRAWN_TO_HAND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(info)
+	print(card_data)
 	#print(card_info)
 	$CardBack.scale *= size/$CardBack.size
 	
@@ -71,7 +71,7 @@ func _ready():
 	#print($HiddenPanel/Image.region_rect)
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
 	#$VBoxContainer/Name.text = card_info[2]
-	$VBoxContainer/Name.text = info["name"]
+	$VBoxContainer/Name.text = card_data["name"]
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
 	$Focus.set_modulate(Color(1,0.8,0.2,1))

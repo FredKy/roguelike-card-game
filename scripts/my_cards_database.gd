@@ -18,8 +18,8 @@ func card_data_array_to_dictionary(arr):
 	dict["type"] = arr[0]
 	dict["cost"] = arr[1]
 	dict["name"] = arr[2]
-	dict["effect"] = arr[3]
-	dict["image"] = arr[4]
+	dict["effect_text"] = arr[3]
+	dict["region_rect"] = arr[4]
 	dict["damage"] = arr[5]
 	dict["shield"] = arr[6]
 	return dict
