@@ -303,8 +303,8 @@ func run_through_enemies_actions():
 			continue
 		await get_tree().create_timer(1.0).timeout
 		if enemy.intent == ATTACK:
-			enemy.start_attacking()
-			await get_tree().create_timer(2.5).timeout
+			await enemy.start_attacking()
+			#await get_tree().create_timer(duration_of_attack).timeout
 			print("Attack done")
 			if enemy.has_killed_player:
 				return false

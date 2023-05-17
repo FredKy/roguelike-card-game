@@ -24,7 +24,7 @@ enum {
 var intent
 var intent_queue
 
-func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [DEFEND, ATTACK]):
+func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [ATTACK]):
 	position = pos
 	enemy_resource = e_r
 	intent_queue = i_q
@@ -87,19 +87,16 @@ func is_already_dead():
 	else:
 		return false
 
+#Returns duration to wait to playscape scene
 func start_attacking():
 	print("Attack!")
 	$Intents/AttackIntent/AP.play("fade_out")
+	#Wait while attack intent fades out
 	await get_tree().create_timer(1.0).timeout
 	$Intents/AttackIntent.visible = false
 	sprite.animation = "attack_2"
-	has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
-	if has_killed_player:
-		for enemy in $'../../Enemies'.get_children():
-			enemy.z_index = 3
-			enemy.fade_out_bars()
-			enemy.hide_all_intent_sprites()
-		$'../../'.animate_stuff_when_player_dies()
+	#Wait for attack to occur, playscape scene is awaiting this
+	await get_tree().create_timer(2.5).timeout
 
 func start_defending():
 	$Intents/DefendIntent/AP.play("fade_out")
@@ -118,6 +115,41 @@ func _on_animated_sprite_2d_animation_finished():
 	if has_killed_player:
 		sprite.animation = "idle"
 		sprite.play()
+		for enemy in $'../../Enemies'.get_children():
+			enemy.z_index = 3
+			enemy.fade_out_bars()
+			enemy.hide_all_intent_sprites()
+		$'../../'.animate_stuff_when_player_dies()
+		return
+	
+	if sprite.animation == "attack_2":
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+		if has_killed_player:
+			_on_animated_sprite_2d_animation_finished()
+			return
+		sprite.animation = "attack_3"
+		sprite.play()
+		
+	elif sprite.animation == "attack_3":
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+		if has_killed_player:
+			_on_animated_sprite_2d_animation_finished()
+			return
+		sprite.animation = "idle"
+		sprite.play()
+		
+	elif sprite.animation == "defend":
+		pass
+	elif sprite.animation == "dead":
+		pass
+	else:
+		sprite.animation = "idle"
+		sprite.play()
+
+func on_animation_finished():
+	if has_killed_player:
+		sprite.animation = "idle"
+		sprite.play()
 		return
 		
 	if sprite.animation == "attack_2":
@@ -133,6 +165,7 @@ func _on_animated_sprite_2d_animation_finished():
 	else:
 		sprite.animation = "idle"
 		sprite.play()
+		#await get_tree().create_timer(1.5).timeout
 
 func play_death_animation_and_die():
 	sprite.animation = "dead"
