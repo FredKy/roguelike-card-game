@@ -116,9 +116,19 @@ func start_attacking():
 			await double_attack()
 		NORMAL_ATTACK:
 			print("Normal attack type")
-			await get_tree().create_timer(1).timeout
+			await normal_attack()
 		_:
 			await get_tree().create_timer(1).timeout
+
+func normal_attack():
+	print("Normal attack started!")
+	append_value_to_queue("normal_attack_damage", attack_damage, damage_queues)
+	animation_queue.append("normal_attack")
+	if sprite.animation == "idle":
+		sprite.animation = animation_queue.pop_front()
+
+	#Wait for attack to occur, playscape scene is awaiting this
+	await get_tree().create_timer(1.25).timeout
 
 func double_attack():
 	print("Double attack started!")
@@ -161,7 +171,17 @@ func _on_animated_sprite_2d_animation_finished():
 		$'../../'.animate_stuff_when_player_dies()
 		return
 	
-	if sprite.animation == "double_attack_1":
+	if sprite.animation == "normal_attack":
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(
+			damage_queues["normal_attack_damage"].pop_front()
+			)
+		if has_killed_player:
+			_on_animated_sprite_2d_animation_finished()
+			return
+		sprite.animation = "idle"
+		sprite.play()
+	
+	elif sprite.animation == "double_attack_1":
 		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(
 			damage_queues["double_attack_damage"].pop_front()
 			)

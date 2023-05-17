@@ -7,22 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bh4hdkelvceqj" path="res://assets/images/enemies/skeleton_spearman/Protect.png" id="4_0o6ib"]
 [ext_resource type="Texture2D" uid="uid://bwh4rebnpmak5" path="res://assets/images/enemies/skeleton_spearman/Hurt.png" id="5_qbful"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gsj1d"]
-atlas = ExtResource("1_wlq1w")
-region = Rect2(0, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3ramd"]
-atlas = ExtResource("1_wlq1w")
-region = Rect2(128, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ejad"]
-atlas = ExtResource("1_wlq1w")
-region = Rect2(256, 0, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfq5j"]
-atlas = ExtResource("1_wlq1w")
-region = Rect2(384, 0, 128, 128)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_uut1o"]
 atlas = ExtResource("3_84nan")
 region = Rect2(0, 0, 128, 128)
@@ -119,25 +103,24 @@ region = Rect2(640, 0, 128, 128)
 atlas = ExtResource("1_pyqgl")
 region = Rect2(768, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsj1d"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ramd"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ejad"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfq5j"]
+atlas = ExtResource("1_wlq1w")
+region = Rect2(384, 0, 128, 128)
+
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gsj1d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3ramd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7ejad")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfq5j")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uut1o")
@@ -238,5 +221,22 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsj1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ramd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ejad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfq5j")
+}],
+"loop": false,
+"name": &"normal_attack",
 "speed": 5.0
 }]
