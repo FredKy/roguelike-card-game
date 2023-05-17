@@ -282,8 +282,9 @@ func start_enemy_turn():
 		print("You win!")
 		return
 	for enemy in $Enemies.get_children():
-		enemy.reset_shield()
-		enemy.reset_animation()
+		if enemy.alive:
+			enemy.reset_shield()
+			enemy.reset_animation()
 	player_alive = await run_through_enemies_actions()
 	end_enemy_turn()
 

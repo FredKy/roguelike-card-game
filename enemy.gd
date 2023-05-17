@@ -1,5 +1,7 @@
 extends MarginContainer
 
+const POST_ATTACK_DELAY = 0.75
+
 var current_health = 10.0
 var max_health = 10.0
 var attack_damage = 8.0
@@ -128,8 +130,10 @@ func normal_attack():
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
+	var attack_animation_length = get_animation_length("normal_attack")
+	print(attack_animation_length)
 	#Wait for attack to occur, playscape scene is awaiting this
-	await get_tree().create_timer(1.25).timeout
+	await get_tree().create_timer(attack_animation_length+POST_ATTACK_DELAY).timeout
 
 func double_attack():
 	print("Double attack started!")
@@ -140,8 +144,11 @@ func double_attack():
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
+	var attack_animation_length = get_animation_length("double_attack_1") + get_animation_length("double_attack_2")
+	print(attack_animation_length)
 	#Wait for attack to occur, playscape scene is awaiting this
-	await get_tree().create_timer(2.5).timeout
+	#await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(attack_animation_length+POST_ATTACK_DELAY).timeout
 
 func start_defending():
 	$Intents/DefendIntent/AP.play("fade_out")
@@ -157,10 +164,14 @@ func reset_shield():
 	$Indicators/Shield.visible = false
 
 func reset_animation():
+	if sprite.animation == "dead":
+		return
 	sprite.animation = "idle"
 	sprite.play()
 
 func _on_animated_sprite_2d_animation_finished():
+	if not alive:
+		return
 	if has_killed_player:
 		sprite.animation = "idle"
 		sprite.play()
@@ -283,7 +294,7 @@ func set_shield_amount(value):
 	$Indicators/Shield/Amount.text = str(value)
 	current_shield = value
 
-func append_value_to_queue(name_of_queue: String, value, dict):
+func append_value_to_queue(name_of_queue: String, value, dict: Dictionary):
 	if not name_of_queue in dict:
 		dict[name_of_queue] = [value]
 		print("Queue with name " + name_of_queue + " created: " + str(dict))
@@ -291,3 +302,6 @@ func append_value_to_queue(name_of_queue: String, value, dict):
 		print("Before append: " + str(dict))
 		dict[name_of_queue].append(value)
 		print("After append: " + str(dict))
+
+func get_animation_length(name: String):
+	return sprite.sprite_frames.get_frame_count(name)/sprite.sprite_frames.get_animation_speed(name)
