@@ -2,7 +2,7 @@ extends MarginContainer
 
 var current_health = 10.0
 var max_health = 10.0
-var attack_damage = 4.0
+var attack_damage = 8.0
 var double_attack_damage = 4.0
 var has_killed_player = false
 var alive = true
@@ -16,7 +16,7 @@ var buffered_damage = 0
 var animation_queue = []
 
 #Dictionary with damage queues
-var dictionary_of_queues = {}
+var damage_queues = {}
 
 @export var enemy_resource: Resource
 
@@ -28,13 +28,21 @@ enum {
 	DEFEND,
 }
 
+#Attack types
+enum {
+	NORMAL_ATTACK,
+	DOUBLE_ATTACK,
+}
+
 var intent
 var intent_queue
+var attack_type_queue
 
-func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [ATTACK]):
+func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [ATTACK], a_t_q = [DOUBLE_ATTACK, NORMAL_ATTACK]):
 	position = pos
 	enemy_resource = e_r
 	intent_queue = i_q
+	attack_type_queue = a_t_q
 	return self
 
 # Called when the node enters the scene tree for the first time.
@@ -84,6 +92,7 @@ func change_health_and_check_if_dead(number):
 	return false
 
 func play_hurt():
+	animation_queue.append(sprite.animation)
 	sprite.animation = "hurt"
 
 #Used with buffered damage var to check if enemy is going to die from upcoming qeued damage.
@@ -96,17 +105,28 @@ func is_already_dead():
 
 #Returns duration to wait to playscape scene
 func start_attacking():
-	await double_attack()
-
-func double_attack():
-	print("Double attack started!")
 	$Intents/AttackIntent/AP.play("fade_out")
 	#Wait while attack intent fades out
 	await get_tree().create_timer(1.0).timeout
 	$Intents/AttackIntent.visible = false
-	sprite.animation = "double_attack_1"
-#	append_value_to_queue("attack_2", double_attack_damage, dictionary_of_queues)
-#	animation_queue.append("attack_2")
+	
+	var next_attack_type = get_next_attack_type_and_cycle()
+	match next_attack_type:
+		DOUBLE_ATTACK:
+			await double_attack()
+		NORMAL_ATTACK:
+			print("Normal attack type")
+			await get_tree().create_timer(1).timeout
+		_:
+			await get_tree().create_timer(1).timeout
+
+func double_attack():
+	print("Double attack started!")
+	#sprite.animation = "double_attack_1"
+	append_value_to_queue("double_attack_damage", double_attack_damage, damage_queues)
+	append_value_to_queue("double_attack_damage", double_attack_damage, damage_queues)
+	animation_queue.append("double_attack_1")
+	animation_queue.append("double_attack_2")
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
@@ -126,6 +146,10 @@ func reset_shield():
 	set_shield_amount(0)
 	$Indicators/Shield.visible = false
 
+func reset_animation():
+	sprite.animation = "idle"
+	sprite.play()
+
 func _on_animated_sprite_2d_animation_finished():
 	if has_killed_player:
 		sprite.animation = "idle"
@@ -138,15 +162,19 @@ func _on_animated_sprite_2d_animation_finished():
 		return
 	
 	if sprite.animation == "double_attack_1":
-		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(
+			damage_queues["double_attack_damage"].pop_front()
+			)
 		if has_killed_player:
 			_on_animated_sprite_2d_animation_finished()
 			return
-		sprite.animation = "double_attack_2"
+		sprite.animation = animation_queue.pop_front()
 		sprite.play()
 		
 	elif sprite.animation == "double_attack_2":
-		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(attack_damage)
+		has_killed_player = $'../../Wanderer'.change_health_and_check_if_dead(
+			damage_queues["double_attack_damage"].pop_front()
+			)
 		if has_killed_player:
 			_on_animated_sprite_2d_animation_finished()
 			return
@@ -157,9 +185,19 @@ func _on_animated_sprite_2d_animation_finished():
 		pass
 	elif sprite.animation == "dead":
 		pass
-	else:
-		sprite.animation = "idle"
+	elif sprite.animation == "hurt":
+		print("Animation queue after 'hurt' played: " +str(animation_queue))
+		sprite.animation = animation_queue.pop_front()
+		print("After pop: " +str(animation_queue))
 		sprite.play()
+	else:
+		if animation_queue.size() > 0:
+			sprite.animation = animation_queue.pop_front()
+		else:
+			sprite.animation = "idle"
+		sprite.play()
+	
+	
 
 func play_death_animation_and_die():
 	sprite.animation = "dead"
@@ -177,7 +215,7 @@ func set_new_intent(new_intent):
 	#hide_all_intent_sprites()
 	match new_intent:
 		ATTACK:
-			$Intents/AttackIntent/Damage.text = "2x" + str(attack_damage)
+			set_attack_intent_text()
 			$Intents/AttackIntent/AP.play("RESET")
 			await get_tree().create_timer(0.05).timeout
 			$Intents/AttackIntent.visible = true
@@ -195,6 +233,20 @@ func shift_to_next_intent():
 	var new_intent = intent_queue.pop_front()
 	intent_queue.append(temp)
 	set_new_intent(new_intent)
+
+func get_next_attack_type_and_cycle():
+	var temp = attack_type_queue[0]
+	var next_attack_type = attack_type_queue.pop_front()
+	attack_type_queue.append(temp)
+	return next_attack_type
+
+func set_attack_intent_text():
+	var next_attack_type = attack_type_queue[0]
+	match next_attack_type:
+		DOUBLE_ATTACK:
+			$Intents/AttackIntent/Damage.text = "2x" + str(double_attack_damage)
+		NORMAL_ATTACK:
+			$Intents/AttackIntent/Damage.text = str(attack_damage)
 
 func hide_all_intent_sprites():
 	for i in $Intents.get_children():

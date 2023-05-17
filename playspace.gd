@@ -82,9 +82,9 @@ func _ready():
 	
 	match battle_type:
 		SKELETON_WARRIOR:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), [ATTACK, DEFEND]))
 		SKELETON_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [DEFEND, ATTACK]))
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres")))
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, DEFEND]))
@@ -277,6 +277,7 @@ func start_enemy_turn():
 		return
 	for enemy in $Enemies.get_children():
 		enemy.reset_shield()
+		enemy.reset_animation()
 	player_alive = await run_through_enemies_actions()
 	end_enemy_turn()
 
