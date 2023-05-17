@@ -119,18 +119,17 @@ func _input(event):
 							# Remove energy
 							$'../../../'.update_energy_and_cards_playability(card_data["cost"])
 							
-							var attack_number = card_data["damage"]
-							enemies.get_child(i).buffered_damage += attack_number
+#							var attack_number = card_data["damage"]
+							enemies.get_child(i).buffered_damage += card_data["damage"]
 							#Queue up enemy for damage calculation in Wanderers animation finished function
 							$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
 							
-							print("attacking")
-							
+							print("Wanderer attacking")
 							# Play attack animation and handle damage
-							if card_data["name"] == "Ice Cannon":
-								$'../../../Wanderer'.ice_cannon(attack_number)
-								
-							print("stopped attacking")
+							$'../../../Wanderer'.trigger_attack(card_data)
+#							if card_data["name"] == "Ice Cannon":
+#								$'../../../Wanderer'.ice_cannon(attack_number)
+							print("Stopped attacking")
 							return
 						else:
 							setup = true

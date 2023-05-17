@@ -78,6 +78,12 @@ func play_death_animation_and_die():
 func play_hurt():
 	sprite.animation = "hurt"
 
+func trigger_attack(card_data: Dictionary):
+	var card_name = card_data["name"]
+	match card_name:
+		"Ice Cannon":
+			ice_cannon(card_data["damage"])
+
 func ice_cannon(attack_number):
 	append_value_to_queue("ice_cannon_damage", attack_number, dictionary_of_queues)
 	animation_queue.append("ice_cannon")
