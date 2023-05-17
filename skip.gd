@@ -8,4 +8,7 @@ func _ready():
 
 func _on_gui_input(_event):
 	if Input.is_action_just_released("leftclick") and disabled == false:
+		var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+		add_child(transition)
+		await transition.fade_in()
 		get_tree().change_scene_to_file("res://map.tscn")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://menu.gd" id="1_fclv2"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="2_djac2"]
-[ext_resource type="Texture2D" uid="uid://xegrdd0h63v" path="res://assets/images/bg/battleback6.png" id="2_kimuq"]
+[ext_resource type="Texture2D" uid="uid://cnq5eectguinv" path="res://assets/images/bg/Paralax/battleback6-2.png" id="2_ut1tk"]
 
 [sub_resource type="Animation" id="Animation_7qt8p"]
 resource_name = "show_title_text"
@@ -52,7 +52,7 @@ script = ExtResource("1_fclv2")
 
 [node name="Background" type="Sprite2D" parent="."]
 scale = Vector2(1.044, 1.044)
-texture = ExtResource("2_kimuq")
+texture = ExtResource("2_ut1tk")
 centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

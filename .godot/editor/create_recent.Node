@@ -1,6 +1,8 @@
 AnimationPlayer
-Node
 ColorRect
+ParallaxLayer
+ParallaxBackground
+Node
 Node2D
 Label
 Button

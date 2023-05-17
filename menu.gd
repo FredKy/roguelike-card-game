@@ -17,6 +17,9 @@ func _process(delta):
 func _on_start_button_pressed():
 	game_state.reset_game_state()
 	#get_tree().change_scene_to_file("res://playspace.tscn")
+	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+	add_child(transition)
+	await transition.fade_in()
 	get_tree().change_scene_to_file("res://map.tscn")
 
 

@@ -31,3 +31,7 @@ res://resources/skeleton_spearman_extra.gd
 res://resources/skeleton_archer_sprite_frames.tres
 res://resources/skeleton_archer.tres
 res://menu.gd
+res://misc_scenes/transition_effect.tscn
+res://misc_scenes/transition_effect.gd
+res://map.gd
+res://skip.gd
