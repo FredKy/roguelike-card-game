@@ -92,8 +92,8 @@ func _ready():
 		SKELETON_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 		WARRIOR_AND_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres")))
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(600, 80), load("res://resources/skeleton_warrior.tres")))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
