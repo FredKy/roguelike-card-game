@@ -6,6 +6,7 @@ extends Control
 func _ready():
 	pass
 	#$VBoxContainer/StartButton.grab_focus()
+	$TitleText/TitleTextAP.play("show_title_text")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

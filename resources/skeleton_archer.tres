@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_5mo1b")
-intent_position = Vector2(235, -75)
+intent_position = Vector2(300, -110)
 sprite_frames_resource = ExtResource("2_42nrb")
 attack_damage = 10
 double_attack_damage = 5

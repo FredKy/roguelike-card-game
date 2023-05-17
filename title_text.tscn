@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuqki2x0xbl80"]
+
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="1_ml554"]
+
+[sub_resource type="Animation" id="Animation_am5vv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nv1lr"]
+resource_name = "show_message"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1.3, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6vfkj"]
+_data = {
+"RESET": SubResource("Animation_am5vv"),
+"show_message": SubResource("Animation_nv1lr")
+}
+
+[node name="TitleText" type="Label"]
+z_index = 3
+offset_right = 1151.0
+offset_bottom = 428.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.76863, 0.717647, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("1_ml554")
+theme_override_font_sizes/font_size = 70
+text = "A WANDERER'S TALE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleTextAP" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6vfkj")
+}

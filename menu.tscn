@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://l6jjeq6u8fxo"]
+[gd_scene load_steps=7 format=3 uid="uid://l6jjeq6u8fxo"]
 
 [ext_resource type="Script" path="res://menu.gd" id="1_fclv2"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="2_djac2"]
+[ext_resource type="Texture2D" uid="uid://xegrdd0h63v" path="res://assets/images/bg/battleback6.png" id="2_kimuq"]
+
+[sub_resource type="Animation" id="Animation_7qt8p"]
+resource_name = "show_title_text"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2uv7u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_351iw"]
+_data = {
+"RESET": SubResource("Animation_2uv7u"),
+"show_title_text": SubResource("Animation_7qt8p")
+}
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +49,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fclv2")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(1.044, 1.044)
+texture = ExtResource("2_kimuq")
+centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -43,6 +86,31 @@ theme_override_fonts/font = ExtResource("2_djac2")
 theme_override_font_sizes/font_size = 25
 text = "Exit game"
 alignment = 0
+
+[node name="TitleText" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 3
+layout_mode = 0
+offset_right = 1151.0
+offset_bottom = 307.0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1.76863, 0.717647, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_colors/font_outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 12
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("2_djac2")
+theme_override_font_sizes/font_size = 70
+text = "A WANDERER'S TALE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TitleTextAP" type="AnimationPlayer" parent="TitleText"]
+libraries = {
+"": SubResource("AnimationLibrary_351iw")
+}
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
