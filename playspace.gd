@@ -41,6 +41,12 @@ enum {
 	DEFEND,
 }
 
+#Attack types
+enum {
+	NORMAL_ATTACK,
+	DOUBLE_ATTACK,
+}
+
 #Battle type
 enum {
 	SKELETON_WARRIOR,
@@ -84,10 +90,10 @@ func _ready():
 		SKELETON_WARRIOR:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), [ATTACK, DEFEND]))
 		SKELETON_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [DEFEND, ATTACK]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(550, 80), load("res://resources/skeleton_warrior.tres")))
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, DEFEND]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 			
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()

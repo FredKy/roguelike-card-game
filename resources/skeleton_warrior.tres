@@ -7,3 +7,6 @@
 script = ExtResource("1_hsxtf")
 intent_position = Vector2(235, -75)
 sprite_frames_resource = ExtResource("2_scx8m")
+attack_damage = 9
+double_attack_damage = 4
+shield_value = 8

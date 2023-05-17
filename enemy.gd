@@ -48,15 +48,16 @@ func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite.sprite_frames = enemy_resource.sprite_frames_resource
+	attack_damage = enemy_resource.attack_damage
+	double_attack_damage = enemy_resource.double_attack_damage
+	shield_value = enemy_resource.shield_value
 	#print(enemy_resource.intent_position)
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)
 	sprite.animation = "idle"
 	$Intents/AttackIntent.position = enemy_resource.intent_position
-#	$Intents/DefendIntent/ShieldAmount.text = str(shield_value)
-#	set_shield_amount(0)
-#	$Indicators/Shield.visible = false
+
 	reset_shield()
 	$Intents/DefendIntent.position = enemy_resource.intent_position
 	
@@ -132,7 +133,6 @@ func normal_attack():
 
 func double_attack():
 	print("Double attack started!")
-	#sprite.animation = "double_attack_1"
 	append_value_to_queue("double_attack_damage", double_attack_damage, damage_queues)
 	append_value_to_queue("double_attack_damage", double_attack_damage, damage_queues)
 	animation_queue.append("double_attack_1")

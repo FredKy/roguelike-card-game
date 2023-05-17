@@ -24,3 +24,6 @@ res://scripts/utility_functions.gd
 res://wanderer.gd
 res://enemy.gd
 res://resources/skeleton_warrior_sprite_frames.tres
+res://scripts/enemy_resource_base.gd
+res://resources/skeleton_spearman.tres
+res://resources/skeleton_warrior.tres
