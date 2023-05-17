@@ -62,6 +62,7 @@ var state = DRAWN_TO_HAND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(card_database.card_data_array_to_dictionary(card_info))
 	#print(card_info)
 	$CardBack.scale *= size/$CardBack.size
 	

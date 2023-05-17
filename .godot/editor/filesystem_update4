@@ -19,3 +19,5 @@ res://scripts/my_cards_database.gd
 res://playspace.gd
 res://scripts/game_state.gd
 res://level_node.gd
+res://cards/my_card_base.gd
+res://scripts/utility_functions.gd

@@ -1,5 +1,6 @@
 extends MarginContainer
 
+@onready var util = get_node("/root/UtilityFunctions")
 @onready var game_state = get_node("/root/GameState")
 # Declare member variables here.
 @onready var card_database = preload("res://scripts/my_cards_database.gd").new()
@@ -153,7 +154,7 @@ func _physics_process(delta):
 		MOVE_TO_UI_DECK:
 			if setup:
 				print(game_state.global_player_deck)
-				game_state.global_player_deck.append(card_name_converter(card_info[2]))
+				game_state.global_player_deck.append(card_info[2].to_snake_case())
 				print("Added to global deck")
 				print(game_state.global_player_deck)
 				$'../../../DraftScene/AP'.play("fade_out")
@@ -246,10 +247,3 @@ func parametric_blend(x):
 func fade_out():
 	#print("here")
 	$AnimationPlayer.play("fade_out")
-
-#Changes "Ice Cannon" to "ice_cannon"
-func card_name_converter(string):
-	#print(string.to_lower().replace(' ', '_'))
-	return string.to_lower().replace(' ', '_')
-
-
