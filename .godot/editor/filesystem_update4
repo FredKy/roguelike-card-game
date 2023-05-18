@@ -20,3 +20,5 @@ res://misc_scenes/rest_scene.tscn
 res://misc_scenes/rest_scene.gd
 res://scripts/utility_functions.gd
 res://resources/skeleton_archer_sprite_frames.tres
+res://scripts/my_cards_database.gd
+res://wanderer.gd

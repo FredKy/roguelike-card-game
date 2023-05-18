@@ -1,12 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvvk7stq8xdg0"]
+[gd_scene load_steps=4 format=3 uid="uid://cvvk7stq8xdg0"]
 
 [ext_resource type="Script" path="res://misc_scenes/rest_scene.gd" id="1_mfdj2"]
 [ext_resource type="Texture2D" uid="uid://lokhwyuma6n1" path="res://assets/images/bg/battleback1_without_red_flowers.png" id="2_7n2wb"]
+[ext_resource type="Texture2D" uid="uid://07fpjx4iji1g" path="res://assets/images/misc/2d_lights_and_shadows_neutral_point_light.webp" id="3_i72yf"]
 
 [node name="RestScene" type="Node2D"]
 script = ExtResource("1_mfdj2")
 
 [node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.501961, 0.627451, 1, 1)
 scale = Vector2(1.044, 1.044)
 texture = ExtResource("2_7n2wb")
 centered = false
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(578, 286)
+scale = Vector2(2.5, 1)
+texture = ExtResource("3_i72yf")

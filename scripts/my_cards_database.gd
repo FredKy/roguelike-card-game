@@ -1,6 +1,6 @@
 extends Node
 # Spellinfo = [Type, Cost, Name, Effect, Image, Damage, Shield, ]
-enum {ICE_CANNON, WARP_TIME, COLD_TOUCH, ENERGY_SHIELD}
+enum {ICE_CANNON, WARP_TIME, COLD_TOUCH, ENERGY_SHIELD, ZAP}
 
 const DATA = {
 	COLD_TOUCH:
@@ -10,7 +10,9 @@ const DATA = {
 	WARP_TIME:
 		["spell", 3, "Warp Time", "Target enemy passes\n a turn", Rect2(7424,64,256,192), 0, 0],
 	ENERGY_SHIELD:
-		["shield", 1, "Energy Shield", "Add 6 to shield", Rect2(1280,64,256,192), 0, 6]
+		["shield", 1, "Energy Shield", "Add 6 to shield", Rect2(1280,64,256,192), 0, 6],
+	ZAP:
+		["attack", 1, "Zap", "Deal 5 damage", Rect2(6400,0,256,192), 5, 0],
 	}
 
 func card_data_array_to_dictionary(arr):

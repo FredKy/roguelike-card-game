@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=72 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ddm46mwj882a6" path="res://assets/images/wanderer_magician/Attack_1.png" id="5_psjj0"]
 [ext_resource type="PackedScene" uid="uid://bskhplsh6jx4v" path="res://shieldbar.tscn" id="6_3505e"]
 [ext_resource type="Shader" path="res://energy_shield.gdshader" id="6_wah1t"]
+[ext_resource type="Texture2D" uid="uid://dgpsesl5xnjpu" path="res://assets/images/wanderer_magician/Attack_2.png" id="7_mkqym"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6krfa"]
 atlas = ExtResource("2_av464")
@@ -170,6 +171,42 @@ region = Rect2(768, 0, 128, 128)
 atlas = ExtResource("2_fvs65")
 region = Rect2(0, 0, 128, 128)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d157"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0cc5"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tviuq"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1h6g"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mocw"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qo78l"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys2ct"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10l61"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_173bm"]
+atlas = ExtResource("7_mkqym")
+region = Rect2(1024, 0, 128, 128)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_a60l4"]
 animations = [{
 "frames": [{
@@ -321,6 +358,38 @@ animations = [{
 "loop": false,
 "name": &"trigger_queue",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d157")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0cc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tviuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1h6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mocw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qo78l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys2ct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10l61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_173bm")
+}],
+"loop": false,
+"name": &"zap",
+"speed": 10.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_liq2o"]
@@ -508,7 +577,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"hurt"
+animation = &"zap"
 centered = false
 
 [node name="EnergyShield" type="Node2D" parent="VBoxContainer"]

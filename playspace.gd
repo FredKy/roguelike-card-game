@@ -57,12 +57,6 @@ enum {
 	SKELETON_ARCHER,
 }
 
-#Backgrounds
-enum {
-	SUMMER_FOREST,
-	WINTER_FOREST,
-}
-
 #var battle_type = WARRIOR_AND_SPEARMAN
 var battle_type = WARRIOR_AND_SPEARMAN
 

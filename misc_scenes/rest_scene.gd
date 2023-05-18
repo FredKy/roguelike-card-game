@@ -2,11 +2,7 @@ extends Node2D
 
 @onready var util = get_node("/root/UtilityFunctions")
 @onready var game_state = get_node("/root/GameState")
-#Backgrounds
-enum {
-	SUMMER_FOREST,
-	WINTER_FOREST,
-}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
