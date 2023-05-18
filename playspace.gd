@@ -68,9 +68,11 @@ var player_alive = true
 func _process(_delta):
 	$DeckCounter.set_label_text(player_deck.size())
 	$DiscardCounter.set_label_text($DiscardedCards.get_child_count())
+	$TopBar.set_health_text(str($Wanderer.current_health)+"/"+ str($Wanderer.max_health))
 
 func update_global_deck_counter():
-	$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
+	#$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
+	$TopBar.set_deck_counter_text(game_state.global_player_deck.size())
 
 func _ready():
 	util.set_background_texture(game_state.global_next_background, self)

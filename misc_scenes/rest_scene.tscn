@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvvk7stq8xdg0"]
+[gd_scene load_steps=5 format=3 uid="uid://cvvk7stq8xdg0"]
 
 [ext_resource type="Script" path="res://misc_scenes/rest_scene.gd" id="1_mfdj2"]
 [ext_resource type="Texture2D" uid="uid://lokhwyuma6n1" path="res://assets/images/bg/battleback1_without_red_flowers.png" id="2_7n2wb"]
 [ext_resource type="Texture2D" uid="uid://07fpjx4iji1g" path="res://assets/images/misc/2d_lights_and_shadows_neutral_point_light.webp" id="3_i72yf"]
+[ext_resource type="PackedScene" uid="uid://b3fdnos8nscgi" path="res://misc_scenes/top_bar.tscn" id="4_tn2ou"]
 
 [node name="RestScene" type="Node2D"]
 script = ExtResource("1_mfdj2")
@@ -20,3 +21,5 @@ visible = false
 position = Vector2(578, 286)
 scale = Vector2(2.5, 1)
 texture = ExtResource("3_i72yf")
+
+[node name="TopBar" parent="." instance=ExtResource("4_tn2ou")]

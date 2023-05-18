@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbsyeffo6745e"]
+[gd_scene load_steps=7 format=3 uid="uid://bbsyeffo6745e"]
 
 [ext_resource type="Texture2D" uid="uid://c6v1uure6k4a5" path="res://assets/images/bg/parchment.jpg" id="1_ip8hl"]
 [ext_resource type="Script" path="res://map.gd" id="1_prldi"]
 [ext_resource type="PackedScene" uid="uid://b2crre43hhnbc" path="res://level_node.tscn" id="3_8kd4y"]
 [ext_resource type="Script" path="res://drawer.gd" id="4_bm7yo"]
 [ext_resource type="Texture2D" uid="uid://cgc467sbj5xq2" path="res://assets/images/icons/desert-skull-smaller.png" id="4_g0hpy"]
+[ext_resource type="Texture2D" uid="uid://dytneu3je78qf" path="res://assets/images/icons/campfire_107_119.png" id="5_3wvs5"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_prldi")
@@ -40,6 +41,8 @@ offset_top = 356.0
 offset_right = 293.0
 offset_bottom = 456.0
 index = 2
+texture = ExtResource("5_3wvs5")
+location_type = 1
 battle_type = 1
 
 [node name="Level2A" parent="MapNodes" instance=ExtResource("3_8kd4y")]
