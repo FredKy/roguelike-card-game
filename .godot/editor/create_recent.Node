@@ -1,16 +1,17 @@
+ColorRect
+TextureRect
+Control
 GPUParticles3D
 GPUParticles2D
 PointLight2D
 DirectionalLight2D
 AnimationPlayer
-ColorRect
 ParallaxLayer
 ParallaxBackground
 Node
 Node2D
 Label
 Button
-TextureRect
 TextureButton
 Sprite2D
 VBoxContainer
@@ -20,6 +21,5 @@ MarginContainer
 WorldEnvironment
 AnimatedSprite2D
 Panel
-Control
 Container
 CenterContainer
