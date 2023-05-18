@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://burp7qkauee1p"]
+
+[ext_resource type="Texture2D" uid="uid://b7nyon0r54stk" path="res://effects/new_gradient_texture_1d.tres" id="1_s0vc2"]
+[ext_resource type="Texture2D" uid="uid://btaysia5l3hbq" path="res://effects/BasicParticle.png" id="2_cbn74"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xycss"]
+emission_shape = 1
+emission_sphere_radius = 87.44
+particle_flag_disable_z = true
+direction = Vector3(0, 2, 0)
+gravity = Vector3(0, -200, 0)
+initial_velocity_min = 0.25
+initial_velocity_max = 0.5
+angular_velocity_min = -150.97
+angular_velocity_max = 150.97
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.5
+color = Color(1.78, 0, 1, 1)
+color_ramp = ExtResource("1_s0vc2")
+color_initial_ramp = ExtResource("1_s0vc2")
+
+[node name="FireEffect" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_xycss")
+texture = ExtResource("2_cbn74")

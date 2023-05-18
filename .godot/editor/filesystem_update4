@@ -17,3 +17,6 @@ res://misc_scenes/rest_scene.gd
 res://misc_scenes/top_bar.tscn
 res://misc_scenes/top_bar.gd
 res://playspace.gd
+res://misc_scenes/fire_effect.tscn
+res://misc_scenes/fire_effect_3d.tscn
+res://effects/new_gradient_texture_1d.tres
