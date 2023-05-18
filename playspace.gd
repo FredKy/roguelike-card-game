@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var util = get_node("/root/UtilityFunctions")
 @onready var game_state = get_node("/root/GameState")
 const CARD_SIZE = Vector2(174,240)
 const CARD_BASE := preload("res://cards/my_card_base.tscn")
@@ -78,7 +79,7 @@ func update_global_deck_counter():
 	$TopBar/Deck/GlobalDeckCounter.set_label_text(game_state.global_player_deck.size())
 
 func _ready():
-	set_background_texture(game_state.global_next_background)
+	util.set_background_texture(game_state.global_next_background, self)
 	battle_type = game_state.global_next_battle_type
 	player_deck = game_state.global_player_deck.duplicate()
 	update_global_deck_counter()
@@ -107,6 +108,7 @@ func _ready():
 	$TurnMessage.modulate = Color(1,1,1,0)
 	
 	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+	transition.get_node("ColorRect").modulate = Color(1,1,1,1)
 	add_child(transition)
 	await transition.fade_out()
 	transition.queue_free()
@@ -391,12 +393,3 @@ func create_random_draftable_cards():
 	create_draftable_card("ice_cannon", Vector2(220, 120))
 	create_draftable_card("energy_shield", Vector2(431, 120))
 	create_draftable_card("ice_cannon", Vector2(642, 120))
-
-func set_background_texture(background):
-	match background:
-		SUMMER_FOREST:
-			$Background.texture = load("res://assets/images/bg/Paralax/battleback1-2.png")
-		WINTER_FOREST:
-			$Background.texture = load("res://assets/images/bg/battleback2.png")
-		_:
-			$Background.texture = load("res://assets/images/bg/battleback5.png")

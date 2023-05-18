@@ -12,7 +12,8 @@ const MAP_NODES = {0 : [1,2], 1: [3,4], 2: [4,5], 3: [6], 4: [6,7], 5: [7,8], 6:
 var global_current_map_node
 var global_visited_nodes
 
-#Battle type
+#Location type etc.
+var global_next_location_type
 var global_next_battle_type
 var global_next_background
 

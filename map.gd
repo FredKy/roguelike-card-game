@@ -16,6 +16,7 @@ func _ready():
 	setup_visited_nodes()
 	activate_nodes_on_player_path()
 	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
+	transition.get_node("ColorRect").modulate = Color(1,1,1,1)
 	add_child(transition)
 	await transition.fade_out()
 	transition.queue_free()

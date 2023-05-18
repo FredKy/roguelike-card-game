@@ -1,5 +1,6 @@
 extends Node
 
+
 ##unneeded functions, to_snake_case and capitalize do these things
 ##Changes "Ice Cannon" to "ice_cannon"
 #func card_name_converter(string):
@@ -23,3 +24,18 @@ func append_value_to_queue(name_of_queue: String, value, dict):
 		print("Before append: " + str(dict))
 		dict[name_of_queue].append(value)
 		print("After append: " + str(dict))
+
+#Backgrounds
+enum {
+	SUMMER_FOREST,
+	WINTER_FOREST,
+}
+
+func set_background_texture(background, scene):
+	match background:
+		SUMMER_FOREST:
+			scene.get_node("Background").texture = load("res://assets/images/bg/Paralax/battleback1-2.png")
+		WINTER_FOREST:
+			scene.get_node("Background").texture = load("res://assets/images/bg/battleback2.png")
+		_:
+			scene.get_node("Background").texture = load("res://assets/images/bg/battleback5.png")
