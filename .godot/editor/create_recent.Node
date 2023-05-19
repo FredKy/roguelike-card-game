@@ -1,3 +1,8 @@
+Label
+MenuButton
+MarginContainer
+Button
+TouchScreenButton
 Node2D
 ColorRect
 TextureRect
@@ -10,14 +15,11 @@ AnimationPlayer
 ParallaxLayer
 ParallaxBackground
 Node
-Label
-Button
 TextureButton
 Sprite2D
 VBoxContainer
 HBoxContainer
 NinePatchRect
-MarginContainer
 WorldEnvironment
 AnimatedSprite2D
 Panel

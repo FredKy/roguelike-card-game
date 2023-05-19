@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvvk7stq8xdg0"]
+[gd_scene load_steps=6 format=3 uid="uid://cvvk7stq8xdg0"]
 
 [ext_resource type="Script" path="res://misc_scenes/rest_scene.gd" id="1_mfdj2"]
 [ext_resource type="Texture2D" uid="uid://lokhwyuma6n1" path="res://assets/images/bg/battleback1_without_red_flowers.png" id="2_7n2wb"]
 [ext_resource type="Texture2D" uid="uid://07fpjx4iji1g" path="res://assets/images/misc/2d_lights_and_shadows_neutral_point_light.webp" id="3_i72yf"]
 [ext_resource type="PackedScene" uid="uid://b3fdnos8nscgi" path="res://misc_scenes/top_bar.tscn" id="4_tn2ou"]
+[ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="5_oup54"]
 
 [node name="RestScene" type="Node2D"]
 script = ExtResource("1_mfdj2")
@@ -23,3 +24,30 @@ scale = Vector2(2.5, 1)
 texture = ExtResource("3_i72yf")
 
 [node name="TopBar" parent="." instance=ExtResource("4_tn2ou")]
+
+[node name="StartRestingButton" type="Node2D" parent="."]
+position = Vector2(493, 221)
+
+[node name="StartResting" type="Button" parent="StartRestingButton"]
+offset_left = -1.0
+offset_top = 78.0
+offset_right = 130.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("5_oup54")
+theme_override_font_sizes/font_size = 40
+text = "Rest"
+
+[node name="Label" type="Label" parent="StartRestingButton"]
+offset_left = -76.0
+offset_top = 31.0
+offset_right = 213.0
+offset_bottom = 68.0
+theme_override_colors/font_color = Color(0.498039, 0.686275, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_oup54")
+theme_override_font_sizes/font_size = 25
+text = "Heal x% of total HP"
+
+[connection signal="mouse_entered" from="StartRestingButton/StartResting" to="." method="_on_start_resting_mouse_entered"]
+[connection signal="mouse_exited" from="StartRestingButton/StartResting" to="." method="_on_start_resting_mouse_exited"]
+[connection signal="pressed" from="StartRestingButton/StartResting" to="." method="_on_start_resting_pressed"]
