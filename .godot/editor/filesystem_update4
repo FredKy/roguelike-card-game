@@ -22,3 +22,6 @@ res://misc_scenes/fire_effect_3d.tscn
 res://effects/new_gradient_texture_1d.tres
 res://effects/black_hole.tscn
 res://effects/black_hole.gdshader
+res://effects/starfield.tscn
+res://effects/starfield.gdshader
+res://effects/black_hole_2.gdshader
