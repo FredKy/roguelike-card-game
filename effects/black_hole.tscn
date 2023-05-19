@@ -1,10 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwxdtbm7geaxq"]
+[gd_scene load_steps=6 format=3 uid="uid://cwxdtbm7geaxq"]
 
 [ext_resource type="Shader" path="res://effects/black_hole.gdshader" id="1_jxj2m"]
+[ext_resource type="Texture2D" uid="uid://bprt6xpjkdb4n" path="res://icon.png" id="2_bidck"]
+
+[sub_resource type="Gradient" id="Gradient_5s0c8"]
+offsets = PackedFloat32Array(0.298343, 0.342541, 0.40884, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0.621524, 0.621524, 0.621524, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ab4n4"]
+gradient = SubResource("Gradient_5s0c8")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ok34g"]
 shader = ExtResource("1_jxj2m")
-shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/effect_scale = 1.0
+shader_parameter/effect_repeat = 1.0
+shader_parameter/effect_center = Vector2(0.5, 0.5)
+shader_parameter/uv_mod = Vector2(1, 1)
+shader_parameter/scroll_speed = Vector2(0, 0)
+shader_parameter/image_texture = ExtResource("2_bidck")
+shader_parameter/image_multiplier = SubResource("GradientTexture2D_ab4n4")
 
 [node name="BlackHole" type="Node2D"]
 

@@ -1,5 +1,5 @@
 bdbec74c6e5bd72edee867077d70896c
-::res://::1684443694
+::res://::1684449473
 bar.tscn::PackedScene::6198624464424786530::1684273216::0::1::::<><>::uid://cjlnx2vhd1kpo<>uid://c1pbb2crnyoby<>uid://hvu5cc61h6et<>uid://mcu8my1sk6qm
 border_glow.gdshader::Shader::-1::1683100431::0::1::::<><>::
 border_glow.tscn::PackedScene::5478078709062105300::1683385036::0::1::::<><>::uid://b3b855l8tyo0d
@@ -7,7 +7,7 @@ button.gd::GDScript::-1::1684047593::0::1::::<>Button<>::
 combined_glowing_border.gdshader::Shader::-1::1683155136::0::1::::<><>::
 combined_glowing_border.tres::ShaderMaterial::2027944948358503600::1684225183::0::1::::<><>::res://combined_glowing_border.gdshader
 deck_draw.gd::GDScript::-1::1683875105::0::1::::<>TextureButton<>::
-default_env.tres::Environment::37057992798485328::1684443694::0::1::::<><>::
+default_env.tres::Environment::37057992798485328::1684449473::0::1::::<><>::
 discard_pile.gd::GDScript::-1::1682340677::0::1::::<>TextureButton<>::
 drawer.gd::GDScript::-1::1684195514::0::1::::<>Node2D<>::
 end_turn_button.gd::GDScript::-1::1684164180::0::1::::<>Button<>::
@@ -27,7 +27,7 @@ glowing_border.tres::ShaderMaterial::3700539415224989918::1683097866::0::1::::<>
 glowing_border.tscn::PackedScene::3842632126759814453::1684246479::0::1::::<><>::res://combined_glowing_border.gdshader<>uid://cuu6iyd7finge
 gradient_glowing_border.gdshader::Shader::-1::1683100431::0::1::::<><>::
 gradient_glowing_border.tres::ShaderMaterial::-1::1683097737::0::1::::<><>::res://gradient_glowing_border.gdshader
-icon.png::CompressedTexture2D::3475557974187739395::1588836726::1681460804::1::::<><>::
+icon.png::CompressedTexture2D::3475557974187739395::1588836726::1684481819::1::::<><>::
 level_node.gd::GDScript::-1::1684396694::0::1::::<>TextureButton<>::
 level_node.tscn::PackedScene::4286711020976073152::1684442099::0::1::::<><>::uid://deqtr5lcm0jb1<>res://level_node.gd<>uid://bn3jc2ack0wh6<>uid://blyj8abhsj6fn
 map.gd::GDScript::-1::1684395648::0::1::::<>Node2D<>::
@@ -315,15 +315,18 @@ draft_card_base.gd::GDScript::-1::1684322517::0::1::::<>MarginContainer<>::
 draft_card_base.tscn::PackedScene::4929319159583630845::1684442099::0::1::::<><>::res://cards/draft_card_base.gd<>uid://bu0nubybt1e1r<>uid://4twqwfrinn3g<>uid://c1pbb2crnyoby<>uid://d361qr06lcagm<>uid://cex1jwjhicuct
 my_card_base.gd::GDScript::-1::1684344542::0::1::::<>MarginContainer<>::
 my_card_base.tscn::PackedScene::7467315725858145438::1684442099::0::1::::<><>::uid://4twqwfrinn3g<>res://cards/my_card_base.gd<>uid://c1pbb2crnyoby<>uid://d361qr06lcagm<>uid://bu0nubybt1e1r<>uid://cex1jwjhicuct
-::res://effects/::1684439522
+::res://effects/::1684449473
 BasicParticle.png::CompressedTexture2D::3721498486498071838::1622388311::1684439522::1::::<><>::
 FireParticle.png::CompressedTexture2D::7128560924339092708::1622388311::1684445015::1::::<><>::
-::res://misc_scenes/::1684443694
+new_gradient_texture_1d.tres::GradientTexture1D::4660783522091293952::1684447424::0::1::::<><>::
+black_hole.tscn::PackedScene::6364692769351894558::1684449473::0::1::::<><>::res://effects/black_hole.gdshader
+black_hole.gdshader::Shader::-1::1684449473::0::1::::<><>::
+::res://misc_scenes/::1684447424
 counter.gd::GDScript::-1::1684164337::0::1::::<>Control<>::
 counter.tscn::PackedScene::9057873143610509707::1684273216::0::1::::<><>::res://misc_scenes/counter.gd<>uid://c1pbb2crnyoby
 draft_scene.tscn::PackedScene::6134234179501859367::1684442099::0::1::::<><>::uid://c1pbb2crnyoby
-fire_effect.tscn::PackedScene::3826260734417754483::1684443652::0::1::::<><>::
-fire_effect_3d.tscn::PackedScene::2485294678738279409::1684443694::0::1::::<><>::
+fire_effect.tscn::PackedScene::3826260734417754483::1684447424::0::1::::<><>::uid://b7nyon0r54stk<>uid://btaysia5l3hbq
+fire_effect_3d.tscn::PackedScene::2485294678738279409::1684446304::0::1::::<><>::uid://b7nyon0r54stk<>uid://c8temeux3vndc
 top_bar.gd::GDScript::-1::1684441175::0::1::::<>Node2D<>::
 top_bar.tscn::PackedScene::4362236325278202588::1684442102::0::1::::<><>::res://misc_scenes/top_bar.gd<>uid://cex1jwjhicuct<>res://misc_scenes/counter.gd<>uid://c1pbb2crnyoby
 rest_scene.gd::GDScript::-1::1684442049::0::1::::<>Node2D<>::
