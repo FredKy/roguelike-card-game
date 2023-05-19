@@ -25,3 +25,8 @@ res://effects/black_hole.gdshader
 res://effects/starfield.tscn
 res://effects/starfield.gdshader
 res://effects/black_hole_2.gdshader
+res://effects/star.tscn
+res://game_over_smoke_bg.gdshader
+res://effects/star.gdshader
+res://effects/cosmic_flame.gdshader
+res://game_over_pink_bg.gdshader

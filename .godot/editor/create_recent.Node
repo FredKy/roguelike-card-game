@@ -1,3 +1,4 @@
+Node2D
 ColorRect
 TextureRect
 Control
@@ -9,7 +10,6 @@ AnimationPlayer
 ParallaxLayer
 ParallaxBackground
 Node
-Node2D
 Label
 Button
 TextureButton

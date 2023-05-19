@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://du4j3a7i6u6uj"]
+
+[ext_resource type="Shader" path="res://effects/cosmic_flame.gdshader" id="1_hr4ax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lvv65"]
+shader = ExtResource("1_hr4ax")
+
+[node name="Star" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="." node_paths=PackedStringArray("shortcut_context")]
+material = SubResource("ShaderMaterial_lvv65")
+offset_right = 773.0
+offset_bottom = 648.0
+shortcut_context = NodePath("")
