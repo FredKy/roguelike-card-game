@@ -110,9 +110,9 @@ func _ready():
 	await transition.fade_out()
 	transition.queue_free()
 	
-	show_turn_message("BATTLE!")
-	await get_tree().create_timer(1.5).timeout
-	#create_random_draftable_cards()
+#	show_turn_message("BATTLE!")
+#	await get_tree().create_timer(1.5).timeout
+	create_random_draftable_cards()
 	show_turn_message("Player turn")
 	start_player_turn()
 	

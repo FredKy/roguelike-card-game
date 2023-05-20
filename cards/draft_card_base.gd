@@ -89,63 +89,6 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 				print(card_numb)
 				drafted_card_index = card_numb
 				state = SELECTED
-#		for card in $'../../../Draftables'.get_children():
-#			var base = card.get_node("MyDraftBase")
-#			base.enabled = false
-#			if !base.drafted:
-#				shrink()
-#
-#func _input(event):
-#	for card in $'../../../Draftables'.get_children():
-#		var base = card.get_node("MyDraftBase")
-#		base.enabled = false
-#	pass
-#	if event is InputEventScreenTouch:
-#		if event.is_pressed():
-#			if enabled:
-#				#if (mouse_in_area_2d):
-#				enabled = false
-#				set_focus(false)
-#				$GlowingBorder.visible = false
-#				setup = true
-#				targetpos = default_pos
-#				state = SELECTED
-#				for card in $'../../../Draftables'.get_children():
-#					var base = card.get_node("MyDraftBase")
-#					if base.card_numb == index:
-#						enabled = false
-#						set_focus(false)
-#						$GlowingBorder.visible = false
-#
-#						setup = true
-#						targetpos = default_pos
-#						state = SELECTED
-#					print(card.get_node("MyDraftBase"))
-#					print(state)
-#					if state == FOCUS_ON_TABLE or (ON_TABLE and mouse_in_area_2d):
-
-#					elif state == ON_TABLE or state == REORGANIZE_HAND or not mouse_in_area_2d:
-#						enabled = false
-#						set_focus(false)
-#						$GlowingBorder.visible = false
-##						state = NOTHING
-##						await get_tree().create_timer(0.3).timeout
-##						state = SHRINK
-				#await $'../../../'.shrink_rest_of_draftable_cards()
-#	if event is InputEventScreenTouch:
-#		pass
-#		#print(event)
-#		if not event.is_pressed():
-#			mouse_in_area_2d = false
-
-func shrink():
-	state = SHRINK
-
-func is_selected():
-	if state == SELECTED or state == MOVE_TO_UI_DECK or state == NOTHING:
-		return true
-	else:
-		return false
 
 func _physics_process(delta):
 	match state:
@@ -257,6 +200,7 @@ func shrink_neighbor_card(card_number):
 	neighbor_card.enabled = false
 	neighbor_card.set_focus(false)
 	neighbor_card.set_glowing_border_visible(false)
+	neighbor_card.setup = true
 	neighbor_card.state = SHRINK
 
 func reset_pos_rot_scale_and_time():
