@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://denhump0ghwj3"]
+[gd_scene load_steps=21 format=3 uid="uid://denhump0ghwj3"]
 
 [ext_resource type="Texture2D" uid="uid://4twqwfrinn3g" path="res://assets/images/aeromancer_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://cards/my_card_base.gd" id="2"]
@@ -982,9 +982,6 @@ _data = {
 "fade_out": SubResource("Animation_nwckl")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1imb"]
-size = Vector2(290.5, 401.5)
-
 [node name="Root" type="Node2D"]
 
 [node name="MyCardBase" type="MarginContainer" parent="."]
@@ -1148,12 +1145,6 @@ libraries = {
 "": SubResource("AnimationLibrary_ur34d")
 }
 
-[node name="Area2D" type="Area2D" parent="MyCardBase"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MyCardBase/Area2D"]
-visible = false
-shape = SubResource("RectangleShape2D_j1imb")
-
 [node name="FadeOutCardBack" type="Panel" parent="."]
 visible = false
 offset_right = 290.0
@@ -1171,5 +1162,3 @@ stretch_mode = 4
 
 [connection signal="mouse_entered" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_entered"]
 [connection signal="mouse_exited" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_exited"]
-[connection signal="mouse_entered" from="MyCardBase/Area2D" to="MyCardBase" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="MyCardBase/Area2D" to="MyCardBase" method="_on_area_2d_mouse_exited"]
