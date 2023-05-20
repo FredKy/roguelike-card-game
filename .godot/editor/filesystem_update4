@@ -14,5 +14,8 @@ res://level_node.tscn
 res://game_over_bg.tscn
 res://misc_scenes/transition_effect.tscn
 res://misc_scenes/top_bar.tscn
+res://skip.gd
+res://end_turn_button.gd
+res://cards/draft_card_base.gd
+res://playspace.gd
 res://cards/my_card_base.gd
-res://effects/new_gradient_texture_1d.tres

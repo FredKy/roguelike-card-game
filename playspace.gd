@@ -109,10 +109,13 @@ func _ready():
 	await transition.fade_out()
 	transition.queue_free()
 	
-	show_turn_message("BATTLE!")
-	await get_tree().create_timer(1.5).timeout
+#	show_turn_message("BATTLE!")
+#	await get_tree().create_timer(1.5).timeout
+	create_random_draftable_cards()
 	show_turn_message("Player turn")
 	start_player_turn()
+	
+	
 	#$EndTurnButtonNode.visible = true
 
 func draw_card():
@@ -389,3 +392,14 @@ func create_random_draftable_cards():
 	create_draftable_card("ice_cannon", Vector2(220, 120))
 	create_draftable_card("energy_shield", Vector2(431, 120))
 	create_draftable_card("ice_cannon", Vector2(642, 120))
+
+func shrink_rest_of_draftable_cards():
+	print("Was here?")
+	await get_tree().create_timer(0.3).timeout
+	for draft_card in $Draftables.get_children():
+		print(draft_card)
+		var base = draft_card.get_node("MyDraftBase")
+		print(base)
+		print(base.state)
+		if not base.is_selected():
+			base.shrink()

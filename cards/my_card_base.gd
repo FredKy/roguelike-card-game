@@ -85,11 +85,11 @@ func _input(event):
 #	if $'../../../'.is_dealing_cards:
 #		return
 	if event is InputEventScreenTouch:
-		print(event)
+		#print(event)
 		if event.is_pressed(): # Pick up card
 			#print(event)
-			print(state)
-			print(mouse_in_area_2d)
+			#print(state)
+			#print(mouse_in_area_2d)
 			if state == FOCUS_IN_HAND or (IN_HAND and mouse_in_area_2d):
 				if card_select && enabled:
 					old_state = state
@@ -99,7 +99,7 @@ func _input(event):
 					setup = true
 					card_select = false
 	if event is InputEventScreenTouch:
-		print(event)
+		#print(event)
 		if not event.is_pressed():
 			mouse_in_area_2d = false
 #		if event.is_action_released("leftclick"):

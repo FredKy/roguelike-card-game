@@ -73,33 +73,40 @@ func _ready():
 
 
 func _input(event):
-	if event.is_action_pressed("leftclick"):
-		print("Click")
-		if enabled:
-			for card in $'../../../Draftables'.get_children():
-				print(card.get_node("MyDraftBase"))
-				print(state)
-				if state == FOCUS_ON_TABLE:
-					enabled = false
-					set_focus(false)
-					$GlowingBorder.visible = false
-					
-					await get_tree().create_timer(1-t).timeout
-					setup = true
-					targetpos = default_pos
-					state = SELECTED
-					
-				elif state == ON_TABLE or state == REORGANIZE_HAND:
-					enabled = false
-					set_focus(false)
-					$GlowingBorder.visible = false
-					state = NOTHING
-					await get_tree().create_timer(0.3).timeout
-					state = SHRINK
-	if event.is_action_released("leftclick"):
-		pass
+	if event is InputEventScreenTouch:
+		if event.is_pressed():
+			if enabled:
+				for card in $'../../../Draftables'.get_children():
+					print(card.get_node("MyDraftBase"))
+					print(state)
+					if state == FOCUS_ON_TABLE:
+						enabled = false
+						set_focus(false)
+						$GlowingBorder.visible = false
+						
+						await get_tree().create_timer(1-t).timeout
+						setup = true
+						targetpos = default_pos
+						state = SELECTED
+					elif state == ON_TABLE or state == REORGANIZE_HAND:
+						enabled = false
+						set_focus(false)
+						$GlowingBorder.visible = false
+#						state = NOTHING
+#						await get_tree().create_timer(0.3).timeout
+#						state = SHRINK
+				await $'../../../'.shrink_rest_of_draftable_cards()
+		if not event.is_pressed():
+			pass
 
+func shrink():
+	state = SHRINK
 
+func is_selected():
+	if state == SELECTED or state == MOVE_TO_UI_DECK or state == NOTHING:
+		return true
+	else:
+		return false
 
 func _physics_process(delta):
 	match state:
