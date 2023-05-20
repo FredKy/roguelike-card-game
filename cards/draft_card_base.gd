@@ -36,6 +36,9 @@ var old_state = INF
 var target_scale = Vector2()
 
 var enabled = true
+var shrink_neighbors = false
+var drafted_card_index = -1
+var draft_card_index_array = [0,1,2]
 
 enum {
 	ON_TABLE,
@@ -71,33 +74,69 @@ func _ready():
 #	$Focus.set_modulate(Color(1,0.8,0.2,1))
 #	$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 
-
-func _input(event):
+func _on_area_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventScreenTouch:
+		print(event.position)
 		if event.is_pressed():
 			if enabled:
-				for card in $'../../../Draftables'.get_children():
-					print(card.get_node("MyDraftBase"))
-					print(state)
-					if state == FOCUS_ON_TABLE:
-						enabled = false
-						set_focus(false)
-						$GlowingBorder.visible = false
-						
-						await get_tree().create_timer(1-t).timeout
-						setup = true
-						targetpos = default_pos
-						state = SELECTED
-					elif state == ON_TABLE or state == REORGANIZE_HAND:
-						enabled = false
-						set_focus(false)
-						$GlowingBorder.visible = false
-#						state = NOTHING
-#						await get_tree().create_timer(0.3).timeout
-#						state = SHRINK
-				await $'../../../'.shrink_rest_of_draftable_cards()
-		if not event.is_pressed():
-			pass
+				#if (mouse_in_area_2d):
+				enabled = false
+				set_focus(false)
+				$GlowingBorder.visible = false
+				setup = true
+				targetpos = default_pos
+				shrink_neighbors = true
+				print(card_numb)
+				drafted_card_index = card_numb
+				state = SELECTED
+#		for card in $'../../../Draftables'.get_children():
+#			var base = card.get_node("MyDraftBase")
+#			base.enabled = false
+#			if !base.drafted:
+#				shrink()
+#
+#func _input(event):
+#	for card in $'../../../Draftables'.get_children():
+#		var base = card.get_node("MyDraftBase")
+#		base.enabled = false
+#	pass
+#	if event is InputEventScreenTouch:
+#		if event.is_pressed():
+#			if enabled:
+#				#if (mouse_in_area_2d):
+#				enabled = false
+#				set_focus(false)
+#				$GlowingBorder.visible = false
+#				setup = true
+#				targetpos = default_pos
+#				state = SELECTED
+#				for card in $'../../../Draftables'.get_children():
+#					var base = card.get_node("MyDraftBase")
+#					if base.card_numb == index:
+#						enabled = false
+#						set_focus(false)
+#						$GlowingBorder.visible = false
+#
+#						setup = true
+#						targetpos = default_pos
+#						state = SELECTED
+#					print(card.get_node("MyDraftBase"))
+#					print(state)
+#					if state == FOCUS_ON_TABLE or (ON_TABLE and mouse_in_area_2d):
+
+#					elif state == ON_TABLE or state == REORGANIZE_HAND or not mouse_in_area_2d:
+#						enabled = false
+#						set_focus(false)
+#						$GlowingBorder.visible = false
+##						state = NOTHING
+##						await get_tree().create_timer(0.3).timeout
+##						state = SHRINK
+				#await $'../../../'.shrink_rest_of_draftable_cards()
+#	if event is InputEventScreenTouch:
+#		pass
+#		#print(event)
+#		if not event.is_pressed():
+#			mouse_in_area_2d = false
 
 func shrink():
 	state = SHRINK
@@ -138,6 +177,12 @@ func _physics_process(delta):
 				#orig_scale*zoom_scale = 0.6*1.1 = 0.66
 				scale = start_scale*(1-t) + orig_scale*zoom_scale*t
 				t += delta/float(ZOOMTIME)
+				
+				if shrink_neighbors:
+					shrink_neighbors = false
+					draft_card_index_array.remove_at(drafted_card_index)
+					for element in draft_card_index_array:
+						shrink_neighbor_card(element)
 			else:
 				position = targetpos
 				rotation = 0
@@ -207,6 +252,13 @@ func _physics_process(delta):
 				state = NOTHING
 
 
+func shrink_neighbor_card(card_number):
+	neighbor_card = $'../../'.get_child(card_number).get_node("MyDraftBase")
+	neighbor_card.enabled = false
+	neighbor_card.set_focus(false)
+	neighbor_card.set_glowing_border_visible(false)
+	neighbor_card.state = SHRINK
+
 func reset_pos_rot_scale_and_time():
 	startpos = position
 	startrot = rotation
@@ -216,8 +268,8 @@ func reset_pos_rot_scale_and_time():
 	setup = false
 
 func _on_focus_mouse_entered():
-	print("Mouse entered card!")
-	print(state)
+#	print("Mouse entered card!")
+#	print(state)
 	if not enabled:
 		return
 	$GlowingBorder.visible = true
@@ -245,6 +297,9 @@ func _on_focus_mouse_exited():
 func set_focus(b):
 	$Focus.visible = b
 
+func set_glowing_border_visible(b):
+	$GlowingBorder.visible = b
+
 #Custom ease in and ease out-like curve
 #https://stackoverflow.com/questions/13462001/ease-in-and-ease-out-animation-formula
 func parametric_blend(x):
@@ -254,3 +309,6 @@ func parametric_blend(x):
 func fade_out():
 	#print("here")
 	$AnimationPlayer.play("fade_out")
+
+
+

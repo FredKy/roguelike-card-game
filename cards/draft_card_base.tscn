@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cch2fwlh8ax8p"]
+[gd_scene load_steps=22 format=3 uid="uid://cch2fwlh8ax8p"]
 
 [ext_resource type="Script" path="res://cards/draft_card_base.gd" id="1_26ohx"]
 [ext_resource type="PackedScene" uid="uid://bu0nubybt1e1r" path="res://glowing_border.tscn" id="2_3hy1j"]
@@ -994,6 +994,9 @@ _data = {
 "fade_out": SubResource("Animation_nwckl")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bk6w3"]
+size = Vector2(290.5, 401.5)
+
 [node name="DraftRoot" type="Node2D"]
 z_index = 6
 
@@ -1119,12 +1122,14 @@ vertical_alignment = 1
 modulate = Color(1, 0.8, 0.2, 1)
 texture_filter = 1
 layout_mode = 2
+mouse_filter = 1
 texture_hover = ExtResource("5_xdihi")
 texture_disabled = SubResource("CanvasTexture_j53ea")
 
 [node name="CardBack" type="Panel" parent="MyDraftBase"]
 visible = false
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_1l8gm")
 
 [node name="CostRectBack" type="Panel" parent="MyDraftBase/CardBack"]
@@ -1134,6 +1139,7 @@ offset_right = 54.0
 offset_bottom = 54.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_oimp7")
 
 [node name="Inner" type="Panel" parent="MyDraftBase/CardBack"]
@@ -1146,12 +1152,20 @@ offset_left = -136.0
 offset_top = -191.0
 offset_right = 136.0
 offset_bottom = 191.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_uhrx8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MyDraftBase"]
 libraries = {
 "": SubResource("AnimationLibrary_ur34d")
 }
+
+[node name="Area2D" type="Area2D" parent="MyDraftBase"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyDraftBase/Area2D"]
+visible = false
+position = Vector2(145, 199)
+shape = SubResource("RectangleShape2D_bk6w3")
 
 [node name="FadeOutCardBack" type="Panel" parent="."]
 visible = false
@@ -1170,3 +1184,4 @@ stretch_mode = 4
 
 [connection signal="mouse_entered" from="MyDraftBase/Focus" to="MyDraftBase" method="_on_focus_mouse_entered"]
 [connection signal="mouse_exited" from="MyDraftBase/Focus" to="MyDraftBase" method="_on_focus_mouse_exited"]
+[connection signal="input_event" from="MyDraftBase/Area2D" to="MyDraftBase" method="_on_area_2d_input_event"]
