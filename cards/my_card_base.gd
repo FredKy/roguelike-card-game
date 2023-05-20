@@ -80,100 +80,116 @@ func _ready():
 	#This scaling will result in size Vector2(174,240), i.e. CARD_SIZE
 	$'../FadeOutCardBack'.scale *= 0.6
 
+func _on_area_2d_input_event(viewport, event, shape_idx):
+	if event is InputEventScreenTouch:
+		print(event)
+		if event.is_pressed(): # Pick up card
+			if state == FOCUS_IN_HAND:
+				if card_select && enabled:
+					old_state = state
+					state = IN_MOUSE
+					$'../'.z_index += 2
+					$'../../../'.a_card_is_in_mouse = true
+					setup = true
+					card_select = false
+
 func _input(event):
 #	if $'../../../'.is_dealing_cards:
 #		return
-	if event.is_action_pressed("leftclick"): # Pick up card
-		if state == FOCUS_IN_HAND:
-			if card_select && enabled:
-				old_state = state
-				state = IN_MOUSE
-				$'../'.z_index += 2
-				$'../../../'.a_card_is_in_mouse = true
-				setup = true
-				card_select = false
-	if event.is_action_released("leftclick"):
-		if not card_select:
-			$'../'.z_index -= 2
-			$'../../../'.a_card_is_in_mouse = false
-			$GlowingBorder.visible = false
-			$Focus.visible = false
-			$'../../../Wanderer'.stop_highlight()
-			
-			if card_info[0] == "attack":
-				var enemies = $'../../../Enemies'
-				for i in range(enemies.get_child_count()):
-					var enemy_pos = enemies.get_child(i).position
-					var enemy_size = enemies.get_child(i).size
-					mouse_pos = get_global_mouse_position()
-					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-					and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
-						#Only allow attack if it's not wasted damage, otherwise return to hand.
-						if not enemies.get_child(i).is_already_dead():
-							# Move card to discard pile
-							setup = true
-							moving_to_discard = true
-							state = MOVE_TO_DISCARD_PILE
-							card_select = true
-							
-							# Remove energy
-							$'../../../'.update_energy_and_cards_playability(card_data["cost"])
-							
-#							var attack_number = card_data["damage"]
-							enemies.get_child(i).buffered_damage += card_data["damage"]
-							#Queue up enemy for damage calculation in Wanderers animation finished function
-							$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
-							
-							print("Wanderer attacking")
-							# Play attack animation and handle damage
-							$'../../../Wanderer'.trigger_attack(card_data)
-#							if card_data["name"] == "Ice Cannon":
-#								$'../../../Wanderer'.ice_cannon(attack_number)
-							print("Stopped attacking")
-							return
+#	if event.is_action_pressed("leftclick"): # Pick up card
+#		if state == FOCUS_IN_HAND:
+#			if card_select && enabled:
+#				old_state = state
+#				state = IN_MOUSE
+#				$'../'.z_index += 2
+#				$'../../../'.a_card_is_in_mouse = true
+#				setup = true
+#				card_select = false
+	if event is InputEventScreenTouch:
+		print(event)
+		if not event.is_pressed():
+#		if event.is_action_released("leftclick"):
+			if not card_select:
+				$'../'.z_index -= 2
+				$'../../../'.a_card_is_in_mouse = false
+				$GlowingBorder.visible = false
+				$Focus.visible = false
+				$'../../../Wanderer'.stop_highlight()
+				
+				if card_info[0] == "attack":
+					var enemies = $'../../../Enemies'
+					for i in range(enemies.get_child_count()):
+						var enemy_pos = enemies.get_child(i).position
+						var enemy_size = enemies.get_child(i).size
+						mouse_pos = get_global_mouse_position()
+						if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
+						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+							#Only allow attack if it's not wasted damage, otherwise return to hand.
+							if not enemies.get_child(i).is_already_dead():
+								# Move card to discard pile
+								setup = true
+								moving_to_discard = true
+								state = MOVE_TO_DISCARD_PILE
+								card_select = true
+								
+								# Remove energy
+								$'../../../'.update_energy_and_cards_playability(card_data["cost"])
+								
+	#							var attack_number = card_data["damage"]
+								enemies.get_child(i).buffered_damage += card_data["damage"]
+								#Queue up enemy for damage calculation in Wanderers animation finished function
+								$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
+								
+								print("Wanderer attacking")
+								# Play attack animation and handle damage
+								$'../../../Wanderer'.trigger_attack(card_data)
+	#							if card_data["name"] == "Ice Cannon":
+	#								$'../../../Wanderer'.ice_cannon(attack_number)
+								print("Stopped attacking")
+								return
+							else:
+								setup = true
+								targetpos = default_pos
+								state = REORGANIZE_HAND
+								card_select = true
+								return
 						else:
-							setup = true
-							targetpos = default_pos
-							state = REORGANIZE_HAND
-							card_select = true
-							return
-					else:
-						continue
-				setup = true
-				targetpos = default_pos
-				state = REORGANIZE_HAND
-				card_select = true
-			elif card_info[0] == "shield":
-				mouse_pos = get_global_mouse_position()
-				if mouse_pos.y < 400:
-					# Remove energy
-					$'../../../'.update_energy_and_cards_playability(card_info[1])
-					
-					# Move card to discard pile
+							continue
 					setup = true
-					moving_to_discard = true
-					state = MOVE_TO_DISCARD_PILE
+					targetpos = default_pos
+					state = REORGANIZE_HAND
 					card_select = true
-					
-					# Play animation
-					if card_info[2] == "Energy Shield":
-						$'../../../Wanderer'.shield()
-						#await get_tree().create_timer(1.0).timeout
-					
-					# Add shield
-					var shield_number = card_info[6]
-					#Queue up shield number to be used when Wanderer animation finished
-					$'../../../Wanderer'.shield_number_queue.append(shield_number)
+				elif card_info[0] == "shield":
+					mouse_pos = get_global_mouse_position()
+					if mouse_pos.y < 400:
+						# Remove energy
+						$'../../../'.update_energy_and_cards_playability(card_info[1])
+						
+						# Move card to discard pile
+						setup = true
+						moving_to_discard = true
+						state = MOVE_TO_DISCARD_PILE
+						card_select = true
+						
+						# Play animation
+						if card_info[2] == "Energy Shield":
+							$'../../../Wanderer'.shield()
+							#await get_tree().create_timer(1.0).timeout
+						
+						# Add shield
+						var shield_number = card_info[6]
+						#Queue up shield number to be used when Wanderer animation finished
+						$'../../../Wanderer'.shield_number_queue.append(shield_number)
+					else:
+						setup = true
+						targetpos = default_pos
+						state = REORGANIZE_HAND
+						card_select = true
 				else:
 					setup = true
 					targetpos = default_pos
 					state = REORGANIZE_HAND
 					card_select = true
-			else:
-				setup = true
-				targetpos = default_pos
-				state = REORGANIZE_HAND
-				card_select = true
 
 
 func _physics_process(delta):
@@ -489,4 +505,7 @@ func parametric_blend(x):
 func fade_out():
 	#print("here")
 	$FadeOutAnimationPlayer.play("fade_out")
+
+
+
 
