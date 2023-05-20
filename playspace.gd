@@ -23,6 +23,7 @@ var card_numb = 0
 var oval_angle_vector = Vector2()
 @onready var deck_position = $Deck.position
 @onready var discard_position = $Discard.position
+var drafted_cards = 0
 
 enum {
 	IN_HAND,
@@ -111,8 +112,11 @@ func _ready():
 	
 	show_turn_message("BATTLE!")
 	await get_tree().create_timer(1.5).timeout
+	#create_random_draftable_cards()
 	show_turn_message("Player turn")
 	start_player_turn()
+	
+	
 	#$EndTurnButtonNode.visible = true
 
 func draw_card():
@@ -374,18 +378,19 @@ func do_stuff_when_player_has_won():
 	$DraftScene.visible = true
 	$Skip/SkipAP.play("fade_in")
 
-func create_draftable_card(c_name, pos):
+func create_draftable_card(c_name, pos, card_numb):
 	var draft_card = DRAFT_CARD_BASE.instantiate()
 	var base = draft_card.get_node("MyDraftBase")
 	#base.card_name = player_deck.card_list[card_selected]
 	base.card_name = c_name
 	base.position = pos
 	base.scale *= CARD_SIZE/base.size #Equivalent of 0.6
+	base.card_numb = card_numb
 	#base.set_focus(true)
 	$Draftables.add_child(draft_card)
 	#add_child(draft_card_base)
 
 func create_random_draftable_cards():
-	create_draftable_card("ice_cannon", Vector2(220, 120))
-	create_draftable_card("energy_shield", Vector2(431, 120))
-	create_draftable_card("ice_cannon", Vector2(642, 120))
+	create_draftable_card("ice_cannon", Vector2(220, 120), 0)
+	create_draftable_card("energy_shield", Vector2(431, 120), 1)
+	create_draftable_card("ice_cannon", Vector2(642, 120), 2)

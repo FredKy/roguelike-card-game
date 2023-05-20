@@ -459,4 +459,6 @@ visible = false
 
 [connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
+[connection signal="pressed" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_pressed"]
 [connection signal="gui_input" from="Skip" to="Skip" method="_on_gui_input"]
+[connection signal="pressed" from="Skip" to="Skip" method="_on_pressed"]
