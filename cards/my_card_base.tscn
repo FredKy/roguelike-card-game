@@ -7,9 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bu0nubybt1e1r" path="res://glowing_border.tscn" id="5_o3xn3"]
 [ext_resource type="Texture2D" uid="uid://cex1jwjhicuct" path="res://assets/images/card_back.png" id="6_4rmaw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1imb"]
-size = Vector2(290.5, 401.5)
-
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0.227451, 0.227451, 0.227451, 1)
 corner_radius_top_left = 16
@@ -985,14 +982,10 @@ _data = {
 "fade_out": SubResource("Animation_nwckl")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j1imb"]
+size = Vector2(290.5, 401.5)
+
 [node name="Root" type="Node2D"]
-
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(144.75, 199.25)
-shape = SubResource("RectangleShape2D_j1imb")
 
 [node name="MyCardBase" type="MarginContainer" parent="."]
 offset_right = 290.0
@@ -1155,6 +1148,12 @@ libraries = {
 "": SubResource("AnimationLibrary_ur34d")
 }
 
+[node name="Area2D" type="Area2D" parent="MyCardBase"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MyCardBase/Area2D"]
+visible = false
+shape = SubResource("RectangleShape2D_j1imb")
+
 [node name="FadeOutCardBack" type="Panel" parent="."]
 visible = false
 offset_right = 290.0
@@ -1172,3 +1171,5 @@ stretch_mode = 4
 
 [connection signal="mouse_entered" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_entered"]
 [connection signal="mouse_exited" from="MyCardBase/Focus" to="MyCardBase" method="_on_focus_mouse_exited"]
+[connection signal="mouse_entered" from="MyCardBase/Area2D" to="MyCardBase" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="MyCardBase/Area2D" to="MyCardBase" method="_on_area_2d_mouse_exited"]
