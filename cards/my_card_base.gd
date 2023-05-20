@@ -80,10 +80,17 @@ func _ready():
 	#This scaling will result in size Vector2(174,240), i.e. CARD_SIZE
 	$'../FadeOutCardBack'.scale *= 0.6
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+var hold_touch = false
+
+
+func _input(event):
+#	if $'../../../'.is_dealing_cards:
+#		return
 	if event is InputEventScreenTouch:
 		print(event)
 		if event.is_pressed(): # Pick up card
+			#print(event)
+			print(state)
 			if state == FOCUS_IN_HAND:
 				if card_select && enabled:
 					old_state = state
@@ -92,19 +99,6 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 					$'../../../'.a_card_is_in_mouse = true
 					setup = true
 					card_select = false
-
-func _input(event):
-#	if $'../../../'.is_dealing_cards:
-#		return
-#	if event.is_action_pressed("leftclick"): # Pick up card
-#		if state == FOCUS_IN_HAND:
-#			if card_select && enabled:
-#				old_state = state
-#				state = IN_MOUSE
-#				$'../'.z_index += 2
-#				$'../../../'.a_card_is_in_mouse = true
-#				setup = true
-#				card_select = false
 	if event is InputEventScreenTouch:
 		print(event)
 		if not event.is_pressed():
