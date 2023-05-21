@@ -1,6 +1,15 @@
 extends Node
 # Spellinfo = [Type, Cost, Name, Effect, Image, Damage, Shield, ]
-enum {ICE_CANNON, WARP_TIME, COLD_TOUCH, ENERGY_SHIELD, ZAP, ENERGIZE, METEOR_SHOWER}
+enum {
+	ICE_CANNON,
+	WARP_TIME,
+	COLD_TOUCH,
+	ENERGY_SHIELD,
+	ZAP,
+	ENERGIZE,
+	METEOR_SHOWER,
+	ICE_BARRIER,
+}
 
 const DATA = {
 	COLD_TOUCH:
@@ -11,6 +20,8 @@ const DATA = {
 		["attack", 3, "Meteor Shower", "Deal 20 damage\nto an enemy", Rect2(6656,0,256,192), 20, 0],
 	WARP_TIME:
 		["spell", 2, "Warp Time", "Target enemy passes\n a turn", Rect2(7424,64,256,192), 0, 0],
+	ICE_BARRIER:
+		["shield", 2, "Ice Barrier", "Add 15 to shield", Rect2(7680,64,256,192), 0, 15],
 	ENERGY_SHIELD:
 		["shield", 1, "Energy Shield", "Add 6 to shield", Rect2(1280,64,256,192), 0, 6],
 	ZAP:

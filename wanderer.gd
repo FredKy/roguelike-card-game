@@ -108,10 +108,16 @@ func trigger_shield(card_data: Dictionary):
 			energy_shield(card_data["shield"])
 		"Energize":
 			energize(card_data["shield"])
+		"Ice Barrier":
+			ice_barrier(card_data["shield"])
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
 func energy_shield(shield_number):
+	shield_number_queue.append(shield_number)
+	animation_queue.append("shield")
+
+func ice_barrier(shield_number):
 	shield_number_queue.append(shield_number)
 	animation_queue.append("shield")
 
@@ -136,7 +142,7 @@ func _on_animated_sprite_2d_animation_finished():
 	if not alive:
 		return
 	if shield_number_queue.size() > 0:
-		if sprite.animation  == "shield":
+		if sprite.animation  == "shield" or sprite.animation == "ice_barrier":
 			if current_shield == 0:
 				$AnimationPlayer.play("create_shield")
 			add_shield(shield_number_queue.pop_front())
