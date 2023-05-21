@@ -24,3 +24,6 @@ res://resources/knight_2_sprite_frames.tres
 res://enemy.gd
 res://resources/knight_2.tres
 res://scripts/enemy_resource_base.gd
+res://resources/wizard_boss_sprite_frames.tres
+res://misc_scenes/transition_effect.gd
+res://cards/draft_card_base.gd

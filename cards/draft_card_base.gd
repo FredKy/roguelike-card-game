@@ -74,7 +74,7 @@ func _ready():
 #	$Focus.set_modulate(Color(1,0.8,0.2,1))
 #	$GlowingBorder/CardBorderGlow.material.set_shader_parameter("ending_color", Vector4(0.7,0.3,0,0))
 
-func _on_area_2d_input_event(viewport, event, shape_idx):
+func _on_area_2d_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
 		print(event.position)
 		if event.is_pressed():

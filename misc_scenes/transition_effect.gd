@@ -5,13 +5,13 @@ const LENGTH = 0.7
 func _ready():
 	$ColorRect.modulate = Color(1,1,1,0)
 
-func fade_in(len = LENGTH):
-	$AP.get_animation("fade_in").length = len
+func fade_in(leng = LENGTH):
+	$AP.get_animation("fade_in").length = leng
 	$AP.play("fade_in")
-	await get_tree().create_timer(len).timeout
+	await get_tree().create_timer(leng).timeout
 
-func fade_out(len = LENGTH):
-	$AP.get_animation("fade_out").length = len
+func fade_out(leng = LENGTH):
+	$AP.get_animation("fade_out").length = leng
 	$AP.play("fade_out")
-	await get_tree().create_timer(len).timeout
+	await get_tree().create_timer(leng).timeout
 

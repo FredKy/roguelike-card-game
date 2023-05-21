@@ -326,5 +326,5 @@ func append_value_to_queue(name_of_queue: String, value, dict: Dictionary):
 		dict[name_of_queue].append(value)
 		print("After append: " + str(dict))
 
-func get_animation_length(name: String):
-	return sprite.sprite_frames.get_frame_count(name)/sprite.sprite_frames.get_animation_speed(name)
+func get_animation_length(name_anim: String):
+	return sprite.sprite_frames.get_frame_count(name_anim)/sprite.sprite_frames.get_animation_speed(name_anim)

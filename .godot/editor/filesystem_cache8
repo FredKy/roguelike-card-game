@@ -175,7 +175,7 @@ battleback9-1.png::CompressedTexture2D::8574377318365528769::1525026793::1681766
 battleback9-2.png::CompressedTexture2D::541286725715673448::1525026779::1681766727::1::::<><>::
 battleback10-1.png::CompressedTexture2D::8901160432629988646::1525027150::1681766727::1::::<><>::
 battleback10-2.png::CompressedTexture2D::5268444818363954120::1525027127::1681766726::1::::<><>::
-::res://assets/images/enemies/::1684663641
+::res://assets/images/enemies/::1684665946
 bone-knife.png::CompressedTexture2D::1541376924443318862::1525108518::1683231071::1::::<><>::
 bowie-knife.png::CompressedTexture2D::9056030583994655309::1525108518::1683231071::1::::<><>::
 broad-dagger.png::CompressedTexture2D::6086102856295587416::1525108518::1683231071::1::::<><>::
@@ -186,7 +186,29 @@ stiletto.png::CompressedTexture2D::4039982541617557298::1525108518::1683231071::
 stiletto_red.png::CompressedTexture2D::8065392288204914249::1683231486::1683231492::1::::<><>::
 stiletto_red_outline.png::CompressedTexture2D::8294315831151701111::1683232892::1683232900::1::::<><>::
 two-handed-sword.png::CompressedTexture2D::3263997057745836814::1525108518::1683231071::1::::<><>::
-::res://assets/images/enemies/knight_1/::1684665077
+::res://assets/images/enemies/evil_wizard_2/::1684665358
+Attack1.png::CompressedTexture2D::342178926138762841::1598502590::1684665358::1::::<><>::
+Attack2.png::CompressedTexture2D::8136241805641734145::1598502609::1684665358::1::::<><>::
+Death.png::CompressedTexture2D::266398749508411::1598502831::1684665358::1::::<><>::
+Fall.png::CompressedTexture2D::5594009812102101971::1598502643::1684665358::1::::<><>::
+Idle.png::CompressedTexture2D::2390318825274022616::1598502540::1684665358::1::::<><>::
+Jump.png::CompressedTexture2D::8524100407423195945::1598502629::1684665358::1::::<><>::
+License.txt::TextFile::-1::1598503102::0::1::::<><>::
+Run.png::CompressedTexture2D::1924885603553959426::1598502560::1684665358::1::::<><>::
+Take hit.png::CompressedTexture2D::3534735360499673814::1598502676::1684665358::1::::<><>::
+::res://assets/images/enemies/fire_vizard/::1684665917
+Attack_1.png::CompressedTexture2D::1314327529350758988::1670311650::1684666042::1::::<><>::
+Attack_2.png::CompressedTexture2D::7765147889197693733::1670311688::1684666042::1::::<><>::
+Charge.png::CompressedTexture2D::6111158588736464802::1670312294::1684666042::1::::<><>::
+Dead.png::CompressedTexture2D::2318838905000568973::1670312161::1684666042::1::::<><>::
+Fireball.png::CompressedTexture2D::5389246157001815309::1670311761::1684666042::1::::<><>::
+Flame_jet.png::CompressedTexture2D::6375965313977761200::1670311940::1684666042::1::::<><>::
+Hurt.png::CompressedTexture2D::2910119075138348713::1670312076::1684666042::1::::<><>::
+Idle.png::CompressedTexture2D::8626567829338958556::1670311472::1684666042::1::::<><>::
+Jump.png::CompressedTexture2D::7830660470942693371::1670311998::1684666042::1::::<><>::
+Run.png::CompressedTexture2D::7554564279895541669::1670311590::1684666042::1::::<><>::
+Walk.png::CompressedTexture2D::3361921126741606952::1670311429::1684666042::1::::<><>::
+::res://assets/images/enemies/knight_1/::1684665156
 Attack 1.png::CompressedTexture2D::3596880573042623893::1684665077::1684665156::1::::<><>::
 Attack 2.png::CompressedTexture2D::3841292083208364700::1665591622::1684661857::1::::<><>::
 Attack 3.png::CompressedTexture2D::730860699394590138::1665588386::1684661857::1::::<><>::
@@ -199,7 +221,7 @@ Protect.png::CompressedTexture2D::637752463964144424::1665589800::1684661857::1:
 Run+Attack.png::CompressedTexture2D::4818639679796266244::1665589176::1684661857::1::::<><>::
 Run.png::CompressedTexture2D::537208148804821509::1665590714::1684661857::1::::<><>::
 Walk.png::CompressedTexture2D::2810045215090795319::1665589558::1684661857::1::::<><>::
-::res://assets/images/enemies/knight_2/::1684665045
+::res://assets/images/enemies/knight_2/::1684665156
 Attack 1.png::CompressedTexture2D::8673739425069806060::1684665045::1684665156::1::::<><>::
 Attack 2.png::CompressedTexture2D::4435836441969322436::1665591646::1684663650::1::::<><>::
 Attack 3.png::CompressedTexture2D::6910681473822086994::1665588402::1684663650::1::::<><>::
@@ -212,7 +234,7 @@ Protect.png::CompressedTexture2D::5173919242541074639::1665589812::1684663650::1
 Run+Attack.png::CompressedTexture2D::5595331270685493055::1665589190::1684663650::1::::<><>::
 Run.png::CompressedTexture2D::8583974713177069388::1665590692::1684663650::1::::<><>::
 Walk.png::CompressedTexture2D::8584410287725227594::1665589574::1684663650::1::::<><>::
-::res://assets/images/enemies/knight_3/::1684665122
+::res://assets/images/enemies/knight_3/::1684665156
 Attack 1.png::CompressedTexture2D::5929478805804238014::1684665122::1684665156::1::::<><>::
 Attack 2.png::CompressedTexture2D::1363338589453722479::1665591666::1684663650::1::::<><>::
 Attack 3.png::CompressedTexture2D::4589203405278876940::1665588414::1684663650::1::::<><>::
@@ -225,6 +247,18 @@ Protect.png::CompressedTexture2D::7884964788162633363::1665589824::1684663650::1
 Run+Attack.png::CompressedTexture2D::6878904461731152451::1665589204::1684663650::1::::<><>::
 Run.png::CompressedTexture2D::4680062543065352171::1665590658::1684663650::1::::<><>::
 Walk.png::CompressedTexture2D::1957904227436173489::1665589588::1684663650::1::::<><>::
+::res://assets/images/enemies/lightning_mage/::1684665917
+Attack_1.png::CompressedTexture2D::1782556210103862958::1670324312::1684666042::1::::<><>::
+Attack_2.png::CompressedTexture2D::2178933118547298503::1670324406::1684666042::1::::<><>::
+Charge.png::CompressedTexture2D::2863681514104444741::1670324928::1684666042::1::::<><>::
+Dead.png::CompressedTexture2D::1926252377505115574::1670324826::1684666042::1::::<><>::
+Hurt.png::CompressedTexture2D::7980504420281819641::1670324770::1684666042::1::::<><>::
+Idle.png::CompressedTexture2D::3040553398028657616::1670324170::1684666042::1::::<><>::
+Jump.png::CompressedTexture2D::5502084345399404738::1670324693::1684666042::1::::<><>::
+Light_ball.png::CompressedTexture2D::5215066667567656188::1670324475::1684666042::1::::<><>::
+Light_charge.png::CompressedTexture2D::5450916446212275447::1670324611::1684666042::1::::<><>::
+Run.png::CompressedTexture2D::3350205289401689904::1670324228::1684666042::1::::<><>::
+Walk.png::CompressedTexture2D::8098022327526591544::1670324146::1684666042::1::::<><>::
 ::res://assets/images/enemies/skeleton_archer/::1684052001
 Arrow.png::CompressedTexture2D::1445035167020599679::1668597016::1684052001::1::::<><>::
 Attack_1.png::CompressedTexture2D::4160738420559855240::1668596510::1684052001::1::::<><>::
@@ -260,6 +294,19 @@ Run+attack.png::CompressedTexture2D::3796450113259340941::1668597467::1682064763
 Run.png::CompressedTexture2D::1468689186156052381::1668597400::1682064763::1::::<><>::
 skeleton_warrior_idle.png::CompressedTexture2D::6915203231799072628::1679267736::1682064763::1::::<><>::
 Walk.png::CompressedTexture2D::4462896253157782198::1668597312::1682064763::1::::<><>::
+::res://assets/images/enemies/wanderer_magican/::1684665917
+Attack_1.png::CompressedTexture2D::5131118593586541401::1670334926::1684666042::1::::<><>::
+Attack_2.png::CompressedTexture2D::975290834060546862::1670335003::1684666042::1::::<><>::
+Charge_1.png::CompressedTexture2D::3561752989183663912::1670335507::1684666042::1::::<><>::
+Charge_2.png::CompressedTexture2D::2147954264965919446::1670335586::1684666042::1::::<><>::
+Dead.png::CompressedTexture2D::6059063602293623396::1670335289::1684666042::1::::<><>::
+Hurt.png::CompressedTexture2D::8907611677669691562::1670335247::1684666042::1::::<><>::
+Idle.png::CompressedTexture2D::5735551598119917886::1670334664::1684666042::1::::<><>::
+Jump.png::CompressedTexture2D::1499894882255463566::1670335176::1684666042::1::::<><>::
+Magic_arrow.png::CompressedTexture2D::2121646551463162782::1670335134::1684666042::1::::<><>::
+Magic_sphere.png::CompressedTexture2D::4184839049606247753::1670335081::1684666042::1::::<><>::
+Run.png::CompressedTexture2D::2719272367884504023::1670334868::1684666042::1::::<><>::
+Walk.png::CompressedTexture2D::1423001969173416225::1670334722::1684666042::1::::<><>::
 ::res://assets/images/icons/::1684440629
 anvil-impact.png::CompressedTexture2D::2764042141544725599::1525108518::1683588573::1::::<><>::
 arrow_down_red.png::CompressedTexture2D::1190588850955674631::1684060470::1684060648::1::::<><>::
@@ -381,7 +428,7 @@ top_bar.gd::GDScript::-1::1684496431::0::1::::<>Node2D<>::
 top_bar.tscn::PackedScene::4362236325278202588::1684664914::0::1::::<><>::res://misc_scenes/top_bar.gd<>uid://cex1jwjhicuct<>res://misc_scenes/counter.gd<>uid://c1pbb2crnyoby
 transition_effect.gd::GDScript::-1::1684395423::0::1::::<>Node2D<>::
 transition_effect.tscn::PackedScene::7978420151805035195::1684664914::0::1::::<><>::res://misc_scenes/transition_effect.gd
-::res://resources/::1684664912
+::res://resources/::1684665521
 knight_1.tres::Resource/EnemyResource::6826866083508950934::1684664912::0::1::::<><>::res://scripts/enemy_resource_base.gd<>uid://dm78r5n4j4my5
 knight_1_sprite_frames.tres::SpriteFrames::8069623879237051734::1684662970::0::1::::<><>::uid://dqsrqjqlygbvx<>uid://jc6xpsaqbhae<>uid://brimdk0hc611b<>uid://kobf0j8gtj3g<>uid://b2plk7kccnjqc<>uid://blm36fx815h5q<>uid://bt80ngkbgg6t1
 knight_2.tres::Resource/EnemyResource::6479312258782968677::1684664912::0::1::::<><>::res://scripts/enemy_resource_base.gd<>uid://d6lv8iij32or
@@ -393,6 +440,7 @@ skeleton_spearman_extra.gd::GDScript::-1::1684350942::0::1::::<>Node<>::
 skeleton_spearman_sprite_frames.tres::SpriteFrames::3632798431030374961::1684662357::0::1::::<><>::uid://bvwq38pok8rsn<>uid://bt80ngkbgg6t1<>uid://bo6yiy1xxnr7h<>uid://nlhfu3fx03j3<>uid://bh4hdkelvceqj<>uid://bwh4rebnpmak5
 skeleton_warrior.tres::Resource/Resource::8932112050292672851::1684342056::0::1::::<><>::res://scripts/enemy_resource_base.gd<>uid://d255facjkdky3
 skeleton_warrior_sprite_frames.tres::SpriteFrames::9118122604192510540::1684660113::0::1::::<><>::uid://bak1k7u81vc4c<>uid://bv4fjxu02225d<>uid://bvjoo1eg2j1v1<>uid://pavcyv5by8mp<>uid://b1aiaqcbedt5h<>uid://0q1ht45o1cu<>uid://c7hbb1857mhbo
+wizard_boss_sprite_frames.tres::SpriteFrames::5944963779788096733::1684665521::0::1::::<><>::uid://nlhfu3fx03j3<>uid://bh4hdkelvceqj<>uid://bo6yiy1xxnr7h<>uid://bt80ngkbgg6t1<>uid://bwh4rebnpmak5<>uid://bvwq38pok8rsn
 ::res://scripts/::1684664469
 enemy_resource_base.gd::GDScript::-1::1684664469::0::1::::EnemyResource<>Resource<>::
 game_state.gd::GDScript::-1::1684400234::0::1::::<>Node<>::

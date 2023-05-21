@@ -385,14 +385,14 @@ func do_stuff_when_player_has_won():
 	$DraftScene.visible = true
 	$Skip/SkipAP.play("fade_in")
 
-func create_draftable_card(c_name, pos, card_numb):
+func create_draftable_card(c_name, pos, card_number):
 	var draft_card = DRAFT_CARD_BASE.instantiate()
 	var base = draft_card.get_node("MyDraftBase")
 	#base.card_name = player_deck.card_list[card_selected]
 	base.card_name = c_name
 	base.position = pos
 	base.scale *= CARD_SIZE/base.size #Equivalent of 0.6
-	base.card_numb = card_numb
+	base.card_numb = card_number
 	#base.set_focus(true)
 	$Draftables.add_child(draft_card)
 	#add_child(draft_card_base)
