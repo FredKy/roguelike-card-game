@@ -27,3 +27,7 @@ res://scripts/enemy_resource_base.gd
 res://resources/wizard_boss_sprite_frames.tres
 res://misc_scenes/transition_effect.gd
 res://cards/draft_card_base.gd
+res://resources/wizard_boss.tres
+res://resources/wizard_boss_extra.gd
+res://resources/fire_wizard.tres
+res://scripts/game_state.gd

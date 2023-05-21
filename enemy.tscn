@@ -1,7 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://kg4iru48tvr4"]
+[gd_scene load_steps=22 format=3 uid="uid://dc2rxedgydf73"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
-[ext_resource type="SpriteFrames" uid="uid://cqx1xjyv36uyf" path="res://resources/wizard_boss_sprite_frames.tres" id="2_rffk8"]
+[ext_resource type="SpriteFrames" uid="uid://cqx1xjyv36uyf" path="res://resources/fire_wizard_sprite_frames.tres" id="2_r0jrs"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://c6711dvcosymh" path="res://assets/images/enemies/checked-shield-white.png" id="6_fe2xb"]
 [ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="7_wyw8v"]
@@ -227,7 +227,7 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(-271, -514)
 scale = Vector2(8, 8)
-sprite_frames = ExtResource("2_rffk8")
+sprite_frames = ExtResource("2_r0jrs")
 animation = &"special_attack"
 frame = 7
 frame_progress = 1.0

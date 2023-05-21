@@ -59,6 +59,7 @@ enum {
 	KNIGHT,
 	KNIGHT_TWO,
 	KNIGHT_THREE,
+	FIRE_WIZARD,
 }
 
 #var battle_type = WARRIOR_AND_SPEARMAN
@@ -103,6 +104,8 @@ func _ready():
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/knight_1.tres"), [ATTACK, DEFEND]))
 		KNIGHT_TWO:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/knight_2.tres"), [ATTACK, ATTACK, DEFEND]))
+		FIRE_WIZARD:
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/fire_wizard.tres"), [ATTACK, ATTACK], [SPECIAL_ATTACK_ONE, NORMAL_ATTACK, SPECIAL_ATTACK_ONE, DOUBLE_ATTACK]))
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true

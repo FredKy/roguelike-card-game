@@ -34,7 +34,7 @@ offset_top = 222.0
 offset_right = 290.0
 offset_bottom = 322.0
 index = 1
-battle_type = 5
+battle_type = 7
 
 [node name="Level1B" parent="MapNodes" instance=ExtResource("3_8kd4y")]
 offset_left = 206.0

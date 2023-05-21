@@ -2,14 +2,14 @@ extends MarginContainer
 
 const POST_ATTACK_DELAY = 0.75
 
-var current_health = 10.0
-var max_health = 10.0
-var attack_damage = 8.0
-var double_attack_damage = 4.0
+var current_health
+var max_health
+var attack_damage
+var double_attack_damage
 var has_killed_player = false
 var alive = true
-var shield_value = 8.0
-var current_shield = 0
+var shield_value
+var current_shield
 
 #Used to determine if enemy is going to die from queued up damage
 var buffered_damage = 0
@@ -55,6 +55,9 @@ func _ready():
 	attack_damage = enemy_resource.attack_damage
 	double_attack_damage = enemy_resource.double_attack_damage
 	shield_value = enemy_resource.shield_value
+	current_health = enemy_resource.health
+	max_health = enemy_resource.health
+	
 	if enemy_resource.extra_script != null:
 		extra.set_script(enemy_resource.extra_script)
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.position = enemy_resource.sprite_position
