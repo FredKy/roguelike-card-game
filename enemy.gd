@@ -29,6 +29,7 @@ var damage_queues = {}
 enum {
 	ATTACK,
 	DEFEND,
+	PASS_TURN,
 }
 
 #Attack types
