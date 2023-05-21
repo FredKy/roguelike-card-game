@@ -72,6 +72,10 @@ func _ready():
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
 	#$VBoxContainer/Name.text = card_info[2]
 	$VBoxContainer/Name.text = card_data["name"]
+	if card_data["name"].length() > 12:
+		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 23)
+	if card_data["name"].length() > 14:
+		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 21)
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
