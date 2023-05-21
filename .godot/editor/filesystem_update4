@@ -35,3 +35,6 @@ res://scripts/my_cards_database.gd
 res://cards/my_card_base.gd
 res://wanderer.gd
 res://end_turn_button.gd
+res://misc_scenes/victory.tscn
+res://game_over_smoke_bg.gdshader
+res://victory_smoke_bg.gdshader

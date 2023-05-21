@@ -1,3 +1,4 @@
+res://misc_scenes
 res://assets/images/enemies/wanderer_magican
 res://assets/images/enemies/fire_vizard
 res://assets/images/enemies/evil_wizard_2
@@ -7,7 +8,6 @@ res://resources
 F:/Godot_projekt/Godot 4
 res://
 res://effects
-res://misc_scenes
 res://assets/images/wanderer_magician
 res://assets/images/enemies/skeleton_archer
 res://assets/images/enemies/skeleton_spearman
