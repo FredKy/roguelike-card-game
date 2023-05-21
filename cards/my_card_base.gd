@@ -164,15 +164,23 @@ func _input(event):
 						state = MOVE_TO_DISCARD_PILE
 						card_select = true
 						
-						# Play animation
-						if card_info[2] == "Energy Shield":
-							$'../../../Wanderer'.shield()
-							#await get_tree().create_timer(1.0).timeout
 						
-						# Add shield
-						var shield_number = card_info[6]
-						#Queue up shield number to be used when Wanderer animation finished
-						$'../../../Wanderer'.shield_number_queue.append(shield_number)
+						if card_info[2] == "Energy Shield":
+							# Play animation
+							$'../../../Wanderer'.shield()
+							# Add shield
+							var shield_number = card_info[6]
+							#Queue up shield number to be used when Wanderer animation finished
+							$'../../../Wanderer'.shield_number_queue.append(shield_number)
+						elif card_info[2] == "Energize":
+							# Play animation
+							$'../../../Wanderer'.energize()
+							# Add shield
+							var shield_number = card_info[6]
+							#Queue up shield number to be used when Wanderer animation finished
+							$'../../../Wanderer'.shield_number_queue.append(shield_number)
+							
+							
 					else:
 						setup = true
 						targetpos = default_pos

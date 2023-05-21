@@ -31,3 +31,6 @@ res://resources/wizard_boss.tres
 res://resources/wizard_boss_extra.gd
 res://resources/fire_wizard.tres
 res://scripts/game_state.gd
+res://scripts/my_cards_database.gd
+res://cards/my_card_base.gd
+res://wanderer.gd

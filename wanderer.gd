@@ -85,16 +85,22 @@ func trigger_attack(card_data: Dictionary):
 			ice_cannon(card_data["damage"])
 		"Zap":
 			zap(card_data["damage"])
+	if sprite.animation == "idle":
+		sprite.animation = animation_queue.pop_front()
 
 func ice_cannon(attack_number):
 	append_value_to_queue("ice_cannon_damage", attack_number, dictionary_of_queues)
 	animation_queue.append("ice_cannon")
-	if sprite.animation == "idle":
-		sprite.animation = animation_queue.pop_front()
 	
 func zap(attack_number):
 	append_value_to_queue("zap_damage", attack_number, dictionary_of_queues)
 	animation_queue.append("zap")
+
+func trigger_shield(card_data: Dictionary):
+	var card_name = card_data["name"]
+	match card_name:
+		"Energy Shield":
+			regular_shield_animation()
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
@@ -103,6 +109,13 @@ func shield():
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
+func energize():
+	animation_queue.append("energize")
+	if sprite.animation == "idle":
+		sprite.animation = animation_queue.pop_front()
+
+func regular_shield_animation():
+	animation_queue.append("shield")
 
 func reset_shield():
 	current_shield = 0
@@ -125,6 +138,11 @@ func _on_animated_sprite_2d_animation_finished():
 			if current_shield == 0:
 				$AnimationPlayer.play("create_shield")
 			add_shield(shield_number_queue.pop_front())
+		if sprite.animation  == "energize":
+			if current_shield == 0:
+				$AnimationPlayer.play("create_shield")
+			add_shield(shield_number_queue.pop_front())
+			$'../'.draw_x_cards(1,0.2)
 	if target_queue.size() > 0:
 		if sprite.animation == "ice_cannon":
 			var enemy = target_queue.pop_front()
