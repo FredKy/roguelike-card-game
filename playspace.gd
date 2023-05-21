@@ -109,6 +109,7 @@ func _ready():
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true
+	$Wanderer.reset_shield()
 	#$Wanderer.position = Vector2(100, 80)
 	#$Wanderer.scale *= 0.4
 	$Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D.play()

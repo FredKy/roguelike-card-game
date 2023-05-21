@@ -27,6 +27,7 @@ offset_left = 72.0
 offset_top = 292.0
 offset_right = 159.0
 offset_bottom = 392.0
+background = 1
 visited = true
 
 [node name="Level1A" parent="MapNodes" instance=ExtResource("4_o3n15")]
@@ -36,6 +37,7 @@ offset_right = 273.0
 offset_bottom = 237.0
 index = 1
 battle_type = 3
+background = 1
 
 [node name="Level1B" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 218.0
@@ -45,6 +47,7 @@ offset_bottom = 385.0
 index = 2
 texture = ExtResource("5_yliyb")
 battle_type = 1
+background = 1
 
 [node name="Level1C" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 187.0
@@ -54,6 +57,7 @@ offset_bottom = 525.0
 index = 3
 texture = ExtResource("5_yliyb")
 battle_type = 1
+background = 1
 
 [node name="Level2A" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 348.0
@@ -62,6 +66,7 @@ offset_right = 435.0
 offset_bottom = 214.0
 index = 4
 battle_type = 2
+background = 1
 
 [node name="Level2B" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 359.0
@@ -72,6 +77,7 @@ index = 5
 texture = ExtResource("6_rhje8")
 location_type = 1
 battle_type = 2
+background = 1
 
 [node name="Level2C" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 348.0
@@ -80,6 +86,7 @@ offset_right = 435.0
 offset_bottom = 564.0
 index = 6
 battle_type = 2
+background = 1
 
 [node name="Level3A" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 509.0
@@ -88,6 +95,7 @@ offset_right = 596.0
 offset_bottom = 235.0
 index = 7
 battle_type = 1
+background = 1
 
 [node name="Level3B" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 536.0
@@ -95,6 +103,7 @@ offset_top = 235.0
 offset_right = 623.0
 offset_bottom = 335.0
 index = 8
+background = 1
 
 [node name="Level3C" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 523.0
@@ -102,6 +111,7 @@ offset_top = 362.0
 offset_right = 610.0
 offset_bottom = 462.0
 index = 9
+background = 1
 
 [node name="Level3D" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 527.0
@@ -109,6 +119,7 @@ offset_top = 471.0
 offset_right = 614.0
 offset_bottom = 571.0
 index = 10
+background = 1
 
 [node name="Level4A" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 694.0
@@ -116,7 +127,9 @@ offset_top = 117.0
 offset_right = 781.0
 offset_bottom = 217.0
 index = 11
+location_type = 1
 battle_type = 5
+background = 1
 
 [node name="Level4B" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 689.0
@@ -125,6 +138,7 @@ offset_right = 776.0
 offset_bottom = 321.0
 index = 12
 battle_type = 4
+background = 1
 
 [node name="Level4C" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 691.0
@@ -133,6 +147,7 @@ offset_right = 778.0
 offset_bottom = 441.0
 index = 13
 battle_type = 4
+background = 1
 
 [node name="Level4D" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 698.0
@@ -141,6 +156,7 @@ offset_right = 785.0
 offset_bottom = 609.0
 index = 14
 battle_type = 4
+background = 1
 
 [node name="Level5A" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 865.0
@@ -149,6 +165,7 @@ offset_right = 952.0
 offset_bottom = 248.0
 index = 15
 battle_type = 1
+background = 1
 
 [node name="Level5B" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 863.0
@@ -158,6 +175,7 @@ offset_bottom = 422.0
 index = 16
 texture = ExtResource("6_rhje8")
 location_type = 1
+background = 1
 
 [node name="Level5C" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 882.0
@@ -166,6 +184,7 @@ offset_right = 969.0
 offset_bottom = 582.0
 index = 17
 battle_type = 2
+background = 1
 
 [node name="Boss" parent="MapNodes" instance=ExtResource("4_o3n15")]
 offset_left = 1022.0
@@ -176,7 +195,7 @@ index = 18
 texture = ExtResource("7_0ef51")
 big = true
 battle_type = 7
-background = 2
+background = 1
 
 [node name="Act" type="Label" parent="."]
 z_index = 3

@@ -29,9 +29,9 @@ func reset_game_state():
 	global_player_deck = STARTER_DECK.duplicate()
 	global_player_max_health = STARTER_PLAYER_MAX_HEALTH
 	global_player_current_health = global_player_max_health
-	global_current_act = 1
-	reset_map_state()
+	reset_map_state(1)
 
-func reset_map_state():
+func reset_map_state(act):
+	global_current_act = act
 	global_current_map_node = 13
 	global_visited_nodes = [0]
