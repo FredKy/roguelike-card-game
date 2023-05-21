@@ -38,7 +38,12 @@ func _on_start_resting_pressed():
 	await transition.fade_in()
 	print(get_tree())
 	transition.queue_free()
-	get_tree().change_scene_to_file("res://map.tscn")
+	var act = game_state.global_current_act
+	match act:
+		1:
+			get_tree().change_scene_to_file("res://map.tscn")
+		2:
+			get_tree().change_scene_to_file("res://misc_scenes/map_two.tscn")
 
 func _on_start_resting_mouse_entered():
 	$StartRestingButton/Label.visible = true
