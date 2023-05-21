@@ -34,3 +34,4 @@ res://scripts/game_state.gd
 res://scripts/my_cards_database.gd
 res://cards/my_card_base.gd
 res://wanderer.gd
+res://end_turn_button.gd

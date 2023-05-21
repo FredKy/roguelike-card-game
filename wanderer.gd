@@ -97,25 +97,21 @@ func zap(attack_number):
 	animation_queue.append("zap")
 
 func trigger_shield(card_data: Dictionary):
-	var card_name = card_data["name"]
-	match card_name:
+	match card_data["name"]:
 		"Energy Shield":
-			regular_shield_animation()
+			energy_shield(card_data["shield"])
+		"Energize":
+			energize(card_data["shield"])
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
-func shield():
+func energy_shield(shield_number):
+	shield_number_queue.append(shield_number)
 	animation_queue.append("shield")
-	if sprite.animation == "idle":
-		sprite.animation = animation_queue.pop_front()
 
-func energize():
+func energize(shield_number):
 	animation_queue.append("energize")
-	if sprite.animation == "idle":
-		sprite.animation = animation_queue.pop_front()
-
-func regular_shield_animation():
-	animation_queue.append("shield")
+	shield_number_queue.append(shield_number)
 
 func reset_shield():
 	current_shield = 0

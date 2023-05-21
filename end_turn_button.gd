@@ -17,7 +17,7 @@ func _on_gui_input(_event):
 
 func _on_pressed():
 	var player_animation = $'../../Wanderer/VBoxContainer/ImageContainer/AnimatedSprite2D'.animation
-	if disabled == false\
+	if disabled == false and $'../../'.is_dealing_cards == false\
 	and player_animation == "idle" and $'../../'.some_enemy_is_alive():
 		#$'../../'.move_cards_from_hand_to_discard(0.5) #Parameter is how long discard animation takes.
 		$'../../'.end_player_turn()
