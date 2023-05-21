@@ -270,6 +270,7 @@ func set_new_intent(new_intent):
 			$Intents/AttackIntent/AP.play("fade_in")
 			intent = ATTACK
 		DEFEND:
+			set_defend_intent_text()
 			$Intents/DefendIntent/AP.play("RESET")
 			await get_tree().create_timer(0.05).timeout
 			$Intents/DefendIntent.visible = true
@@ -297,6 +298,9 @@ func set_attack_intent_text():
 			$Intents/AttackIntent/Damage.text = str(attack_damage)
 		SPECIAL_ATTACK_ONE:
 			$Intents/AttackIntent/Damage.text = str(extra.attack_damage_one)
+
+func set_defend_intent_text():
+	$Intents/DefendIntent/ShieldAmount.text = str(shield_value)
 
 func hide_all_intent_sprites():
 	for i in $Intents.get_children():

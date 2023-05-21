@@ -56,10 +56,11 @@ enum {
 	SKELETON_SPEARMAN,
 	WARRIOR_AND_SPEARMAN,
 	SKELETON_ARCHER,
+	KNIGHT,
 }
 
 #var battle_type = WARRIOR_AND_SPEARMAN
-var battle_type = WARRIOR_AND_SPEARMAN
+var battle_type = KNIGHT
 
 var player_turn = true
 var a_card_is_in_mouse = false
@@ -88,14 +89,16 @@ func _ready():
 	
 	match battle_type:
 		SKELETON_WARRIOR:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_warrior.tres"), [ATTACK, DEFEND]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_warrior.tres"), [ATTACK, DEFEND]))
 		SKELETON_SPEARMAN:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [NORMAL_ATTACK, DOUBLE_ATTACK]))
 		WARRIOR_AND_SPEARMAN:
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(600, 80), load("res://resources/skeleton_warrior.tres")))
 			$Enemies.add_child(ENEMY.instantiate().init(Vector2(850, 80), load("res://resources/skeleton_spearman.tres"), [ATTACK, ATTACK, DEFEND], [SPECIAL_ATTACK_ONE, NORMAL_ATTACK, DOUBLE_ATTACK]))
 		SKELETON_ARCHER:
-			$Enemies.add_child(ENEMY.instantiate().init(Vector2(760, 80), load("res://resources/skeleton_archer.tres"), [ATTACK, DEFEND], [NORMAL_ATTACK]))
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/skeleton_archer.tres"), [ATTACK, DEFEND], [NORMAL_ATTACK]))
+		KNIGHT:
+			$Enemies.add_child(ENEMY.instantiate().init(Vector2(800, 80), load("res://resources/knight_1.tres"), [ATTACK, DEFEND]))
 	
 	#$Enemies/Enemy/VBoxContainer/ImageContainer/AnimatedSprite2D.play()
 	$Wanderer.visible = true

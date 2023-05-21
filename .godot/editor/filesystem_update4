@@ -14,8 +14,11 @@ res://level_node.tscn
 res://game_over_bg.tscn
 res://misc_scenes/transition_effect.tscn
 res://misc_scenes/top_bar.tscn
-res://skip.gd
-res://end_turn_button.gd
-res://cards/draft_card_base.gd
 res://playspace.gd
-res://cards/my_card_base.gd
+res://resources/skeleton_archer_sprite_frames.tres
+res://resources/knight_1_sprite_frames.tres
+res://resources/knight_1.tres
+res://resources/skeleton_warrior_sprite_frames.tres
+res://level_node.gd
+res://resources/knight_2_sprite_frames.tres
+res://enemy.gd
