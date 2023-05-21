@@ -1,7 +1,7 @@
 [gd_scene load_steps=24 format=3 uid="uid://dc2rxedgydf73"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
-[ext_resource type="SpriteFrames" uid="uid://cqx1xjyv36uyf" path="res://resources/fire_wizard_sprite_frames.tres" id="2_r0jrs"]
+[ext_resource type="SpriteFrames" uid="uid://cestn3sd0bnxh" path="res://resources/lightning_mage_sprite_frames.tres" id="2_qnfbv"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://c6711dvcosymh" path="res://assets/images/enemies/checked-shield-white.png" id="6_fe2xb"]
 [ext_resource type="Texture2D" uid="uid://f5x0i0aguu0x" path="res://assets/images/icons/sands-of-time.png" id="7_hsl2g"]
@@ -229,9 +229,9 @@ layout_mode = 2
 texture_filter = 1
 position = Vector2(-271, -514)
 scale = Vector2(8, 8)
-sprite_frames = ExtResource("2_r0jrs")
+sprite_frames = ExtResource("2_qnfbv")
 animation = &"special_attack"
-frame = 7
+frame = 11
 frame_progress = 1.0
 centered = false
 flip_h = true

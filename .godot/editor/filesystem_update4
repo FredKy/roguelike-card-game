@@ -45,3 +45,6 @@ res://scripts/utility_functions.gd
 res://misc_scenes/map_two.tscn
 res://misc_scenes/rest_scene.gd
 res://resources/skeleton_archer.tres
+res://resources/lightning_mage_sprite_frames.tres
+res://resources/lightning_mage.tres
+res://resources/fire_wizard_extra.gd

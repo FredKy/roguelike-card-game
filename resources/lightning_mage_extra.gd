@@ -1,6 +1,6 @@
 extends Node
 
-var attack_damage_one = 30
+var attack_damage_one = 25
 
 func attack_one(enemy):
 	print("Special attack started!")

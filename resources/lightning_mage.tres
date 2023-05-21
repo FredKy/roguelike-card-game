@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=4 format=3 uid="uid://eiuhy5mc8uj0"]
+
+[ext_resource type="Script" path="res://resources/lightning_mage_extra.gd" id="1_wuoa0"]
+[ext_resource type="Script" path="res://scripts/enemy_resource_base.gd" id="2_8xgy4"]
+[ext_resource type="SpriteFrames" uid="uid://cestn3sd0bnxh" path="res://resources/lightning_mage_sprite_frames.tres" id="3_2oi28"]
+
+[resource]
+script = ExtResource("2_8xgy4")
+intent_position = Vector2(255, -120)
+sprite_position = Vector2(-333, -514)
+sprite_frames_resource = ExtResource("3_2oi28")
+health = 40
+attack_damage = 25
+double_attack_damage = 10
+shield_value = 15
+extra_script = ExtResource("1_wuoa0")

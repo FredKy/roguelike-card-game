@@ -151,7 +151,7 @@ offset_bottom = 365.0
 index = 15
 texture = ExtResource("4_g0hpy")
 big = true
-battle_type = 7
+battle_type = 8
 background = 2
 
 [node name="Act" type="Label" parent="."]
