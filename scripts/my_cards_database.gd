@@ -8,7 +8,7 @@ const DATA = {
 	ICE_CANNON:
 		["attack", 2, "Ice Cannon", "Deal 11 damage\nto an enemy", Rect2(4864,0,256,192), 11, 0],
 	WARP_TIME:
-		["spell", 3, "Warp Time", "Target enemy passes\n a turn", Rect2(7424,64,256,192), 0, 0],
+		["spell", 2, "Warp Time", "Target enemy passes\n a turn", Rect2(7424,64,256,192), 0, 0],
 	ENERGY_SHIELD:
 		["shield", 1, "Energy Shield", "Add 6 to shield", Rect2(1280,64,256,192), 0, 6],
 	ZAP:

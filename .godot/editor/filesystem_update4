@@ -38,3 +38,5 @@ res://end_turn_button.gd
 res://misc_scenes/victory.tscn
 res://game_over_smoke_bg.gdshader
 res://victory_smoke_bg.gdshader
+res://skip.gd
+res://menu.gd
