@@ -42,7 +42,7 @@ var intent
 var intent_queue
 var attack_type_queue
 
-func init(pos = Vector2(760, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [ATTACK], a_t_q = [DOUBLE_ATTACK, NORMAL_ATTACK]):
+func init(pos = Vector2(800, 80), e_r = load("res://resources/skeleton_spearman.tres"), i_q = [ATTACK], a_t_q = [DOUBLE_ATTACK, NORMAL_ATTACK]):
 	position = pos
 	enemy_resource = e_r
 	intent_queue = i_q
@@ -57,7 +57,7 @@ func _ready():
 	shield_value = enemy_resource.shield_value
 	if enemy_resource.extra_script != null:
 		extra.set_script(enemy_resource.extra_script)
-	#print(enemy_resource.intent_position)
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.position = enemy_resource.sprite_position
 	
 	$VBoxContainer/Bar/TextureProgress.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(current_health)

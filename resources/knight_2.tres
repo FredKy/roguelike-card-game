@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=3 format=3 uid="uid://cykvldfoyct1v"]
+
+[ext_resource type="Script" path="res://scripts/enemy_resource_base.gd" id="1_fyq67"]
+[ext_resource type="SpriteFrames" uid="uid://d6lv8iij32or" path="res://resources/knight_2_sprite_frames.tres" id="2_3sfo3"]
+
+[resource]
+script = ExtResource("1_fyq67")
+intent_position = Vector2(300, -110)
+sprite_position = Vector2(-460, -514)
+sprite_frames_resource = ExtResource("2_3sfo3")
+attack_damage = 14
+double_attack_damage = 6
+shield_value = 12

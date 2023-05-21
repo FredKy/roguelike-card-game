@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://kg4iru48tvr4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_7o3na"]
-[ext_resource type="SpriteFrames" uid="uid://dm78r5n4j4my5" path="res://resources/knight_1_sprite_frames.tres" id="2_bxmhg"]
+[ext_resource type="SpriteFrames" uid="uid://i7hyu83xvek0" path="res://resources/skeleton_archer_sprite_frames.tres" id="2_diamj"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="3_p63tj"]
 [ext_resource type="Texture2D" uid="uid://c6711dvcosymh" path="res://assets/images/enemies/checked-shield-white.png" id="6_fe2xb"]
 [ext_resource type="Texture2D" uid="uid://cjlnx2vhd1kpo" path="res://assets/gui/label_hp_bg.png" id="7_wyw8v"]
@@ -225,10 +225,10 @@ layout_mode = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
 texture_filter = 1
-position = Vector2(-431, -495)
+position = Vector2(-271, -514)
 scale = Vector2(8, 8)
-sprite_frames = ExtResource("2_bxmhg")
-animation = &"defend"
+sprite_frames = ExtResource("2_diamj")
+animation = &"double_attack_1"
 centered = false
 flip_h = true
 
