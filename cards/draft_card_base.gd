@@ -8,6 +8,7 @@ extends MarginContainer
 #var card_name = 'warp_time'
 var card_name = 'cold_touch'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
+@onready var card_data = card_database.card_data_array_to_dictionary(card_info)
 
 var startpos = Vector2()
 var targetpos = Vector2()
@@ -60,7 +61,11 @@ func _ready():
 	$HiddenPanel/Image.region_rect = card_info[4]
 	#print($HiddenPanel/Image.region_rect)
 	$CostRect/CostRect2/Cost.text = str(card_info[1])
-	$VBoxContainer/Name.text = card_info[2]
+	$VBoxContainer/Name.text = card_data["name"]
+	if card_data["name"].length() > 12:
+		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 23)
+	if card_data["name"].length() > 14:
+		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 20)
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = false
 	#$Focus.set_modulate(Color(1,0.8,0.2,1))

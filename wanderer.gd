@@ -156,7 +156,8 @@ func _on_animated_sprite_2d_animation_finished():
 			if current_shield == 0:
 				$AnimationPlayer.play("create_shield")
 			add_shield(shield_number_queue.pop_front())
-			$'../'.draw_x_cards(1,0.2)
+			if $'../'.some_enemy_is_alive():
+				$'../'.draw_x_cards(1,0.2)
 	if target_queue.size() > 0:
 		if sprite.animation == "ice_cannon":
 			var enemy = target_queue.pop_front()
@@ -170,7 +171,8 @@ func _on_animated_sprite_2d_animation_finished():
 		elif sprite.animation == "freezing_arrow":
 			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["freezing_arrow_damage"].pop_front())
-			$'../'.draw_x_cards(1,0.2)
+			if $'../'.some_enemy_is_alive():
+				$'../'.draw_x_cards(1,0.2)
 	
 	if animation_queue.size() > 0:
 		sprite.animation = animation_queue.pop_front()

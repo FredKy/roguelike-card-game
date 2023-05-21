@@ -75,7 +75,7 @@ func _ready():
 	if card_data["name"].length() > 12:
 		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 23)
 	if card_data["name"].length() > 14:
-		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 21)
+		$VBoxContainer/Name.set("theme_override_font_sizes/font_size", 20)
 	$VBoxContainer/Info.text = card_info[3]
 	$CardBack.visible = true
 	$Focus.set_modulate(Color(1,0.8,0.2,1))
