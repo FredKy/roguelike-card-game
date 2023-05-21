@@ -280,6 +280,8 @@ func set_new_intent(new_intent):
 			$Intents/DefendIntent.visible = true
 			$Intents/DefendIntent/AP.play("fade_in")
 			intent = DEFEND
+		PASS_TURN:
+			pass
 
 func shift_to_next_intent():
 	var temp = intent_queue[0]
