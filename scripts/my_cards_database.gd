@@ -14,7 +14,7 @@ enum {
 
 const DATA = {
 	COLD_TOUCH:
-		["spell", 1, "Cold Touch", "Apply 2 chill\nto an enemy", Rect2(9728,64,256,192), 2 ,0],
+		["spell", 1, "Cold Touch", "Apply 2 chill\nto an enemy\nChilled enemies take\n50% more damage", Rect2(9728,64,256,192), 2 ,0],
 	ICE_CANNON:
 		["attack", 2, "Ice Cannon", "Deal 11 damage\nto an enemy", Rect2(4864,0,256,192), 11, 0],
 	FREEZING_ARROW:

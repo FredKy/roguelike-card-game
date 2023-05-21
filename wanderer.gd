@@ -78,19 +78,37 @@ func play_death_animation_and_die():
 func play_hurt():
 	sprite.animation = "hurt"
 
-func trigger_attack(card_data: Dictionary):
+func trigger_spell(card_data: Dictionary):
 	var card_name = card_data["name"]
 	match card_name:
-		"Ice Cannon":
-			ice_cannon(card_data["damage"])
-		"Zap":
-			zap(card_data["damage"])
-		"Meteor Shower":
-			meteor_shower(card_data["damage"])
-		"Freezing Arrow":
-			freezing_arrow(card_data["damage"])
+		"Cold Touch":
+			cold_touch()
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
+
+func cold_touch():
+	animation_queue.append("cold_touch")
+			
+func trigger_attack(card_data: Dictionary):
+	var card_name = card_data["name"]
+	
+	#Damage multiplier if enemy is chilled
+	var total_damage = card_data["damage"]
+	if target_queue.back().chilled > 0:
+		total_damage = int(1.5*card_data["damage"])
+		
+	match card_name:
+		"Ice Cannon":
+			ice_cannon(total_damage)
+		"Zap":
+			zap(total_damage)
+		"Meteor Shower":
+			meteor_shower(total_damage)
+		"Freezing Arrow":
+			freezing_arrow(total_damage)
+	if sprite.animation == "idle":
+		sprite.animation = animation_queue.pop_front()
+		
 
 func ice_cannon(attack_number):
 	append_value_to_queue("ice_cannon_damage", attack_number, dictionary_of_queues)
@@ -173,6 +191,9 @@ func _on_animated_sprite_2d_animation_finished():
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["freezing_arrow_damage"].pop_front())
 			if $'../'.some_enemy_is_alive():
 				$'../'.draw_x_cards(1,0.2)
+		elif sprite.animation == "cold_touch":
+			var enemy = target_queue.pop_front()
+			enemy.chilled += 2
 	
 	if animation_queue.size() > 0:
 		sprite.animation = animation_queue.pop_front()

@@ -10,6 +10,7 @@ var has_killed_player = false
 var alive = true
 var shield_value
 var current_shield
+var chilled = 0
 
 #Used to determine if enemy is going to die from queued up damage
 var buffered_damage = 0
@@ -76,6 +77,15 @@ func _ready():
 	
 	scale *= 0.4
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play()
+
+func _process(delta):
+	$Indicators/Chilled/Amount.text = str(chilled)
+	if chilled > 0:
+		$VBoxContainer/ImageContainer.modulate = Color(0.21,0.45,1,1)
+		$Indicators/Chilled.visible = true
+	else:
+		$VBoxContainer/ImageContainer.modulate = Color(1,1,1,1)
+		$Indicators/Chilled.visible = false
 
 
 func change_health_and_check_if_dead(number):

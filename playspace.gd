@@ -41,6 +41,7 @@ enum {
 enum {
 	ATTACK,
 	DEFEND,
+	PASS_TURN,
 }
 
 #Attack types
@@ -342,7 +343,12 @@ func run_through_enemies_actions():
 			enemy.start_defending()
 			print("Defending")
 			await get_tree().create_timer(1.5).timeout
+		elif enemy.intent == PASS_TURN:
+			print("Passing turn...")
+			await get_tree().create_timer(1.5).timeout
 		enemy.shift_to_next_intent()
+		if enemy.chilled > 0:
+			enemy.chilled -= 1
 	return true
 
 func start_player_turn():

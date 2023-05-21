@@ -113,6 +113,7 @@ func _input(event):
 				$Focus.visible = false
 				$'../../../Wanderer'.stop_highlight()
 				
+				
 				if card_info[0] == "attack":
 					var enemies = $'../../../Enemies'
 					for i in range(enemies.get_child_count()):
@@ -156,6 +157,45 @@ func _input(event):
 					targetpos = default_pos
 					state = REORGANIZE_HAND
 					card_select = true
+				elif card_info[0] == "spell":
+					var enemies = $'../../../Enemies'
+					for i in range(enemies.get_child_count()):
+						var enemy_pos = enemies.get_child(i).position
+						var enemy_size = enemies.get_child(i).size
+						mouse_pos = get_global_mouse_position()
+						if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
+						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+							#Only allow attack if it's not wasted damage, otherwise return to hand.
+							if not enemies.get_child(i).is_already_dead():
+								# Move card to discard pile
+								setup = true
+								moving_to_discard = true
+								state = MOVE_TO_DISCARD_PILE
+								card_select = true
+								
+								# Remove energy
+								$'../../../'.update_energy_and_cards_playability(card_data["cost"])
+								
+								#Queue up enemy for damage calculation in Wanderers animation finished function
+								$'../../../Wanderer'.target_queue.append(enemies.get_child(i))
+								
+								print("Wanderer casting spell")
+								# Play animation and handle spell effect
+								$'../../../Wanderer'.trigger_spell(card_data)
+								print("Stopped casting spell")
+								return
+							else:
+								setup = true
+								targetpos = default_pos
+								state = REORGANIZE_HAND
+								card_select = true
+								return
+						else:
+							continue
+					setup = true
+					targetpos = default_pos
+					state = REORGANIZE_HAND
+					card_select = true
 				elif card_info[0] == "shield":
 					mouse_pos = get_global_mouse_position()
 					if mouse_pos.y < 400:
@@ -175,6 +215,7 @@ func _input(event):
 						targetpos = default_pos
 						state = REORGANIZE_HAND
 						card_select = true
+				
 				else:
 					setup = true
 					targetpos = default_pos
