@@ -44,3 +44,4 @@ res://map.gd
 res://scripts/utility_functions.gd
 res://misc_scenes/map_two.tscn
 res://misc_scenes/rest_scene.gd
+res://resources/skeleton_archer.tres

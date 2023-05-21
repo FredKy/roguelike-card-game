@@ -402,6 +402,8 @@ func create_draftable_card(c_name, pos, card_number):
 	#add_child(draft_card_base)
 
 func create_random_draftable_cards():
-	create_draftable_card("ice_cannon", Vector2(220, 120), 0)
-	create_draftable_card("energy_shield", Vector2(431, 120), 1)
-	create_draftable_card("ice_cannon", Vector2(642, 120), 2)
+	var draft_pool = game_state.DRAFT_POOL.duplicate()
+	
+	create_draftable_card(draft_pool.pop_at(randi()%draft_pool.size()), Vector2(220, 120), 0)
+	create_draftable_card(draft_pool.pop_at(randi()%draft_pool.size()), Vector2(431, 120), 1)
+	create_draftable_card(draft_pool.pop_at(randi()%draft_pool.size()), Vector2(642, 120), 2)
