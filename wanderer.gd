@@ -87,6 +87,8 @@ func trigger_attack(card_data: Dictionary):
 			zap(card_data["damage"])
 		"Meteor Shower":
 			meteor_shower(card_data["damage"])
+		"Freezing Arrow":
+			freezing_arrow(card_data["damage"])
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
@@ -101,6 +103,10 @@ func zap(attack_number):
 func meteor_shower(attack_number):
 	append_value_to_queue("meteor_shower_damage", attack_number, dictionary_of_queues)
 	animation_queue.append("meteor_shower")
+
+func freezing_arrow(attack_number):
+	append_value_to_queue("freezing_arrow_damage", attack_number, dictionary_of_queues)
+	animation_queue.append("freezing_arrow")
 
 func trigger_shield(card_data: Dictionary):
 	match card_data["name"]:
@@ -161,6 +167,10 @@ func _on_animated_sprite_2d_animation_finished():
 		elif sprite.animation == "meteor_shower":
 			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["meteor_shower_damage"].pop_front())
+		elif sprite.animation == "freezing_arrow":
+			var enemy = target_queue.pop_front()
+			enemy.change_health_and_check_if_dead(dictionary_of_queues["freezing_arrow_damage"].pop_front())
+			$'../'.draw_x_cards(1,0.2)
 	
 	if animation_queue.size() > 0:
 		sprite.animation = animation_queue.pop_front()

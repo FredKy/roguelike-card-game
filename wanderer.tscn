@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://wdpqbbotx4pc"]
+[gd_scene load_steps=104 format=3 uid="uid://wdpqbbotx4pc"]
 
 [ext_resource type="Script" path="res://wanderer.gd" id="1_jynn3"]
 [ext_resource type="Texture2D" uid="uid://ddikexsolrdte" path="res://assets/images/wanderer_magician/Dead.png" id="2_av464"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://3hoft6eutndb" path="res://assets/images/wanderer_magician/Magic_sphere.png" id="3_63e62"]
 [ext_resource type="Texture2D" uid="uid://cfds1kiogp4rl" path="res://assets/images/enemies/wanderer_magican/Attack_1.png" id="3_w05gq"]
 [ext_resource type="PackedScene" uid="uid://cukwo63gxcc2e" path="res://bar.tscn" id="4_mqgd7"]
+[ext_resource type="Texture2D" uid="uid://5h0hdj1jqisk" path="res://assets/images/enemies/wanderer_magican/Magic_arrow.png" id="4_udf2s"]
 [ext_resource type="Texture2D" uid="uid://ddm46mwj882a6" path="res://assets/images/wanderer_magician/Attack_1.png" id="5_psjj0"]
 [ext_resource type="PackedScene" uid="uid://bskhplsh6jx4v" path="res://shieldbar.tscn" id="6_3505e"]
 [ext_resource type="Shader" path="res://energy_shield.gdshader" id="6_wah1t"]
@@ -56,6 +57,30 @@ region = Rect2(640, 0, 128, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_efmd7"]
 atlas = ExtResource("3_w05gq")
 region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t32qb"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqt76"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ixwn"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btwho"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi0kw"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mobms"]
+atlas = ExtResource("4_udf2s")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7yay"]
 atlas = ExtResource("3_6e2t0")
@@ -345,6 +370,29 @@ animations = [{
 "loop": false,
 "name": &"energize",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t32qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqt76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ixwn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btwho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi0kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mobms")
+}],
+"loop": false,
+"name": &"freezing_arrow",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -750,7 +798,9 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"meteor_shower"
+animation = &"freezing_arrow"
+frame = 5
+frame_progress = 1.0
 centered = false
 
 [node name="EnergyShield" type="Node2D" parent="VBoxContainer"]

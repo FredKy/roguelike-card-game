@@ -9,6 +9,7 @@ enum {
 	ENERGIZE,
 	METEOR_SHOWER,
 	ICE_BARRIER,
+	FREEZING_ARROW,
 }
 
 const DATA = {
@@ -16,6 +17,8 @@ const DATA = {
 		["spell", 1, "Cold Touch", "Apply 2 chill\nto an enemy", Rect2(9728,64,256,192), 2 ,0],
 	ICE_CANNON:
 		["attack", 2, "Ice Cannon", "Deal 11 damage\nto an enemy", Rect2(4864,0,256,192), 11, 0],
+	FREEZING_ARROW:
+		["attack", 2, "Freezing Arrow", "Deal 7 damage to an\nenemy and draw a card", Rect2(1024,64,256,192), 7, 0],
 	METEOR_SHOWER:
 		["attack", 3, "Meteor Shower", "Deal 20 damage\nto an enemy", Rect2(6656,0,256,192), 20, 0],
 	WARP_TIME:
