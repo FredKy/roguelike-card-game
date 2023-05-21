@@ -11,7 +11,13 @@ var visited_nodes = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	map_nodes = game_state.MAP_NODES
+	if game_state.global_current_act == 1:
+		map_nodes = game_state.MAP_ONE_NODES
+	elif game_state.global_current_act == 2:
+		map_nodes = game_state.MAP_TWO_NODES
+	else:
+		print("Something weird happened")
+		map_nodes = game_state.MAP_ONE_NODES
 	current_map_node = game_state.global_current_map_node
 	setup_visited_nodes()
 	activate_nodes_on_player_path()

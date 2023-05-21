@@ -29,6 +29,7 @@ func append_value_to_queue(name_of_queue: String, value, dict):
 enum {
 	SUMMER_FOREST,
 	WINTER_FOREST,
+	CAVE,
 }
 
 func set_background_texture(background, scene):
@@ -37,5 +38,7 @@ func set_background_texture(background, scene):
 			scene.get_node("Background").texture = load("res://assets/images/bg/Paralax/battleback1-2.png")
 		WINTER_FOREST:
 			scene.get_node("Background").texture = load("res://assets/images/bg/battleback2.png")
+		CAVE:
+			scene.get_node("Background").texture = load("res://assets/images/bg/Paralax/battleback5-2.png")
 		_:
 			scene.get_node("Background").texture = load("res://assets/images/bg/battleback5.png")

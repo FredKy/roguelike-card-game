@@ -32,6 +32,7 @@ enum BATTLE_TYPE {
 enum BACKGROUND {
 	SUMMER_FOREST,
 	WINTER_FOREST,
+	CAVE,
 }
 
 #Determines what kind of location this area is
