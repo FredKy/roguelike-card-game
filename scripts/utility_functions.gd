@@ -30,6 +30,7 @@ enum {
 	SUMMER_FOREST,
 	WINTER_FOREST,
 	CAVE,
+	ARENA,
 }
 
 func set_background_texture(background, scene):
@@ -40,5 +41,7 @@ func set_background_texture(background, scene):
 			scene.get_node("Background").texture = load("res://assets/images/bg/battleback2.png")
 		CAVE:
 			scene.get_node("Background").texture = load("res://assets/images/bg/Paralax/battleback5-2.png")
+		ARENA:
+			scene.get_node("Background").texture = load("res://assets/images/bg/Paralax/battleback9-2.png")
 		_:
 			scene.get_node("Background").texture = load("res://assets/images/bg/battleback5.png")

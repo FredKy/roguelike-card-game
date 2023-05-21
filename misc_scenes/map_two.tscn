@@ -201,7 +201,7 @@ index = 18
 texture = ExtResource("7_0ef51")
 big = true
 battle_type = 7
-background = 1
+background = 3
 
 [node name="Act" type="Label" parent="."]
 z_index = 3

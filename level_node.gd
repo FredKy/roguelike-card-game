@@ -34,6 +34,7 @@ enum BACKGROUND {
 	SUMMER_FOREST,
 	WINTER_FOREST,
 	CAVE,
+	ARENA,
 }
 
 #Determines what kind of location this area is
