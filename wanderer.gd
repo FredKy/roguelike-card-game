@@ -106,27 +106,17 @@ func queue_damage_and_queue_animation(attack_number : int, capitalized_card_name
 	animation_queue.append(name)
 
 func trigger_shield(card_data: Dictionary):
+	shield_number_queue.append(card_data["shield"])
 	match card_data["name"]:
 		"Energy Shield":
-			energy_shield(card_data["shield"])
+			animation_queue.append("shield")
 		"Energize":
-			energize(card_data["shield"])
+			animation_queue.append("energize")
 		"Ice Barrier":
-			ice_barrier(card_data["shield"])
+			animation_queue.append("shield")
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 
-func energy_shield(shield_number):
-	shield_number_queue.append(shield_number)
-	animation_queue.append("shield")
-
-func ice_barrier(shield_number):
-	shield_number_queue.append(shield_number)
-	animation_queue.append("shield")
-
-func energize(shield_number):
-	animation_queue.append("energize")
-	shield_number_queue.append(shield_number)
 
 func reset_shield():
 	current_shield = 0
