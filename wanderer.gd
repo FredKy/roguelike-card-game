@@ -82,49 +82,28 @@ func trigger_spell(card_data: Dictionary):
 	var card_name = card_data["name"]
 	match card_name:
 		"Cold Touch":
-			cold_touch()
+			animation_queue.append("cold_touch")
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
-
-func cold_touch():
-	animation_queue.append("cold_touch")
 			
 func trigger_attack(card_data: Dictionary):
+	#Capitalized name, example: "Ice Cannon"
 	var card_name = card_data["name"]
 	
 	#Damage multiplier if enemy is chilled
 	var total_damage = card_data["damage"]
 	if target_queue.back().chilled > 0:
 		total_damage = int(1.5*card_data["damage"])
-		
-	match card_name:
-		"Ice Cannon":
-			ice_cannon(total_damage)
-		"Zap":
-			zap(total_damage)
-		"Meteor Shower":
-			meteor_shower(total_damage)
-		"Freezing Arrow":
-			freezing_arrow(total_damage)
+	
+	queue_damage_and_queue_animation(total_damage, card_name)	
+
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 		
-
-func ice_cannon(attack_number):
-	append_value_to_queue("ice_cannon_damage", attack_number, dictionary_of_queues)
-	animation_queue.append("ice_cannon")
-	
-func zap(attack_number):
-	append_value_to_queue("zap_damage", attack_number, dictionary_of_queues)
-	animation_queue.append("zap")
-
-func meteor_shower(attack_number):
-	append_value_to_queue("meteor_shower_damage", attack_number, dictionary_of_queues)
-	animation_queue.append("meteor_shower")
-
-func freezing_arrow(attack_number):
-	append_value_to_queue("freezing_arrow_damage", attack_number, dictionary_of_queues)
-	animation_queue.append("freezing_arrow")
+func queue_damage_and_queue_animation(attack_number : int, capitalized_card_name : String):
+	var name : String = capitalized_card_name.to_snake_case()
+	append_value_to_queue(name + "_damage", attack_number, dictionary_of_queues)
+	animation_queue.append(name)
 
 func trigger_shield(card_data: Dictionary):
 	match card_data["name"]:
@@ -177,22 +156,18 @@ func _on_animated_sprite_2d_animation_finished():
 			if $'../'.some_enemy_is_alive():
 				$'../'.draw_x_cards(1,0.2)
 	if target_queue.size() > 0:
+		var enemy = target_queue.pop_front()
 		if sprite.animation == "ice_cannon":
-			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["ice_cannon_damage"].pop_front())
 		elif sprite.animation == "zap":
-			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["zap_damage"].pop_front())
 		elif sprite.animation == "meteor_shower":
-			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["meteor_shower_damage"].pop_front())
 		elif sprite.animation == "freezing_arrow":
-			var enemy = target_queue.pop_front()
 			enemy.change_health_and_check_if_dead(dictionary_of_queues["freezing_arrow_damage"].pop_front())
 			if $'../'.some_enemy_is_alive():
 				$'../'.draw_x_cards(1,0.2)
 		elif sprite.animation == "cold_touch":
-			var enemy = target_queue.pop_front()
 			enemy.chilled += 2
 	
 	if animation_queue.size() > 0:
