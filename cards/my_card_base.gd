@@ -268,26 +268,9 @@ func _physics_process(delta):
 				
 				if not reorganize_neighbors:
 					reorganize_neighbors = true
-					if card_numb -1 >= 0:
-						reset_card(card_numb -1)
-					if card_numb -2 >= 0:
-						reset_card(card_numb -2)
-					if card_numb -3 >= 0:
-						reset_card(card_numb -3)
-					if card_numb -4 >= 0:
-						reset_card(card_numb -4)
-					if card_numb -5 >= 0:
-						reset_card(card_numb -5)
-					if card_numb + 1 <= number_cards_hand_minus_one:
-						reset_card(card_numb +1)
-					if card_numb + 2 <= number_cards_hand_minus_one:
-						reset_card(card_numb +2)
-					if card_numb + 3 <= number_cards_hand_minus_one:
-						reset_card(card_numb +3)
-					if card_numb + 4 <= number_cards_hand_minus_one:
-						reset_card(card_numb +4)
-					if card_numb + 5 <= number_cards_hand_minus_one:
-						reset_card(card_numb +5)
+					
+					reset_x_cards(20)
+					
 				t += delta/float(IN_MOUSE_TIME)
 			else:
 				position = get_global_mouse_position() - $'../../../'.CARD_SIZE + Vector2(30, 45)
@@ -385,26 +368,9 @@ func _physics_process(delta):
 				scale = start_scale*(1-t) + orig_scale*t
 				if not reorganize_neighbors:
 					reorganize_neighbors = true
-					if card_numb -1 >= 0:
-						reset_card(card_numb -1)
-					if card_numb -2 >= 0:
-						reset_card(card_numb -2)
-					if card_numb -3 >= 0:
-						reset_card(card_numb -3)
-					if card_numb -4 >= 0:
-						reset_card(card_numb -4)
-					if card_numb -5 >= 0:
-						reset_card(card_numb -5)
-					if card_numb + 1 <= number_cards_hand_minus_one:
-						reset_card(card_numb +1)
-					if card_numb + 2 <= number_cards_hand_minus_one:
-						reset_card(card_numb +2)
-					if card_numb + 3 <= number_cards_hand_minus_one:
-						reset_card(card_numb +3)
-					if card_numb + 4 <= number_cards_hand_minus_one:
-						reset_card(card_numb +4)
-					if card_numb + 5 <= number_cards_hand_minus_one:
-						reset_card(card_numb +5)
+
+					reset_x_cards(20)
+					
 				t += delta/float(ORGANIZETIME)
 			else:
 				position = targetpos
@@ -490,6 +456,14 @@ func reset_card(card_number):
 			neighbor_card.targetpos = neighbor_card.default_pos
 			#neighbor_card.setup = true
 
+func reset_x_cards(x : int):
+	if x >= 1:
+		for i in range(1,x):
+			if card_numb -i >= 0:
+				reset_card(card_numb -i)
+			if card_numb + i <= number_cards_hand_minus_one:
+				reset_card(card_numb +i)
+
 func reset_pos_rot_scale_and_time():
 	startpos = position
 	startrot = rotation
@@ -569,4 +543,4 @@ func mouse_pointer_on_enemy(enemy):
 		return true
 	else:
 		return false
-		
+
