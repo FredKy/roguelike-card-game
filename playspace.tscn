@@ -412,8 +412,9 @@ script = ExtResource("14_cknvf")
 
 [node name="Label" type="Label" parent="DeckCounter"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -75.0
+offset_right = 114.0
+offset_bottom = 51.0
 theme_override_colors/font_color = Color(0.498039, 0.686275, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
@@ -438,8 +439,9 @@ script = ExtResource("14_cknvf")
 
 [node name="Label" type="Label" parent="DiscardCounter"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -80.0
+offset_right = 120.0
+offset_bottom = 51.0
 theme_override_colors/font_color = Color(0.498039, 0.0941176, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2

@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpovel7ki0cxe"]
+[gd_scene load_steps=9 format=3 uid="uid://dpovel7ki0cxe"]
 
 [ext_resource type="Script" path="res://game_over_bg.gd" id="1_5s3m4"]
-[ext_resource type="Shader" path="res://game_over_smoke_bg.gdshader" id="2_eblbe"]
+[ext_resource type="PackedScene" uid="uid://c3oj3n61etofv" path="res://victory_smoke.tscn" id="2_c3w5i"]
+[ext_resource type="Shader" path="res://effects/victory_smoke_bg.gdshader" id="3_4wptp"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3_l2r8p"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgvib"]
-shader = ExtResource("2_eblbe")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_adb23"]
+shader = ExtResource("3_4wptp")
 shader_parameter/fade = 0.7
 
 [sub_resource type="Animation" id="Animation_yg53x"]
@@ -72,11 +73,8 @@ _data = {
 [node name="VictoryBG" type="Node2D"]
 script = ExtResource("1_5s3m4")
 
-[node name="Smoke" type="ColorRect" parent="."]
-z_index = 2
-material = SubResource("ShaderMaterial_bgvib")
-offset_right = 1152.0
-offset_bottom = 648.0
+[node name="Smoke" parent="." instance=ExtResource("2_c3w5i")]
+material = SubResource("ShaderMaterial_adb23")
 
 [node name="Visibility" type="Node2D" parent="."]
 

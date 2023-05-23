@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3oj3n61etofv"]
+
+[ext_resource type="Shader" path="res://game_over_smoke_bg.gdshader" id="1_24uxe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgvib"]
+shader = ExtResource("1_24uxe")
+shader_parameter/fade = 0.7
+
+[node name="Smoke" type="ColorRect"]
+z_index = 2
+material = SubResource("ShaderMaterial_bgvib")
+offset_right = 1152.0
+offset_bottom = 648.0
