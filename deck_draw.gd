@@ -3,11 +3,15 @@ extends TextureButton
 var deck_size = INF
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#rect_scale *= $'../../'.CardSize/rect_size
+#	scale *= 0.5*0.5
+	print(scale)
 	scale *= $'../../'.CARD_SIZE/size
-#	scale *= 0.6*Vector2(290,400)/size
-#	pivot_offset.x = size.x/2
-#	pivot_offset.y = size.y/2
+	print(scale)
+	scale *= 0.5
+	print(size)
+	print(scale)
+	print(size)
+
 
 # No need for input now.
 #func _gui_input(_event):

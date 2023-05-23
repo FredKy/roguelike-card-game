@@ -49,3 +49,6 @@ res://resources/lightning_mage_sprite_frames.tres
 res://resources/lightning_mage.tres
 res://resources/fire_wizard_extra.gd
 res://game_over_pink_bg.gdshader
+res://deck_draw.gd
+res://discard_pile.gd
+res://cards/fade_out_card_back.gd

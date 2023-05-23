@@ -21,7 +21,7 @@ var card_spread = 0.1
 var number_cards_hand = -1
 var card_numb = 0
 var oval_angle_vector = Vector2()
-@onready var deck_position = $Deck.position
+@onready var deck_position = $Deck.position+Vector2(4,7)
 @onready var discard_position = $Discard.position
 var drafted_cards = 0
 
@@ -361,7 +361,7 @@ func start_player_turn():
 	$EndTurnButtonNode/EndTurnButton.disabled = true
 	$Wanderer.reset_shield()
 	reset_energy_and_cards_playability()
-	draw_x_cards(6,0.2)
+	draw_x_cards(4,0.2)
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
 	
 	$EndTurnButtonNode/EndTurnButton.disabled = false

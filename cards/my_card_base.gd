@@ -322,25 +322,25 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
-				position = startpos.lerp(targetpos, parametric_blend(t))
+				position = startpos.lerp(targetpos, p_b(t))
 				if t < 0.5:
-					position += Vector2(0,-200)*parametric_blend(t)
+					position += Vector2(0,-200)*p_b(t)
 				else:
-					position += Vector2(0, -200)*(1-parametric_blend(t))
-				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
+					position += Vector2(0, -200)*(1-p_b(t))
+				rotation = startrot*(1-p_b(t)) + (2*PI+targetrot)*p_b(t)
 #				position = startpos.lerp(targetpos, t)
 #				rotation = startrot*(1-t) + (2*PI+targetrot)*t
-				scale = 0.5*orig_scale*(1-parametric_blend(t))+orig_scale*parametric_blend(t)
+				scale = 0.5*orig_scale*(1-p_b(t))+orig_scale*p_b(t)
 				var flip_time_factor = 1.2 # 20% faster
 				if t < float(1/flip_time_factor):
-					scale.x = (0.5*orig_scale*(1-parametric_blend(t))+orig_scale*parametric_blend(t)).x*abs(2*(flip_time_factor*t)-1)
+					scale.x = (0.5*orig_scale*(1-p_b(t))+orig_scale*p_b(t)).x*abs(2*(flip_time_factor*t)-1)
 				else:
 					scale.x = orig_scale.x
 				if $CardBack.visible:
 					if t >= float(0.5/flip_time_factor):
 						$CardBack.visible = false
-				#t += delta/float(DRAWTIME)
-				t += delta/float(10.0)
+				t += delta/float(DRAWTIME)
+				#t += delta/float(4.0)
 			else:
 				position = targetpos
 				rotation = targetrot
@@ -389,21 +389,23 @@ func _physics_process(delta):
 					targetpos = discard_pile
 					$'../../../'.reparent_to_discarded_cards(card_numb)
 				if t <= 1:
-					position = startpos.lerp(targetpos, parametric_blend(t))
-					rotation = startrot*(1-parametric_blend(t)) + (2*PI)*parametric_blend(t)
-					scale = start_scale*(1-t) + orig_scale*t
+					position = startpos.lerp(targetpos, p_b(t))
+					rotation = startrot*(1-p_b(t)) + (2*PI)*p_b(t)
+					#scale = start_scale*(1-t) + orig_scale*t
+					scale = start_scale*(1-t) + 0.5*orig_scale*t
 					var flip_time_factor = 1.2 # 20% faster
 					if t < float(1/flip_time_factor):
-						scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
+						scale.x = (start_scale*(1-t) + 0.5*orig_scale*t).x*abs(2*(flip_time_factor*t)-1)
 					else:
-						scale.x = orig_scale.x
+						scale.x = 0.5*orig_scale.x
 					if not $CardBack.visible:
 						if t >= float(0.5/flip_time_factor):
 							$CardBack.visible = true
 					t += delta/float(DRAWTIME)
+					#t += delta/float(4.0)
 				else:
 					position = targetpos
-					scale = orig_scale
+					scale = 0.5*orig_scale
 					moving_to_discard = false
 					setup = true
 					state = IN_DISCARD_PILE
@@ -413,18 +415,21 @@ func _physics_process(delta):
 			if setup:
 				reset_pos_rot_scale_and_time()
 				targetpos = $'../../../Deck'.position + Vector2(9,9)
+				scale = 0.5*orig_scale
 			if t <= 1:
-				position = startpos.lerp(targetpos, parametric_blend(t))
+				position = startpos.lerp(targetpos, p_b(t))
 				if t < 0.5:
-					position += Vector2(0,-200)*parametric_blend(t)
+					position += Vector2(0,-200)*p_b(t)
 				else:
-					position += Vector2(0, -200)*(1-parametric_blend(t))
-				rotation = startrot*(1-parametric_blend(t)) + (-2*PI)*parametric_blend(t)
+					position += Vector2(0, -200)*(1-p_b(t))
+				rotation = startrot*(1-p_b(t)) + (-2*PI)*p_b(t)
 				
 				t += delta/float(RESHUFFLE_TIME)
+				#t += delta/float(4)
 			else:
 				position = targetpos
 				rotation = targetrot
+				scale = 0.5*orig_scale
 				#$'../../../'.player_deck.card_list.append(self.card_name)
 				$'../../../'.player_deck.append(self.card_name)
 				$'../../../Deck/DeckDraw'.disabled = false
@@ -529,7 +534,8 @@ func set_enabled(b):
 
 #Custom ease in and ease out-like curve
 #https://stackoverflow.com/questions/13462001/ease-in-and-ease-out-animation-formula
-func parametric_blend(x):
+#Parametric blend function
+func p_b(x):
 	var sq = x * x
 	return sq / (2.0 * (sq - x) + 1.0)
 
