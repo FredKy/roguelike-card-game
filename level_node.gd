@@ -79,6 +79,7 @@ func _on_pressed():
 	var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()
 	$'../../'.add_child(transition)
 	await transition.fade_in()
+	transition.queue_free()
 	match location_type:
 		BATTLE:
 			get_tree().change_scene_to_file(battle_scene_path)

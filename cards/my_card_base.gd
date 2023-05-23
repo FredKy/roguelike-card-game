@@ -117,11 +117,8 @@ func _input(event):
 				if card_info[0] == "attack":
 					var enemies = $'../../../Enemies'
 					for i in range(enemies.get_child_count()):
-						var enemy_pos = enemies.get_child(i).position
-						var enemy_size = enemies.get_child(i).size
-						mouse_pos = get_global_mouse_position()
-						if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+						var enemy = enemies.get_child(i)
+						if mouse_pointer_on_enemy(enemy):
 							#Only allow attack if it's not wasted damage, otherwise return to hand.
 							if not enemies.get_child(i).is_already_dead():
 								# Move card to discard pile
@@ -160,11 +157,8 @@ func _input(event):
 				elif card_info[0] == "spell":
 					var enemies = $'../../../Enemies'
 					for i in range(enemies.get_child_count()):
-						var enemy_pos = enemies.get_child(i).position
-						var enemy_size = enemies.get_child(i).size
-						mouse_pos = get_global_mouse_position()
-						if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-						and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+						var enemy = enemies.get_child(i)
+						if mouse_pointer_on_enemy(enemy):
 							#Only allow attack if it's not wasted damage, otherwise return to hand.
 							if not enemies.get_child(i).is_already_dead():
 								# Move card to discard pile
@@ -243,11 +237,8 @@ func _physics_process(delta):
 				var enemies = $'../../../Enemies'
 				var change_color = false
 				for i in range(enemies.get_child_count()):
-					var enemy_pos = enemies.get_child(i).position
-					var enemy_size = enemies.get_child(i).size
-					mouse_pos = get_global_mouse_position()
-					if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
-					and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+					var enemy = enemies.get_child(i)
+					if mouse_pointer_on_enemy(enemy):
 						change_color = true
 				if change_color:
 					#$Focus.set_modulate(Color(0.79,0.18,0.21,1))
@@ -349,9 +340,9 @@ func _physics_process(delta):
 			if t <= 1:
 				position = startpos.lerp(targetpos, parametric_blend(t))
 				if t < 0.5:
-					position += Vector2(0,-150)*t
+					position += Vector2(0,-150)*parametric_blend(t)
 				else:
-					position += Vector2(0, -150)*(1-t)
+					position += Vector2(0, -150)*(1-parametric_blend(t))
 				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
 #				position = startpos.lerp(targetpos, t)
 #				rotation = startrot*(1-t) + (2*PI+targetrot)*t
@@ -456,9 +447,9 @@ func _physics_process(delta):
 			if t <= 1:
 				position = startpos.lerp(targetpos, parametric_blend(t))
 				if t < 0.5:
-					position += Vector2(0,-200)*t
+					position += Vector2(0,-200)*parametric_blend(t)
 				else:
-					position += Vector2(0, -200)*(1-t)
+					position += Vector2(0, -200)*(1-parametric_blend(t))
 				rotation = startrot*(1-parametric_blend(t)) + (-2*PI)*parametric_blend(t)
 				
 				t += delta/float(RESHUFFLE_TIME)
@@ -568,3 +559,14 @@ func parametric_blend(x):
 func fade_out():
 	#print("here")
 	$FadeOutAnimationPlayer.play("fade_out")
+
+func mouse_pointer_on_enemy(enemy):
+	var enemy_pos = enemy.position
+	var enemy_size = enemy.size
+	mouse_pos = get_global_mouse_position()
+	if mouse_pos.x < enemy_pos.x + enemy_size.x/2 and mouse_pos.x > enemy_pos.x \
+	and mouse_pos.y < enemy_pos.y + enemy_size.y/2 and mouse_pos.y > enemy_pos.y/2:
+		return true
+	else:
+		return false
+		
