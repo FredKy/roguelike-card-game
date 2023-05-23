@@ -2,6 +2,9 @@ extends Button
 
 @onready var game_state = get_node("/root/GameState")
 
+func _ready():
+	disabled = true
+
 func _on_pressed():
 	if disabled == false:
 		var transition = load("res://misc_scenes/transition_effect.tscn").instantiate()

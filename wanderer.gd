@@ -2,11 +2,16 @@ extends MarginContainer
 
 #@onready var util = get_node("/root/UtilityFunctions")
 @onready var game_state = get_node("/root/GameState")
+#@onready var card_database = get_node("/root/MyCardsDatabase")
+#var card_name
+#@onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
+#@onready var card_data = card_database.card_data_array_to_dictionary(card_info)
 var current_health = 4.0
 var max_health = 4.0
 var current_shield = 0.0
 var max_shield = 100.0
 var alive = true
+var chill_stacks_to_apply = 0
 
 #Array to store all upcoming animations, animation is popped from front when time to play it comes
 var animation_queue = []
@@ -80,6 +85,7 @@ func play_hurt():
 
 func trigger_spell(card_data: Dictionary):
 	var card_name = card_data["name"]
+	chill_stacks_to_apply = card_data["stack"]
 	match card_name:
 		"Cold Touch":
 			animation_queue.append("cold_touch")
@@ -158,7 +164,7 @@ func _on_animated_sprite_2d_animation_finished():
 			if $'../'.some_enemy_is_alive():
 				$'../'.draw_x_cards(1,0.2)
 		elif sprite.animation == "cold_touch":
-			enemy.chilled += 2
+			enemy.chilled += chill_stacks_to_apply
 	
 	if animation_queue.size() > 0:
 		sprite.animation = animation_queue.pop_front()

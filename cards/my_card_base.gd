@@ -1,10 +1,7 @@
 extends MarginContainer
 
 
-# Declare member variables here.
-@onready var card_database = preload("res://scripts/my_cards_database.gd").new()
-#var card_name = 'ice_cannon'
-#var card_name = 'warp_time'
+@onready var card_database = get_node("/root/MyCardsDatabase")
 var card_name = 'cold_touch'
 @onready var card_info = card_database.DATA[card_database.get(card_name.to_upper())]
 @onready var card_data = card_database.card_data_array_to_dictionary(card_info)

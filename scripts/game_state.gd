@@ -1,6 +1,6 @@
 extends Node
 
-const STARTER_DECK = ["ice_cannon", "ice_cannon", "energize", "energize", "energy_shield", "energy_shield", "zap", "zap"]
+const STARTER_DECK = ["ice_cannon", "ice_cannon", "energize", "energize", "energy_shield", "energy_shield", "zap", "zap","cold_touch"]
 #const STARTER_DECK = ["freezing_arrow", "freezing_arrow", "energize", "energize", "cold_touch", "cold_touch", "zap", "zap"]
 const STARTER_PLAYER_MAX_HEALTH = 50.0 
 var global_player_deck = []

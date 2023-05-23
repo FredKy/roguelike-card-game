@@ -398,6 +398,7 @@ func do_stuff_when_player_has_won():
 	create_random_draftable_cards()
 	$DraftScene.visible = true
 	$Skip/SkipAP.play("fade_in")
+	$Skip.disabled = false
 
 func create_draftable_card(c_name, pos, card_number):
 	var draft_card = DRAFT_CARD_BASE.instantiate()
