@@ -360,7 +360,7 @@ func start_player_turn():
 	$EndTurnButtonNode/EndTurnButton.disabled = true
 	$Wanderer.reset_shield()
 	reset_energy_and_cards_playability()
-	draw_x_cards(4,0.2)
+	draw_x_cards(6,0.2)
 	await get_tree().create_timer(4*0.2+0.5+0.51+0.5).timeout
 	
 	$EndTurnButtonNode/EndTurnButton.disabled = false

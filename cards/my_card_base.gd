@@ -230,7 +230,7 @@ func _physics_process(delta):
 		IN_HAND:
 			$GlowingBorder.visible = false
 			#$CardBack.visible = false #Inferior hack to fix bug. Try to fix it for real.
-			$'../'.z_index = 0
+			$'../'.z_index = 2
 			if $'../../../'.a_card_is_in_mouse or $'../../../'.is_dealing_cards:
 				$Focus.visible = false
 				$Focus.disabled = true
@@ -283,12 +283,20 @@ func _physics_process(delta):
 						reset_card(card_numb -2)
 					if card_numb -3 >= 0:
 						reset_card(card_numb -3)
+					if card_numb -4 >= 0:
+						reset_card(card_numb -4)
+					if card_numb -5 >= 0:
+						reset_card(card_numb -5)
 					if card_numb + 1 <= number_cards_hand_minus_one:
 						reset_card(card_numb +1)
 					if card_numb + 2 <= number_cards_hand_minus_one:
 						reset_card(card_numb +2)
 					if card_numb + 3 <= number_cards_hand_minus_one:
 						reset_card(card_numb +3)
+					if card_numb + 4 <= number_cards_hand_minus_one:
+						reset_card(card_numb +4)
+					if card_numb + 5 <= number_cards_hand_minus_one:
+						reset_card(card_numb +5)
 				t += delta/float(IN_MOUSE_TIME)
 			else:
 				position = get_global_mouse_position() - $'../../../'.CARD_SIZE + Vector2(30, 45)
@@ -315,12 +323,20 @@ func _physics_process(delta):
 							move_neighbor_card(card_numb -2, true, 0.25+1)
 						if card_numb -3 >= 0:
 							move_neighbor_card(card_numb -3, true, 0.25+0.25)
+						if card_numb -4 >= 0:
+							move_neighbor_card(card_numb -4, true, 0.25)
+						if card_numb -5 >= 0:
+							move_neighbor_card(card_numb -4, true, 0.075)
 						if card_numb + 1 <= number_cards_hand_minus_one:
 							move_neighbor_card(card_numb +1, false, 1+1)
 						if card_numb + 2 <= number_cards_hand_minus_one:
-							move_neighbor_card(card_numb +2, false, 0.25+1)
+							move_neighbor_card(card_numb +2, false, 0.25+1+0.75)
 						if card_numb + 3 <= number_cards_hand_minus_one:
-							move_neighbor_card(card_numb +3, false, 0.25+0.25)
+							move_neighbor_card(card_numb +3, false, 0.25+0.25+1)
+						if card_numb + 4 <= number_cards_hand_minus_one:
+							move_neighbor_card(card_numb +4, false, 0.25+0.65)
+						if card_numb + 5 <= number_cards_hand_minus_one:
+							move_neighbor_card(card_numb +5, false, 0.15)
 				else:
 					position = targetpos
 					rotation = 0
@@ -380,12 +396,20 @@ func _physics_process(delta):
 						reset_card(card_numb -2)
 					if card_numb -3 >= 0:
 						reset_card(card_numb -3)
+					if card_numb -4 >= 0:
+						reset_card(card_numb -4)
+					if card_numb -5 >= 0:
+						reset_card(card_numb -5)
 					if card_numb + 1 <= number_cards_hand_minus_one:
 						reset_card(card_numb +1)
 					if card_numb + 2 <= number_cards_hand_minus_one:
 						reset_card(card_numb +2)
 					if card_numb + 3 <= number_cards_hand_minus_one:
 						reset_card(card_numb +3)
+					if card_numb + 4 <= number_cards_hand_minus_one:
+						reset_card(card_numb +4)
+					if card_numb + 5 <= number_cards_hand_minus_one:
+						reset_card(card_numb +5)
 				t += delta/float(ORGANIZETIME)
 			else:
 				position = targetpos
