@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://6s5jpexrmdd1"]
 
 [ext_resource type="Script" path="res://game_over_bg.gd" id="1_luahk"]
-[ext_resource type="Shader" path="res://victory_smoke_bg.gdshader" id="2_44v4a"]
+[ext_resource type="Shader" path="res://game_over_smoke_bg.gdshader" id="2_ythqb"]
 [ext_resource type="FontFile" uid="uid://c1pbb2crnyoby" path="res://assets/font/Yoster.ttf" id="3_so5qv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bgvib"]
-shader = ExtResource("2_44v4a")
+shader = ExtResource("2_ythqb")
 shader_parameter/fade = 0.7
 
 [sub_resource type="Animation" id="Animation_yg53x"]
