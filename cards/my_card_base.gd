@@ -348,6 +348,10 @@ func _physics_process(delta):
 				reset_pos_rot_scale_and_time()
 			if t <= 1:
 				position = startpos.lerp(targetpos, parametric_blend(t))
+				if t < 0.5:
+					position += Vector2(0,-150)*t
+				else:
+					position += Vector2(0, -150)*(1-t)
 				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
 #				position = startpos.lerp(targetpos, t)
 #				rotation = startrot*(1-t) + (2*PI+targetrot)*t
@@ -451,6 +455,10 @@ func _physics_process(delta):
 				targetpos = $'../../../Deck'.position + Vector2(9,9)
 			if t <= 1:
 				position = startpos.lerp(targetpos, parametric_blend(t))
+				if t < 0.5:
+					position += Vector2(0,-200)*t
+				else:
+					position += Vector2(0, -200)*(1-t)
 				rotation = startrot*(1-parametric_blend(t)) + (-2*PI)*parametric_blend(t)
 				
 				t += delta/float(RESHUFFLE_TIME)
