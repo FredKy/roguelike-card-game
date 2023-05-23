@@ -1,5 +1,7 @@
-ColorRect
+AnimationPlayer
 Node2D
+BackBufferCopy
+ColorRect
 CollisionShape2D
 Area2D
 Timer
@@ -14,7 +16,6 @@ GPUParticles3D
 GPUParticles2D
 PointLight2D
 DirectionalLight2D
-AnimationPlayer
 ParallaxLayer
 ParallaxBackground
 Node

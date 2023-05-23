@@ -53,3 +53,5 @@ res://deck_draw.gd
 res://discard_pile.gd
 res://cards/fade_out_card_back.gd
 res://effects/victory_smoke_bg.gdshader
+res://effects/warp_time.gdshader
+res://effects/warp_time_2.gdshader
