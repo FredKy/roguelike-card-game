@@ -63,6 +63,7 @@ var state = DRAWN_TO_HAND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scale = 0.5*scale
 	print(card_data)
 	#print(card_info)
 	$CardBack.scale *= size/$CardBack.size
@@ -323,21 +324,23 @@ func _physics_process(delta):
 			if t <= 1:
 				position = startpos.lerp(targetpos, parametric_blend(t))
 				if t < 0.5:
-					position += Vector2(0,-150)*parametric_blend(t)
+					position += Vector2(0,-200)*parametric_blend(t)
 				else:
-					position += Vector2(0, -150)*(1-parametric_blend(t))
+					position += Vector2(0, -200)*(1-parametric_blend(t))
 				rotation = startrot*(1-parametric_blend(t)) + (2*PI+targetrot)*parametric_blend(t)
 #				position = startpos.lerp(targetpos, t)
 #				rotation = startrot*(1-t) + (2*PI+targetrot)*t
+				scale = 0.5*orig_scale*(1-parametric_blend(t))+orig_scale*parametric_blend(t)
 				var flip_time_factor = 1.2 # 20% faster
 				if t < float(1/flip_time_factor):
-					scale.x = orig_scale.x*abs(2*(flip_time_factor*t)-1)
+					scale.x = (0.5*orig_scale*(1-parametric_blend(t))+orig_scale*parametric_blend(t)).x*abs(2*(flip_time_factor*t)-1)
 				else:
 					scale.x = orig_scale.x
 				if $CardBack.visible:
 					if t >= float(0.5/flip_time_factor):
 						$CardBack.visible = false
-				t += delta/float(DRAWTIME)
+				#t += delta/float(DRAWTIME)
+				t += delta/float(10.0)
 			else:
 				position = targetpos
 				rotation = targetrot

@@ -153,6 +153,7 @@ func draw_card():
 	#base.card_name = player_deck.card_list[card_selected]
 	base.card_name = player_deck[card_selected]
 	base.position = deck_position
+	print(base.rotation)
 	base.discard_pile = discard_position
 	base.scale *= CARD_SIZE/base.size
 	base.state = DRAWN_TO_HAND
@@ -247,9 +248,9 @@ func organize_hand():
 #			base.target_scale = base.orig_scale
 			base.state = REORGANIZE_HAND
 #			base.startpos = position
-		elif base.state == DRAWN_TO_HAND:
-			base.t -= 0.1
-			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
+#		elif base.state == DRAWN_TO_HAND:
+#			base.t -= 0.1
+#			base.startpos = base.targetpos - ((base.targetpos - base.position)/(1-base.t))
 
 func update_energy_and_cards_playability(n):
 	$Energy.reduce_energy(n)
