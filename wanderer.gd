@@ -92,7 +92,9 @@ func trigger_spell(card_data: Dictionary):
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
 			
-func trigger_attack(card_data: Dictionary):
+func trigger_attack(card_data: Dictionary, enemy):
+	#Queue up enemy for damage calculation in Wanderers animation finished function
+	target_queue.append(enemy)
 	#Capitalized name, example: "Ice Cannon"
 	var card_name = card_data["name"]
 	
@@ -100,6 +102,9 @@ func trigger_attack(card_data: Dictionary):
 	var total_damage = card_data["damage"]
 	if target_queue.back().chilled > 0:
 		total_damage = int(1.5*card_data["damage"])
+	
+	#Add incoming damage after bonuses are applied
+	enemy.buffered_damage += total_damage
 	
 	queue_damage_and_queue_animation(total_damage, card_name)	
 
