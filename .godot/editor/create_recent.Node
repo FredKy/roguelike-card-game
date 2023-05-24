@@ -1,5 +1,5 @@
-TextureRect
 ColorRect
+TextureRect
 Node2D
 AnimationPlayer
 BackBufferCopy
