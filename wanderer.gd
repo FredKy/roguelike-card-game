@@ -12,6 +12,7 @@ var current_shield = 0.0
 var max_shield = 100.0
 var alive = true
 var chill_stacks_to_apply = 0
+var spell_sprite_ongoing = false
 
 #Array to store all upcoming animations, animation is popped from front when time to play it comes
 var animation_queue = []
@@ -106,7 +107,7 @@ func trigger_attack(card_data: Dictionary, enemy):
 	#Add incoming damage after bonuses are applied
 	enemy.buffered_damage += total_damage
 	
-	queue_damage_and_queue_animation(total_damage, card_name)	
+	queue_damage_and_queue_animation(total_damage, card_name)
 
 	if sprite.animation == "idle":
 		sprite.animation = animation_queue.pop_front()
@@ -141,6 +142,15 @@ func play_highlight():
 
 func stop_highlight():
 	$AnimationPlayer2.stop(false)
+	
+func _on_animated_sprite_2d_animation_changed():
+	if sprite.animation == "ice_cannon":
+		print("Hejjpa")
+		await get_tree().create_timer(1.5).timeout
+		#Code for spawning sprite here
+		var enemy = target_queue.back()
+		var projectile = load("res://misc_scenes/charge_sprite.tscn").instantiate().init(Vector2(325,145),Vector2(enemy.position.x+100,145))
+		$SpellSprites.add_child(projectile)
 
 func _on_animated_sprite_2d_animation_finished():
 	if not alive:
@@ -186,3 +196,6 @@ func append_value_to_queue(name_of_queue: String, value, dict):
 		print("Before append: " + str(dict))
 		dict[name_of_queue].append(value)
 		print("After append: " + str(dict))
+
+
+

@@ -867,7 +867,7 @@ texture_filter = 1
 position = Vector2(-264, -513)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_a60l4")
-animation = &"cold_touch"
+animation = &"ice_cannon"
 centered = false
 
 [node name="EnergyShield" type="Node2D" parent="VBoxContainer"]
@@ -911,4 +911,7 @@ libraries = {
 "": SubResource("AnimationLibrary_xsdud")
 }
 
+[node name="SpellSprites" type="Node" parent="."]
+
+[connection signal="animation_changed" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="VBoxContainer/ImageContainer/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

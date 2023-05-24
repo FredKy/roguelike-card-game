@@ -1,7 +1,9 @@
+AnimationPlayer
+Node
+AnimatedSprite2D
 ColorRect
 TextureRect
 Node2D
-AnimationPlayer
 BackBufferCopy
 CollisionShape2D
 Area2D
@@ -18,14 +20,12 @@ PointLight2D
 DirectionalLight2D
 ParallaxLayer
 ParallaxBackground
-Node
 TextureButton
 Sprite2D
 VBoxContainer
 HBoxContainer
 NinePatchRect
 WorldEnvironment
-AnimatedSprite2D
 Panel
 Container
 CenterContainer

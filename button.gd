@@ -21,3 +21,7 @@ func _on_pressed():
 		for i in range($'../../Enemies'.get_child_count()):
 			$'../../Enemies'.get_child(i).remove_scenes_from_top_of_sprite()
 		top_layer_on = false
+	for child in $'../../Wanderer/SpellSprites'.get_children():
+		child.queue_free()
+	var projectile = load("res://misc_scenes/charge_sprite.tscn").instantiate().init(Vector2(325,145),Vector2(400,200))
+	$'../../Wanderer/SpellSprites'.add_child(projectile)

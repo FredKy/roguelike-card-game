@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjdsxjjtuyv5g"]
+
+[ext_resource type="Script" path="res://misc_scenes/charge_sprite.gd" id="1_f52u7"]
+[ext_resource type="Texture2D" uid="uid://c3nf60ehni0ij" path="res://assets/images/wanderer_magician/Charge_1.png" id="2_icuhc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te6nr"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvrl2"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwwea"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(128, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wvl2"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(192, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmmwo"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(256, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqb7d"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(320, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1mo8"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(384, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf7h0"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(448, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipgy7"]
+atlas = ExtResource("2_icuhc")
+region = Rect2(512, 0, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bweqa"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_te6nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvrl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwwea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wvl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmmwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqb7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1mo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf7h0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipgy7")
+}],
+"loop": false,
+"name": &"ice_cannon_projectile",
+"speed": 18.0
+}]
+
+[node name="ChargeSprite" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_f52u7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5.5, 0)
+sprite_frames = SubResource("SpriteFrames_bweqa")
+animation = &"ice_cannon_projectile"
+autoplay = "ice_cannon_projectile"
+
+[node name="AP" type="AnimationPlayer" parent="."]
