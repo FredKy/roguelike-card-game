@@ -59,3 +59,5 @@ res://button.gd
 res://effects/distortion.tscn
 res://effects/warp_time_3.gdshader
 res://effects/distortion.gd
+res://effects/lightning.tscn
+res://effects/lightning.gdshader

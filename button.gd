@@ -14,7 +14,7 @@ func _on_pressed():
 		for i in range($'../../Enemies'.get_child_count()):
 			var enemy = $'../../Enemies'.get_child(i)
 			var distortion = load("res://effects/distortion.tscn").instantiate()
-			distortion.set_shader(i+1)
+			#distortion.set_warp_time_shader(i+1)
 			enemy.add_scene_on_top_of_sprite(distortion)
 		top_layer_on = true
 	else:

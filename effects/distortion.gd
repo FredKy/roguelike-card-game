@@ -11,6 +11,6 @@ func _process(delta):
 	pass
 
 
-func set_shader(warp_time_shader_index : int):
+func set_warp_time_shader(warp_time_shader_index : int):
 	pass
 	$ColorRect.set("shader", "res://effects/warp_time_"+str(warp_time_shader_index)+".gdshader")
