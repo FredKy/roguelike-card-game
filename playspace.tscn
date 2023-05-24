@@ -314,7 +314,6 @@ texture_disabled = SubResource("CanvasTexture_1h6jl")
 script = ExtResource("6_anmoi")
 
 [node name="TestingButton" type="Node2D" parent="."]
-visible = false
 position = Vector2(337, 103)
 
 [node name="Button" type="Button" parent="TestingButton"]
@@ -459,7 +458,7 @@ visible = false
 
 [node name="TopBar" parent="." instance=ExtResource("15_sprm1")]
 
-[connection signal="gui_input" from="TestingButton/Button" to="TestingButton/Button" method="_on_gui_input"]
+[connection signal="pressed" from="TestingButton/Button" to="TestingButton/Button" method="_on_pressed"]
 [connection signal="gui_input" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_gui_input"]
 [connection signal="pressed" from="EndTurnButtonNode/EndTurnButton" to="EndTurnButtonNode/EndTurnButton" method="_on_pressed"]
 [connection signal="pressed" from="Skip" to="Skip" method="_on_pressed"]

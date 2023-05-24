@@ -344,3 +344,10 @@ func append_value_to_queue(name_of_queue: String, value, dict: Dictionary):
 
 func get_animation_length(name_anim: String):
 	return sprite.sprite_frames.get_frame_count(name_anim)/sprite.sprite_frames.get_animation_speed(name_anim)
+
+func add_scene_on_top_of_sprite(scene):
+	$VBoxContainer/ImageContainer/TopLayer.add_child(scene)
+
+func remove_scenes_from_top_of_sprite():
+	for child in $VBoxContainer/ImageContainer/TopLayer.get_children():
+		child.queue_free()

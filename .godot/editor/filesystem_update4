@@ -55,3 +55,7 @@ res://cards/fade_out_card_back.gd
 res://effects/victory_smoke_bg.gdshader
 res://effects/warp_time.gdshader
 res://effects/warp_time_2.gdshader
+res://button.gd
+res://effects/distortion.tscn
+res://effects/warp_time_3.gdshader
+res://effects/distortion.gd

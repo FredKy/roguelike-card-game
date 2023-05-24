@@ -84,6 +84,8 @@ func update_global_deck_counter():
 func _ready():
 	util.set_background_texture(game_state.global_next_background, self)
 	battle_type = game_state.global_next_battle_type
+	if battle_type == null:
+		battle_type = WARRIOR_AND_SPEARMAN
 	player_deck = game_state.global_player_deck.duplicate()
 	update_global_deck_counter()
 	$DeckCounter.set_label_text(player_deck.size())
